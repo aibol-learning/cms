@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using SiteServer.Utils;
 using SiteServer.BackgroundPages.Controls;
 using SiteServer.CMS.Core;
@@ -303,6 +306,54 @@ namespace SiteServer.BackgroundPages.Settings
         public void Search_OnClick(object sender, EventArgs e)
         {
             PageUtils.Redirect(PageUrl);
+        }
+
+        public void ImportUsers_OnClick(object sender, EventArgs e)
+        {
+            var re = string.Empty;
+            var i = 0;
+            if(WebClientUtils.Get("http://pss.aibol.com.cn/system/users?LastRetrieveDate=2018-07-03",String.Empty,out re))
+            {
+                JObject result = JObject.Parse(re);
+                foreach (JArray record in result["records"])
+                {
+                    var id = record["id"].ToString();
+                    var name = record["name"].ToString();
+                    var code = record["code"].ToString();
+
+                    var adminInfo = DataProvider.AdministratorDao.GetBySSOId(id);
+                    if (adminInfo == null)
+                    {
+                        adminInfo = new AdministratorInfo()
+                        {
+                            SSOId = id,
+                            UserName = $"{name}({code})",
+                            DisplayName = $"{name}({code})",
+                            Password = "123456"
+                        };
+                        if (!DataProvider.AdministratorDao.Insert(adminInfo, out var errorMessage))
+                        {
+                            FailMessage(null, "导入失败:" + errorMessage);
+                        }
+
+                        i++;
+                    }
+                    else
+                    {
+                        adminInfo.UserName = $"{name}({code})";
+                        adminInfo.DisplayName = $"{name}({code})";
+                        DataProvider.AdministratorDao.Update(adminInfo);
+                    }
+
+                }
+                SuccessMessage($"导入成功,本次新增{i}条");
+            }
+            else
+            {
+                FailMessage(null, "获取失败");
+            }
+
+            
         }
 
         private string _pageUrl;

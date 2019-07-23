@@ -94,6 +94,7 @@
             <asp:TextBox id="TbKeyword" class="form-control" runat="server" />
           </div>
           <asp:Button class="btn btn-success m-l-10 btn-md" OnClick="Search_OnClick" ID="Search" Text="搜 索" runat="server" />
+          <asp:Button class="btn btn-success m-l-10 btn-md" OnClick="ImportUsers_OnClick" ID="ImportUsers" Text="从工作区导入用户" runat="server" />
         </div>
       </div>
       <div class="panel panel-default m-t-20">

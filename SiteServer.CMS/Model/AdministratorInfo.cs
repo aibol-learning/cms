@@ -14,6 +14,7 @@ namespace SiteServer.CMS.Model
         public AdministratorInfo()
         {
             Id = 0;
+
             UserName = string.Empty;
             Password = string.Empty;
             PasswordFormat = EPasswordFormatUtils.GetValue(EPasswordFormat.Encrypted);
@@ -34,12 +35,13 @@ namespace SiteServer.CMS.Model
             AvatarUrl = string.Empty;
         }
 
-        public AdministratorInfo(int id, string userName, string password, string passwordFormat,
+        public AdministratorInfo(int id, string sSOId,string userName, string password, string passwordFormat,
             string passwordSalt, DateTime creationDate, DateTime lastActivityDate, int countOfLogin,
             int countOfFailedLogin, string creatorUserName, bool isLockedOut, string siteIdCollection, int siteId,
             int departmentId, int areaId, string displayName, string mobile, string email, string avatarUrl)
         {
             Id = id;
+            SSOId = sSOId;
             UserName = userName;
             Password = password;
             PasswordFormat = passwordFormat;
@@ -61,6 +63,8 @@ namespace SiteServer.CMS.Model
         }
 
         public int Id { get; set; }
+
+        public string SSOId { get; set; }
 
         public string UserName { get; set; }
 
@@ -118,6 +122,7 @@ namespace SiteServer.CMS.Model
         public AdministratorInfoDatabase()
         {
             Id = 0;
+            SSOId = string.Empty;
             UserName = string.Empty;
             Password = string.Empty;
             PasswordFormat = EPasswordFormatUtils.GetValue(EPasswordFormat.Encrypted);
@@ -141,6 +146,7 @@ namespace SiteServer.CMS.Model
         public AdministratorInfoDatabase(AdministratorInfo adminInfo)
         {
             Id = adminInfo.Id;
+            SSOId = adminInfo.SSOId;
             UserName = adminInfo.UserName;
             Password = adminInfo.Password;
             PasswordFormat = adminInfo.PasswordFormat;
@@ -166,6 +172,7 @@ namespace SiteServer.CMS.Model
             var adminInfo = new AdministratorInfo
             {
                 Id = Id,
+                SSOId = SSOId,
                 UserName = UserName,
                 Password = Password,
                 PasswordFormat = PasswordFormat,
@@ -190,6 +197,8 @@ namespace SiteServer.CMS.Model
         }
 
         public int Id { get; set; }
+
+        public string SSOId { get; set; }
 
         public string UserName { get; set; }
 
@@ -283,22 +292,22 @@ namespace SiteServer.CMS.Model
 
             if (CreationDate != null)
             {
-                dbInfo.CreationDate = (DateTime) CreationDate;
+                dbInfo.CreationDate = (DateTime)CreationDate;
             }
 
             if (LastActivityDate != null)
             {
-                dbInfo.LastActivityDate = (DateTime) LastActivityDate;
+                dbInfo.LastActivityDate = (DateTime)LastActivityDate;
             }
 
             if (CountOfLogin != null)
             {
-                dbInfo.CountOfLogin = (int) CountOfLogin;
+                dbInfo.CountOfLogin = (int)CountOfLogin;
             }
 
             if (CountOfFailedLogin != null)
             {
-                dbInfo.CountOfFailedLogin = (int) CountOfFailedLogin;
+                dbInfo.CountOfFailedLogin = (int)CountOfFailedLogin;
             }
 
             if (CreatorUserName != null)
@@ -318,17 +327,17 @@ namespace SiteServer.CMS.Model
 
             if (SiteId != null)
             {
-                dbInfo.SiteId = (int) SiteId;
+                dbInfo.SiteId = (int)SiteId;
             }
 
             if (DepartmentId != null)
             {
-                dbInfo.DepartmentId = (int) DepartmentId;
+                dbInfo.DepartmentId = (int)DepartmentId;
             }
 
             if (AreaId != null)
             {
-                dbInfo.AreaId = (int) AreaId;
+                dbInfo.AreaId = (int)AreaId;
             }
 
             if (DisplayName != null)
