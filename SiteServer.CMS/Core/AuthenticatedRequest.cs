@@ -529,7 +529,12 @@ namespace SiteServer.CMS.Core
             else if (checkLogin && (!IsAdminLoggin || AdminInfo == null || AdminInfo.IsLockedOut))
             {
                 redirect = true;
-                redirectUrl = PageUtils.GetAdminUrl("pageLogin.cshtml");
+                //redirectUrl = PageUtils.GetAdminUrl("pageLogin.cshtml");
+                redirectUrl = "https://localhost/connect/authorize" +
+                              "?client_id=pingwei-cms&scope=openid%20profile&response_type=id_token%20token&redirect_uri=http://localhost:51687/siteserver/" +
+                              "&state=abc&nonce=xyz"
+                              //+ "&client_secret=uwy32dfj_2"
+                              ;
             }
 
             if (redirect)
