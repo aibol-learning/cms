@@ -111,13 +111,12 @@ namespace SiteServer.Utils
             return false;
         }
 
-        public static bool Get(string url, string requestData, out string retval)
+        public static bool Get(string url,out string retval)
         {
             try
             {
-                var postData = Encoding.UTF8.GetBytes(requestData);
                 var webClient = new WebClient();
-                var responseData = webClient.UploadData(url, "GET", postData);//得到返回字符流  
+                var responseData = webClient.DownloadData(url);
                 retval = Encoding.UTF8.GetString(responseData);//解码
 
                 return true;
