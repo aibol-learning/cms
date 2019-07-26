@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -312,37 +313,45 @@ namespace SiteServer.BackgroundPages.Settings
         {
             var re = string.Empty;
             var i = 0;
-            if(WebClientUtils.Get("http://pss.aibol.com.cn/system/users?LastRetrieveDate=2018-07-03",String.Empty,out re))
+            if(WebClientUtils.Get("http://pss.aibol.com.cn/system/users?LastRetrieveDate=2000-01-01&PageSize=30000", out re))
             {
                 JObject result = JObject.Parse(re);
-                foreach (JArray record in result["records"])
+                var admins = DataProvider.AdministratorDao.ApiGetAdministrators(0, Int32.MaxValue);
+
+                foreach (var record in result["records"].ToObject<JArray>())
                 {
                     var id = record["id"].ToString();
                     var name = record["name"].ToString();
                     var code = record["code"].ToString();
 
-                    var adminInfo = DataProvider.AdministratorDao.GetBySSOId(id);
-                    if (adminInfo == null)
+                    var adminInfo = admins.FirstOrDefault(o=>o.SSOId == id);
+                    if (adminInfo == null )
                     {
                         adminInfo = new AdministratorInfo()
                         {
                             SSOId = id,
-                            UserName = $"{name}({code})",
+                            UserName = code,
                             DisplayName = $"{name}({code})",
-                            Password = "123456"
+                            Password = "abc123"
                         };
                         if (!DataProvider.AdministratorDao.Insert(adminInfo, out var errorMessage))
                         {
-                            FailMessage(null, "导入失败:" + errorMessage);
+                            LogUtils.AddAdminLog("admin","导入用户", "导入失败:"+ errorMessage);
+                        }
+                        else
+                        {
+                            i++;
                         }
 
-                        i++;
                     }
                     else
                     {
-                        adminInfo.UserName = $"{name}({code})";
-                        adminInfo.DisplayName = $"{name}({code})";
-                        DataProvider.AdministratorDao.Update(adminInfo);
+                        if (adminInfo.UserName != code || adminInfo.DisplayName != $"{name}({code})")
+                        {
+                            adminInfo.UserName = $"{name}({code})";
+                            adminInfo.DisplayName = $"{name}({code})";
+                            DataProvider.AdministratorDao.Update(adminInfo);
+                        }
                     }
 
                 }
