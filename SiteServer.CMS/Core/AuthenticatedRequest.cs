@@ -75,6 +75,21 @@ namespace SiteServer.CMS.Core
                         }
                     }
                 }
+
+                var idAccessToken = IdentityServerToken;
+                if (!string.IsNullOrEmpty(idAccessToken))
+                {
+                    var tokenImpl = AdminApi.Instance.ParseAccessToken(adminToken);
+                    if (tokenImpl.UserId > 0 && !string.IsNullOrEmpty(tokenImpl.UserName))
+                    {
+                        var adminInfo = AdminManager.GetAdminInfoByUserId(tokenImpl.UserId);
+                        if (adminInfo != null && !adminInfo.Locked && adminInfo.UserName == tokenImpl.UserName)
+                        {
+                            AdminInfo = adminInfo;
+                            IsAdminLoggin = true;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -165,6 +180,19 @@ namespace SiteServer.CMS.Core
                     accessTokenStr = TranslateUtils.DecryptStringBySecretKey(accessTokenStr);
                 }
 
+                return accessTokenStr;
+            }
+        }
+
+        public string IdentityServerToken
+        {
+            get
+            {
+                var accessTokenStr = string.Empty;
+                if (!string.IsNullOrEmpty(HttpRequest.QueryString[Constants.AuthKeyIdentityServerQuery]))
+                {
+                    accessTokenStr = HttpRequest.QueryString[Constants.AuthKeyIdentityServerQuery];
+                }
                 return accessTokenStr;
             }
         }
@@ -531,7 +559,7 @@ namespace SiteServer.CMS.Core
                 redirect = true;
                 //redirectUrl = PageUtils.GetAdminUrl("pageLogin.cshtml");
                 redirectUrl = "https://localhost/connect/authorize" +
-                              "?client_id=pingwei-cms&scope=openid%20profile&response_type=id_token%20token&redirect_uri=http://localhost:51687/siteserver/" +
+                              "?client_id=pingwei-cms&scope=openid%20profile&response_type=id_token%20token&redirect_uri=http://localhost:51687/siteserver/idlogon.cshtml" +
                               "&state=abc&nonce=xyz"
                               //+ "&client_secret=uwy32dfj_2"
                               ;
@@ -579,18 +607,23 @@ namespace SiteServer.CMS.Core
 
         public static AccessTokenImpl ParseAccessToken(string accessToken)
         {
+            return ParseAccessToken(accessToken, true);
+        }
+
+        public static AccessTokenImpl ParseAccessToken(string accessToken, bool verify)
+        {
             if (string.IsNullOrEmpty(accessToken)) return new AccessTokenImpl();
 
             try
             {
-                var tokenObj = JsonWebToken.DecodeToObject<AccessTokenImpl>(accessToken, WebConfigUtils.SecretKey);
+                var tokenObj = JsonWebToken.DecodeToObject<AccessTokenImpl>(accessToken, WebConfigUtils.SecretKey, verify);
 
                 if (tokenObj?.ExpiresAt.AddDays(Constants.AccessTokenExpireDays) > DateTime.Now)
                 {
                     return tokenObj;
                 }
             }
-            catch
+            catch (Exception e)
             {
                 // ignored
             }

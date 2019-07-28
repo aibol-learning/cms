@@ -73,6 +73,11 @@ namespace SiteServer.CMS.DataCache
                 return $"userName:{userName}";
             }
 
+            private static string GetDictKeyByUserSub(string sub)
+            {
+                return $"userName:{sub}";
+            }
+
             private static string GetDictKeyByMobile(string mobile)
             {
                 return $"mobile:{mobile}";
@@ -134,6 +139,41 @@ namespace SiteServer.CMS.DataCache
                     if (adminInfo == null)
                     {
                         adminInfo = DataProvider.AdministratorDao.GetByUserName(userName);
+                        if (adminInfo != null)
+                        {
+                            dict[GetDictKeyByUserId(adminInfo.Id)] = adminInfo;
+                            dict[GetDictKeyByUserName(adminInfo.UserName)] = adminInfo;
+                            if (!string.IsNullOrEmpty(adminInfo.Mobile))
+                            {
+                                dict[GetDictKeyByMobile(adminInfo.Mobile)] = adminInfo;
+                            }
+                            if (!string.IsNullOrEmpty(adminInfo.Email))
+                            {
+                                dict[GetDictKeyByEmail(adminInfo.Email)] = adminInfo;
+                            }
+                        }
+                    }
+                }
+
+                return adminInfo;
+            }
+
+            public static AdministratorInfo GetCacheByUserSub(string sub)
+            {
+                if (string.IsNullOrEmpty(sub)) return null;
+
+                var dict = GetDict();
+
+                dict.TryGetValue(GetDictKeyByUserSub(sub), out AdministratorInfo adminInfo);
+                if (adminInfo != null) return adminInfo;
+
+                lock (LockObject)
+                {
+                    dict.TryGetValue(GetDictKeyByUserSub(sub), out adminInfo);
+
+                    if (adminInfo == null)
+                    {
+                        adminInfo = DataProvider.AdministratorDao.GetByUserSub(sub);
                         if (adminInfo != null)
                         {
                             dict[GetDictKeyByUserId(adminInfo.Id)] = adminInfo;
@@ -265,6 +305,11 @@ namespace SiteServer.CMS.DataCache
         public static AdministratorInfo GetAdminInfoByUserName(string userName)
         {
             return AdminManagerCache.GetCacheByUserName(userName);
+        }
+
+        public static AdministratorInfo GetAdminInfoByUserSub(string sub)
+        {
+            return AdminManagerCache.GetCacheByUserSub(sub);
         }
 
         public static AdministratorInfo GetAdminInfoByMobile(string mobile)

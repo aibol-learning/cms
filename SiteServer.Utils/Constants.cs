@@ -11,6 +11,10 @@
         public const string AuthKeyApiHeader = "X-SS-API-KEY";
         public const string AuthKeyApiCookie = "SS-API-KEY";
         public const string AuthKeyApiQuery = "apiKey";
+
+        // identity server
+        public const string AuthKeyIdentityServerQuery = "";
+
         public const int AccessTokenExpireDays = 7;
 
         public const string ReturnAndNewline = "\r\n";//回车换行

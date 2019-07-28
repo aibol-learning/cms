@@ -434,6 +434,36 @@ namespace SiteServer.CMS.Provider
             return info;
         }
 
+        public AdministratorInfo GetByUserSub(string sub)
+        {
+            if (string.IsNullOrEmpty(sub)) return null;
+
+            AdministratorInfo info = null;
+
+            throw new NotImplementedException();
+
+            IDataParameter[] parameters =
+            {
+               // GetParameter(ParmUsername, DataType.VarChar, 255, userName)
+            };
+
+            using (var rdr = ExecuteReader(SqlSelectUserByUserName, parameters))
+            {
+                if (rdr.Read())
+                {
+                    var i = 0;
+                    info = new AdministratorInfo(GetInt(rdr, i++), GetString(rdr, i++), GetString(rdr, i++),
+                        GetString(rdr, i++), GetString(rdr, i++), GetDateTime(rdr, i++), GetDateTime(rdr, i++), GetInt(rdr, i++), GetInt(rdr, i++),
+                        GetString(rdr, i++), TranslateUtils.ToBool(GetString(rdr, i++)), GetString(rdr, i++),
+                        GetInt(rdr, i++), GetInt(rdr, i++), GetInt(rdr, i++), GetString(rdr, i++), GetString(rdr, i++), GetString(rdr, i++),
+                        GetString(rdr, i));
+                }
+                rdr.Close();
+            }
+
+            return info;
+        }
+
         public AdministratorInfo GetByMobile(string mobile)
         {
             if (string.IsNullOrEmpty(mobile)) return null;

@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Results;
 using SiteServer.BackgroundPages.Cms;
 using SiteServer.BackgroundPages.Settings;
 using SiteServer.CMS.Api.Preview;
@@ -16,6 +17,7 @@ using SiteServer.CMS.Plugin;
 using SiteServer.CMS.Plugin.Impl;
 using SiteServer.CMS.StlParser;
 using SiteServer.Utils;
+using SiteServer.Utils.Auth;
 
 namespace SiteServer.API.Controllers.Pages
 {
@@ -25,6 +27,7 @@ namespace SiteServer.API.Controllers.Pages
         private const string Route = "";
         private const string RouteActionsCreate = "actions/create";
         private const string RouteActionsDownload = "actions/download";
+        private const string RouteIdentityServerLogon = "actions/idlogon";
 
         [HttpGet, Route(Route)]
         public IHttpActionResult GetConfig()
@@ -145,6 +148,30 @@ namespace SiteServer.API.Controllers.Pages
             {
                 return InternalServerError(ex);
             }
+        }
+
+        [HttpGet, Route(RouteIdentityServerLogon)]
+        public IHttpActionResult IdentityServerLogon()
+        {
+            var request = new AuthenticatedRequest();
+
+            var accessToken = request.GetQueryString("access_token");
+
+            var parsed2 = AuthenticatedRequest.ParseAccessToken(accessToken, false);
+
+            var adminInfo = AdminManager.GetAdminInfoByUserSub(parsed2.sub);
+
+            // 记录最后登录时间、失败次数清零
+            DataProvider.AdministratorDao.UpdateLastActivityDateAndCountOfLogin(adminInfo);
+            var token = request.AdminLogin(adminInfo.UserName, true);
+            var expiresAt = DateTime.Now.AddDays(Constants.AccessTokenExpireDays);
+
+            return Ok(new
+            {
+                Value = adminInfo,
+                AccessToken = token,
+                ExpiresAt = expiresAt
+            });
         }
 
         private static List<Tab> GetTopMenus(SiteInfo siteInfo, bool isSuperAdmin, List<int> siteIdListLatestAccessed, List<int> siteIdListWithPermissions)
