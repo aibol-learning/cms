@@ -75,21 +75,6 @@ namespace SiteServer.CMS.Core
                         }
                     }
                 }
-
-                var idAccessToken = IdentityServerToken;
-                if (!string.IsNullOrEmpty(idAccessToken))
-                {
-                    var tokenImpl = AdminApi.Instance.ParseAccessToken(adminToken);
-                    if (tokenImpl.UserId > 0 && !string.IsNullOrEmpty(tokenImpl.UserName))
-                    {
-                        var adminInfo = AdminManager.GetAdminInfoByUserId(tokenImpl.UserId);
-                        if (adminInfo != null && !adminInfo.Locked && adminInfo.UserName == tokenImpl.UserName)
-                        {
-                            AdminInfo = adminInfo;
-                            IsAdminLoggin = true;
-                        }
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -558,11 +543,7 @@ namespace SiteServer.CMS.Core
             {
                 redirect = true;
                 //redirectUrl = PageUtils.GetAdminUrl("pageLogin.cshtml");
-                redirectUrl = "https://pass.aibol.com" +
-                              "?client_id=pingwei-cms&scope=openid%20profile&response_type=id_token%20token&redirect_uri=http://localhost:51687/siteserver/idlogon.cshtml" +
-                              "&state=abc&nonce=xyz";
-                //+ "&client_secret=uwy32dfj_2"
-                //              ;
+                redirectUrl = WebConfigUtils.SSOService.GetFullRedirectUrl();
             }
 
             if (redirect)

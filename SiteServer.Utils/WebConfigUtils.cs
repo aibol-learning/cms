@@ -35,6 +35,8 @@ namespace SiteServer.Utils
         public static string HomeDirectory { get; private set; }
         public static string SecretKey { get; private set; }
 
+        public static SSOService SSOService { get; private set; }
+
         public static bool IsNightlyUpdate { get; private set; }
 
         public static void Load(string physicalApplicationPath, string webConfigPath)
@@ -116,13 +118,20 @@ namespace SiteServer.Utils
                                         SecretKey = attrValue.Value;
                                     }
                                 }
-
                                 else if (StringUtils.EqualsIgnoreCase(attrKey.Value, nameof(IsNightlyUpdate)))
                                 {
                                     var attrValue = setting.Attributes["value"];
                                     if (attrValue != null)
                                     {
                                         IsNightlyUpdate = TranslateUtils.ToBool(attrValue.Value);
+                                    }
+                                }
+                                else if (StringUtils.EqualsIgnoreCase(attrKey.Value, nameof(SSOService)))
+                                {
+                                    var attrValue = setting.Attributes["value"];
+                                    if (attrValue != null)
+                                    {
+                                        SSOService = new SSOService(attrValue.Value);
                                     }
                                 }
                             }
@@ -431,6 +440,43 @@ namespace SiteServer.Utils
             }
 
             return userId;
+        }
+    }
+
+    public class SSOService
+    {
+        public SSOService(string sso)
+        {
+            var array = sso.Split(';');
+            foreach (var item in array)
+            {
+                var kv = item.Split('=');
+
+                if (StringUtils.EqualsIgnoreCase(kv[0], nameof(Authority)))
+                    Authority = kv[1];
+                else if (StringUtils.EqualsIgnoreCase(kv[0], nameof(RedirectUri)))
+                    RedirectUri = kv[1];
+                else if (StringUtils.EqualsIgnoreCase(kv[0], nameof(ClientId)))
+                    ClientId = kv[1];
+            }
+        }
+
+        public string Authority { get; set; }
+
+        public string RedirectUri { get; set; }
+
+        public string ClientId { get; set; }
+
+        public string GetFullRedirectUrl()
+        {
+            var id = Guid.NewGuid().ToString("N");
+            var bytes = Encoding.Default.GetBytes(id);
+            var nonce = Convert.ToBase64String(bytes);
+
+            return $"{Authority}?client_id={ClientId}" +
+                   "&scope=openid%20profile&response_type=id_token%20token" +
+                   $"&redirect_uri={RedirectUri}" +
+                   $"&state={id}&nonce={nonce}";
         }
     }
 }
