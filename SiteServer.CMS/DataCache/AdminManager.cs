@@ -173,7 +173,7 @@ namespace SiteServer.CMS.DataCache
 
                     if (adminInfo == null)
                     {
-                        adminInfo = DataProvider.AdministratorDao.GetByUserSub(sub);
+                        adminInfo = DataProvider.AdministratorDao.GetBySSOId(sub);
                         if (adminInfo != null)
                         {
                             dict[GetDictKeyByUserId(adminInfo.Id)] = adminInfo;
