@@ -303,6 +303,12 @@ namespace SiteServer.BackgroundPages.Cms
                         contentInfo.Set(ContentAttribute.CheckDate, DateUtils.GetDateAndTimeString(DateTime.Now));
                         contentInfo.Set(ContentAttribute.CheckReasons, string.Empty);
                     }
+                    else
+                    {
+                        //发送初审代办
+                        var lv1SSOIds = DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(1);
+                        BackstageManager.SendMessage(MessageType.消息, lv1SSOIds, "等待初审");
+                    }
 
                     contentInfo.Id = DataProvider.ContentDao.Insert(_tableName, SiteInfo, _channelInfo, contentInfo);
 

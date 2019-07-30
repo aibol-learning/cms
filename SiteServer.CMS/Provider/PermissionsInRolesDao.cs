@@ -176,5 +176,37 @@ namespace SiteServer.CMS.Provider
 
 			return list;
 		}
+
+        public List<string> GetCheckerSSOIds(int level)
+        {
+            var list = new List<string>();
+            var permission = $"cms_contentCheckLevel{level}";
+
+            var sql = "SELECT c.SSOId,c.Id,c.DisplayName,a.RoleName FROM siteserver_SitePermissions as a " + 
+            "inner join siteserver_AdministratorsInRoles as b "+
+            "on a.RoleName = b.RoleName " +
+            "inner join siteserver_Administrator as c " +
+            "on c.UserName = b.UserName " +
+            $"where a.ChannelPermissions like '%cms_contentCheckLevel{level}%'";
+
+            using (var rdr = ExecuteReader(WebConfigUtils.ConnectionString,sql))
+            {
+                if (rdr.Read())
+                {
+                    var i = 0;
+                    var SSOId = GetString(rdr, i++);
+                    var id = GetInt(rdr, i++);
+                    var displayName = GetString(rdr, i++);
+                    var rolename = GetString(rdr, i++);
+
+                    list.Add(SSOId);
+                    //info = new PermissionsInRolesInfo(GetInt(rdr, i++), GetString(rdr, i++), GetString(rdr, i));
+                }
+
+                rdr.Close();
+            }
+
+            return list;
+        }
 	}
 }

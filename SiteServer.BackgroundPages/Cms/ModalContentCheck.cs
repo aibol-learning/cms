@@ -10,6 +10,7 @@ using SiteServer.CMS.DataCache;
 using SiteServer.CMS.DataCache.Content;
 using SiteServer.CMS.Model;
 using SiteServer.CMS.Model.Attributes;
+using SiteServer.CMS.Provider;
 
 namespace SiteServer.BackgroundPages.Cms
 {
@@ -147,12 +148,56 @@ namespace SiteServer.BackgroundPages.Cms
 
                         //CreateManager.CreateContent(SiteId, contentInfo.ChannelId, contentId);
                         //CreateManager.TriggerContentChangedEvent(SiteId, contentInfo.ChannelId);
+
+
+                        switch (DdlCheckType.SelectedItem.Text)
+                        {
+                            case "初审通过，等待二审":
+                                //关闭初审代办
+                                //发送消息给其他初审员和发稿人
+
+                                var lv2SSOIds = DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(2);
+                                var addUserName = contentInfo.AddUserName;
+                                var author = DataProvider.AdministratorDao.GetByUserName(addUserName);
+                                lv2SSOIds.Add(author.SSOId);
+                                BackstageManager.SendMessage(MessageType.消息, lv2SSOIds, "初审通过，等待二审");
+                                //发送代办给二审
+                                break;
+                            case "初审退稿":
+                                //关闭初审代办
+                                //发送消息给其他初审员和发稿人
+                                //发送代办给发稿人
+                                break;
+                            case "二审通过，等待终审":
+                                //关闭二审代办
+                                //发送消息给其他二审员和发稿人
+                                //发送代办给终审员
+                                break;
+                            case "二审退稿":
+                                //关闭初审代办
+                                //发送消息给其他初审员
+                                //发送代办给发稿人
+                                break;
+                            case "终审通过":
+                                //关闭终审代办
+                                //发送消息给其他终审员和发稿人
+                                break;
+                            case "终审退稿":
+                                //关闭初审代办
+                                //发送消息给其他初审员
+                                //发送代办给发稿人
+                                break;
+                        }
                     }
                 }
                 if (contentIdListToCheck.Count > 0)
                 {
                     idsDictionaryToCheck[channelId] = contentIdListToCheck;
                 }
+
+
+
+
             }
 
             if (contentInfoListToCheck.Count == 0)
@@ -177,6 +222,7 @@ namespace SiteServer.BackgroundPages.Cms
             }
 
             AuthRequest.AddSiteLog(SiteId, SiteId, 0, "设置内容状态为" + DdlCheckType.SelectedItem.Text, TbCheckReasons.Text);
+
 
             foreach (var channelId in idsDictionaryToCheck.Keys)
             {

@@ -164,6 +164,7 @@
     <Compile Include="Api\Sys\Stl\ApiRouteActionsTrigger.cs" />
     <Compile Include="Api\Sys\Stl\ApiRouteActionsUpload.cs" />
     <Compile Include="Api\V1\PageResponse.cs" />
+    <Compile Include="Core\BackstageManager.cs" />
     <Compile Include="Core\CmsPages.cs" />
     <Compile Include="Core\ContentColumn.cs" />
     <Compile Include="Core\ContentCountInfo.cs" />
