@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Text;
 using SiteServer.CMS.Core;
 using SiteServer.CMS.DataCache.Core;
 using SiteServer.CMS.Model;
+using SiteServer.CMS.Plugin.Impl;
 using SiteServer.Utils;
 using SiteServer.Utils.Enumerations;
 
@@ -447,6 +450,19 @@ namespace SiteServer.CMS.DataCache
         public static string GetUserUploadUrl(int userId, string relatedUrl)
         {
             return GetUploadUrl(userId.ToString(), relatedUrl);
+        }
+
+        public static AdministratorInfo UpdateNewUserFromIdentityServer(string accessToken)
+        {
+            using (var client = new WebClient())
+            {
+                client.Encoding = Encoding.UTF8;
+                client.Headers.Add("Authorization", $"Bearer {accessToken}");
+
+                var userInfo = client.DownloadString(WebConfigUtils.SSOService.UserInfoEndPoint());
+            }
+
+            throw new NotImplementedException();
         }
     }
 }

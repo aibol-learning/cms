@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Web;
 using System.Xml;
 using Datory;
 
@@ -467,16 +468,21 @@ namespace SiteServer.Utils
 
         public string ClientId { get; set; }
 
-        public string GetFullRedirectUrl()
+        public string AuthorizeEndPoint()
         {
             var id = Guid.NewGuid().ToString("N");
             var bytes = Encoding.Default.GetBytes(id);
-            var nonce = Convert.ToBase64String(bytes);
+            var nonce = Convert.ToBase64String(bytes).Replace("=", string.Empty);
 
-            return $"{Authority}?client_id={ClientId}" +
-                   "&scope=openid%20profile&response_type=id_token%20token" +
-                   $"&redirect_uri={RedirectUri}" +
+            return $"{Authority}/authorize?client_id={ClientId}" +
+                   "&scope=openid%20profile&response_type=id_token" +
+                   $"&redirect_uri={HttpUtility.UrlEncode(RedirectUri)}" +
                    $"&state={id}&nonce={nonce}";
+        }
+
+        public string UserInfoEndPoint()
+        {
+            return $"{Authority}/userinfo";
         }
     }
 }

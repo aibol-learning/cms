@@ -16,7 +16,7 @@ namespace SiteServer.API.Controllers.Pages
             try
             {
                 var request = new AuthenticatedRequest();
-                var redirect = request.AdminRedirectCheck(checkInstall: true, checkDatabaseVersion: true);
+                var redirect = request.AdminRedirectCheck(true, true, true);
                 if (redirect != null) return Ok(redirect);
 
                 return Ok(new

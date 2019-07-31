@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Results;
 using SiteServer.BackgroundPages.Cms;
 using SiteServer.BackgroundPages.Settings;
 using SiteServer.CMS.Api.Preview;
@@ -14,10 +13,8 @@ using SiteServer.CMS.DataCache;
 using SiteServer.CMS.Model;
 using SiteServer.CMS.Packaging;
 using SiteServer.CMS.Plugin;
-using SiteServer.CMS.Plugin.Impl;
 using SiteServer.CMS.StlParser;
 using SiteServer.Utils;
-using SiteServer.Utils.Auth;
 
 namespace SiteServer.API.Controllers.Pages
 {
@@ -29,13 +26,14 @@ namespace SiteServer.API.Controllers.Pages
         private const string RouteActionsDownload = "actions/download";
         private const string RouteIdentityServerLogon = "actions/idlogon";
 
-        [HttpGet, Route(Route)]
+        [HttpGet]
+        [Route(Route)]
         public IHttpActionResult GetConfig()
         {
             try
             {
                 var request = new AuthenticatedRequest();
-                var redirect = request.AdminRedirectCheck(checkInstall:true, checkDatabaseVersion:true, checkLogin:true);
+                var redirect = request.AdminRedirectCheck(true, true, true);
                 if (redirect != null) return Ok(redirect);
 
                 var siteId = request.GetQueryInt("siteId");
@@ -48,31 +46,25 @@ namespace SiteServer.API.Controllers.Pages
                 if (siteInfo == null || !siteIdListWithPermissions.Contains(siteInfo.Id))
                 {
                     if (siteIdListWithPermissions.Contains(adminInfo.SiteId))
-                    {
                         return Ok(new
                         {
                             Value = false,
                             RedirectUrl = PageUtils.GetMainUrl(adminInfo.SiteId)
                         });
-                    }
 
                     if (siteIdListWithPermissions.Count > 0)
-                    {
                         return Ok(new
                         {
                             Value = false,
                             RedirectUrl = PageUtils.GetMainUrl(siteIdListWithPermissions[0])
                         });
-                    }
 
                     if (isSuperAdmin)
-                    {
                         return Ok(new
                         {
                             Value = false,
                             RedirectUrl = PageSiteAdd.GetRedirectUrl()
                         });
-                    }
 
                     return Ok(new
                     {
@@ -105,15 +97,11 @@ namespace SiteServer.API.Controllers.Pages
                 {
                     var websitePermissionList = permissions.GetSitePermissions(siteInfo.Id);
                     if (websitePermissionList != null)
-                    {
                         permissionList.AddRange(websitePermissionList);
-                    }
                 }
                 var channelPermissions = permissions.GetChannelPermissions(siteInfo.Id);
                 if (channelPermissions.Count > 0)
-                {
                     permissionList.AddRange(channelPermissions);
-                }
 
                 var topMenus = GetTopMenus(siteInfo, isSuperAdmin, siteIdListLatestAccessed, siteIdListWithPermissions);
                 var siteMenus =
@@ -150,16 +138,27 @@ namespace SiteServer.API.Controllers.Pages
             }
         }
 
-        [HttpGet, Route(RouteIdentityServerLogon)]
+        [HttpGet]
+        [Route(RouteIdentityServerLogon)]
         public IHttpActionResult IdentityServerLogon()
         {
             var request = new AuthenticatedRequest();
 
             var accessToken = request.GetQueryString("access_token");
+            if (string.IsNullOrEmpty(accessToken))
+            {
+                var redirect = request.AdminRedirectCheck(true, true, true);
+                if (redirect != null) return Ok(redirect);
+            }
 
             var parsed2 = AuthenticatedRequest.ParseAccessToken(accessToken, false);
-
             var adminInfo = AdminManager.GetAdminInfoByUserSub(parsed2.sub);
+
+            // 新用户自动登录
+            if (adminInfo == null)
+            {
+                adminInfo = AdminManager.UpdateNewUserFromIdentityServer(accessToken);
+            }
 
             // 记录最后登录时间、失败次数清零
             DataProvider.AdministratorDao.UpdateLastActivityDateAndCountOfLogin(adminInfo);
@@ -174,7 +173,8 @@ namespace SiteServer.API.Controllers.Pages
             });
         }
 
-        private static List<Tab> GetTopMenus(SiteInfo siteInfo, bool isSuperAdmin, List<int> siteIdListLatestAccessed, List<int> siteIdListWithPermissions)
+        private static List<Tab> GetTopMenus(SiteInfo siteInfo, bool isSuperAdmin, List<int> siteIdListLatestAccessed,
+            List<int> siteIdListWithPermissions)
         {
             var menus = new List<Tab>();
 
@@ -191,7 +191,8 @@ namespace SiteServer.API.Controllers.Pages
                 }
                 else
                 {
-                    var siteIdList = AdminManager.GetLatestTop10SiteIdList(siteIdListLatestAccessed, siteIdListWithPermissions);
+                    var siteIdList =
+                        AdminManager.GetLatestTop10SiteIdList(siteIdListLatestAccessed, siteIdListWithPermissions);
                     foreach (var siteId in siteIdList)
                     {
                         var site = SiteManager.GetSiteInfo(siteId);
@@ -228,7 +229,6 @@ namespace SiteServer.API.Controllers.Pages
             }
 
             if (isSuperAdmin)
-            {
                 foreach (var tab in TabManager.GetTopMenuTabs())
                 {
                     var tabs = TabManager.GetTabList(tab.Id, 0);
@@ -236,12 +236,12 @@ namespace SiteServer.API.Controllers.Pages
 
                     menus.Add(tab);
                 }
-            }
 
             return menus;
         }
 
-        private static List<Tab> GetLeftMenus(SiteInfo siteInfo, string topId, bool isSuperAdmin, List<string> permissionList)
+        private static List<Tab> GetLeftMenus(SiteInfo siteInfo, string topId, bool isSuperAdmin,
+            List<string> permissionList)
         {
             var menus = new List<Tab>();
 
@@ -255,7 +255,6 @@ namespace SiteServer.API.Controllers.Pages
                 {
                     var tabCollection = new TabCollection(parent.Children);
                     if (tabCollection.Tabs != null && tabCollection.Tabs.Length > 0)
-                    {
                         foreach (var childTab in tabCollection.Tabs)
                         {
                             if (!isSuperAdmin && !TabManager.IsValid(childTab, permissionList)) continue;
@@ -269,7 +268,6 @@ namespace SiteServer.API.Controllers.Pages
                                 IconClass = childTab.IconClass
                             });
                         }
-                    }
                 }
 
                 menus.Add(new Tab
@@ -291,30 +289,26 @@ namespace SiteServer.API.Controllers.Pages
         {
             var href = tab.Href;
             if (!PageUtils.IsAbsoluteUrl(href))
-            {
                 href = PageUtils.AddQueryString(href,
-                    new NameValueCollection { { "siteId", siteId.ToString() } });
-            }
+                    new NameValueCollection {{"siteId", siteId.ToString()}});
 
             return href;
         }
 
-        [HttpPost, Route(RouteActionsCreate)]
+        [HttpPost]
+        [Route(RouteActionsCreate)]
         public async Task<IHttpActionResult> Create()
         {
             try
             {
                 var request = new AuthenticatedRequest();
                 if (!request.IsAdminLoggin)
-                {
                     return Unauthorized();
-                }
 
                 var count = CreateTaskManager.PendingTaskCount;
 
                 var pendingTask = CreateTaskManager.GetFirstPendingTask();
                 if (pendingTask != null)
-                {
                     try
                     {
                         var start = DateTime.Now;
@@ -332,7 +326,6 @@ namespace SiteServer.API.Controllers.Pages
                     {
                         CreateTaskManager.RemovePendingTask(pendingTask);
                     }
-                }
 
                 return Ok(new
                 {
@@ -345,15 +338,14 @@ namespace SiteServer.API.Controllers.Pages
             }
         }
 
-        [HttpPost, Route(RouteActionsDownload)]
+        [HttpPost]
+        [Route(RouteActionsDownload)]
         public IHttpActionResult Download()
         {
             var request = new AuthenticatedRequest();
 
             if (!request.IsAdminLoggin)
-            {
                 return Unauthorized();
-            }
 
             var packageId = request.GetPostString("packageId");
             var version = request.GetPostString("version");
@@ -368,9 +360,7 @@ namespace SiteServer.API.Controllers.Pages
             }
 
             if (StringUtils.EqualsIgnoreCase(packageId, PackageUtils.PackageIdSsCms))
-            {
                 CacheDbUtils.RemoveAndInsert(PackageUtils.CacheKeySsCmsIsDownload, true.ToString());
-            }
 
             return Ok(new
             {
