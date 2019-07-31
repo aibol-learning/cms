@@ -138,13 +138,13 @@ namespace SiteServer.API.Controllers.Pages
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route(RouteIdentityServerLogon)]
         public IHttpActionResult IdentityServerLogon()
         {
             var request = new AuthenticatedRequest();
 
-            var accessToken = request.GetQueryString("access_token");
+            var accessToken = request.GetPostString("access_token");
             if (string.IsNullOrEmpty(accessToken))
             {
                 var redirect = request.AdminRedirectCheck(true, true, true);

@@ -475,7 +475,9 @@ namespace SiteServer.Utils
             var nonce = Convert.ToBase64String(bytes).Replace("=", string.Empty);
 
             return $"{Authority}/authorize?client_id={ClientId}" +
-                   "&scope=openid%20profile&response_type=id_token" +
+                   "&scope=openid%20profile"+
+                   "&response_mode=form_post"+
+                   "&response_type=id_token%20token" +
                    $"&redirect_uri={HttpUtility.UrlEncode(RedirectUri)}" +
                    $"&state={id}&nonce={nonce}";
         }
