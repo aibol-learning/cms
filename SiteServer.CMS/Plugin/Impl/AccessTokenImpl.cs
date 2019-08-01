@@ -21,9 +21,11 @@ namespace SiteServer.CMS.Plugin.Impl
             set
             {
                 _exp = value;
-
-                var startTime = new DateTime(1970, 1, 1);
-                ExpiresAt = startTime.ToLocalTime().AddSeconds(_exp);
+                if (_exp > 1000)
+                {
+                    var startTime = new DateTime(1970, 1, 1);
+                    ExpiresAt = startTime.ToLocalTime().AddSeconds(_exp);
+                }
             }
         }
 

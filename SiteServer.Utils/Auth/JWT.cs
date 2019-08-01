@@ -48,7 +48,7 @@ namespace SiteServer.Utils.Auth
             var segments = new List<string>();
             var header = new Dictionary<string, object>(extraHeaders)
             {
-                {"typ", "JWT"}, 
+                {"typ", "JWT"},
                 {"alg", algorithm.ToString()}
             };
 
@@ -150,16 +150,21 @@ namespace SiteServer.Utils.Auth
                 {
                     // safely unpack a boxed int 
                     int exp;
-                    try { exp = Convert.ToInt32(payloadData["exp"]); }
-                    catch (Exception) 
-                    { 
-                        throw new SignatureVerificationException("Claim 'exp' must be an integer.");
-                    }
-
-                    var secondsSinceEpoch = Math.Round((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds);
-                    if (secondsSinceEpoch >= exp)
+                    try
                     {
-                        throw new SignatureVerificationException("Token has expired.");
+                        exp = Convert.ToInt32(payloadData["exp"]);
+                        if (exp > 1000)
+                        {
+                            var secondsSinceEpoch = Math.Round((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds);
+                            if (secondsSinceEpoch >= exp)
+                            {
+                                throw new SignatureVerificationException("Token has expired.");
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new SignatureVerificationException("Claim 'exp' must be an integer.");
                     }
                 }
             }
