@@ -138,13 +138,12 @@ namespace SiteServer.API.Controllers.Pages
             }
         }
 
-        [HttpPost]
         [Route(RouteIdentityServerLogon)]
         public IHttpActionResult IdentityServerLogon()
         {
             var request = new AuthenticatedRequest();
 
-            var accessToken = request.GetPostString("access_token");
+            var accessToken = request.HttpRequest.Form["access_token"];
             if (string.IsNullOrEmpty(accessToken))
             {
                 var redirect = request.AdminRedirectCheck(true, true, true);
@@ -162,15 +161,11 @@ namespace SiteServer.API.Controllers.Pages
 
             // 记录最后登录时间、失败次数清零
             DataProvider.AdministratorDao.UpdateLastActivityDateAndCountOfLogin(adminInfo);
-            var token = request.AdminLogin(adminInfo.UserName, true);
-            var expiresAt = DateTime.Now.AddDays(Constants.AccessTokenExpireDays);
+            request.AdminLogin(adminInfo.UserName, false);
+            var mainUrl = PageUtils.GetMainUrl(adminInfo.SiteId);
+            var requestUrl = request.HttpRequest.Url;
 
-            return Ok(new
-            {
-                Value = adminInfo,
-                AccessToken = token,
-                ExpiresAt = expiresAt
-            });
+            return Redirect($"{requestUrl.Scheme}://{requestUrl.Authority}{mainUrl}");
         }
 
         private static List<Tab> GetTopMenus(SiteInfo siteInfo, bool isSuperAdmin, List<int> siteIdListLatestAccessed,
