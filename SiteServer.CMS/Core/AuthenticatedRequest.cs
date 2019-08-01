@@ -522,7 +522,7 @@ namespace SiteServer.CMS.Core
 
         #endregion
 
-        public object AdminRedirectCheck(bool checkInstall = false, bool checkDatabaseVersion = false,
+        public RedirectResult AdminRedirectCheck(bool checkInstall = false, bool checkDatabaseVersion = false,
             bool checkLogin = false)
         {
             var redirect = false;
@@ -548,7 +548,7 @@ namespace SiteServer.CMS.Core
 
             if (redirect)
             {
-                return new
+                return new RedirectResult
                 {
                     Value = false,
                     RedirectUrl = redirectUrl
@@ -611,5 +611,12 @@ namespace SiteServer.CMS.Core
 
             return new AccessTokenImpl();
         }
+    }
+
+    public class RedirectResult
+    {
+        public bool Value { get; set; }
+
+        public string RedirectUrl { get; set; }
     }
 }

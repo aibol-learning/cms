@@ -474,6 +474,8 @@ namespace SiteServer.CMS.DataCache
 
                 DataProvider.AdministratorDao.Insert(info, out var errMsg);
 
+                info = GetAdminInfoByUserSub(info.SSOId);
+
                 return info;
             }
         }

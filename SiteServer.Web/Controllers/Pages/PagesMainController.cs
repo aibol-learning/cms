@@ -147,7 +147,7 @@ namespace SiteServer.API.Controllers.Pages
             if (string.IsNullOrEmpty(accessToken))
             {
                 var redirect = request.AdminRedirectCheck(true, true, true);
-                if (redirect != null) return Ok(redirect);
+                if (redirect != null) return Redirect(redirect.RedirectUrl);
             }
 
             var parsed2 = AuthenticatedRequest.ParseAccessToken(accessToken, false);
