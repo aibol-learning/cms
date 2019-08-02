@@ -25,10 +25,11 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pageAnalysisUser.aspx">会员数据统计</a>
+
         </li>
       </ul>
     </div>
-
+
     <ctrl:alerts runat="server" />
 
     <div class="card-box">
@@ -49,7 +50,9 @@
           <ctrl:DateTimeTextBox ID="TbEndDate" class="form-control" runat="server" />
         </div>
 
-        <asp:Button class="btn btn-success m-l-10" OnClick="Analysis_OnClick" Text="统 计" runat="server" />
+        <asp:Button class="btn btn-success m-l-10" OnClick="Analysis_OnClick" Text="按作者统计" runat="server" />
+          
+          <asp:Button class="btn btn-success m-l-10" OnClick="Analysis_OnClick2" Text="按来源（部门）统计" runat="server" />
       </div>
 
       <asp:PlaceHolder id="PhAnalysis" runat="server">
@@ -77,7 +80,7 @@
                 var newTitle = "新增信息数目";
                 var updateTitle = "更新信息数目";
 
-                <%=StrArray%>
+                <%=StrArray%>
 
                 if (xArrayNew.length == 0) {
                   xArrayNew = ["暂无数据"];
@@ -88,6 +91,7 @@
                   tooltip: {
                     show: true
                   },
+
                   legend: {
                     data: [newTitle, updateTitle]
                   },
@@ -134,7 +138,7 @@
           </script>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="AdminDiv" runat="server">
           <div class="panel-body p-0">
             <div class="table-responsive">
               <table class="table tablesaw table-hover m-0">
@@ -160,6 +164,7 @@
                         <td class="text-center">
                           <asp:Literal ID="ltlContentUpdate" runat="server"></asp:Literal>
                         </td>
+
                       </tr>
                     </ItemTemplate>
                   </asp:Repeater>
@@ -168,6 +173,37 @@
             </div>
           </div>
         </div>
+
+          <div class="panel panel-default" id="DepartmentDiv" runat="server">
+              <div class="panel-body p-0">
+                  <div class="table-responsive">
+                      <table class="table tablesaw table-hover m-0">
+                          <thead>
+                          <th>来源（部门） </th>
+                          <th class="text-center">新增内容 </th>
+                          <th class="text-center">更新内容 </th>
+                          </thead>
+                          <tbody>
+                          <asp:Repeater ID="RptContentDepartments" runat="server">
+                              <ItemTemplate>
+                                  <tr>
+                                      <td>
+                                          <asp:Literal ID="ltlSource" runat="server"></asp:Literal>
+                                      </td>
+                                      <td class="text-center">
+                                          <asp:Literal ID="ltlContentAdd" runat="server"></asp:Literal>
+                                      </td>
+                                      <td class="text-center">
+                                          <asp:Literal ID="ltlContentUpdate" runat="server"></asp:Literal>
+                                      </td>
+                                  </tr>
+                              </ItemTemplate>
+                          </asp:Repeater>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
 
         <ctrl:SqlPager ID="SpContents" runat="server" class="table table-pager" />
 

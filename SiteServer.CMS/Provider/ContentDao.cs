@@ -937,6 +937,12 @@ namespace SiteServer.CMS.Provider
 
             return ExecuteDataset(sqlString);
         }
+        public DataSet GetDataSetOfDepartmentExcludeRecycle(string tableName, int siteId, DateTime begin, DateTime end)
+        {
+            var sqlString = GetSqlStringOfDepartmentExcludeRecycle(tableName, siteId, begin, end);
+
+            return ExecuteDataset(sqlString);
+        }
 
         public int Insert(string tableName, SiteInfo siteInfo, ChannelInfo channelInfo, ContentInfo contentInfo)
         {
@@ -1847,6 +1853,28 @@ AND LastEditDate != AddDate
 GROUP BY LastEditUserName
 ) as tmp
 group by tmp.userName";
+
+
+            return sqlString;
+        }
+
+        public string GetSqlStringOfDepartmentExcludeRecycle(string tableName, int siteId, DateTime begin, DateTime end)
+        {
+            var sqlString = $@"select source,SUM(addCount) as addCount, SUM(updateCount) as updateCount from( 
+SELECT Source as source, Count(Source) as addCount, 0 as updateCount FROM {tableName} 
+INNER JOIN {DataProvider.AdministratorDao.TableName} ON AddUserName = {DataProvider.AdministratorDao.TableName}.UserName 
+WHERE {tableName}.SiteId = {siteId} AND (({tableName}.ChannelId > 0)) 
+AND LastEditDate BETWEEN {SqlUtils.GetComparableDate(begin)} AND {SqlUtils.GetComparableDate(end.AddDays(1))}
+GROUP BY Source
+Union
+SELECT Source as source,0 as addCount, Count(Source) as updateCount FROM {tableName} 
+INNER JOIN {DataProvider.AdministratorDao.TableName} ON LastEditUserName = {DataProvider.AdministratorDao.TableName}.UserName 
+WHERE {tableName}.SiteId = {siteId} AND (({tableName}.ChannelId > 0)) 
+AND LastEditDate BETWEEN {SqlUtils.GetComparableDate(begin)} AND {SqlUtils.GetComparableDate(end.AddDays(1))}
+AND LastEditDate != AddDate
+GROUP BY Source
+) as tmp
+group by tmp.source";
 
 
             return sqlString;
