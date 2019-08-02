@@ -91,6 +91,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\spire.office\NET4.0\Spire.Doc.dll</HintPath>
     </Reference>
+    <Reference Include="Spire.License">
+      <HintPath>..\ref\spire.office\NET4.0\Spire.License.dll</HintPath>
+    </Reference>
     <Reference Include="Spire.Pdf, Version=5.7.14.18040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\spire.office\NET4.0\Spire.Pdf.dll</HintPath>

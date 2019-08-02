@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using Newtonsoft.Json;
 using SiteServer.CMS.Core;
 using SiteServer.CMS.DataCache.Core;
 using SiteServer.CMS.Model;
@@ -459,10 +460,24 @@ namespace SiteServer.CMS.DataCache
                 client.Encoding = Encoding.UTF8;
                 client.Headers.Add("Authorization", $"Bearer {accessToken}");
 
-                var userInfo = client.DownloadString(WebConfigUtils.SSOService.UserInfoEndPoint());
-            }
+                var userInfoStr = client.DownloadString(WebConfigUtils.SSOService.UserInfoEndPoint());
 
-            throw new NotImplementedException();
+                var userInfoJson = JsonConvert.DeserializeObject<dynamic>(userInfoStr);
+
+                var info = new AdministratorInfo
+                {
+                    SSOId = userInfoJson.sub,
+                    DisplayName = userInfoJson.name,
+                    UserName = userInfoJson.code,
+                    Password = "abc123"
+                };
+
+                DataProvider.AdministratorDao.Insert(info, out var errMsg);
+
+                info = GetAdminInfoByUserSub(info.SSOId);
+
+                return info;
+            }
         }
     }
 }
