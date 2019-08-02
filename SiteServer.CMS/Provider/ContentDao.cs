@@ -192,6 +192,11 @@ namespace SiteServer.CMS.Provider
             {
                 AttributeName = ContentAttribute.AddDate,
                 DataType = DataType.DateTime
+            },
+            new TableColumn
+            {
+                AttributeName = ContentAttribute.ShowTime,
+                DataType = DataType.DateTime
             }
         };
 
@@ -1215,6 +1220,7 @@ UPDATE {tableName} SET
     {ContentAttribute.IsColor} = @{ContentAttribute.IsColor},
     {ContentAttribute.LinkUrl} = @{ContentAttribute.LinkUrl},
     {ContentAttribute.AddDate} = @{ContentAttribute.AddDate}
+
     {sets}
 WHERE {ContentAttribute.Id} = @{ContentAttribute.Id}";
 

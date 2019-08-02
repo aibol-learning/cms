@@ -76,7 +76,13 @@ var methods = {
   },
 
   ready: function () {
-    var $this = this;
+      var $this = this;
+      var frmMain = utils.getQueryString("frmMain");
+
+      if (frmMain == "check") {
+	      $("[href='cms/pageContentSearch.aspx?isCheckOnly=true&siteId=1']").parent().addClass("active");
+	      document.getElementById('frmMain').contentWindow.location.href = "cms/pageContentSearch.aspx?isCheckOnly=true&siteId=1";
+      }
 
     window.onresize = $this.winResize;
     window.onresize();
@@ -229,7 +235,8 @@ new Vue({
   data: data,
   methods: methods,
   created: function () {
-    this.getConfig();
+      this.getConfig();
+      
   },
   computed: {
     leftMenuWidth: function () {

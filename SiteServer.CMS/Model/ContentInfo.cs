@@ -229,6 +229,11 @@ namespace SiteServer.CMS.Model
             get => GetDateTime(ContentAttribute.AddDate, DateTime.Now);
             set => Set(ContentAttribute.AddDate, value);
         }
+        public DateTime? ShowTime
+        {
+            get => GetDateTime(ContentAttribute.ShowTime, DateTime.Now);
+            set => Set(ContentAttribute.ShowTime, value);
+        }
 
         public string LinkUrl
         {

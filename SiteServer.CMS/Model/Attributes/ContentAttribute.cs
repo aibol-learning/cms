@@ -35,6 +35,7 @@ namespace SiteServer.CMS.Model.Attributes
         public const string IsColor = nameof(ContentInfo.IsColor);
         public const string LinkUrl = nameof(ContentInfo.LinkUrl);
         public const string AddDate = nameof(ContentInfo.AddDate);
+        public const string ShowTime = nameof(ContentInfo.ShowTime);
 
         public static string GetFormatStringAttributeName(string attributeName)
         {

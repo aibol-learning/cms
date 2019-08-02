@@ -395,6 +395,13 @@ namespace SiteServer.CMS.DataCache
                 styleInfo.DisplayName = "来源";
                 styleInfo.Taxis = 9;
             }
+            else if (StringUtils.EqualsIgnoreCase(attributeName, nameof(ContentInfo.ShowTime)))
+            {
+                styleInfo.AttributeName = nameof(ContentInfo.ShowTime);
+                styleInfo.DisplayName = "自动发布时间";
+                styleInfo.InputType = InputType.DateTime;
+                styleInfo.Taxis = 10;
+            }
 
             return styleInfo;
         }

@@ -187,7 +187,7 @@ namespace SiteServer.Utils
         {
             public const string Js = "datepicker/wdatepicker.js";
 
-            public const string OnFocus = "WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'});";
+            public const string OnFocus = "WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'});";
             public const string FormatString = "yyyy-MM-dd HH:mm:ss";
 
             public const string OnFocusDateOnly = "WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'});";
