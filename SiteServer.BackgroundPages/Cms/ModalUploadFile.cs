@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.IO;
+using System.Web.Security;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using SiteServer.Utils;
 using SiteServer.CMS.Core;
 using SiteServer.Utils.Enumerations;
+using Spire.Pdf;
 
 namespace SiteServer.BackgroundPages.Cms
 {
@@ -92,8 +95,31 @@ namespace SiteServer.BackgroundPages.Cms
                     return;
                 }
 
-                HifUpload.PostedFile.SaveAs(localFilePath);
+                //如果是pdf 或者 word 转图片保存
+                if (localFileName.EndsWith(".pdf"))
+                {
+                    PdfDocument doc = new PdfDocument();
+                    doc.LoadFromStream(HifUpload.PostedFile.InputStream);
 
+                    var path = localFilePath.Replace(".pdf", "")+ $"_{ doc.Pages.Count}";
+                    localFilePath = $"{path}.pdf";
+                    var name = localFileName.Replace(".pdf", "");
+                    for (int i = 0; i < doc.Pages.Count; i++)
+                    {
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        var image = doc.SaveAsImage(i);
+                        image.Save(path  + $"/{i + 1}.png");
+                    }
+                }
+                else if (localFileName.EndsWith(".docx"))
+                {
+
+                }
+
+                HifUpload.PostedFile.SaveAs(localFilePath);
                 FileUtility.AddWaterMark(SiteInfo, localFilePath);
 
                 var fileUrl = PageUtility.GetSiteUrlByPhysicalPath(SiteInfo, localFilePath, true);
