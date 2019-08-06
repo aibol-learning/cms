@@ -64,6 +64,9 @@
     <Reference Include="SiteServer.Plugin, Version=2.3.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SiteServer.Plugin.2.3.6\lib\net452\SiteServer.Plugin.dll</HintPath>
     </Reference>
+    <Reference Include="Spire.Doc">
+      <HintPath>..\ref\spire.office\NET4.0\Spire.Doc.dll</HintPath>
+    </Reference>
     <Reference Include="Spire.Pdf">
       <HintPath>..\ref\spire.office\NET4.0\Spire.Pdf.dll</HintPath>
     </Reference>
