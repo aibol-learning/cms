@@ -387,18 +387,21 @@ namespace SiteServer.CMS.DataCache
             {
                 styleInfo.AttributeName = nameof(ContentInfo.Author);
                 styleInfo.DisplayName = "作者";
+                styleInfo.InputType = InputType.Text;
                 styleInfo.Taxis = 8;
             }
             else if (StringUtils.EqualsIgnoreCase(attributeName, nameof(ContentInfo.Source)))
             {
                 styleInfo.AttributeName = nameof(ContentInfo.Source);
                 styleInfo.DisplayName = "来源";
+                styleInfo.InputType = InputType.Text;
                 styleInfo.Taxis = 9;
             }
             else if (StringUtils.EqualsIgnoreCase(attributeName, nameof(ContentInfo.ShowTime)))
             {
                 styleInfo.AttributeName = nameof(ContentInfo.ShowTime);
                 styleInfo.DisplayName = "自动发布时间";
+                //styleInfo.HelpText = "为空时立刻发布";
                 styleInfo.InputType = InputType.DateTime;
                 styleInfo.Taxis = 10;
             }

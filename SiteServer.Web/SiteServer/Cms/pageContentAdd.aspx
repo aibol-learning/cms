@@ -9,69 +9,128 @@
   <script type="text/javascript" src="../assets/validate.js"></script>
   <script type="text/javascript" src="../assets/jquery/jquery.form.js"></script>
   <script type="text/javascript" src="../assets/jscolor/jscolor.js"></script>
+    <link href="../assets/select2/dist/css/select2.css" rel="stylesheet" />
+    <script src="../assets/select2/dist/js/select2.js"></script>
+    <script src="../assets/select2/dist/js/i18n/zh-CN.js"></script>
   <script>
-    function translateNodeAdd(name, value) {
-      $('#translateContainer').append("<span id='translate_" + value + "' class='label label-primary p-1'>" + name +
-        "&nbsp;<i class='ion-android-close' style='cursor:pointer' onClick=\"translateNodeRemove('" + value +
-        "')\"></i>&nbsp;</span>&nbsp;&nbsp;");
-      $('#translateCollection').val(value + ',' + $('#translateCollection').val());
-      $('#translateType').show();
-    }
+      $(function() {
 
-    function translateNodeRemove(value) {
-      $('#translate_' + value).remove();
-      var val = '';
-      var values = $('#translateCollection').val().split(",");
-      for (i = 0; i < values.length; i++) {
-        if (values[i] && value != values[i]) {
-          val = values[i] + ',';
-        }
+          var AuthorSelect = $('<select class="form-control"><option>' + $("#Author").val() + '</option></select>');
+
+          $("#Author").after(AuthorSelect);
+          $("#Author").hide();
+
+          AuthorSelect.select2({
+              language: "zh-CN",
+              ajax: {
+                  url: '/api/aibol/GetAuthors',
+                  dataType: 'json',
+                  delay: 250,
+                  data: function(params) {
+                      var query = {
+                          search: params.term,
+                          page: params.page || 1
+                      }
+                      return query;
+                  }
+              }
+          });
+
+          AuthorSelect.on('change',
+              function(e) {
+                  $("#Author").val(e.target.value);
+              });
+
+          var SourceSelect = $('<select class="form-control"><option>' + $("#Source").val() + '</option></select>');
+          $("#Source").after(SourceSelect);
+          $("#Source").hide();
+
+
+          SourceSelect.select2({
+              language: "zh-CN",
+              ajax: {
+                  url: '/api/aibol/GetDepartments',
+                  dataType: 'json',
+                  delay: 250,
+                  data: function(params) {
+                      var query = {
+                          search: params.term,
+                          page: params.page || 1
+                      }
+                      return query;
+                  }
+              }
+          });
+          SourceSelect.on('change',
+              function(e) {
+                  $("#Source").val(e.target.value);
+              });
+
+
+      });
+
+      function translateNodeAdd(name, value) {
+          $('#translateContainer').append("<span id='translate_" + value + "' class='label label-primary p-1'>" + name +
+              "&nbsp;<i class='ion-android-close' style='cursor:pointer' onClick=\"translateNodeRemove('" + value +
+              "')\"></i>&nbsp;</span>&nbsp;&nbsp;");
+          $('#translateCollection').val(value + ',' + $('#translateCollection').val());
+          $('#translateType').show();
       }
-      $('#translateCollection').val(val);
-      if (val == '') {
-        $('#translateType').hide();
-      }
-    }
 
-    $(document).keypress(function (e) {
-      if (e.ctrlKey && e.which == 13 || e.which == 10) {
-        e.preventDefault();
-        $("#BtnSubmit").click();
-      } else if (e.shiftKey && e.which == 13 || e.which == 10) {
-        e.preventDefault();
-        $("#BtnSubmit").click();
-      }
-    });
-
-    var isPreviewSaving = false;
-
-    function preview() {
-      if (!$('#TbTitle').val()) return;
-      if (isPreviewSaving) return;
-
-      isPreviewSaving = true;
-      var options = {
-        beforeSubmit: function () {
-          return true;
-        },
-        url: '<%=PageContentAddHandlerUrl%>',
-        type: 'POST',
-        dataType: 'json',
-        success: function (data) {
-          isPreviewSaving = false;
-          if (data && data.previewUrl) {
-            window.open(data.previewUrl);
+      function translateNodeRemove(value) {
+          $('#translate_' + value).remove();
+          var val = '';
+          var values = $('#translateCollection').val().split(",");
+          for (i = 0; i < values.length; i++) {
+              if (values[i] && value != values[i]) {
+                  val = values[i] + ',';
+              }
           }
-        }
-      };
-
-      if (UE) {
-        $.each(UE.instants, function (index, editor) {
-          editor.sync();
-        });
+          $('#translateCollection').val(val);
+          if (val == '') {
+              $('#translateType').hide();
+          }
       }
-      $('#myForm').ajaxSubmit(options);
-    }
+
+      $(document).keypress(function (e) {
+          if (e.ctrlKey && e.which == 13 || e.which == 10) {
+              e.preventDefault();
+              $("#BtnSubmit").click();
+          } else if (e.shiftKey && e.which == 13 || e.which == 10) {
+              e.preventDefault();
+              $("#BtnSubmit").click();
+          }
+      });
+
+      var isPreviewSaving = false;
+
+      function preview() {
+          if (!$('#TbTitle').val()) return;
+          if (isPreviewSaving) return;
+
+          isPreviewSaving = true;
+          var options = {
+              beforeSubmit: function () {
+                  return true;
+              },
+              url: '<%=PageContentAddHandlerUrl%>',
+              type: 'POST',
+              dataType: 'json',
+              success: function (data) {
+                  isPreviewSaving = false;
+                  if (data && data.previewUrl) {
+                      window.open(data.previewUrl);
+                  }
+              }
+          };
+
+          if (UE) {
+              $.each(UE.instants, function (index, editor) {
+                  editor.sync();
+              });
+          }
+          $('#myForm').ajaxSubmit(options);
+      }
   </script>
 </head>
 
