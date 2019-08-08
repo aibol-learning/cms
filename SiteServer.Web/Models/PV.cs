@@ -12,6 +12,10 @@ namespace SiteServer.API.Models
         /// </summary>
         public string Id { get; set; }
 
+
+        public string Site { get; set; }
+
+
         public int Count { get; set; }
     }
 }

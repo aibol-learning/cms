@@ -14,7 +14,7 @@ namespace SiteServer.API.Models
         public Db()
         :base(connString)
         {
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Db, Migrations.Configuration>());
         }
 
 

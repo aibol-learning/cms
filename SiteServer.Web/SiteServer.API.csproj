@@ -1731,7 +1731,6 @@
     <Compile Include="Controllers\Pages\Shared\PagesTableValidateController.cs" />
     <Compile Include="Controllers\Pages\Shared\PagesTableStyleController.cs" />
     <Compile Include="Controllers\Preview\PreviewController.cs" />
-    <Compile Include="Controllers\PVController.cs" />
     <Compile Include="Controllers\V1\V1ContentsController.cs" />
     <Compile Include="Controllers\V1\V1CaptchaController.cs" />
     <Compile Include="Controllers\Pages\Settings\PagesAdminAccessTokensController.cs" />
@@ -1764,6 +1763,10 @@
     <Compile Include="Migrations\201908060659512_authorAndDepartment.cs" />
     <Compile Include="Migrations\201908060659512_authorAndDepartment.Designer.cs">
       <DependentUpon>201908060659512_authorAndDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908080323094_PVSite.cs" />
+    <Compile Include="Migrations\201908080323094_PVSite.Designer.cs">
+      <DependentUpon>201908080323094_PVSite.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
@@ -1843,6 +1846,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908060659512_authorAndDepartment.resx">
       <DependentUpon>201908060659512_authorAndDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908080323094_PVSite.resx">
+      <DependentUpon>201908080323094_PVSite.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

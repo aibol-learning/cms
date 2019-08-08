@@ -16,6 +16,8 @@ namespace SiteServer.API.Controllers
     {
         private Db db = new Db();
 
+        #region 信息员,支部接口
+
         [HttpPost, Route("Upload")]
         public IHttpActionResult Upload()
         {
@@ -83,14 +85,14 @@ namespace SiteServer.API.Controllers
         public IHttpActionResult GetAuthors()
         {
 
-            string search = HttpContext.Current.Request["search"]??string.Empty;
+            string search = HttpContext.Current.Request["search"] ?? string.Empty;
             var page = Convert.ToInt32(HttpContext.Current.Request["page"]);
 
             var count = db.Authors.Count(o => o.Name.Contains(search));
 
             var pagination = Math.Ceiling((double)count / 10) <= page;
 
-            var list = db.Authors.Where(o => o.Name.Contains(search) || o.Code.Contains(search)).OrderBy(o=>o.Name).Skip(10 * (page - 1)).Take(10).ToList()
+            var list = db.Authors.Where(o => o.Name.Contains(search) || o.Code.Contains(search)).OrderBy(o => o.Name).Skip(10 * (page - 1)).Take(10).ToList()
                 .Select(o => new { id = $"{o.Name}({o.Code})", text = $"{o.Name}({o.Code})" });
 
             var re = new
@@ -123,5 +125,137 @@ namespace SiteServer.API.Controllers
 
             return Json(re);
         }
+
+        #endregion
+
+
+        #region 访问量功能接口
+
+        [HttpGet, Route("AddPV")]
+        public IHttpActionResult AddPV()
+        {
+
+            string site = HttpContext.Current.Request["site"] ?? string.Empty;
+
+            var date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            var pv = db.PVs.FirstOrDefault(o => o.Site == site && o.Id == date);
+
+            if (pv == null)
+            {
+                pv = new PV()
+                {
+                    Count = 0,
+                    Id = date,
+                    Site = site
+                };
+
+                db.PVs.Add(pv);
+            }
+
+            pv.Count++;
+
+            db.SaveChanges();
+
+            return Json(new { code = 200, data = pv.Count });
+        }
+
+        [HttpGet, Route("GetPV")]
+        public IHttpActionResult GetPV()
+        {
+
+            string site = HttpContext.Current.Request["site"] ?? string.Empty;
+
+            var date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            var pv = db.PVs.FirstOrDefault(o => o.Site == site && o.Id == date);
+            if (pv == null)
+            {
+                pv = new PV()
+                {
+                    Count = 0,
+                    Id = date,
+                    Site = site
+                };
+                db.PVs.Add(pv);
+            }
+            db.SaveChanges();
+
+            return Json(new { code = 200, data = pv.Count });
+        }
+
+        [HttpGet, Route("GetAvgPV")]
+        public IHttpActionResult GetAvgPV()
+        {
+            string site = HttpContext.Current.Request["site"] ?? string.Empty;
+
+            var pvs = db.PVs.Where(o => o.Site == site).ToList();
+
+            var totalCount = pvs.Sum(o => o.Count);
+
+            var firstDay = pvs.OrderBy(o => Convert.ToDateTime(o.Id)).FirstOrDefault();
+            if (firstDay == null)
+            {
+                return Json(new { code = 200, data = 0 });
+            }
+
+            var firstDate = Convert.ToDateTime(firstDay.Id);
+
+            var totalDays = (DateTime.Now - firstDate).Days;
+
+            if (totalDays == 0)
+            {
+                return Json(new { code = 200, data = firstDay.Count });
+            }
+
+            return Json(new { code = 200, data = totalCount / totalDays });
+        }
+
+
+        #endregion
+
+        #region 前10排名接口
+
+        [HttpGet, Route("GetDepartmentTop10")]
+        public IHttpActionResult GetDepartmentTop10()
+        {
+            string siteId = HttpContext.Current.Request["siteId"];
+            string startTime = HttpContext.Current.Request["startTime"];
+            string endTime = HttpContext.Current.Request["endTime"];
+
+
+            var query = db.Database.SqlQuery<Content>($"select * from [siteserver_Content_{siteId}]").AsQueryable();
+
+            if (startTime != null && DateTime.TryParse(startTime,out var start))
+            {
+                query = query.Where(o => o.AddDate >= start);
+            }
+
+            if (endTime != null && DateTime.TryParse(endTime, out var end))
+            {
+                query = query.Where(o => o.AddDate <= end.AddDays(1).AddSeconds(-1));
+            }
+
+            var contents = query.ToList();
+
+
+            return Json(contents);
+        }
+
+        public class Content
+        {
+            public int Id { get; set; }
+            public DateTime AddDate { get; set; }
+            public string Author { get; set; }
+            public string Source { get; set; }
+        }
+
+        [HttpGet, Route("GetAuthorTop10")]
+        public IHttpActionResult GetAuthorTop10()
+        {
+            return Json("");
+        }
+
+        #endregion
     }
 }
