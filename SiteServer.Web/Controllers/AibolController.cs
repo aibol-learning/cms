@@ -219,6 +219,15 @@ namespace SiteServer.API.Controllers
         [HttpGet, Route("GetDepartmentTop10")]
         public IHttpActionResult GetDepartmentTop10()
         {
+            var contents = GetContents();
+
+            var re = contents.GroupBy(o => o.Author).Select(o => new { author = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Take(10).ToList();
+
+            return Json(re);
+        }
+
+        private List<Content> GetContents()
+        {
             string siteId = HttpContext.Current.Request["siteId"];
             string startTime = HttpContext.Current.Request["startTime"];
             string endTime = HttpContext.Current.Request["endTime"];
@@ -226,7 +235,7 @@ namespace SiteServer.API.Controllers
 
             var query = db.Database.SqlQuery<Content>($"select * from [siteserver_Content_{siteId}]").AsQueryable();
 
-            if (startTime != null && DateTime.TryParse(startTime,out var start))
+            if (startTime != null && DateTime.TryParse(startTime, out var start))
             {
                 query = query.Where(o => o.AddDate >= start);
             }
@@ -237,9 +246,7 @@ namespace SiteServer.API.Controllers
             }
 
             var contents = query.ToList();
-
-
-            return Json(contents);
+            return contents;
         }
 
         public class Content
@@ -253,7 +260,11 @@ namespace SiteServer.API.Controllers
         [HttpGet, Route("GetAuthorTop10")]
         public IHttpActionResult GetAuthorTop10()
         {
-            return Json("");
+            var contents = GetContents();
+
+            var re = contents.GroupBy(o => o.Source).Select(o => new { author = o.Key, count = o.Count() }).OrderByDescending(o=>o.count).Take(10).ToList();
+
+            return Json(re);
         }
 
         #endregion
