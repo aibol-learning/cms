@@ -1770,6 +1770,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\Checker.cs" />
     <Compile Include="Models\Db.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\PV.cs" />

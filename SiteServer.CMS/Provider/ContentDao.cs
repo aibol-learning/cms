@@ -252,6 +252,24 @@ namespace SiteServer.CMS.Provider
                     DataType = DataType.VarChar,
                     DataLength = 255
                 });
+                tableColumns.Add(new TableColumn
+                {
+                    AttributeName = nameof(ContentInfo.Lv1AdminSub),
+                    DataType = DataType.VarChar,
+                    DataLength = 255
+                });
+                tableColumns.Add(new TableColumn
+                {
+                    AttributeName = nameof(ContentInfo.Lv2AdminSub),
+                    DataType = DataType.VarChar,
+                    DataLength = 255
+                });
+                tableColumns.Add(new TableColumn
+                {
+                    AttributeName = nameof(ContentInfo.Lv3AdminSub),
+                    DataType = DataType.VarChar,
+                    DataLength = 255
+                });
 
                 return tableColumns;
             }
@@ -273,7 +291,7 @@ namespace SiteServer.CMS.Provider
             ContentManager.RemoveCache(tableName, channelId);
         }
 
-        public void UpdateIsChecked(string tableName, int siteId, int channelId, List<int> contentIdList, int translateChannelId, string userName, bool isChecked, int checkedLevel, string reasons)
+        public void UpdateIsChecked(string tableName, int siteId, int channelId, List<int> contentIdList, int translateChannelId, string userName, bool isChecked, int checkedLevel, string reasons, string checkSub)
         {
             if (isChecked)
             {
@@ -292,14 +310,40 @@ namespace SiteServer.CMS.Provider
                 attributes.Set(ContentAttribute.CheckDate, DateUtils.GetDateAndTimeString(checkDate));
                 attributes.Set(ContentAttribute.CheckReasons, reasons);
 
+                var checkAdminSql = "";
+                if (checkedLevel > 0)
+                {
+                    var adminLv = "";
+                    switch (checkedLevel)
+                    {
+                        case 0:
+                            adminLv = "Lv1AdminSub";
+                            break;
+                        case 1:
+                            adminLv = "Lv2AdminSub";
+                            break;
+                        case 2:
+                            adminLv = "Lv3AdminSub";
+                            break;
+
+                    }
+
+                    checkAdminSql = $",{adminLv} = '{checkSub}'";
+                }
+
+
                 var sqlString =
-                    $"UPDATE {tableName} SET {ContentAttribute.IsChecked} = '{isChecked}', {ContentAttribute.CheckedLevel} = {checkedLevel}, {ContentAttribute.SettingsXml} = '{attributes}' WHERE {ContentAttribute.Id} = {contentId}";
+                    $"UPDATE {tableName} SET {ContentAttribute.IsChecked} = '{isChecked}', {ContentAttribute.CheckedLevel} = {checkedLevel}, {ContentAttribute.SettingsXml} = '{attributes}' {checkAdminSql} WHERE {ContentAttribute.Id} = {contentId}";
                 if (translateChannelId > 0)
                 {
                     sqlString =
-                        $"UPDATE {tableName} SET {ContentAttribute.IsChecked} = '{isChecked}', {ContentAttribute.CheckedLevel} = {checkedLevel}, {ContentAttribute.SettingsXml} = '{attributes}', {ContentAttribute.ChannelId} = {translateChannelId} WHERE {ContentAttribute.Id} = {contentId}";
+                        $"UPDATE {tableName} SET {ContentAttribute.IsChecked} = '{isChecked}', {ContentAttribute.CheckedLevel} = {checkedLevel}, {ContentAttribute.SettingsXml} = '{attributes}', {ContentAttribute.ChannelId} = {translateChannelId} {checkAdminSql} WHERE {ContentAttribute.Id} = {contentId}";
                 }
+
+
                 ExecuteNonQuery(sqlString);
+
+
 
                 var checkInfo = new ContentCheckInfo(0, tableName, siteId, channelId, contentId, userName, isChecked, checkedLevel, checkDate, reasons);
                 DataProvider.ContentCheckDao.Insert(checkInfo);
@@ -308,7 +352,7 @@ namespace SiteServer.CMS.Provider
             ContentManager.RemoveCache(tableName, channelId);
         }
 
-        
+
 
         public void SetAutoPageContentToSite(SiteInfo siteInfo)
         {
@@ -483,7 +527,7 @@ namespace SiteServer.CMS.Provider
             if (!string.IsNullOrEmpty(tableName) && contentIdList != null && contentIdList.Count > 0)
             {
                 TagUtils.RemoveTags(siteId, contentIdList);
-                
+
                 var sqlString =
                     $"DELETE FROM {tableName} WHERE SiteId = {siteId} AND {ContentAttribute.ReferenceId} > 0 AND Id IN ({TranslateUtils.ToSqlInStringWithoutQuote(contentIdList)})";
 
@@ -2464,10 +2508,14 @@ group by tmp.source";
             return DataProvider.DatabaseDao.GetSelectSqlString(tableName, SqlUtils.Asterisk, whereString.ToString());
         }
 
-        public string GetPagerWhereSqlString(SiteInfo siteInfo, ChannelInfo channelInfo, string searchType, string keyword, string dateFrom, string dateTo, int checkLevel, bool isCheckOnly, bool isSelfOnly, bool isTrashOnly, bool isWritingOnly, int? onlyAdminId, PermissionsImpl adminPermissions, List<string> allAttributeNameList)
+        public string GetPagerWhereSqlString(SiteInfo siteInfo, ChannelInfo channelInfo, string searchType,
+            string keyword, string dateFrom, string dateTo, int checkLevel, bool isCheckOnly, bool isSelfOnly,
+            bool isTrashOnly, bool isWritingOnly, int? onlyAdminId, PermissionsImpl adminPermissions, List<string> allAttributeNameList, string adminSub = "")
         {
             var isAllChannels = false;
             var searchChannelIdList = new List<int>();
+
+
 
             if (isSelfOnly)
             {
@@ -2510,6 +2558,11 @@ group by tmp.source";
                 $"{nameof(ContentAttribute.SiteId)} = {siteInfo.Id}",
                 $"{nameof(ContentAttribute.SourceId)} != {SourceManager.Preview}"
             };
+
+            if (!string.IsNullOrEmpty(adminSub))
+            {
+                whereList.Add($"(Lv1AdminSub = '{adminSub}' or Lv2AdminSub = '{adminSub}' or Lv3AdminSub = '{adminSub}')");
+            }
 
             if (!string.IsNullOrEmpty(dateFrom))
             {
