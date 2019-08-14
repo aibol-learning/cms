@@ -1667,6 +1667,14 @@
     <Content Include="SiteServer\Settings\userStyle.js" />
     <Content Include="SiteServer\Shared\tableStyle.js" />
     <Content Include="SiteServer\Shared\tableValidate.js" />
+    <Content Include="Template\Content\T_系统内容模板.html" />
+    <Content Include="Template\T_search.html" />
+    <Content Include="Template\T_产品展示.html" />
+    <Content Include="Template\T_关于我们.html" />
+    <Content Include="Template\T_图片新闻列表.html" />
+    <Content Include="Template\T_系统栏目模板.html" />
+    <Content Include="Template\T_经典案例.html" />
+    <Content Include="T_系统首页模板.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

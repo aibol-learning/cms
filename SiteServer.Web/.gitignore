@@ -5,11 +5,10 @@ obj/
 SiteFiles/BackupFiles/
 SiteFiles/Plugins/
 SiteFiles/packages/
-SiteFiles/SiteTemplates/
 SiteFiles/TemporaryFiles/
 SiteFiles/UserFiles/
 SiteFiles/Administrators/
-Template
+SiteFiles/SiteTemplates/
 /sapprft/
 /Mullen/
 /Matthew/
@@ -64,6 +63,5 @@ test38/
 test39/
 
 upload
-T_*.html
 index.html
 index.shtml
