@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
 using OfficeOpenXml;
@@ -348,6 +349,51 @@ namespace SiteServer.API.Controllers
 
             return Json(new { code = 200, data = new { id = admin.SSOId, text = admin.DisplayName } });
 
+        }
+
+        #endregion
+
+        #region 批量导出
+
+        [HttpGet, Route("GetExcel")]
+        public HttpResponseMessage GetExcel()
+        {
+            var excel = new ExcelPackage();
+
+            string siteId = HttpContext.Current.Request["siteId"] ?? string.Empty;
+            string startTime = HttpContext.Current.Request["startTime"] ?? string.Empty;
+            string endTime = HttpContext.Current.Request["endTime"] ?? string.Empty;
+
+            var query = db.Database.SqlQuery<ExportContent>($"select * from [siteserver_Content_{siteId}]").AsQueryable();
+
+            if (DateTime.TryParse(startTime, out var start))
+            {
+                query = query.Where(o => o.AddDate >= start);
+            }
+            if (DateTime.TryParse(endTime, out var end))
+            {
+                query = query.Where(o => o.AddDate <= end);
+            }
+
+            var list = query.ToList();
+
+            //todo 按照模板写入excel
+
+            var result = Request.CreateResponse(HttpStatusCode.OK);
+
+            result.Content = new StreamContent(excel.Stream);
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = $"内容列表{DateTime.Now.ToString("yyyyMMdd")}.xlsx"
+            };
+
+            return result;
+        }
+
+        public class ExportContent : Content
+        {
+            public DateTime AddDate { get; set; }
         }
 
         #endregion
