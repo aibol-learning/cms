@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 <stl:include file="/include/head.html"></stl:include>
 <body>
-
     <div id="slideBox" class="slideBox hid">
         <div class="hd">
             <ul>
@@ -78,7 +77,7 @@
         });
     </script>
 
-    <div id="vm">
+    <div id="vm" v-cloak>
         <!--头条新闻-->
         <div class="contentpart">
             <div class="container">
@@ -107,7 +106,7 @@
                             <stl:contents channelIndex="公司公告" scope="all" totalNum="5">
                                 <li>
                                     <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
-                                    <div class="info"><icon class="glyphicon-calendar"></icon> <stl:content type="addDate"></stl:content></div>
+                                    <div class="info"><icon class="glyphicon glyphicon-calendar"></icon> <stl:content type="addDate"></stl:content></div>
                                 </li>
                             </stl:contents>
                         </ul>
@@ -116,12 +115,10 @@
                     <div class="col-md-6" style="padding-left:35px;">
                         <h3>安全生产管理巡视</h3>
                         <ul>
-                            <stl:contents channelIndex="公司公告" scope="all" totalNum="5">
-                                <li>
-                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
-                                    <div class="info"><icon class="glyphicon-calendar"></icon> <stl:content type="addDate"></stl:content></div>
-                                </li>
-                            </stl:contents>
+                            <li v-for="(task, index) in toursTask" v-if="index<5">
+                                <div class="title"><a target="_blank" :href="task.url" :title="task.Question">{{task.Question}}</a></div>
+                                <div class="info"><icon class="glyphicon glyphicon-calendar"></icon> 要求完成时间：{{task.ExpectCompletedTime}}&emsp;&emsp;<icon class="fa fa-male"></icon> 任务负责人：{{task.Principal.Name}}</div>
+                            </li>
                         </ul>
                         <div class="more"><stl:a channelIndex="公司公告">更多</stl:a></div>
                     </div>
@@ -495,12 +492,12 @@
             // 使用刚指定的配置项和数据显示图表。
             myChart1.setOption(optionChart1);
 
-            //公司要闻,头条新闻数据请求(数据源:新闻中心)
             vm = new Vue({
                 el: "#vm",
                 data: {
-                    headlineNews_focus: [], //头条聚集
-                    headlineNews: []   //头条新闻
+                    headlineNews_focus: [],     //头条聚集
+                    headlineNews: [],           //头条新闻
+                    toursTask: [],              //安全生产管理巡视
                 },
                 methods: {
                     //获取新闻中心网站所有一级栏目
@@ -517,37 +514,73 @@
                             }
                         });
                         return def.promise();
+                    },
+
+                    //头条新闻数据源请求：新闻中心-头条新闻，前4条
+                    getHeadlineNews: function (node) {
+                        var self = this;
+                        if (node.indexName == '头条新闻') {
+                            $.ajax({
+                                url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&totalNum=4&apiKey=' + global.apikey + '&channelId=' + node.id,
+                                type: 'get',
+                                success: function (response) {
+                                    console.log('response', response)
+                                    self.headlineNews = response.value;
+                                }
+                            })
+                        }
+                    },
+
+                    //头条聚焦数据源请求： 新闻中心-头条新闻，有“推荐”属性的内容，前8条
+                    getHeadlineNewsFocus: function (node) {
+                        var self = this;
+                        if (node.indexName == '头条新闻') {
+                            $.ajax({
+                                url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&isRecommend=true&totalNum=8&apiKey=' + global.apikey + '&channelId=' + node.id,
+                                type: 'get',
+                                success: function (response) {
+                                    self.headlineNews_focus = response.value;
+                                }
+                            })
+                        }
+                    },
+
+                    //安全生产管理巡视(外部接口)
+                    getTours: function () {
+                        var self = this;
+                        $.ajax({
+                            url: global.backstageAPIUrl.tours,
+                            type: 'get',
+                            success: function (response) {
+                                if (response.Code == 200 && response.Data) {
+                                    response.Data.forEach(function (node, index) {
+                                        if (node.ExpectCompletedTime) {
+                                            node.ExpectCompletedTime = node.ExpectCompletedTime.replace("T", " ");
+                                            node.url = global.toursTaskUrl + node.ID;
+                                        }
+                                    });
+                                    self.toursTask = response.Data;
+                                }
+                            }
+                        })
                     }
                 },
                 created: function () {
                     var self = this;
-                    this.getChannels().done(function (data) {
-                        data.forEach(function (node, index) {
-                            //头条新闻数据源请求：新闻中心-头条新闻，前4条
-                            if (node.indexName == '头条新闻') {
-                                $.ajax({
-                                    url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&totalNum=4&apiKey=' + global.apikey + '&channelId=' + node.id,
-                                    type: 'get',
-                                    success: function (response) {
-                                        self.headlineNews = response.value;
-                                    }
-                                })
-                            }
 
-                            //头条聚集数据源请求： 新闻中心-头条新闻，有“推荐”属性的内容，前8条
-                            if (node.indexName == '头条新闻') {
-                                $.ajax({
-                                    url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&isRecommend=true&totalNum=8&apiKey=' + global.apikey + '&channelId=' + node.id,
-                                    type: 'get',
-                                    success: function (response) {
-                                        self.headlineNews_focus = response.value;
-                                    }
-                                })
-                            }
+                    //头条新闻|头条聚焦数据请求(siteServer接口)
+                    this.getChannels().done(function (data) {
+                        
+                        data.forEach(function (node, index) {
+                            self.getHeadlineNews(node);
+                            self.getHeadlineNewsFocus(node);
                         })
                     }).fail(function (data) {
                         console.log("reject");
-                    })
+                    });
+
+                    //安全生产管理巡视(外部接口)
+                    this.getTours();
                 }
             })
         })

@@ -40,23 +40,23 @@
       </div>
       <div class="footer_other">
         <div class="footer_other_title">站点访问统计</div>
-        <div class="footer_other_con">
-          <span>总访问量：888888次</span></br>
-          <span>今日访问量：888次</span></br>
-          <span>日均访问：888次</span>
+        <div class="footer_other_con" id="vm_siteVisitData" v-cloak>
+            <span>总访问量：{{siteVisitData.totalPV}}次</span><br />
+            <span>今日访问量：{{siteVisitData.todayPV}}次</span><br />
+            <span>日均访问量：{{siteVisitData.avgPV}}次</span>
         </div>
       </div>
       <div class="footer_other wide">
         <div class="footer_other_title">联系方式</div>
         <div class="footer_other_con">
-          <span>公司地址：{stl:value type="address"}</span></br>
-          <span>联系电话：{stl:value type="phoneNumber"}</span></br>
+          <span>公司地址：{stl:value type="address"}</span><br/>
+          <span>联系电话：{stl:value type="phoneNumber"}</span><br/>
           <span>电子邮箱：{stl:value type="email"}</span></div>
       </div>
       <div class="clearfix"></div>
     </div>
     <div class="footer-bottom" style="text-align:center;">
-      <div class="copyright"> 版权所有：中国电力平圩发电有限责任公司 </br>
+      <div class="copyright">{stl:value type="copyright"}</div>
     </div>
   </div>
 </div>

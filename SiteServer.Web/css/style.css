@@ -109,7 +109,6 @@ a:hover {
 .themenav {
     background: #fff;
     border-bottom: 1px solid #ccc;
-    */
     /* border-bottom: 1px solid rgba(0,0,0,.09); */
     box-shadow: 1px 1px 4px rgba(11,11,11,.06);
     color: #fff;
@@ -448,6 +447,10 @@ a:hover {
                 cursor: pointer;
             }
 
+.slideBox .hd ul .on {
+    background-color: #009d8e;
+}
+
     .slideBox .bd {
         position: relative;
         height: 100%;
@@ -736,6 +739,7 @@ a:hover {
             zoom: 1;
             vertical-align: middle;
         }
+    
 
     /* 下面是前/后按钮代码，如果不需要删除即可 */
     .slideBox1 .prev,
@@ -806,6 +810,10 @@ a:hover {
 
     .slideBox1 .newsmore {
         font-size: 16px;
+    }
+
+    .slideBox1 .newsmore {
+        color: #009d8e;
     }
 
 .indexcasepart {
@@ -921,6 +929,10 @@ a:hover {
 
 .pagetit {
     font-size: 24px;
+    margin-bottom: 20px;
+}
+.pageSubtit {
+    font-size: 20px;
     margin-bottom: 20px;
 }
 
@@ -1261,6 +1273,22 @@ a:hover {
     background: url(../images/fixCont.png) no-repeat 0 -169px;
 }
 
+.yb_bar .yb_top {
+    background-color: #009d8e;
+}
+
+.yb_bar .yb_phone {
+    background-color: #009d8e;
+}
+
+.yb_bar .yb_QQ {
+    background-color: #009d8e;
+}
+
+.yb_bar .yb_ercode {
+    background-color: #009d8e;
+}
+
 .hd_qr {
     display: block;
     margin: 0 auto;
@@ -1383,6 +1411,15 @@ a:hover {
         display: none;
     }
 
+    .slideBox1 .prev,
+    .slideBox1 .next {
+        background-color: #009d8e;
+    }
+
+    .slideBox .hd ul .on {
+        background-color: #009d8e;
+    }
+
     .footer {
         padding: 20px 0 15px 0;
     }
@@ -1424,10 +1461,6 @@ a:hover {
     .underslideBox {
         display: block !important;
     }
-
-
-
-
 
 
     .bdsharebuttonbox {
@@ -1548,6 +1581,7 @@ a:hover {
     }
 }
 
+/**** 首頁 - 公司公告 和 安全生产管理巡视 ***/
 .announcement {
     background: #FFF;
 }
@@ -1602,6 +1636,213 @@ a:hover {
     margin-top: 40px;
 }
 
+/*** vue ***/
 [v-cloak] {
     display: none
+}
+
+/*** 首頁 - 报刊阅览 ***/
+.sliderbox2 {
+    height: 166px;
+    overflow: hidden;
+    margin: 6px 0 0 0;
+}
+
+    .sliderbox2 .arrow-btn2 {
+        margin-top: 38px;
+        width: 38px;
+        height: 76px;
+        background: url(/images/arrow-btn.png) no-repeat;
+        cursor: pointer;
+    }
+
+    .sliderbox2 #btn-left2 {
+        float: left;
+        background-position: 0 0;
+    }
+
+        .sliderbox2 #btn-left2.dasabled {
+            background-position: 0 -76px;
+        }
+
+    .sliderbox2 #btn-right2 {
+        float: right;
+        background-position: -38px 0;
+    }
+
+        .sliderbox2 #btn-right2.dasabled {
+            background-position: -38px -76px;
+        }
+
+    .sliderbox2 .slider2 {
+        float: left;
+        height: 150px;
+        width: 1058px;
+        position: relative;
+        overflow: hidden;
+        margin: 0 0 0 16px;
+        display: inline;
+    }
+
+        .sliderbox2 .slider2 ul {
+            position: absolute;
+            left: 0;
+            width: 999em;
+        }
+
+        .sliderbox2 .slider2 li {
+            float: left;
+            width: 256px;
+            height: 150px;
+            margin-right: 12px;
+            text-align: center;
+        }
+
+            .sliderbox2 .slider2 li img {
+                width: 256px;
+                height: 150px;
+                border-radius: 10px;
+            }
+
+            .sliderbox2 .slider2 li.current img {
+                border: solid 1px #3366cc;
+            }
+
+
+/**** head.html中移入 ***/
+/*.indexabout a{
+    background: #009d8e;
+}
+.productpart{
+    background: #009d8e;
+}
+
+.productpart .nav-tabs>li.active>a, .productpart .nav-tabs>li.active>a:focus, .productpart .nav-tabs>li.active>a:hover{
+    color: #009d8e !important;
+}
+
+.productpart #myTab li a:hover{
+    color: #009d8e;
+}*/
+
+
+
+
+
+#sideMenu {
+    color: #009d8e;
+}
+
+.mxphonenav {
+    background: #009d8e;
+}
+
+.tzggtit {
+    background: #009d8e;
+}
+
+.toptab a:hover {
+    color: #009d8e;
+}
+
+.youshilistpart:hover .yslistpartimg {
+    background: #009d8e !important;
+}
+
+.tzggtit span {
+    color: #009d8e;
+}
+/*.ymtitle .current_page_item a,.ymtitle .current-cat a, .sidbarcontact a:hover{
+    color: #009d8e !important;
+    border:none;
+    font-weight: bold;
+}*/
+.sidbarcontact a:hover {
+    color: #009d8e !important;
+    border: none;
+    font-weight: bold;
+}
+
+.ymtitle .current_page_item a, .ymtitle .current-cat a, .ymtitle a:hover {
+    color: #FFF !important;
+    background: #009d8e;
+    font-weight: normal;
+}
+
+.proxiangqing {
+    color: #009d8e;
+}
+
+.showpage a:hover {
+    background: #009d8e;
+    color: #fff;
+    border-color: #009d8e
+}
+
+#showsum span.sel {
+    border: 1px solid #009d8e;
+}
+
+.sb-search-input {
+    color: #009d8e !important;
+}
+
+#showsum1 span.sel {
+    border: 1px solid #009d8e;
+}
+
+.sb-search-input {
+    color: #009d8e !important;
+}
+
+.xgpro {
+    color: #009d8e !important;
+}
+
+.downloadlistpart a:hover {
+    color: #009d8e !important;
+}
+
+.conbottom a {
+    color: #009d8e;
+}
+
+/*.ymtitle li a:hover {
+    color: #009d8e;
+    font-weight: bold;
+}*/
+
+.bread a {
+    color: #009d8e;
+}
+
+.page_navi a:hover, .page_navi .current {
+    color: #fff;
+    background: #009d8e;
+    border: 1px solid #009d8e;
+}
+
+.lefttime .year {
+    color: #009d8e;
+}
+
+.newstag a {
+    color: #009d8e;
+}
+
+#vfb-4 {
+    color: #fff;
+    background: #009d8e;
+    border: 1px solid #009d8e;
+}
+
+.recentcomments a {
+    display: inline !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.content-info{
+  text-align:center;
+  color:#999;
 }
