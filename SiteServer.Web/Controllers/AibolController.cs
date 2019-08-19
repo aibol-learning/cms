@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
 using SiteServer.API.Models;
 
 namespace SiteServer.API.Controllers
@@ -90,7 +91,7 @@ namespace SiteServer.API.Controllers
 
             var count = db.Authors.Count(o => o.Name.Contains(search));
 
-            var pagination = Math.Ceiling((double)count / 10) <= page;
+            var pagination = Math.Ceiling((double)count / 10) > page;
 
             var list = db.Authors.Where(o => o.Name.Contains(search) || o.Code.Contains(search)).OrderBy(o => o.Name).Skip(10 * (page - 1)).Take(10).ToList()
                 .Select(o => new { id = $"{o.Name}({o.Code})", text = $"{o.Name}({o.Code})" });
@@ -112,7 +113,7 @@ namespace SiteServer.API.Controllers
 
             var count = db.Departments.Count(o => o.Name.Contains(search));
 
-            var pagination = Math.Ceiling((double)count / 10) <= page;
+            var pagination = Math.Ceiling((double)count / 10) > page;
 
             var list = db.Departments.Where(o => o.Name.Contains(search)).OrderBy(o => o.Name).Skip(10 * (page - 1)).Take(10).ToList()
                 .Select(o => new { id = $"{o.Name}", text = $"{o.Name}" });
@@ -127,7 +128,6 @@ namespace SiteServer.API.Controllers
         }
 
         #endregion
-
 
         #region 访问量功能接口
 
@@ -262,11 +262,95 @@ namespace SiteServer.API.Controllers
         {
             var contents = GetContents();
 
-            var re = contents.GroupBy(o => o.Source).Select(o => new { author = o.Key, count = o.Count() }).OrderByDescending(o=>o.count).Take(10).ToList();
+            var re = contents.GroupBy(o => o.Source).Select(o => new { author = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Take(10).ToList();
 
             return Json(re);
         }
 
         #endregion
+
+        #region 审核员选取
+
+        [HttpGet, Route("GetCheckers")]
+        public IHttpActionResult GetCheckers()
+        {
+            string lv = HttpContext.Current.Request["lv"];
+            string search = HttpContext.Current.Request["search"] ?? string.Empty;
+            var page = Convert.ToInt32(HttpContext.Current.Request["page"]);
+
+            var roleName = "";
+
+            switch (lv)
+            {
+                case "0": roleName = "支部书记"; break;
+                case "1": roleName = "公司领导"; break;
+                case "2": roleName = "政工部"; break;
+            }
+
+            var query = from admin in db.siteserver_Administrator
+                        join r in db.siteserver_AdministratorsInRoles on admin.UserName equals r.UserName
+                        where r.RoleName == roleName && admin.DisplayName.Contains(search)
+                        select admin;
+
+            var list = query.OrderBy(o => o.Id).Skip((page - 1) * 10).Take(10).ToList().Select(o => new { id = $"{o.SSOId}", text = $"{o.DisplayName}" });
+            var count = query.Count();
+
+            var pagination = Math.Ceiling((double)count / 10) > page;
+
+            var re = new
+            {
+                results = list,
+                pagination
+            };
+
+            return Json(re);
+
+        }
+
+        [HttpGet, Route("GetCheckerByContent")]
+        public IHttpActionResult GetCheckerByContent()
+        {
+
+            string lv = HttpContext.Current.Request["lv"];
+            string siteId = HttpContext.Current.Request["siteId"] ?? string.Empty;
+            string channelId = HttpContext.Current.Request["channelId"] ?? string.Empty;
+            string contentId = HttpContext.Current.Request["contentId"] ?? string.Empty;
+
+            var query = db.Database.SqlQuery<CheckContent>($"select * from [siteserver_Content_{siteId}] where ChannelId = '{channelId}' and Id = '{contentId}' ").AsQueryable();
+
+            var content = query.FirstOrDefault();
+
+            var adminSub = "";
+            switch (lv)
+            {
+                case "0": adminSub = content?.Lv1AdminSub; break;
+                case "1": adminSub = content?.Lv2AdminSub; break;
+                case "2": adminSub = content?.Lv3AdminSub; break;
+            }
+
+            var admin = db.siteserver_Administrator.FirstOrDefault(o => o.SSOId == adminSub);
+
+            return Json(new { code = 200, data = new { id = admin?.SSOId, text = admin?.DisplayName } });
+        }
+
+        public class CheckContent : Content
+        {
+            public string Lv1AdminSub { get; set; }
+            public string Lv2AdminSub { get; set; }
+            public string Lv3AdminSub { get; set; }
+        }
+
+        [HttpGet, Route("GetAdminBySub")]
+        public IHttpActionResult GetAdminBySub()
+        {
+            string sub = HttpContext.Current.Request["sub"];
+            var admin = db.siteserver_Administrator.First(o => o.SSOId == sub);
+
+            return Json(new { code = 200, data = new { id = admin.SSOId, text = admin.DisplayName } });
+
+        }
+
+        #endregion
+
     }
 }

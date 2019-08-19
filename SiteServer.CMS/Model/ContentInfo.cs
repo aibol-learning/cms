@@ -277,7 +277,11 @@ namespace SiteServer.CMS.Model
 	        set => Set(BackgroundContentAttribute.Source, value);
 	    }
 
-	    public string Summary
+        public string Lv1AdminSub { get; set; }
+        public string Lv2AdminSub { get; set; }
+        public string Lv3AdminSub { get; set; }
+
+        public string Summary
 	    {
 	        get => GetString(BackgroundContentAttribute.Summary);
 	        set => Set(BackgroundContentAttribute.Summary, value);

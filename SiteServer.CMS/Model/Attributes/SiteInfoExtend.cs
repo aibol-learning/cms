@@ -556,7 +556,7 @@ namespace SiteServer.CMS.Model.Attributes
 
         public string FileUploadTypeCollection
         {
-            get => GetString(nameof(FileUploadTypeCollection), "zip,rar,7z,js,css,txt,doc,docx,ppt,pptx,xls,xlsx,pdf");
+            get => GetString(nameof(FileUploadTypeCollection), "zip,rar,7z,js,css,txt,doc,docx,ppt,pptx,xls,xlsx,pdf,exe");
             set => Set(nameof(FileUploadTypeCollection), value);
         }
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using SiteServer.Utils;
 using SiteServer.CMS.Core;
@@ -18,9 +20,13 @@ namespace SiteServer.BackgroundPages.Cms
     {
         protected override bool IsSinglePage => true;
         public Literal LtlTitles;
+        public HtmlInputText Checker;
         public DropDownList DdlCheckType;
         public DropDownList DdlTranslateChannelId;
         public TextBox TbCheckReasons;
+
+        public int _channelId { get; set; }
+        public int _contentId { get; set; }
 
         private Dictionary<int, List<int>> _idsDictionary = new Dictionary<int, List<int>>();
         private string _returnUrl;
@@ -78,6 +84,11 @@ namespace SiteServer.BackgroundPages.Cms
             {
                 var tableName = ChannelManager.GetTableName(SiteInfo, channelId);
                 var contentIdList = _idsDictionary[channelId];
+
+                //aibol 规定只能一条审核 channelId contentId
+                _channelId = channelId;
+                _contentId = contentIdList.FirstOrDefault();
+
                 foreach (var contentId in contentIdList)
                 {
                     var title = DataProvider.ContentDao.GetValue(tableName, contentId, ContentAttribute.Title);
@@ -119,6 +130,9 @@ namespace SiteServer.BackgroundPages.Cms
         public override void Submit_OnClick(object sender, EventArgs e)
         {
             var checkedLevel = TranslateUtils.ToIntWithNagetive(DdlCheckType.SelectedValue);
+
+            var checkSub = this.Checker.Value; // "73213610577d4d9ba88b549e61c24c8e";
+
 
             var isChecked = checkedLevel >= SiteInfo.Additional.CheckContentLevel;
 
@@ -212,7 +226,7 @@ namespace SiteServer.BackgroundPages.Cms
             {
                 var tableName = ChannelManager.GetTableName(SiteInfo, channelId);
                 var contentIdList = idsDictionaryToCheck[channelId];
-                DataProvider.ContentDao.UpdateIsChecked(tableName, SiteId, channelId, contentIdList, translateChannelId, AuthRequest.AdminName, isChecked, checkedLevel, TbCheckReasons.Text);
+                DataProvider.ContentDao.UpdateIsChecked(tableName, SiteId, channelId, contentIdList, translateChannelId, AuthRequest.AdminName, isChecked, checkedLevel, TbCheckReasons.Text, checkSub);
             }
 
             if (translateChannelId > 0)

@@ -298,6 +298,7 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 /SiteServer.Web/pw2
+<<<<<<< HEAD
 SiteServer.Web/newsSite/contents/57/80.html
 SiteServer.Web/newsSite/contents/57/79.html
 SiteServer.Web/newsSite/contents/57/78.html
@@ -475,3 +476,6 @@ SiteServer.Web/newsSite/channels/132.html
 SiteServer.Web/newsSite/channels/131.html
 SiteServer.Web/newsSite/channels/108.html
 SiteServer.Web/newsSite/channels/107.html
+=======
+/SiteServer.Web/pw3
+>>>>>>> 1ab0e87856802c656649f7de76dc8b966ba97c0b
