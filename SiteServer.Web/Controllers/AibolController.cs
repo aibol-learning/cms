@@ -213,16 +213,29 @@ namespace SiteServer.API.Controllers
         }
 
 
+        [HttpGet, Route("GetTotalPV")]
+        public IHttpActionResult GetTotalPV()
+        {
+            string site = HttpContext.Current.Request["site"] ?? string.Empty;
+
+            var pvs = db.PVs.Where(o => o.Site == site).ToList();
+
+            var totalCount = pvs.Sum(o => o.Count);
+
+            return Json(new { code = 200, data = totalCount });
+        }
+
+
         #endregion
 
         #region 前10排名接口
 
-        [HttpGet, Route("GetDepartmentTop10")]
-        public IHttpActionResult GetDepartmentTop10()
+        [HttpGet, Route("GetDepartmentTop6")]
+        public IHttpActionResult GetDepartmentTop6()
         {
             var contents = GetContents();
 
-            var re = contents.GroupBy(o => o.Author).Select(o => new { author = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Take(10).ToList();
+            var re = contents.GroupBy(o => o.Source).Select(o => new { department = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Take(6).ToList();
 
             return Json(re);
         }
@@ -258,12 +271,12 @@ namespace SiteServer.API.Controllers
             public string Source { get; set; }
         }
 
-        [HttpGet, Route("GetAuthorTop10")]
-        public IHttpActionResult GetAuthorTop10()
+        [HttpGet, Route("GetAuthorTop6")]
+        public IHttpActionResult GetAuthorTop6()
         {
             var contents = GetContents();
 
-            var re = contents.GroupBy(o => o.Source).Select(o => new { author = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Take(10).ToList();
+            var re = contents.GroupBy(o => o.Author).Select(o => new { author = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Take(6).ToList();
 
             return Json(re);
         }
