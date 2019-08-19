@@ -276,7 +276,7 @@ namespace SiteServer.CMS.Model
 	        get => GetString(BackgroundContentAttribute.Source);
 	        set => Set(BackgroundContentAttribute.Source, value);
 	    }
-
+        public string Picturer { get; set; }
         public string Lv1AdminSub { get; set; }
         public string Lv2AdminSub { get; set; }
         public string Lv3AdminSub { get; set; }

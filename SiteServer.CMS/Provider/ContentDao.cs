@@ -252,6 +252,13 @@ namespace SiteServer.CMS.Provider
                     DataType = DataType.VarChar,
                     DataLength = 255
                 });
+
+                tableColumns.Add(new TableColumn
+                {
+                    AttributeName = nameof(ContentInfo.Picturer),
+                    DataType = DataType.VarChar,
+                    DataLength = 255
+                });
                 tableColumns.Add(new TableColumn
                 {
                     AttributeName = nameof(ContentInfo.Lv1AdminSub),

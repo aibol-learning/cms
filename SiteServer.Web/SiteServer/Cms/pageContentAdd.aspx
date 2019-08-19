@@ -50,13 +50,24 @@
                     });
             });
 
-            var AuthorSelect = $('<select class="form-control"><option>' + $("#Author").val() + '</option></select>');
+            
+
+            var AuthorSelect = $('<select class="form-control" id="AuthorSelect" multiple></select>');
 
             $("#Author").after(AuthorSelect);
             $("#Author").hide();
 
+            var authors = $("#Author").val().split(",");
+
+            for (var i = 0; i < authors.length; i++) {
+                var newOption = new Option(authors[i], authors[i], false, true);
+                AuthorSelect.append(newOption).trigger('change');
+            }
+
             AuthorSelect.select2({
                 language: "zh-CN",
+                multiple: true,
+                tags: true,
                 ajax: {
                     url: '/api/aibol/GetAuthors',
                     dataType: 'json',
@@ -73,7 +84,16 @@
 
             AuthorSelect.on('change',
                 function (e) {
-                    $("#Author").val(e.target.value);
+                    console.log(AuthorSelect.val());
+                    var v = "";
+                    for (var i = 0; i < AuthorSelect.val().length; i++) {
+                        if (v == "") {
+                            v = AuthorSelect.val()[i];
+                        } else {
+                            v += "," + AuthorSelect.val()[i];
+                        }
+                    }
+                    $("#Author").val(v);
                 });
 
             var SourceSelect = $('<select class="form-control"><option>' + $("#Source").val() + '</option></select>');
