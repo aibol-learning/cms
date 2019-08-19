@@ -88,7 +88,7 @@ namespace SiteServer.API.Controllers
         {
 
             string search = HttpContext.Current.Request["search"] ?? string.Empty;
-            var page = Convert.ToInt32(HttpContext.Current.Request["page"]);
+            var page = Convert.ToInt32(HttpContext.Current.Request["page"] ?? "1");
 
             var count = db.Authors.Count(o => o.Name.Contains(search));
 
@@ -110,7 +110,7 @@ namespace SiteServer.API.Controllers
         public IHttpActionResult GetDepartments()
         {
             string search = HttpContext.Current.Request["search"] ?? string.Empty;
-            var page = Convert.ToInt32(HttpContext.Current.Request["page"]);
+            var page = Convert.ToInt32(HttpContext.Current.Request["page"]??"1");
 
             var count = db.Departments.Count(o => o.Name.Contains(search));
 
@@ -345,7 +345,12 @@ namespace SiteServer.API.Controllers
         public IHttpActionResult GetAdminBySub()
         {
             string sub = HttpContext.Current.Request["sub"];
-            var admin = db.siteserver_Administrator.First(o => o.SSOId == sub);
+            var admin = db.siteserver_Administrator.FirstOrDefault(o => o.SSOId == sub);
+
+            if (admin == null)
+            {
+                return Json(new { code = 200, data = new { id = string.Empty, text = string.Empty } });
+            }
 
             return Json(new { code = 200, data = new { id = admin.SSOId, text = admin.DisplayName } });
 
