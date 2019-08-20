@@ -5,14 +5,14 @@
     <div id="slideBox" class="slideBox hid">
         <div class="hd">
             <ul>
-                <stl:contents channelIndex="Banner" totalNum="3">
+                <stl:contents channelIndex="首页轮播图" totalNum="3">
                     <li></li>
                 </stl:contents>
             </ul>
         </div>
         <div class="bd">
             <ul>
-                <stl:contents channelIndex="Banner" totalNum="3">
+                <stl:contents channelIndex="首页轮播图" totalNum="3">
                     <li>
                         <a href="javascript:;" target="_blank">
                             <div class="divContent{Content.ItemIndex} bdimg" style="background: url({Content.ImageUrl});"></div>
@@ -32,14 +32,14 @@
     <div id="slideBox" class="slideBox underslideBox">
         <div class="hd">
             <ul>
-                <stl:contents channelIndex="Banner" totalNum="10" isRecommend="true">
+                <stl:contents channelIndex="首页轮播图" totalNum="10" isRecommend="true">
                     <li></li>
                 </stl:contents>
             </ul>
         </div>
         <div class="bd underhd">
             <ul>
-                <stl:contents channelIndex="Banner" totalNum="10" isRecommend="true">
+                <stl:contents channelIndex="首页轮播图" totalNum="10" isRecommend="true">
                     <li>
                         <stl:if type="linkUrl" op="Empty">
                             <stl:yes>
@@ -460,8 +460,7 @@
         </div>
     </div>
     <stl:include file="/include/footer.html"></stl:include>
-    <stl:include file="/include/right_bar.html"></stl:include>
-    <stl:include file="/include/foot_js.html"></stl:include>
+    <stl:include file="/include/floating_side_bar.html"></stl:include>
     <script src="{Stl.SiteUrl}/js/echarts.min.js"></script>
 
     <script>
@@ -524,7 +523,6 @@
                                 url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&totalNum=4&apiKey=' + global.apikey + '&channelId=' + node.id,
                                 type: 'get',
                                 success: function (response) {
-                                    console.log('response', response)
                                     self.headlineNews = response.value;
                                 }
                             })
@@ -570,7 +568,6 @@
 
                     //头条新闻|头条聚焦数据请求(siteServer接口)
                     this.getChannels().done(function (data) {
-                        
                         data.forEach(function (node, index) {
                             self.getHeadlineNews(node);
                             self.getHeadlineNewsFocus(node);

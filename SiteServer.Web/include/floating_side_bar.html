@@ -1,0 +1,358 @@
+<style type="text/css">
+    /*** 左侧悬浮窗 ***/
+    .lf_container {
+        width: 207px;
+        position: fixed;
+        top: 200px;
+        left: -154px;
+        transition: all .5s ease;
+        z-index: 9999999;
+        cursor: pointer;
+    }
+
+        .lf_container .imgWrap {
+            border: 1px solid #ff8c01;
+            background: #ffb559;
+            padding: 10px 6px;
+            float: left;
+            margin: 0;
+            width: 154px;
+        }
+
+            .lf_container .imgWrap a {
+                margin-bottom: 5px;
+                display: block;
+            }
+
+                .lf_container .imgWrap a:last-of-type {
+                    margin-bottom: 0;
+                }
+
+            .lf_container .imgWrap img {
+                width: 140px;
+            }
+
+        .lf_container .labels {
+            width: 53px;
+            float: left;
+            margin: 0;
+        }
+
+            .lf_container .labels .label {
+                width: 53px;
+                height: 53px;
+                line-height: 53px;
+                margin-bottom: 3px;
+                background: #ff8c00;
+                color: #fff;
+                text-align: center;
+                display: block;
+                border-radius: 0 3px 3px 0;
+                padding: 0;
+            }
+
+                .lf_container .labels .label icon {
+                    font-size: 35px;
+                    padding-top: 9px;
+                }
+
+    /*** 右侧悬浮窗 ***/
+    .rf_container {
+        position: fixed;
+        z-index: 9999999;
+        top: 200px;
+        cursor: pointer;
+        transition: all .5s ease;
+        height: 53px;
+        line-height: 53px;
+        font: 16px/53px 'Microsoft YaHei';
+        color: #fff;
+        text-indent: 54px;
+        margin-bottom: 3px;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+        .rf_container.rf_top {
+            top: 200px;
+            right: -87px;
+            width: 140px;
+            background: #009d8e url(../images/fixCont.png) no-repeat 0 0;
+        }
+
+        .rf_container.rf_phone {
+            top: 256px;
+            right: -135px;
+            width: 188px;
+            background: #009d8e url(../images/fixCont.png) no-repeat 0 -57px;
+        }
+
+        .rf_container.rf_task {
+            top: 312px;
+            right: -277px;
+            width: 330px;
+        }
+
+            .rf_container.rf_task .rf_task_title {
+                border-radius: 0 0 3px 3px;
+                background: #009d8e url(../images/fixCont.png) no-repeat 0 -113px;
+            }
+
+                .rf_container.rf_task .rf_task_title .wrap {
+                    width: 100%;
+                    height: 53px;
+                    position: relative;
+                }
+
+                .rf_container.rf_task .rf_task_title .taskCount {
+                    position: absolute;
+                    background: #fff;
+                    height: 25px;
+                    width: 25px;
+                    line-height: 25px;
+                    color: #009d8e;
+                    font-size: 14px;
+                    top: 14px;
+                    left: 15px;
+                    z-index: 1;
+                    text-align: center;
+                    display: inline-block;
+                    padding: 0;
+                    margin: 0;
+                    border-radius: 50%;
+                    text-indent: 0;
+                    letter-spacing: -1px;
+                    font-weight: 600;
+                }
+
+            .rf_container.rf_task .rf_task_content {
+                font-size: 14px;
+                text-indent: 0;
+                background: #fff;
+                color: #333;
+                width: 279px;
+                line-height: 150%;
+                border-radius: 0 0 3px 3px;
+            }
+
+    .task_list li {
+        padding: 5px 0;
+        line-height: 150%;
+        border-bottom: 1px solid #eee;
+    }
+
+        .task_list li .task_item_title {
+            padding: 0 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .task_list li .task_item_time {
+            padding: 0 15px;
+            color: #999;
+        }
+
+        .task_list li .task_item_prompt {
+            color: #999;
+            text-align: center;
+            line-height: 65px;
+        }
+
+    .task_list_more,
+    .task_list_more:hover {
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        display: block;
+        color: #333;
+        height: 36px;
+        line-height: 36px;
+    }
+
+    .rf_container.rf_qrcode {
+        top: 368px;
+        right: -144px;
+        width: 197px;
+        background: #009d8e url(../images/fixCont.png) no-repeat 0 -169px;
+    }
+
+        .rf_container.rf_qrcode .rf_qrcode_qr {
+            margin-left: 24px;
+        }
+
+        .rf_container.rf_qrcode .rf_qrcode_text {
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 200%;
+            text-indent: 0;
+            margin-top: 6px;
+        }
+</style>
+
+<!--左侧悬浮窗-->
+<div class="lf_container">
+    <div class="imgWrap">
+        <stl:contents channelIndex="左侧悬浮窗" isRecommend="true">
+            <stl:if type="linkUrl" op="Empty">
+                <stl:yes>
+                    <stl:if type="content" op="Empty">
+                        <stl:yes>
+                            <a href="javascript:;"><img src="{Content.ImageUrl}"></a>
+                        </stl:yes>
+                        <stl:no>
+                            <stl:a><img src="{Content.ImageUrl}"></stl:a>
+                        </stl:no>
+                    </stl:if>
+                </stl:yes>
+                <stl:no>
+                    <stl:a target="_blank"><img src="{Content.imageUrl}" /></stl:a>
+                </stl:no>
+            </stl:if>
+        </stl:contents>
+    </div>
+    <div class="labels">
+        <stl:contents channelIndex="左侧悬浮窗" isRecommend="true">
+            <div class="label"><icon class="fa fa-star"></icon></div>
+        </stl:contents>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<!--右侧悬浮窗-->
+<div class="rf_container rf_top" id="rf_top">返回顶部</div>
+<div class="rf_container rf_phone">{stl:value type="phoneNumber"}</div>
+<div class="rf_container rf_task">
+    <div class="rf_task_title">
+        <div class="wrap">
+            待办任务 - 统一集成平台
+            <div class="taskCount">12</div>
+        </div>
+    </div>
+    <div class="rf_task_content">
+        <ul class="task_list" id="vm_backstageTasks">
+            <!--<li v-for="(task,index) in backstageTasks" v-if="backstageTasks && backstageTasks.length>0 && index < 5" >
+                <div class="task_item_title"><a :href="task.url" target="blank" :title="task.Name">{{task.Name}}</a></div>
+                <div class="task_item_time">{{task.CreatedWhen}}</div>
+            </li>-->
+            <!--<li v-if="islogin && backstageTasks && backstageTasks.length==0" >
+                <div class="task_item_prompt">暂无待办任务</div>
+            </li>-->
+            <!--<li v-if="!islogin" >
+                <div class="task_item_prompt"><a href="#" target="_blank">暂未登录工作区，请点击登录</a></div>
+            </li>-->
+            <li>
+                <div class="task_item_title">外包工程人员进厂管理：RY20190210003审批任务被许章征竞争执行。</div>
+                <div class="task_item_time">2019-07-21 19:35:21</div>
+            </li>
+            <li>
+                <div class="task_item_title">外包工程人员进厂管理：RY20190210003审批任务被许章征竞争执行。</div>
+                <div class="task_item_time">2019-07-21 19:35:21</div>
+            </li>
+            <li>
+                <div class="task_item_title">外包工程人员进厂管理：RY20190210003审批任务被许章征竞争执行。</div>
+                <div class="task_item_time">2019-07-21 19:35:21</div>
+            </li>
+            <li>
+                <div class="task_item_title">外包工程人员进厂管理：RY20190210003审批任务被许章征竞争执行。</div>
+                <div class="task_item_time">2019-07-21 19:35:21</div>
+            </li>
+            <li>
+                <div class="task_item_title">外包工程人员进厂管理：RY20190210003审批任务被许章征竞争执行。</div>
+                <div class="task_item_time">2019-07-21 19:35:21</div>
+            </li>
+        </ul>
+        <a href="" target="_blank" class="task_list_more">查看更多…</a>
+    </div>
+</div>
+<div class="rf_container rf_qrcode">
+    移动端APP<br />
+    {stl:value type="app_qrcode" class="rf_qrcode_qr" width="150" alt="移动端APP"}<br />
+    <p class="rf_qrcode_text">扫描二维码下载</p>
+</div>
+
+<script>
+    $(function () {
+        // 左侧悬浮窗口hover事件
+        $(".lf_container").hover(function () {
+            $(".lf_container").css("left", "0");
+        }, function () {
+            $(".lf_container").css("left", "-154px");
+        });
+
+        // 右侧悬浮窗口hover事件
+        //返回顶部
+        $(".rf_top").hover(function () {
+            $(".rf_top").css("right", "5px");
+        }, function () {
+            $(".rf_top").css("right", "-87px");
+        });
+        //电话号码
+        $(".rf_phone").hover(function () {
+            $(".rf_phone").css("right", "5px");
+        }, function () {
+            $(".rf_phone").css("right", "-135px");
+        });
+        //待办任务
+        $(".rf_task").hover(function () {
+            $(".rf_task").css("right", "5px");
+            $(".rf_task").css('height', '460px');
+        }, function () {
+            $(".rf_task").css("right", "-277px");
+            $(".rf_task").css('height', '53px');
+        });
+        //APP下载
+        $(".rf_qrcode").hover(function () {
+            $(".rf_qrcode").css("right", "5px");
+            $(".rf_qrcode").css('height', '250px');
+        }, function () {
+            $(".rf_qrcode").css("right", "-144px");
+            $(".rf_qrcode").css('height', '53px');
+        });
+
+        // 返回顶部
+        $("#rf_top").click(function () {
+            $("html,body").animate({
+                'scrollTop': '0px'
+            }, 300)
+        });
+
+        //待办任务
+        vm = new Vue({
+            el: "#vm_backstageTasks",
+            data: {
+                backstageTasks: [],         //待办任务
+            },
+            methods: {
+                //待办任务(外部接口)
+                getBackstageTasks: function () {
+                    var self = this;
+                    $.ajax({
+                        url: global.backstageAPIUrl.tasks,
+                        type: 'get',
+                        success: function (response) {
+                            console.log('response------', response)
+                            if (response.Code == 200 && response.Data) {
+                                response.Data.forEach(function (node, index) {
+                                    if (node.CreatedWhen) {
+                                        node.CreatedWhen = node.CreatedWhen.replace("T", " ");
+                                        node.url = global.backstageTaskUrl + node.ID;
+                                    }
+                                });
+                                self.backstageTasks = response.Data;
+                            }
+                        }
+                    })
+                }
+            },
+            created: function () {
+                var self = this;
+                //待办任务(外部接口)
+                this.getBackstageTasks();
+            }
+        })
+    });
+</script>
