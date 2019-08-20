@@ -1,5 +1,4 @@
 (function($){
-  console.log('xxxxxxxxxxx')
   $.fn.slide=function(options){
     $.fn.slide.defaults={
     type:"slide", 
@@ -46,9 +45,7 @@
       var navObj = $(opts.titCell, slider);//导航子元素结合
       var navObjSize = navObj.size();
       var conBox = $(opts.mainCell , slider);//内容元素父层对象
-      console.log('conBox', conBox);
       var conBoxSize=conBox.children().size();
-      console.log('conBoxSize', conBoxSize);
       var sLoad=opts.switchLoad;
       var tarObj = $(opts.targetCell, slider);
 
@@ -155,7 +152,7 @@
 
       if(conBoxSize>=vis){ //当内容个数少于可视个数，不执行效果。
         conBox.children().each(function(){ //取最大值
-          if( $(this).width()>selfW ){ selfW=$(this).width(); slideW=$(this).outerWidth(true); console.log('selfW',selfW); console.log('slideW',slideW) }
+          if( $(this).width()>selfW ){ selfW=$(this).width(); slideW=$(this).outerWidth(true); }
           if( $(this).height()>selfH ){ selfH=$(this).height(); slideH=$(this).outerHeight(true);  }
         });
 

@@ -2,10 +2,11 @@
       <div class="yb_bar">
         <ul>
           <li class="yb_top">返回顶部</li>
-          <li class="yb_phone">010-1234568</li>
-          <li class="yb_QQ"> <a target="_blank" href="tencent://message/?uin=186949124&Site=&Menu=yes" title="即刻发送您的需求">在线咨询</a> </li>
-          <li class="yb_ercode" style="height:53px;">微信二维码 <br>
-          {stl:value type=weichat class="hd_qr" width="125" alt="微信公众号"}
+          <li class="yb_phone">{stl:value type="phoneNumber"}</li>
+          <li class="yb_QQ">待办任务 - 统计集成平台</li>
+          <li class="yb_ercode" style="height:53px;">
+              移动端APP<br />
+              {stl:value type="app_qrcode" class="hd_qr" width="125" alt="移动端APP"}
           </li>
         </ul>
       </div>

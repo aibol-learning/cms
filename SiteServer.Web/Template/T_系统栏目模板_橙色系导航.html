@@ -8,7 +8,7 @@
       <stl:include file="/include/banner.html"></stl:include>
       <div class="container neicon">
         <div class="row">
-          <stl:include file="/include/left.html"></stl:include>
+          <stl:include file="/include/left2.html"></stl:include>
           <div class="col-md-9">
             <div class="listcon">
               <stl:include file="/include/location.html"></stl:include>
@@ -16,7 +16,10 @@
                 <div class="download">
                   <div class="downloadlistpart">
                     <span class="downloadtime pull-right">
-                      <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>
+                      来源: <stl:content type="source"></stl:content><!--来源-->
+                      作者: <stl:content type="author"></stl:content><!--作者-->
+                      阅读次数: <stl:content type="hits"></stl:content><!--阅读次数-->
+                      发布时间: <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content><!--发布时间-->
                     </span>
                     <h1 class="pull-left">
                       <stl:a>

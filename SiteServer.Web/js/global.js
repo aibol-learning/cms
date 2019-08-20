@@ -1,4 +1,14 @@
 var global = {
-  apikey : "4266ff05-b320-400e-be4e-e200252e06d2", //apikey
-  newsSiteId : 36 //新闻中心网站id
+    apikey: "38bfc679-ec19-488d-9877-c66016bbe2d5", //apikey
+    newsSiteId: 36, //新闻中心网站id
+    backstageAPIUrl: {//工作区接口访问url
+        tours: 'http://backstage.aibol.com.cn/api/backstage/tours', //安全生产管理巡视接口url
+        Tasks: 'http://backstage.aibol.com.cn/api/backstage/tasks', //待办事项接口url
+        loginInfo: 'http://backstage.aibol.com.cn/api/backstage/logininfo', //工作区当前登录信息接口Url
+        screenData: ' http://screen.aibol.com.cn/home/data' //大屏幕数据接口Url
+    },
+    toursTaskUrl: 'http://backstage.aibol.com.cn/tour/',  //安全生产管理巡视任务点击跳转的页面url
+        // 正式服：http://10.138.20.219/tour/{id}
+        // 内网测试服：http://10.138.20.219:82/tour/{id}
+        // 外网测试服务：http://backstage.aibol.com.cn/tour/{id}
 } 
