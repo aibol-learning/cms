@@ -34,6 +34,9 @@
                 methods: {
                     exportData: function () {
                         window.open('/api/aibol/GetExcel?siteId=' + siteId + "&startTime=" + $("#startTime").val() + "&endTime=" + $("#endTime").val());
+                    },
+                    exportData2: function () {
+                        window.open('/api/aibol/GetExcelDepartment?siteId=' + siteId + "&startTime=" + $("#startTime").val() + "&endTime=" + $("#endTime").val());
                     }
                 }
             });
@@ -61,7 +64,8 @@
         <br/>
         <input id="endTime"  class="Wdate" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'});" />
 
-        <button type="button" class="btn btn-primary btn-sm" v-on:click="exportData">导出全部</button>
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="exportData">导出个人统计</button>
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="exportData2">导出支部统计</button>
 
     </div>
 

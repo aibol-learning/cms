@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Http;
 using OfficeOpenXml;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
+using OfficeOpenXml.Style;
 using SiteServer.API.Models;
 
 namespace SiteServer.API.Controllers
@@ -409,6 +410,57 @@ namespace SiteServer.API.Controllers
                     ws.Cells[i, 5].Value = channels.FirstOrDefault(o => o.Id == content.ChannelId)?.ChannelName;
                     ws.Cells[i, 6].Value = content.Picturer;
                     ws.Cells[i, 7].Value = content.AddDate.ToString("yyyy/MM/dd");
+                    i++;
+                }
+            }
+
+            var result = Request.CreateResponse(HttpStatusCode.OK);
+
+
+            MemoryStream memoryStream = new MemoryStream();
+            excel.SaveAs(memoryStream);
+            memoryStream.Seek(0, SeekOrigin.Begin);//没这句话就格式错
+
+            result.Content = new StreamContent(memoryStream);
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = $"内容列表{DateTime.Now.ToString("yyyyMMdd")}.xlsx"
+            };
+
+            return result;
+        }
+
+        [HttpGet, Route("GetExcelDepartment")]
+        public HttpResponseMessage GetExcelDepartment()
+        {
+            var excel = new ExcelPackage();
+
+            GetContentList(out var list, out var siteId);
+
+            var i = 1;
+            var ws = excel.Workbook.Worksheets.Add("支部统计");
+
+
+            ws.Cells[1, 1].Value = "来源";
+            ws.Cells[1, 2].Value = "数量";
+            ws.Cells[1, 3].Value = "文章标题";
+            i++;
+
+            ws.Cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;//水平居中
+            ws.Cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;//垂直居中
+            ws.Cells.AutoFitColumns();
+
+            foreach (var content in list.GroupBy(o => o.Source))
+            {
+                var titles = content.Select(o => o.Title).ToList();
+                ws.Cells[i, 1].Value = content.Key;
+                ws.Cells[i, 1, i + titles.Count-1, 1].Merge = true;
+                ws.Cells[i, 2].Value = content.Count();
+                ws.Cells[i, 2, i + titles.Count - 1, 2].Merge = true;
+                foreach (var title in titles)
+                {
+                    ws.Cells[i, 3].Value = title;
                     i++;
                 }
             }
