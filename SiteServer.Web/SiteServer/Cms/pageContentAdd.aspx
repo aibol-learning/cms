@@ -15,6 +15,10 @@
     <script src="../assets/select2/dist/js/i18n/zh-CN.js"></script>
     <script>
         $(function () {
+            var Picturer = $("#Picturer").parent().parent();
+            //Picturer.hide();
+            Picturer.children().eq(0).html("配图");
+
             var lv1 = $("#Lv1AdminSub").parent().parent();
             lv1.hide();
             lv1.children().eq(0).html("初审员");
@@ -60,6 +64,9 @@
             var authors = $("#Author").val().split(",");
 
             for (var i = 0; i < authors.length; i++) {
+                if (!authors[i]) {
+                    continue;
+                }
                 var newOption = new Option(authors[i], authors[i], false, true);
                 AuthorSelect.append(newOption).trigger('change');
             }
@@ -67,7 +74,6 @@
             AuthorSelect.select2({
                 language: "zh-CN",
                 multiple: true,
-                tags: true,
                 ajax: {
                     url: '/api/aibol/GetAuthors',
                     dataType: 'json',

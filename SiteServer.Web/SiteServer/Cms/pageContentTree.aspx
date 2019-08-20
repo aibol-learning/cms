@@ -27,7 +27,6 @@
             }
 
             siteId = getQueryVariable("siteId");
-            //window.open('/api/aibol/GetExcel?siteId='+siteId)
             var vm = new Vue({
                 el: "#app",
                 data: {

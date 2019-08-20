@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -110,7 +111,7 @@ namespace SiteServer.API.Controllers
         public IHttpActionResult GetDepartments()
         {
             string search = HttpContext.Current.Request["search"] ?? string.Empty;
-            var page = Convert.ToInt32(HttpContext.Current.Request["page"]??"1");
+            var page = Convert.ToInt32(HttpContext.Current.Request["page"] ?? "1");
 
             var count = db.Departments.Count(o => o.Name.Contains(search));
 
@@ -378,7 +379,60 @@ namespace SiteServer.API.Controllers
         {
             var excel = new ExcelPackage();
 
-            string siteId = HttpContext.Current.Request["siteId"] ?? string.Empty;
+            GetContentList(out var list, out var siteId);
+
+            var i = 1;
+            var ws = excel.Workbook.Worksheets.Add("个人统计");
+
+
+            ws.Cells[1, 1].Value = "信息员";
+            ws.Cells[1, 2].Value = "工号";
+            ws.Cells[1, 3].Value = "来源";
+            ws.Cells[1, 4].Value = "文章标题";
+            ws.Cells[1, 5].Value = "栏目名称";
+            ws.Cells[1, 6].Value = "配图";
+            ws.Cells[1, 7].Value = "发布日期";
+            i++;
+
+            var sid = Convert.ToInt32(siteId);
+            var channels = db.siteserver_Channel.Where(o => o.SiteId == sid).ToList();
+
+            foreach (var content in list)
+            {
+                foreach (var author in content.Author.Split(','))
+                {
+                    var index = author.IndexOf('(');
+                    ws.Cells[i, 1].Value = string.IsNullOrEmpty(author) ? string.Empty : author.Substring(0, index);
+                    ws.Cells[i, 2].Value = string.IsNullOrEmpty(author) ? string.Empty : author.Substring(index + 1, author.Length - index - 2);
+                    ws.Cells[i, 3].Value = content.Source;
+                    ws.Cells[i, 4].Value = content.Title;
+                    ws.Cells[i, 5].Value = channels.FirstOrDefault(o => o.Id == content.ChannelId)?.ChannelName;
+                    ws.Cells[i, 6].Value = content.Picturer;
+                    ws.Cells[i, 7].Value = content.AddDate.ToString("yyyy/MM/dd");
+                    i++;
+                }
+            }
+
+            var result = Request.CreateResponse(HttpStatusCode.OK);
+
+
+            MemoryStream memoryStream = new MemoryStream();
+            excel.SaveAs(memoryStream);
+            memoryStream.Seek(0, SeekOrigin.Begin);//没这句话就格式错
+
+            result.Content = new StreamContent(memoryStream);
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = $"内容列表{DateTime.Now.ToString("yyyyMMdd")}.xlsx"
+            };
+
+            return result;
+        }
+
+        private void GetContentList(out List<ExportContent> list, out string siteId)
+        {
+            siteId = HttpContext.Current.Request["siteId"] ?? string.Empty;
             string startTime = HttpContext.Current.Request["startTime"] ?? string.Empty;
             string endTime = HttpContext.Current.Request["endTime"] ?? string.Empty;
 
@@ -388,30 +442,20 @@ namespace SiteServer.API.Controllers
             {
                 query = query.Where(o => o.AddDate >= start);
             }
+
             if (DateTime.TryParse(endTime, out var end))
             {
                 query = query.Where(o => o.AddDate <= end);
             }
 
-            var list = query.ToList();
-
-            //todo 按照模板写入excel
-
-            var result = Request.CreateResponse(HttpStatusCode.OK);
-
-            result.Content = new StreamContent(excel.Stream);
-            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-            {
-                FileName = $"内容列表{DateTime.Now.ToString("yyyyMMdd")}.xlsx"
-            };
-
-            return result;
+            list = query.ToList();
         }
 
         public class ExportContent : Content
         {
-            public DateTime AddDate { get; set; }
+            public string Title { get; set; }
+            public int ChannelId { get; set; }
+            public string Picturer { get; set; }
         }
 
         #endregion
