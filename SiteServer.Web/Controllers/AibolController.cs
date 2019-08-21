@@ -278,7 +278,9 @@ namespace SiteServer.API.Controllers
         {
             var contents = GetContents();
 
-            var re = contents.GroupBy(o => o.Author).Select(o => new { author = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Take(6).ToList();
+            var list = contents.SelectMany(o => o.Author.Split(','));
+
+            var re = list.GroupBy(o => o).Select(o => new { author = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Take(6).ToList();
 
             return Json(re);
         }
@@ -455,7 +457,7 @@ namespace SiteServer.API.Controllers
             {
                 var titles = content.Select(o => o.Title).ToList();
                 ws.Cells[i, 1].Value = content.Key;
-                ws.Cells[i, 1, i + titles.Count-1, 1].Merge = true;
+                ws.Cells[i, 1, i + titles.Count - 1, 1].Merge = true;
                 ws.Cells[i, 2].Value = content.Count();
                 ws.Cells[i, 2, i + titles.Count - 1, 2].Merge = true;
                 foreach (var title in titles)
