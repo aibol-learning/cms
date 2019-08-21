@@ -1239,13 +1239,13 @@ a:hover {
     position: fixed;
     z-index: 9999999;
     top: 200px;
-    right: -127px;
+    right: -180px;
     cursor: pointer;
     transition: all .3s ease;
 }
 
 .yb_bar ul li {
-    width: 180px;
+    width: 233px;
     height: 53px;
     font: 16px/53px 'Microsoft YaHei';
     color: #fff;
@@ -1264,9 +1264,16 @@ a:hover {
     background: url(../images/fixCont.png) no-repeat 0 -57px;
 }
 
-.yb_bar .yb_QQ {
-    text-indent: 0;
+.yb_bar .yb_QQ_title {
+    text-indent: 54px;
     background: url(../images/fixCont.png) no-repeat 0 -113px;
+    height: 53px;
+    line-height: 53px;
+    overflow-y:hidden;
+}
+.yb_bar .yb_QQ_content {
+    max-height: 200px;
+    line-height: 24px;
 }
 
 .yb_bar .yb_ercode {
@@ -1294,7 +1301,7 @@ a:hover {
     margin: 0 auto;
 }
 
-.yb_QQ a {
+/*.yb_QQ a {
     display: block;
     text-indent: 54px;
     width: 100%;
@@ -1304,7 +1311,7 @@ a:hover {
 
     .yb_QQ a:hover {
         color: #fff;
-    }
+    }*/
 
 /*信息反馈样式*/
 .pagecontent .visual-form-builder fieldset {
