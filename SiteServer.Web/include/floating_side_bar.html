@@ -3,7 +3,7 @@
     .lf_container {
         width: 207px;
         position: fixed;
-        top: 200px;
+        top: 120px;
         left: -154px;
         transition: all .5s ease;
         z-index: 9999999;
@@ -36,6 +36,7 @@
             width: 53px;
             float: left;
             margin: 0;
+            margin-top:30px;
         }
 
             .lf_container .labels .label {
@@ -73,22 +74,8 @@
         overflow: hidden;
     }
 
-        .rf_container.rf_top {
-            top: 200px;
-            right: -87px;
-            width: 140px;
-            background: #009d8e url(../images/fixCont.png) no-repeat 0 0;
-        }
-
-        .rf_container.rf_phone {
-            top: 256px;
-            right: -135px;
-            width: 188px;
-            background: #009d8e url(../images/fixCont.png) no-repeat 0 -57px;
-        }
-
         .rf_container.rf_task {
-            top: 312px;
+            top: 150px;
             right: -277px;
             width: 330px;
         }
@@ -133,6 +120,7 @@
                 width: 279px;
                 line-height: 150%;
                 border-radius: 0 0 3px 3px;
+                box-shadow:1px 2px 2px rgba(33,33,33,.4)
             }
 
     .task_list li {
@@ -172,8 +160,22 @@
         line-height: 36px;
     }
 
+    .rf_container.rf_top {
+        top: 206px;
+        right: -87px;
+        width: 140px;
+        background: #009d8e url(../images/fixCont.png) no-repeat 0 0;
+    }
+
+    .rf_container.rf_phone {
+        top: 262px;
+        right: -135px;
+        width: 188px;
+        background: #009d8e url(../images/fixCont.png) no-repeat 0 -57px;
+    }
+
     .rf_container.rf_qrcode {
-        top: 368px;
+        top: 318px;
         right: -144px;
         width: 197px;
         background: #009d8e url(../images/fixCont.png) no-repeat 0 -169px;
@@ -223,8 +225,7 @@
 </div>
 
 <!--右侧悬浮窗-->
-<div class="rf_container rf_top" id="rf_top">返回顶部</div>
-<div class="rf_container rf_phone">{stl:value type="phoneNumber"}</div>
+
 <div class="rf_container rf_task">
     <div class="rf_task_title">
         <div class="wrap">
@@ -268,6 +269,8 @@
         <a href="" target="_blank" class="task_list_more">查看更多…</a>
     </div>
 </div>
+<div class="rf_container rf_top" id="rf_top">返回顶部</div>
+<div class="rf_container rf_phone">{stl:value type="phoneNumber"}</div>
 <div class="rf_container rf_qrcode">
     移动端APP<br />
     {stl:value type="app_qrcode" class="rf_qrcode_qr" width="150" alt="移动端APP"}<br />
