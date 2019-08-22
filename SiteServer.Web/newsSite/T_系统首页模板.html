@@ -14,30 +14,94 @@
     <script type="text/javascript" src="{Stl.SiteUrl}/js/jquery.min.js"></script>
     <script type="text/javascript" src="{Stl.SiteUrl}/js/swiper.min.js"></script>
     <script type="text/javascript" src="{Stl.SiteUrl}/js/js.js"></script>
-
+    <link rel='stylesheet' id='font-awesome-four-css' href='/css/font-awesome.min.css' type='text/css' media='all' />
     <link rel='stylesheet' id='style-css' href='{stl.siteurl}/css/style.css' type='text/css' media='all' />
 </head>
 <body class="home blog">
-    <stl:include file="/include/search.html"></stl:include>
+    <!--Logo+导航+搜索-->
     <stl:include file="/include/header.html"></stl:include>
+    <div class="clearfix"></div>
+
     <div id="top-pic">
         <div class="container">
-            <stl:include file="/include/contop.html"></stl:include>
-            <div class="row" style="padding-top: 20px;">
-                <!--adv01 -->
-                <stl:include file="/include/adv.html"></stl:include>
+            <!--宣传大图 -->
+            <div class="row" style="padding-top:20px;">
+                <stl:contents channelIndex="首页宣传大图" totalNum="1" isRecommend="true">
+                    <stl:if type="linkUrl" op="Empty">
+                        <stl:yes>
+                            <stl:if type="content" op="Empty">
+                                <stl:yes>
+                                    <a href="javascript:;"><img src="{Content.ImageUrl}" width="1170"></a>
+                                </stl:yes>
+                                <stl:no>
+                                    <stl:a><img src="{Content.ImageUrl}" width="1170"></stl:a>
+                                </stl:no>
+                            </stl:if>
+                        </stl:yes>
+                        <stl:no>
+                            <stl:a target="_blank"><img src="{Content.ImageUrl}" width="1170"></stl:a>
+                        </stl:no>
+                    </stl:if>
+                </stl:contents>
+            </div>
+
+            <!--头条聚焦-->
+            <div class="row" style="padding-top: 20px;margin-bottom: -20px;">
+                <div class="col-sm-12 col-md-6 col-lg-6 pic-left">
+                    <stl:contents channelIndex="头条新闻" isRecommend="true" totalNum="1">
+                        <img src="{Content.ImageUrl}" width="575" height="383" onClick="window.location.href='{Content.NavigationUrl}'" alt="{Content.Title}" />
+                        <div class="pic-left_title"><stl:content type="title" wordNum="28" ellipsis="..."></stl:content></div>
+                    </stl:contents>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-mid">
+                    <ul>
+                        <stl:contents channelIndex="头条新闻" totalNum="2" isRecommend="true" startNum="4">
+                            <li>
+                                <stl:a>
+                                    <stl:if type="ImageUrl" op="NotEmpty">
+                                        <stl:yes>
+                                            <img src="{Content.ImageUrl}" alt="{Content.Title}" />
+                                        </stl:yes>
+                                        <stl:no>
+                                            <img src="/images/thumbnail.png" alt="{Content.Title}" />
+                                        </stl:no>
+                                    </stl:if>
+                                    <div class="pic-title2">
+                                        <stl:content type="Title" wordNum="16" ellipsis="..."></stl:content>
+                                    </div>
+                                </stl:a>
+                            </li>
+                        </stl:contents>
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-right">
+                    <ul>
+                        <stl:contents channelIndex="头条新闻" totalNum="2" startNum="6" isRecommend="true">
+                            <li>
+                                <stl:a>
+                                    <stl:if type="ImageUrl" op="NotEmpty">
+                                        <stl:yes>
+                                            <img src="{Content.ImageUrl}" alt="{Content.Title}" />
+                                        </stl:yes>
+                                        <stl:no>
+                                            <img src="/images/thumbnail.png" alt="{Content.Title}" />
+                                        </stl:no>
+                                    </stl:if>
+                                    <div class="pic-title2">
+                                        <stl:content type="Title" wordNum="16" ellipsis="..."></stl:content>
+                                    </div>
+                                </stl:a>
+                            </li>
+                        </stl:contents>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
-    <!--所有栏目-->
-    <!--<div>
-        <div class="container">
-            <stl:channels topLevel="0">
-                <stl:a>{Channel.Title}</stl:a><br />
-            </stl:channels>
-        </div>
-    </div>-->
+
 
     <!--主要内容 -->
     <div id="cont-list">

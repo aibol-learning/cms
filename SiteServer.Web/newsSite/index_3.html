@@ -14,33 +14,37 @@
     <script type="text/javascript" src="/newsSite/js/jquery.min.js"></script>
     <script type="text/javascript" src="/newsSite/js/swiper.min.js"></script>
     <script type="text/javascript" src="/newsSite/js/js.js"></script>
-
+    <link rel='stylesheet' id='font-awesome-four-css' href='/css/font-awesome.min.css' type='text/css' media='all' />
     <link rel='stylesheet' id='style-css' href='/newsSite/css/style.css' type='text/css' media='all' />
 </head>
 <body class="home blog">
 <script src="/sitefiles/assets/components/jquery-1.9.1.min.js" type="text/javascript"></script>
 
-    <div class="search-box " id="search-box"> <i class="icon icon-search-close js-show-search-box"></i>
-  <div class="search-content overlay-dialog-animate">
-    <div class="search-input">
-      <form id="search-input" role="search" method="get" action="/newsSite/utils/search.html" onSubmit="return checkinput()">
-        <button type="submit"></button>
-        <input placeholder="请输入关键字，按回车键搜索" name="word" id="search-input">
-        <input type="hidden" name="type" value="Title" id="search-input"/>
-      </form>
+    <!--Logo+导航+搜索-->
+    <div class="themenav">
+    <!--logo+搜索+工作区登录信息-->
+    <div class="container" style="position:relative">
+        <div class="logo"> <a href="/newsSite/index.html"> <img src="/newsSite/upload/images/2019/8/243b59459414fb98.png" type="Logo" /> </a> </div>
+        <div class="search">
+            <div id="sb-search" class="sb-search sb-search-open">
+                <form id="searchform" method="get" action="/newsSite/utils/search.html">
+                    <input class="sb-search-input" placeholder="输入关键词查找..." type="text" name="word">
+                    <input id="searchsubmit" class="sb-search-submit" type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </form>
+            </div>
+            <script src="/js/classie.js"></script>
+            <script src="/js/uisearch.js"></script>
+            <script>
+                new UISearch(document.getElementById('sb-search'));
+            </script>
+        </div>
+        <div class="loginInfo"><a href="#" id="loginInfo">登录工作区</a></div>
+        <div class="clearfix"></div>
     </div>
-    <div class="search-history search-hot"> <span>热搜词</span>
-      <ul>
-      
-        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-263"><a href="/newsSite/utils/tags.html?tagName=游戏">游戏</a></li>
-      
-        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-263"><a href="/newsSite/utils/tags.html?tagName=乒乓球">乒乓球</a></li>
-      
-      </ul>
-    </div>
-  </div>
 </div>
-    <div id="top_nav" class="header yapiskan">
+
+<!--<div id="top_nav" class="header yapiskan">
   <div class="container">
     <div class="row">
       <div class="top-bar mnav">
@@ -50,7 +54,7 @@
         <div class="icon-bar"> </div>
         </button>
       </div>
-      <div class="logo mnav"> <a href="/newsSite/index.html"> <img src="/newsSite/upload/images/2017/6/29145430455.png" type="Logo" /> </a> </div>
+      <div class="logo mnav"> <a href="/newsSite/index.html"> <img src="/newsSite/upload/images/2019/8/243b59459414fb98.png" type="Logo" /> </a> </div>
       <div class="pull-right mnav"> <i class="icon icon-search" id="msearch"></i> </div>
       <div class="nav-left" id="nav">
         
@@ -128,97 +132,80 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
+
+    <div class="clearfix"></div>
+
     <div id="top-pic">
         <div class="container">
+            <!--宣传大图 -->
+            <div class="row" style="padding-top:20px;">
+                
+                    <a target="_blank" href="https://www.baidu.com"><img src="/newsSite/upload/images/2019/8/7a366803db4d6aa8.jpg" width="1170"></a>
+                
+            </div>
+
+            <!--头条聚焦-->
             <div class="row" style="padding-top: 20px;margin-bottom: -20px;">
-      
-      <div class="col-sm-12 col-md-6 col-lg-6 pic-left">
-        <div class="swiper-container bannerbox">
-          <div class="swiper-wrapper">
-          
-          </div>
-          <div class="swiper-pagination bannav"></div>
-          <div class="swiper-button-next banleft"><i class="iconfont icon-gengduo bannerjb"></i></div>
-          <div class="swiper-button-prev banright"><i class="iconfont icon-fanhui bannerjb"></i></div>
-        </div>
-      </div>
-      
+                <div class="col-sm-12 col-md-6 col-lg-6 pic-left">
+                    
+                        <img src="/newsSite/upload/images/2019/8/6224a46534d8f058.jpg" width="575" height="383" onclick="window.location.href='/newsSite/contents/57/80.html'" alt="第九条">
+                        <div class="pic-left_title">第九条</div>
+                    
+                </div>
 
-      	<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-mid">
-        <ul>
-        
-        </ul>
-      </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-mid">
+                    <ul>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/77.html">
+                                    <img src="/newsSite/upload/images/2019/8/6e8446c6075b227d.jpg" alt="第六条">
+                                    <div class="pic-title2">
+                                        第六条
+                                    </div>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/76.html">
+                                    <img src="/newsSite/upload/images/2019/8/fcb2076ff0ee387a.jpg" alt="第五条头条新闻标题标标标题第五条头条新闻的标题放在这里，标题要足够长哦再长一点 ">
+                                    <div class="pic-title2">
+                                        第五条头条新闻标题标标标题第五条...
+                                    </div>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </div>
 
-      	<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-right">
-        <ul>
-        
-        </ul>
-      </div>
-
-    </div>
-            <div class="row" style="padding-top: 20px;">
-                <!--adv01 -->
-                <!--<div id="adv01"> <a><img src="/newsSite/upload/images/2017/6/2893450598.png" type="adv" /></a> </div>-->
-
-
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-right">
+                    <ul>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/75.html">
+                                    <img src="/newsSite/upload/images/2019/8/f257a173be502002.jpg" alt="第四条第四条头条新闻第四条第四条头条新闻">
+                                    <div class="pic-title2">
+                                        第四条第四条头条新闻第四条第四条...
+                                    </div>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/74.html">
+                                    <img src="/newsSite/upload/images/2019/8/616315b60ad9fc5a.jpg" alt="第三条头条新闻标题">
+                                    <div class="pic-title2">
+                                        第三条头条新闻标题
+                                    </div>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
-    <!--所有栏目-->
-    <!--<div>
-        <div class="container">
-            
-                <a href="/newsSite/channels/37.html">头条聚焦</a><br>
-            
-                <a href="/newsSite/channels/39.html">资讯动态</a><br>
-            
-                <a href="/newsSite/channels/42.html">社会新闻</a><br>
-            
-                <a href="/newsSite/channels/45.html">全球资讯</a><br>
-            
-                <a href="/newsSite/channels/48.html">专题活动</a><br>
-            
-                <a href="/newsSite/channels/50.html">相关推荐</a><br>
-            
-                <a href="/newsSite/channels/51.html">友情链接</a><br>
-            
-                <a href="/newsSite/channels/56.html">模板使用说明</a><br>
-            
-                <a href="/newsSite/channels/57.html">头条新闻</a><br>
-            
-                <a href="/newsSite/channels/58.html">新思想</a><br>
-            
-                <a href="/newsSite/channels/59.html">公司要闻</a><br>
-            
-                <a href="/newsSite/channels/60.html">红色教育活动</a><br>
-            
-                <a href="/newsSite/channels/61.html">检修现场</a><br>
-            
-                <a href="/newsSite/channels/62.html">月度学习</a><br>
-            
-                <a href="/newsSite/channels/63.html">上级动态</a><br>
-            
-                <a href="/newsSite/channels/64.html">部门动态</a><br>
-            
-                <a href="/newsSite/channels/65.html">效益攻坚</a><br>
-            
-                <a href="/newsSite/channels/66.html">通讯报道</a><br>
-            
-                <a href="/newsSite/channels/67.html">文学天地</a><br>
-            
-                <a href="/newsSite/channels/68.html">视频照片</a><br>
-            
-                <a href="/newsSite/channels/69.html">职工风采</a><br>
-            
-                <a href="/newsSite/channels/70.html">新闻公告</a><br>
-            
-                <a href="/newsSite/channels/145.html">宣传大图</a><br>
-            
-        </div>
-    </div>-->
+
 
     <!--主要内容 -->
     <div id="cont-list">

@@ -192,8 +192,8 @@ span.comment_admin {color: #FFF;}
 .author-info {padding: 50px 0 30px 0;}
 .author-content {padding: 40px 0 0;}
 .line-botm {padding: 10px 0;}
-.search-content {width: 90%;margin-left: 5%;}
-.icon-search-close {right: 30px;top: 30px;}
+/*.search-content {width: 90%;margin-left: 5%;}
+.icon-search-close {right: 30px;top: 30px;}*/
 .author-info{width: 100%;margin-left: -20px;padding-left: 40px;}
 .options {display: none;}
 #page {margin-bottom: 30px;}
@@ -246,3 +246,4 @@ span.comment_admin {color: #FFF;}
 .m-error-con .txt {margin-left:28px;}
 .m-error-con .txt a {color:#cd313a;text-decoration:none;}
 .con-order .txt {margin-left:0;}
+
