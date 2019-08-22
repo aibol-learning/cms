@@ -1,1 +1,26 @@
-<div id="adv01"> <a>{stl:value type=adv}</a> </div>
+<!--<div id="adv01"> <a>{stl:value type=adv}</a> </div>-->
+{stl:contents channelIndex="宣传大图"}
+<stl:contents channelIndex="宣传大图">
+    <div id="adv01">
+        <img src="{Content.ImageUrl}">
+    </div>
+</stl:contents>
+<stl:contents channelIndex="宣传大图" totalNum="1" isRecommend="true">
+    <div id="adv01">
+        <stl:if type="linkUrl" op="Empty">
+            <stl:yes>
+                <stl:if type="content" op="Empty">
+                    <stl:yes>
+                        <a href="javascript:;"><img src="{Content.ImageUrl}"></a>
+                    </stl:yes>
+                    <stl:no>
+                        <stl:a><img src="{Content.ImageUrl}"></stl:a>
+                    </stl:no>
+                </stl:if>
+            </stl:yes>
+            <stl:no>
+                <stl:a target="_blank"><img src="{Content.ImageUrl}"></stl:a>
+            </stl:no>
+        </stl:if>
+    </div>
+</stl:contents>
