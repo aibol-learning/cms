@@ -1,18 +1,21 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>{Channel.Title} - {Stl.SiteName}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link href="{Stl.SiteUrl}/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-<link href="{Stl.SiteUrl}/css/iconfont.css" type="text/css" rel="stylesheet"/>
-<link href="{Stl.SiteUrl}/css/common.css" type="text/css" rel="stylesheet"/>
-<link href="{Stl.SiteUrl}/css/swiper.min.css" type="text/css" rel="stylesheet"/>
-<script type="text/javascript" src="{Stl.SiteUrl}/js/jquery.min.js"></script>
-<script type="text/javascript" src="{Stl.SiteUrl}/js/swiper.min.js"></script>
-<script type="text/javascript" src="{Stl.SiteUrl}/js/js.js"></script>
-<link rel='stylesheet' id='style-css'  href='{Stl.SiteUrl}/css/style.css' type='text/css' media='all' />
+    <meta charset="utf-8">
+    <title>{Channel.Title} - {Stl.SiteName}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="{Stl.SiteUrl}/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="{Stl.SiteUrl}/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="{Stl.SiteUrl}/css/common.css" type="text/css" rel="stylesheet" />
+    <link href="{Stl.SiteUrl}/css/swiper.min.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="{Stl.SiteUrl}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="{Stl.SiteUrl}/js/swiper.min.js"></script>
+    <script type="text/javascript" src="{Stl.SiteUrl}/js/js.js"></script>
+    <link rel='stylesheet' id='style-css' href='{Stl.SiteUrl}/css/style.css' type='text/css' media='all' />
+
+    <link href="../../SiteServer/assets/datePicker/skin/WdatePicker.css" rel="stylesheet" />
+    <script src="../../SiteServer/assets/datePicker/WdatePicker.js"></script>
 </head>
 <body class="archive category category-shqd category-7">
 <stl:include file="/include/search.html"></stl:include>
@@ -24,7 +27,39 @@
     <div class="row">
       <div class="col-sm-12 col-md-8 col-lg-8 cont-left">
         
-       <ul class="breadcrumbs"><li><a href="{Stl.SiteUrl}/">网站首页</a></li><li> <span>&gt;</span> 搜索列表 <span>&gt;</span> </li></ul>
+       <ul class="breadcrumbs"><li><a href="{Stl.SiteUrl}/">网站首页11</a></li><li> <span>&gt;</span> 搜索列表 <span>&gt;</span> </li></ul>
+          <div>
+              <form action="{Stl.SiteUrl}/utils/search.html">
+                  <input placeholder="请输入关键字，按回车键搜索" name="word" id="word">
+                  <input placeholder="开始时间" name="dateFrom" id="dateFrom" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'});" >-
+                  <input placeholder="结束时间" name="dateTo" id="dateTo" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'});" >
+                  <select name="channelIds" id="channelIds">
+                      <option value="">全部</option>
+                      <stl:channels upLevel="1">
+                          <option value="<stl:channel type='id'></stl:channel>"><stl:channel type="Title"></stl:channel>(<stl:channel type="CountOfContents"></stl:channel>)</option>
+                      </stl:channels>
+                  </select>
+                  <button type="submit">搜索</button>
+              </form>
+              <script>
+                  function getQueryVariable(variable)
+                    {
+                            var query = window.location.search.substring(1);
+                            var vars = query.split("&");
+                            for (var i=0;i<vars.length;i++) {
+                                    var pair = vars[i].split("=");
+                                    if(pair[0] == variable){return pair[1];}
+                            }
+                            return(false);
+                    }
+                  $(function () {
+                      $("#word").val(decodeURIComponent(getQueryVariable("word")));
+                      $("#dateFrom").val(getQueryVariable("dateFrom")||"");
+                      $("#dateTo").val(getQueryVariable("dateTo")||"");
+                      $("#channelIds").val(getQueryVariable("channelIds"));
+                  })
+              </script>
+          </div>
         <stl:search type="title,content" isHighlight="true">
             <stl:loading>
                 <div class="alert alert-info" role="alert">
