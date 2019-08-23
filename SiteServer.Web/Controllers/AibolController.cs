@@ -405,8 +405,8 @@ namespace SiteServer.API.Controllers
                 foreach (var author in content.Author.Split(','))
                 {
                     var index = author.IndexOf('(');
-                    ws.Cells[i, 1].Value = string.IsNullOrEmpty(author) ? string.Empty : author.Substring(0, index);
-                    ws.Cells[i, 2].Value = string.IsNullOrEmpty(author) ? string.Empty : author.Substring(index + 1, author.Length - index - 2);
+                    ws.Cells[i, 1].Value = string.IsNullOrEmpty(author) || index < 0 ? string.Empty : author.Substring(0, index);
+                    ws.Cells[i, 2].Value = string.IsNullOrEmpty(author) || index < 0 ? string.Empty : author.Substring(index + 1, author.Length - index - 2);
                     ws.Cells[i, 3].Value = content.Source;
                     ws.Cells[i, 4].Value = content.Title;
                     ws.Cells[i, 5].Value = channels.FirstOrDefault(o => o.Id == content.ChannelId)?.ChannelName;
