@@ -22,7 +22,8 @@
     <stl:include file="/include/header.html"></stl:include>
     <div class="clearfix"></div>
 
-    <div id="top-pic">
+    <!--头部重要内容信息-->
+    <div>
         <div class="container">
             <!--宣传大图 -->
             <div class="row" style="padding-top:20px;">
@@ -98,54 +99,64 @@
                     </ul>
                 </div>
             </div>
+
+            <!--通知公告-->
+            <div class="marquee_wrap">
+                <div class="marquee_title">通知公告：</div>
+                <marquee onmouseout="this.start()" onmouseover="this.stop()">
+                    <stl:contents channelIndex="通知公告" totalNum="8">
+                        <stl:a><stl:content type="title"></stl:content> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></stl:a>
+                    </stl:contents>
+                </marquee>
+                <stl:a channelIndex="通知公告" class="more">查看更多&gt;&gt;</stl:a>
+            </div>
+
+            <!--头条新闻-->
+            <div class="headline_warp">
+                <div class="la-title">
+                    <h3>最新文章</h3>
+                </div>
+                <div class="row m-t-20">
+                    <div class="col-md-5">
+                        <stl:contents channelIndex="头条新闻" isTop="true" totalNum="1">
+                            <stl:a><img src="{Content.imageUrl}" class="head_img" /></stl:a>
+                        </stl:contents>
+                    </div>
+                    <div class="col-md-3">
+                        <stl:contents channelIndex="头条新闻" isTop="true" totalNum="1">
+                            <stl:a class="head_title"><stl:content wordNum="20" ellipsis="..."></stl:content></stl:a>
+                            <div class="head_summary"><stl:content type="summary" wordNum="130" ellipsis="..."></stl:content></div>
+                        </stl:contents>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="head_list">
+                            <stl:contents channelIndex="头条新闻" totalNum="5">
+                                <stl:a class="head_list_title"><stl:content wordNum="19" ellipsis="..."></stl:content></stl:a>
+                                <div class="head_list_info">
+                                    <i class="iconfont icon-shijian"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
+                                    <i class="iconfont icon-faxian"></i> <stl:content type="source"></stl:content>
+                                </div>
+                            </stl:contents>
+
+                            <stl:a channelIndex="头条新闻" class="head_list_more">更多……</stl:a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-
-
     <!--主要内容 -->
-    <div id="cont-list">
+    <div>
         <div class="container">
             <div class="row">
+                <!--左侧内容-->
                 <div class="col-sm-12 col-md-8 col-lg-8 cont-left">
-                    <div id="hour24" class="clearfix">
-                        <div class="hour24-title">
-                            <h3>科技动态</h3>
-                        </div>
-
-                        <div class="col-sm-12 col-md-6 col-lg-6 hour24-left">
-                            <stl:contents channelIndex="科技动态" isHot="true" totalNum="1" order="AddDate">
-                                <div class="hour24-left-img"> <stl:a title="{Content.Title}" target="_blank"> <img src="{Content.ImageUrl}" alt="{Content.Title}" /> </stl:a> </div>
-                                <h3 class="htitle-color" style="font-weight: 400;"><stl:a><stl:content type="Title" wordNum="17" ellipsis="..."></stl:content></stl:a></h3>
-                                <div class="mob-author">
-                                    <span class="time"><i class="iconfont icon-shijian"></i>  <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span>
-                                    <span class="time liulan"><i class="iconfont icon-faxian"></i> <stl:content type="Source"></stl:content></span>
-                                </div>
-                                <div class="mob-sub"> <stl:content type="Content" isClearTags="true" wordNum="50" ellipsis="..."></stl:content> </div>
-                            </stl:contents>
-                        </div>
-
-                        <stl:contents channelIndex="科技动态" isRecommend="true" totalNum="4" order="AddDate">
-                            <div class="col-sm-12 col-md-6 col-lg-6 hour24-right">
-                                <ul>
-                                    <li class="clearfix">
-                                        <stl:a title="{Content.Title}" target="_blank">
-                                            <div class="h24-r-img"> <img src="{Content.ImageUrl}" alt="{Content.Title}" /> </div>
-                                        </stl:a>
-                                        <div class="h24-r-text">
-                                            <stl:a title="{Content.Title}" target="_blank"> <span class="h24-r-title"><stl:content type="Title" wordNum="28" ellipsis="..."></stl:content></span> </stl:a>
-                                            <p class="mob-author"> <span class="time"><i class="iconfont icon-shijian"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span>   <span class="time"><i class="iconfont icon-faxian"></i> <stl:content type="Source"></stl:content></span></p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </stl:contents>
-                    </div>
-                    <!--adv02 -->
-                    <div id="adv02" style="margin-top: 20px;"> <a>{stl:value type=conadv}</a></div>
-                    <!--最新文章 -->
+                    <!--新思想/公司要闻 -->
                     <div class="la-title">
-                        <h3>最新文章</h3>
+                        <h3>新思想</h3>
+                        <h3>公司要闻</h3>
                     </div>
 
                     <stl:pageContents topLevel="0" groupChannelNot="not" scope="All" pageNum="20" order="AddDate">
@@ -213,7 +224,6 @@
                             </stl:yes>
                             <stl:no>
                                 <div class="la-list03 line-botm clearfix">
-
                                     <div class="la-r-text">
                                         <h3>
 
@@ -244,8 +254,6 @@
                             </stl:no>
                         </stl:if>
                     </stl:pageContents>
-
-
                     <div id="page">
                         <stl:pageItem type="PreviousPage">
                             <stl:yes>
@@ -274,52 +282,208 @@
                             </stl:no>
                         </stl:pageItem>
                     </div>
-
-
-
-
                 </div>
-                <div class="wrap-right pull-right">
-                    <stl:include file="/include/hot.html"></stl:include>
-                    <div class="widget widget_ztmao_mostviews">
-                        <div class="box-moder hot-article">
-                            <h3>最热点击文章</h3>
-                        </div>
-                        <div class="box-moder hot-article">
-                            <span class="span-mark"></span>
-                            <ul class="hots-post-widget">
-                                <stl:contents scope="All" groupChannelNot="not" isImage="true" topLevel="0" order="Hits" totalNum="13">
-                                    <li>
-                                        <div class="hot-article-img"> <stl:a target="_blank"> <img class="xyscale" src="{Content.ImageUrl}" alt="{Content.Title}" /> </stl:a> </div>
-                                        <stl:a class="transition" target="_blank"><stl:content type="Title"></stl:content></stl:a>
-                                    </li>
+
+                <!--右侧边栏-->
+                <div class="wrap-right pull-right" style="width:30%; padding-top:30px;">
+                    <stl:channels groupChannel="右侧边栏">
+                        <div class="sidebar">
+                            <div class="sidebar_title"><stl:channel></stl:channel></div>
+                            <div class="sidebar_list">
+                                <stl:contents channelIndex="{Channel.title}" isRecommend="true">
+                                    <stl:a><stl:content type="title" wordNum="20" ellipsis="..."></stl:content></stl:a>
                                 </stl:contents>
-                            </ul>
+                            </div>
+                            <stl:a channelIndex="{Channel.title}" class="sidebar_list_more">更多……</stl:a>
                         </div>
-                        <div class="placeholder"></div>
-                    </div>
-                    <div class="box-moder hot-tag ztmao-lianjie">
-                        <h3>友情链接</h3>
-                        <span class="span-mark"></span>
-                        <div class="search-history search-hot">
-                            <ul>
-                                <stl:contents channelIndex="友情链接">
-                                    <li><a href="{Content.LinkUrl}" target="_blank">{Content.Title}</a></li>
-                                </stl:contents>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="placeholder"></div>
+                    </stl:channels>
                 </div>
             </div>
         </div>
     </div>
+
+    <!--职工风采-->
+    <div>
+        <div class="container">
+            <div class="la-title">
+                <h3>职工风采</h3>
+            </div>
+        </div>
+    </div>
+
+    <!--信息员天地-->
+    <style type="test/css">
+        .publish_info {
+        }
+
+            .publish_info .chart_title {
+                text-align: center;
+                font-size: 18px;
+                font-weight: bold;
+                height: 50px;
+                line-height: 50px;
+            }
+    </style>
+    <div class="publish_info" id="vm_publish_info">
+        <div class="container">
+            <div class="la-title">
+                <h3>信息员天地</h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div id="publish_chart_author">{{authorTop6}}</div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div id="publish_chart_department">{{departmentTop6}}</div>
+                </div>
+            </div>
+            <div id="chart1"></div>
+        </div>
+    </div>
+
     <!--底部 -->
     <stl:include file="/include/footer.html"></stl:include>
+
+    <script src="/js/vue2.5.15.min.js"></script>
+    <script src="/js/global.js" type="text/javascript"></script>
     <script src="{Stl.SiteUrl}/js/glodil.js" type="text/javascript"></script>
     <script src="{Stl.SiteUrl}/js/jquery-ias.min.js" type="text/javascript"></script>
+    <script src="/js/echarts.min.js"></script>
 
     <script type="text/javascript">
+        $(function () {
+            //信息员天地数据请求
+            vm = new Vue({
+                el: "#vm_publish_info",
+                data: {
+                    currentYear: null,  //客户端当前年份
+                    currentMonth: null, //客户端当前月份
+                    authorTop6: [],     //信息员Top6
+                    departmentTop6: []  //部门发稿量Top6
+                },
+                methods: {
+                    //信息员天地数据请求 - 按信息员
+                    getPublishInfoByAuthor: function (startTime) {
+                        var self = this;
+                        $.ajax({
+                            url: '/api/aibol/GetAuthorTop6?siteId=' + global.newsSiteId + "&startTime=" + startTime,
+                            type: 'get',
+                            success: function (response) {
+                                console.log('response', response);
+                                if (response) {
+                                    console.log(11111)
+                                    self.authorTop6 = response;
+
+                                    if (response.length > 0) {
+                                        var xAxis = [];
+                                        var series = [];
+                                        response.forEach(function (node, index) {
+                                            xAxis.push(node.author);
+                                            series.push(node.count);
+                                        })
+                                        console.log('xAxis', xAxis);
+                                        console.log('series', series);
+
+                                        //图表初始化
+                                        var chart_author = echarts.init(document.getElementById('publish_chart_author'));
+                                        console.log('chart_author', chart_author)
+
+                                        // 指定图表的配置项和数据
+                                        var optionChartAuthor = {
+                                            color: ['#ed7d31'],
+                                            title: {
+                                                text: self.currentYear + '.' + self.currentMonth + '信息员发稿量Top6',
+                                            },
+                                            tooltip: {},
+                                            legend: {
+                                                data: ['发稿量']
+                                            },
+                                            xAxis: {
+                                                data: xAxis
+                                            },
+                                            yAxis: {},
+                                            series: [{
+                                                name: '发稿量',
+                                                type: 'bar',
+                                                barCategoryGap: '50%',
+                                                data: series
+                                            }]
+                                        };
+                                        console.log('optionChartAuthor', optionChartAuthor);
+                                        //使用配置项和数据显示图表。
+                                        chart_author.setOption(optionChartAuthor);
+                                    }
+                                    else {
+
+                                    }
+                                }
+                            }
+                        })
+                    },
+                    //信息员天地数据请求 - 按部门
+                    getPublishInfoByDepartment: function (startTime) {
+                        var self = this;
+                        $.ajax({
+                            url: '/api/aibol/GetDepartmentTop6?siteId=' + global.newsSiteId + "&startTime=" + startTime,
+                            type: 'get',
+                            success: function (response) {
+                                self.departmentTop6 = response;
+                            }
+                        })
+                    },
+                    //获取当前月份
+                    getStartTime: function () {
+                        var _today = new Date();
+                        var yyyy = _today.getFullYear();
+                        var MM = _today.getMonth() + 1;
+                        var dd = _today.getDate();
+                        MM = MM < 10 ? ('0' + MM) : MM;
+                        var today = yyyy + "-" + MM + '-01';
+
+                        this.currentYear = yyyy,    //客户端当前年份
+                        this.currentMonth = MM,     //客户端当前月份
+
+                        //请求信息员天地数据
+                        this.getPublishInfoByAuthor(today);
+                        this.getPublishInfoByDepartment(today);
+                    }
+                },
+                created: function () {
+                    var self = this;
+                    //待办任务(外部接口)
+                    this.getStartTime();
+
+                    //大屏幕数据图片初始化
+                    var myChart1 = echarts.init(document.getElementById('chart1'));
+                    // 指定图表的配置项和数据
+                    var optionChart1 = {
+                        color: ['#3398DB'],
+                        //title: {
+                        //text: 'ECharts 入门示例'
+                        //},
+                        tooltip: {},
+                        legend: {
+                            data: ['发电量']
+                        },
+                        xAxis: {
+                            data: ["一号机组", "二号机组", "三号机组", "四号机组", "五号机组", "六号机组"]
+                        },
+                        yAxis: {},
+                        series: [{
+                            name: '发电量',
+                            type: 'bar',
+                            barCategoryGap: '50%',
+                            data: [125, 120, 136, 110, 110, 120]
+                        }]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart1.setOption(optionChart1);
+                }
+            })
+        })
+    </script>
+
+    <!--<script type="text/javascript">
         $('.weixin').mouseover(function () {
             $('.weixin-Qr-code').css({ "opacity": "1", "margin-left": "70px", "display": "block" }),
                 $('.weixin').addClass('disabled')
@@ -330,7 +494,7 @@
                 $('.weixin').removeClass('disabled')
             // alert('fdafdsa');
         });
-    </script>
-    <script type='text/javascript' src='{Stl.SiteUrl}/js/wp-embed.min.js'></script>
+        </script>-->
+    <!--<script type='text/javascript' src='{Stl.SiteUrl}/js/wp-embed.min.js'></script>-->
 </body>
 </html>

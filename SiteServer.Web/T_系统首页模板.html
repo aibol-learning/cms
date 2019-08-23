@@ -482,9 +482,7 @@
                             MM = MM < 10 ? ('0' + MM) : MM;
                             dd = dd < 10 ? ('0' + dd) : dd;
                             var today = yyyy + "-" + MM + '-' + dd;
-                            console.log('xxxxxx')
                             $(".js_addDate").each(function () {
-                                console.log('addDate', $(this).text());
                                 if ($(this).text() == today) {
                                     $(this).parents("li").eq(0).find(".label_new").show();
                                 }
@@ -580,24 +578,24 @@
                     },
 
                     //安全生产管理巡视(外部接口)
-                    getTours: function () {
-                        var self = this;
-                        $.ajax({
-                            url: global.backstageAPIUrl.tours,
-                            type: 'get',
-                            success: function (response) {
-                                if (response.Code == 200 && response.Data) {
-                                    response.Data.forEach(function (node, index) {
-                                        if (node.ExpectCompletedTime) {
-                                            node.ExpectCompletedTime = node.ExpectCompletedTime.replace("T", " ");
-                                            node.url = global.toursTaskUrl + node.ID;
-                                        }
-                                    });
-                                    self.toursTask = response.Data;
-                                }
-                            }
-                        })
-                    }
+                    //getTours: function () {
+                    //    var self = this;
+                    //    $.ajax({
+                    //        url: global.backstageAPIUrl.tours,
+                    //        type: 'get',
+                    //        success: function (response) {
+                    //            if (response.Code == 200 && response.Data) {
+                    //                response.Data.forEach(function (node, index) {
+                    //                    if (node.ExpectCompletedTime) {
+                    //                        node.ExpectCompletedTime = node.ExpectCompletedTime.replace("T", " ");
+                    //                        node.url = global.toursTaskUrl + node.ID;
+                    //                    }
+                    //                });
+                    //                self.toursTask = response.Data;
+                    //            }
+                    //        }
+                    //    })
+                    //}
                 },
                 created: function () {
                     var self = this;
@@ -613,7 +611,7 @@
                     });
 
                     //安全生产管理巡视(外部接口)
-                    this.getTours();
+                    //this.getTours();
                 }
             })
         })
