@@ -27,8 +27,25 @@
     <div class="row">
       <div class="col-sm-12 col-md-8 col-lg-8 cont-left">
         
-       <ul class="breadcrumbs"><li><a href="{Stl.SiteUrl}/">网站首页11</a></li><li> <span>&gt;</span> 搜索列表 <span>&gt;</span> </li></ul>
-          <div>
+       <ul class="breadcrumbs"><li><a href="{Stl.SiteUrl}/">网站首页</a></li><li> <span>&gt;</span> 搜索列表 <span>&gt;</span> </li></ul>
+          <div id="serach_div">
+              <style >
+                  #serach_div{
+                      margin-top:20px;
+                  }
+                  form>input,form>select{
+                      height:40px;
+                      padding-left:5px;
+                  }
+                  form>select{
+                      position:relative;
+                      top:1px;
+                  }
+                  form>button{
+                      height:40px;
+                      border-radius:0;
+                  }
+              </style>
               <form action="{Stl.SiteUrl}/utils/search.html">
                   <input placeholder="请输入关键字，按回车键搜索" name="word" id="word">
                   <input placeholder="开始时间" name="dateFrom" id="dateFrom" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'});" >-
@@ -39,7 +56,7 @@
                           <option value="<stl:channel type='id'></stl:channel>"><stl:channel type="Title"></stl:channel>(<stl:channel type="CountOfContents"></stl:channel>)</option>
                       </stl:channels>
                   </select>
-                  <button type="submit">搜索</button>
+                  <button class="btn btn-info" type="submit">搜索</button>
               </form>
               <script>
                   function getQueryVariable(variable)
@@ -192,11 +209,11 @@
              </stl:no>
         </stl:search>
       </div>
-      <div class="wrap-right pull-right">
+      <div class="wrap-right pull-right" style="width: 30%;">
       
         <div class="widget widget_ztmao_hotpost">
           <div class="box-moder hot-article">
-            <h3>热评文章</h3>
+            <h3>公司要闻</h3>
           </div>
           <div class="box-moder hot-article"> <span class="span-mark"></span>
             <ul class="hots-post-widget">
