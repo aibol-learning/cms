@@ -486,5 +486,11 @@ namespace SiteServer.Utils
         {
             return $"{Authority}/userinfo";
         }
+
+        public string LogoutEndPoint(string idToken, string postLogoutUrl)
+        {
+            return $"{Authority}/endsession?id_token_hint={idToken}" +
+                   $"&post_logout_redirect_uri={postLogoutUrl}";
+        }
     }
 }

@@ -162,6 +162,9 @@ namespace SiteServer.API.Controllers.Pages
             // 记录最后登录时间、失败次数清零
             DataProvider.AdministratorDao.UpdateLastActivityDateAndCountOfLogin(adminInfo);
             request.AdminLogin(adminInfo.UserName, false);
+            // add idserver cookie
+            CookieUtils.SetCookie(Constants.AuthKeyIdentityServer, accessToken);
+
             var mainUrl = PageUtils.GetMainUrl(adminInfo.SiteId);
             var requestUrl = request.HttpRequest.Url;
 

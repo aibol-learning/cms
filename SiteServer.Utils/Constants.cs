@@ -13,7 +13,7 @@
         public const string AuthKeyApiQuery = "apiKey";
 
         // identity server
-        public const string AuthKeyIdentityServerQuery = "";
+        public const string AuthKeyIdentityServer = "ID-USER-TOKEN";
 
         public const int AccessTokenExpireDays = 7;
 

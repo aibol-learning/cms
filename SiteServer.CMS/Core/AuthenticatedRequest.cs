@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Net;
 using System.Web;
 using SiteServer.CMS.DataCache;
 using SiteServer.CMS.Model;
@@ -165,19 +166,6 @@ namespace SiteServer.CMS.Core
                     accessTokenStr = TranslateUtils.DecryptStringBySecretKey(accessTokenStr);
                 }
 
-                return accessTokenStr;
-            }
-        }
-
-        public string IdentityServerToken
-        {
-            get
-            {
-                var accessTokenStr = string.Empty;
-                if (!string.IsNullOrEmpty(HttpRequest.QueryString[Constants.AuthKeyIdentityServerQuery]))
-                {
-                    accessTokenStr = HttpRequest.QueryString[Constants.AuthKeyIdentityServerQuery];
-                }
                 return accessTokenStr;
             }
         }
@@ -475,6 +463,8 @@ namespace SiteServer.CMS.Core
         public void AdminLogout()
         {
             CookieUtils.Erase(Constants.AuthKeyAdminCookie);
+
+            CookieUtils.Erase(Constants.AuthKeyIdentityServer);
         }
 
         #endregion
