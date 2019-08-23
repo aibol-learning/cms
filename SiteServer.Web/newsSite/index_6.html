@@ -854,18 +854,6 @@
     </div>
 
     <!--信息员天地-->
-    <style type="test/css">
-        .publish_info {
-        }
-
-            .publish_info .chart_title {
-                text-align: center;
-                font-size: 18px;
-                font-weight: bold;
-                height: 50px;
-                line-height: 50px;
-            }
-    </style>
     <div class="publish_info" id="vm_publish_info">
         <div class="container">
             <div class="la-title">
@@ -873,15 +861,16 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-6">
-                    <div id="publish_chart_author">{{authorTop6}}</div>
+                    <div  style="margin: 40px auto; height: 283px; border:1px solid #ddd;" id="publish_chart_author"></div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
-                    <div id="publish_chart_department">{{departmentTop6}}</div>
+                    <div style="margin: 40px auto; height: 283px; border:1px solid #ddd;" id="publish_chart_department"></div>
                 </div>
             </div>
-            <div id="chart1"></div>
         </div>
     </div>
+
+    
 
     <!--底部 -->
     <div class="go-top0" id="gotopbtn" > <i class="icon icon-top"></i></div>
@@ -952,39 +941,39 @@
                             url: '/api/aibol/GetAuthorTop6?siteId=' + global.newsSiteId + "&startTime=" + startTime,
                             type: 'get',
                             success: function (response) {
-                                console.log('response', response);
                                 if (response) {
-                                    console.log(11111)
                                     self.authorTop6 = response;
-
                                     if (response.length > 0) {
                                         var xAxis = [];
                                         var series = [];
                                         response.forEach(function (node, index) {
-                                            xAxis.push(node.author);
+                                            xAxis.push(node.author.replace('\(*\)', ''));
                                             series.push(node.count);
                                         })
-                                        console.log('xAxis', xAxis);
-                                        console.log('series', series);
 
                                         //图表初始化
                                         var chart_author = echarts.init(document.getElementById('publish_chart_author'));
-                                        console.log('chart_author', chart_author)
 
                                         // 指定图表的配置项和数据
                                         var optionChartAuthor = {
                                             color: ['#ed7d31'],
                                             title: {
                                                 text: self.currentYear + '.' + self.currentMonth + '信息员发稿量Top6',
+                                                textAlign: 'left'
                                             },
                                             tooltip: {},
-                                            legend: {
-                                                data: ['发稿量']
-                                            },
+                                            //legend: {
+                                            //    data: ['发稿量']
+                                            //},
                                             xAxis: {
-                                                data: xAxis
+                                                data: xAxis,
+                                                axisLabel: {
+                                                    interval: 0,
+                                                    rotate: 45
+                                                }
                                             },
-                                            yAxis: {},
+                                            yAxis: {
+                                            },
                                             series: [{
                                                 name: '发稿量',
                                                 type: 'bar',
@@ -992,7 +981,6 @@
                                                 data: series
                                             }]
                                         };
-                                        console.log('optionChartAuthor', optionChartAuthor);
                                         //使用配置项和数据显示图表。
                                         chart_author.setOption(optionChartAuthor);
                                     }
@@ -1010,7 +998,48 @@
                             url: '/api/aibol/GetDepartmentTop6?siteId=' + global.newsSiteId + "&startTime=" + startTime,
                             type: 'get',
                             success: function (response) {
-                                self.departmentTop6 = response;
+                                if (response) {
+                                    self.departmentTop6 = response;
+                                    if (response.length > 0) {
+                                        var xAxis = [];
+                                        var series = [];
+                                        response.forEach(function (node, index) {
+                                            xAxis.push(node.department);
+                                            series.push(node.count)
+                                        })
+
+                                        //图表初始化
+                                        var chart_department = echarts.init(document.getElementById('publish_chart_department'));
+
+                                        // 指定图表的配置项和数据
+                                        var optionChartDepartment = {
+                                            color: ['#70ad47'],
+                                            title: {
+                                                text: self.currentYear + '.' + self.currentMonth + '部门发稿量Top6',
+                                                textAlign: 'left'
+                                            },
+                                            tooltip: {},
+                                            //legend: {
+                                            //    data: ['发稿量']
+                                            //},
+                                            xAxis: {
+                                                data: xAxis
+                                            },
+                                            yAxis: {},
+                                            series: [{
+                                                name: '发稿量',
+                                                type: 'bar',
+                                                barCategoryGap: '50%',
+                                                data: series
+                                            }]
+                                        };
+                                        //使用配置项和数据显示图表。
+                                        chart_department.setOption(optionChartDepartment);
+                                    }
+                                    else {
+
+                                    }
+                                }
                             }
                         })
                     },
@@ -1035,32 +1064,6 @@
                     var self = this;
                     //待办任务(外部接口)
                     this.getStartTime();
-
-                    //大屏幕数据图片初始化
-                    var myChart1 = echarts.init(document.getElementById('chart1'));
-                    // 指定图表的配置项和数据
-                    var optionChart1 = {
-                        color: ['#3398DB'],
-                        //title: {
-                        //text: 'ECharts 入门示例'
-                        //},
-                        tooltip: {},
-                        legend: {
-                            data: ['发电量']
-                        },
-                        xAxis: {
-                            data: ["一号机组", "二号机组", "三号机组", "四号机组", "五号机组", "六号机组"]
-                        },
-                        yAxis: {},
-                        series: [{
-                            name: '发电量',
-                            type: 'bar',
-                            barCategoryGap: '50%',
-                            data: [125, 120, 136, 110, 110, 120]
-                        }]
-                    };
-                    // 使用刚指定的配置项和数据显示图表。
-                    myChart1.setOption(optionChart1);
                 }
             })
         })
