@@ -1,51 +1,50 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>
-新闻中心网站
-</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link href="/newsSite/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-<link href="/newsSite/css/iconfont.css" type="text/css" rel="stylesheet"/>
-<link href="/newsSite/css/common.css" type="text/css" rel="stylesheet"/>
-<link href="/newsSite/css/swiper.min.css" type="text/css" rel="stylesheet"/>
-<script type="text/javascript" src="/newsSite/js/jquery.min.js"></script>
-<script type="text/javascript" src="/newsSite/js/swiper.min.js"></script>
-<script type="text/javascript" src="/newsSite/js/js.js"></script>
-
-<link rel='stylesheet' id='style-css'  href='/newsSite/css/style.css' type='text/css' media='all' />
+    <meta charset="utf-8">
+    <title>
+        新闻中心网站
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="/newsSite/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="/newsSite/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="/newsSite/css/common.css" type="text/css" rel="stylesheet" />
+    <link href="/newsSite/css/swiper.min.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/newsSite/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/newsSite/js/swiper.min.js"></script>
+    <script type="text/javascript" src="/newsSite/js/js.js"></script>
+    <link rel='stylesheet' id='font-awesome-four-css' href='/css/font-awesome.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='style-css' href='/newsSite/css/style.css' type='text/css' media='all' />
 </head>
 <body class="home blog">
 <script src="/sitefiles/assets/components/jquery-1.9.1.min.js" type="text/javascript"></script>
 
-
-
-<div class="search-box " id="search-box"> <i class="icon icon-search-close js-show-search-box"></i>
-  <div class="search-content overlay-dialog-animate">
-    <div class="search-input">
-      <form id="search-input" role="search" method="get" action="/newsSite/utils/search.html" onSubmit="return checkinput()">
-        <button type="submit"></button>
-        <input placeholder="请输入关键字，按回车键搜索" name="word" id="search-input">
-        <input type="hidden" name="type" value="Title" id="search-input"/>
-      </form>
+    <!--Logo+导航+搜索-->
+    <div class="themenav">
+    <!--logo+搜索+工作区登录信息-->
+    <div class="container" style="position:relative">
+        <div class="logo"> <a href="/newsSite/index.html"> <img src="/newsSite/upload/images/2019/8/243b59459414fb98.png" type="Logo" /> </a> </div>
+        <div class="search">
+            <div id="sb-search" class="sb-search sb-search-open">
+                <form id="searchform" method="get" action="/newsSite/utils/search.html">
+                    <input class="sb-search-input" placeholder="输入关键词查找..." type="text" name="word">
+                    <input id="searchsubmit" class="sb-search-submit" type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </form>
+            </div>
+            <script src="/js/classie.js"></script>
+            <script src="/js/uisearch.js"></script>
+            <script>
+                new UISearch(document.getElementById('sb-search'));
+            </script>
+        </div>
+        <div class="loginInfo"><a href="#" id="loginInfo">登录工作区</a></div>
+        <div class="clearfix"></div>
     </div>
-    <div class="search-history search-hot"> <span>热搜词</span>
-      <ul>
-      
-        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-263"><a href="/newsSite/utils/tags.html?tagName=游戏">游戏</a></li>
-      
-        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-263"><a href="/newsSite/utils/tags.html?tagName=乒乓球">乒乓球</a></li>
-      
-      </ul>
-    </div>
-  </div>
 </div>
 
-
-
-<div id="top_nav" class="header yapiskan">
+<!--<div id="top_nav" class="header yapiskan">
   <div class="container">
     <div class="row">
       <div class="top-bar mnav">
@@ -55,7 +54,7 @@
         <div class="icon-bar"> </div>
         </button>
       </div>
-      <div class="logo mnav"> <a href="/newsSite/index.html"> <img src="/newsSite/upload/images/2017/6/29145430455.png" type="Logo" /> </a> </div>
+      <div class="logo mnav"> <a href="/newsSite/index.html"> <img src="/newsSite/upload/images/2019/8/243b59459414fb98.png" type="Logo" /> </a> </div>
       <div class="pull-right mnav"> <i class="icon icon-search" id="msearch"></i> </div>
       <div class="nav-left" id="nav">
         
@@ -133,495 +132,575 @@
       </div>
     </div>
   </div>
-</div>
-<div id="top-pic">
-  <div class="container">
-    <div class="row" style="padding-top: 20px;margin-bottom: -20px;">
-      
-      <div class="col-sm-12 col-md-6 col-lg-6 pic-left">
-        <div class="swiper-container bannerbox">
-          <div class="swiper-wrapper">
-          
-          </div>
-          <div class="swiper-pagination bannav"></div>
-          <div class="swiper-button-next banleft"><i class="iconfont icon-gengduo bannerjb"></i></div>
-          <div class="swiper-button-prev banright"><i class="iconfont icon-fanhui bannerjb"></i></div>
+</div>-->
+
+    <div class="clearfix"></div>
+
+    <div id="top-pic">
+        <div class="container">
+            <!--宣传大图 -->
+            <div class="row" style="padding-top:20px;">
+                
+                    <a target="_blank" href="https://www.baidu.com"><img src="/newsSite/upload/images/2019/8/7a366803db4d6aa8.jpg" width="1170"></a>
+                
+            </div>
+
+            <!--头条聚焦-->
+            <div class="row" style="padding-top: 20px;margin-bottom: -20px;">
+                <div class="col-sm-12 col-md-6 col-lg-6 pic-left">
+                    
+                        <img src="/newsSite/upload/images/2019/8/6224a46534d8f058.jpg" width="575" height="383" onclick="window.location.href='/newsSite/contents/57/80.html'" alt="第九条">
+                        <div class="pic-left_title">第九条</div>
+                    
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-mid">
+                    <ul>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/77.html">
+                                    <img src="/newsSite/upload/images/2019/8/6e8446c6075b227d.jpg" alt="第六条">
+                                    <div class="pic-title2">
+                                        第六条
+                                    </div>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/76.html">
+                                    <img src="/newsSite/upload/images/2019/8/fcb2076ff0ee387a.jpg" alt="第五条头条新闻标题标标标题第五条头条新闻的标题放在这里，标题要足够长哦再长一点 ">
+                                    <div class="pic-title2">
+                                        第五条头条新闻标题标标标题第五条...
+                                    </div>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-right">
+                    <ul>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/75.html">
+                                    <img src="/newsSite/upload/images/2019/8/f257a173be502002.jpg" alt="第四条第四条头条新闻第四条第四条头条新闻">
+                                    <div class="pic-title2">
+                                        第四条第四条头条新闻第四条第四条...
+                                    </div>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/74.html">
+                                    <img src="/newsSite/upload/images/2019/8/616315b60ad9fc5a.jpg" alt="第三条头条新闻标题">
+                                    <div class="pic-title2">
+                                        第三条头条新闻标题
+                                    </div>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-      
-
-      	<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-mid">
-        <ul>
-        
-        </ul>
-      </div>
-
-      	<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-right">
-        <ul>
-        
-        </ul>
-      </div>
-
     </div>
-    <div class="row" style="padding-top: 20px;"> 
-      <!--adv01 -->
-      <div id="adv01"> <a><img src="/newsSite/upload/images/2017/6/2893450598.png" type="adv" /></a> </div>
-    </div>
-  </div>
-</div>
-  
-  <!--所有栏目-->
-<div>
-  <div class="container">
-   
-     <a href="/newsSite/channels/37.html">头条聚焦</a><br>
-    
-     <a href="/newsSite/channels/39.html">资讯动态</a><br>
-    
-     <a href="/newsSite/channels/42.html">社会新闻</a><br>
-    
-     <a href="/newsSite/channels/45.html">全球资讯</a><br>
-    
-     <a href="/newsSite/channels/48.html">专题活动</a><br>
-    
-     <a href="/newsSite/channels/50.html">相关推荐</a><br>
-    
-     <a href="/newsSite/channels/51.html">友情链接</a><br>
-    
-     <a href="/newsSite/channels/56.html">模板使用说明</a><br>
-    
-     <a href="/newsSite/channels/57.html">头条新闻</a><br>
-    
-     <a href="/newsSite/channels/58.html">新思想</a><br>
-    
-     <a href="/newsSite/channels/59.html">公司要闻</a><br>
-    
-     <a href="/newsSite/channels/60.html">红色教育活动</a><br>
-    
-     <a href="/newsSite/channels/61.html">检修现场</a><br>
-    
-     <a href="/newsSite/channels/62.html">月度学习</a><br>
-    
-     <a href="/newsSite/channels/63.html">上级动态</a><br>
-    
-     <a href="/newsSite/channels/64.html">部门动态</a><br>
-    
-     <a href="/newsSite/channels/65.html">效益攻坚</a><br>
-    
-     <a href="/newsSite/channels/66.html">通讯报道</a><br>
-    
-     <a href="/newsSite/channels/67.html">文学天地</a><br>
-    
-     <a href="/newsSite/channels/68.html">视频照片</a><br>
-    
-     <a href="/newsSite/channels/69.html">职工风采</a><br>
-    
-     <a href="/newsSite/channels/70.html">新闻公告</a><br>
-    
-  </div>
-</div>
 
-  <!--主要内容 -->
-<div id="cont-list">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-8 col-lg-8 cont-left">
-        <div id="hour24" class="clearfix">
-          <div class="hour24-title">
-            <h3>科技动态</h3>
-          </div>
-          
-          <div class="col-sm-12 col-md-6 col-lg-6 hour24-left">
-          
-          </div>
-          
-          
-        </div>
-        <!--adv02 -->
-        <div id="adv02" style="margin-top: 20px;"> <a><img src="/newsSite/upload/images/2017/6/2614359131.png" type="conadv" /></a></div>
-        <!--最新文章 -->
-        <div class="la-title">
-          <h3>最新文章</h3>
-        </div>
-        
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/40/21.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/30144547102.png" alt="陈峰公开回应慈航基金问题：慈航没有任何中国官员及其亲属持有股份；海航高管后代不继承财富和权力，实现大众成就"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/40/21.html">陈峰公开回应慈航基金问题：慈航没有任何中国官员及其亲属持有股份；海航高管后代不继承财富和权力，实现大众成就</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/40/21.html">
-      财经动态
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 海航集团</span> </div>
-    <div class="mob-sub"> 2016年6月中旬，海航集团方面表示，集团股东将陆续把股权捐赠给公益基金会，其中约60%的股权捐赠给境内的慈航基金会，约40%股权捐赠... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=基金" rel="tag">基金</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=金融" rel="tag">金融</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/40/20.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/30145115585.png" alt="监管否定，数据收紧，想拿了牌照就“躺着收钱”的征信业到了最艰难的时刻"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/40/20.html">监管否定，数据收紧，想拿了牌照就“躺着收钱”的征信业到了最艰难的时刻</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/40/20.html">
-      财经动态
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 一本财经</span> </div>
-    <div class="mob-sub"> 征信行业，恐怕到了最为艰难的时刻。前有监管否定，后有数据收紧，现在据传又有了百度、360、小米入局的“信联”，野蛮生长了几年的... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=财经" rel="tag">财经</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/2.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/3014615543.png" alt="被妖魔化的《王者荣耀》"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/2.html">被妖魔化的《王者荣耀》</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/2.html">
-      头条聚焦
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 游戏葡萄</span> </div>
-    <div class="mob-sub"> 按照《王者荣耀》2亿的注册用户计算，“57%的小学生玩家”意味着有1.14亿名注册用户都是小学生。而教育部于2016年12月公布的《中国教... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=游戏" rel="tag">游戏</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=王者荣耀" rel="tag">王者荣耀</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=舆论" rel="tag">舆论</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/46/42.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/301514639.png" alt="营销做不好？李叫兽给你支几招"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/46/42.html">营销做不好？李叫兽给你支几招</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/46/42.html">
-      国际视野
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 混沌大学</span> </div>
-    <div class="mob-sub"> 为什么你做了那么多年营销，水平还和过去一样？因为你并不懂消费者真正的需求。近几年“风口”这个词很火。很多人都在讨论，成功的关... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=营销" rel="tag">营销</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=能力" rel="tag">能力</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=消费" rel="tag">消费</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/45/37.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/30143436592.png" alt="口碑和票房一起“坍塌”，《变形金刚5》到底做错了什么"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/45/37.html">口碑和票房一起“坍塌”，《变形金刚5》到底做错了什么</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/45/37.html">
-      环球搜讯
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 公众号“三声”</span> </div>
-    <div class="mob-sub"> 随着单日票房的不断下降，业内对这部电影的最终票房预测也在不断调低。与票房走低相对应的是，这部电影的烂番茄和豆瓣评分分别为17%... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=票房" rel="tag">票房</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=影视" rel="tag">影视</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=娱乐" rel="tag">娱乐</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/11.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985515272.jpg" alt="预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/11.html">预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/11.html">
-      科技动态
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 壹娱观察</span> </div>
-    <div class="mob-sub"> 对于法国导演、欧罗巴电影公司的老板吕克&#183;贝松而言，此刻正是紧要关头。预算达1.8亿美元的科幻巨制《星际特工：千星之城》... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=星际特工" rel="tag">星际特工</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/10.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985517320.png" alt="悟空保CEO陈志华：香港保险火爆背后，是独角兽级别的机会"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/10.html">悟空保CEO陈志华：香港保险火爆背后，是独角兽级别的机会</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/10.html">
-      科技动态
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 虎嗅媒体</span> </div>
-    <div class="mob-sub"> 创立不久，悟空保就融到了1500万的天使轮，投资方是梅花天使、青山资本和唱吧陈华，2016年又获得凤凰祥瑞资本领投、风云资本跟投共计... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=互联网" rel="tag">互联网</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=科技" rel="tag">科技</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/9.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985515978.jpg" alt="小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/9.html">小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/9.html">
-      科技动态
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 米家品牌</span> </div>
-    <div class="mob-sub"> 米家品牌的掌门人说过这样一句话，小米做产品的逻辑是，要针对 80% 的用户需求来做产品，满足 80% 人的 80% 的需求。去年米家的三场... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=科技" rel="tag">科技</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=小米" rel="tag">小米</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/7.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29913228.png" alt="与《冈仁波齐》一起艰难修行：导演张杨背后的三个商人"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/7.html">与《冈仁波齐》一起艰难修行：导演张杨背后的三个商人</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/7.html">
-      头条聚焦
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 电影国度</span> </div>
-    <div class="mob-sub"> 头天刚宣布向母校人民大学捐赠了3亿元人民币的高瓴资本创始人张磊，包场请创投圈朋友们看了电影《冈仁波齐》，并在朋友圈写道，... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=冈仁波齐" rel="tag">冈仁波齐</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/6.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2992257394.png" alt="手术方案可以用AI全程设计了，科幻离现实还有多远？"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/6.html">手术方案可以用AI全程设计了，科幻离现实还有多远？</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/6.html">
-      头条聚焦
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 未来AI</span> </div>
-    <div class="mob-sub"> 几年前，在美国科幻大片《普罗米修斯》里，全自动手术机器人给女主做手术这一情节让不少观众印象深刻，抛开外星生物不谈，人工智能何... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=普罗米修斯" rel="tag">普罗米修斯</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/3.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985513838.jpg" alt="共享单车新玩家聚焦二三线城市，但这并非一片蓝海"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/3.html">共享单车新玩家聚焦二三线城市，但这并非一片蓝海</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/3.html">
-      头条聚焦
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 共享家族</span> </div>
-    <div class="mob-sub"> 类似事件在摩拜单车上也曾发生。今年6月7日，摩拜投放安徽省六安市，当天中午百余辆车即被集中拉走，不少网友称其为“最短命”单车。... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/4.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2993920646.png" alt="别动我们的刘国梁"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/4.html">别动我们的刘国梁</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/4.html">
-      头条聚焦
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 体育世界</span> </div>
-    <div class="mob-sub"> 说实话，我们现在还并不知晓国乒队员集体退赛的真正原因，毕竟“想念刘国梁”这句话背后隐藏的可能性与信息要素，是外界所完全不了解... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=乒乓球" rel="tag">乒乓球</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/13.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29181112260.png" alt="无人机市场这么火，自拍型无人机如何突围场景？"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/13.html">无人机市场这么火，自拍型无人机如何突围场景？</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/13.html">
-      科技动态
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 梦想城</span> </div>
-    <div class="mob-sub">  </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=无人机" rel="tag">无人机</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=直播" rel="tag">直播</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=捷豹" rel="tag">捷豹</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/12.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29842553.png" alt="水性PK&#65281;三星S8 vs iPhone 7，究竟谁才是水下高手？"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/12.html">水性PK&#65281;三星S8 vs iPhone 7，究竟谁才是水下高手？</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/12.html">
-      科技动态
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 今日头条</span> </div>
-    <div class="mob-sub"> 要说如今科技发展神速，手机的功能越来越给力，但是防水功能却一直是不好征服。苹果和三星两大巨头终于相继推出了具有防水功能... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=三星" rel="tag">三星</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=小米" rel="tag">小米</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/5.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29929562.png" alt="孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/5.html">孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/5.html">
-      头条聚焦
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 学院路51号</span> </div>
-    <div class="mob-sub"> 刘国梁卸任国乒总教练之于中国体坛堪比地震。表面上看，国乒取消总教练和男女主教练，改任乒协副主席的刘国梁职位晋升，但实际上，他... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=乒乓球" rel="tag">乒乓球</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/49/57.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017250358.jpg" alt="首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/49/57.html">首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/49/57.html">
-      科技专题
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-20</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span> </div>
-    <div class="mob-sub">  </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=特斯拉" rel="tag">特斯拉</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=自动驾驶" rel="tag">自动驾驶</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/49/56.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017254920.jpg" alt="苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/49/56.html">苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/49/56.html">
-      科技专题
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-20</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span> </div>
-    <div class="mob-sub"> 据《金融时报》报道称，苹果已就收购事宜接洽著名超级跑车制造商迈凯伦（McLaren），这可能会快速推动苹果电动汽车项目的进度。 </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                        <a href="/newsSite/utils/tags.html?tagName=苹果" rel="tag">苹果</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=迈凯伦" rel="tag">迈凯伦</a>
-                        
-                        <a href="/newsSite/utils/tags.html?tagName=收购" rel="tag">收购</a>
-                        
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/50/64.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/20172446227.jpg" alt="&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;市民不信任司机有意见，Uber的匹兹堡自动驾驶路试难度不小，路况也来捣乱"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/50/64.html">&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;市民不信任司机有意见，Uber的匹兹堡自动驾驶路试难度不小，路况也来捣乱</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/50/64.html">
-      相关推荐
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-20</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span> </div>
-    <div class="mob-sub">  </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/50/63.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/20172450642.jpg" alt="&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;摩拜与 ofo 正在从低端出发颠覆滴滴？三家的机会与风险"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/50/63.html">&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;摩拜与 ofo 正在从低端出发颠覆滴滴？三家的机会与风险</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/50/63.html">
-      相关推荐
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-20</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span> </div>
-    <div class="mob-sub">  </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                    </div>
-  </div>
-</div>
-        
-        <div class="la-list02 line-botm clearfix">
-  <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/50/62.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/20172453802.jpg" alt="&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;奥巴马即将卸任之际，要让无人驾驶汽车合法化？"> </a> </div>
-  <div class="la-r-text">
-    <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/50/62.html">&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;奥巴马即将卸任之际，要让无人驾驶汽车合法化？</a> </h3>
-    <div class="mob-author"> <span class="time"><i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/50/62.html">
-      相关推荐
-      </a> </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-20</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span> </div>
-    <div class="mob-sub"> 奥巴马在该文章中宣布，白宫针对无人驾驶汽车上路推出了一套新的政策，并交给各州政府作为指导规则。此外，奥巴马还呼吁政府和企业一... </div>
-    <div class="tags">
-          <i class="iconfont icon-biaoqian"></i>    
-                    
-                    </div>
-  </div>
-</div>
-        
-        
-        
-          <div id="page"> <a href="/newsSite/index.html" style="background:#3CA5F6;">上一页</a>
-            
-            <a href="/newsSite/index.html">1</a><span id="page-numberscurrent">2</span><a href="/newsSite/index_3.html">3</a><a href="/newsSite/index_4.html">4</a>
-            
-            <a href="/newsSite/index_3.html" style="background:#3CA5F6;">下一页</a>
-          </div>
 
-        
-        
-        
-      </div>
-      <div class="wrap-right pull-right">
-        <div class="widget widget_ztmao_hotpost2">
+
+    <!--主要内容 -->
+    <div id="cont-list">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-8 col-lg-8 cont-left">
+                    <div id="hour24" class="clearfix">
+                        <div class="hour24-title">
+                            <h3>科技动态</h3>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 col-lg-6 hour24-left">
+                            
+                        </div>
+
+                        
+                    </div>
+                    <!--adv02 -->
+                    <div id="adv02" style="margin-top: 20px;"> <a><img src="/newsSite/upload/images/2017/6/2614359131.png" type="conadv" /></a></div>
+                    <!--最新文章 -->
+                    <div class="la-title">
+                        <h3>最新文章</h3>
+                    </div>
+
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/43/31.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/30145814414.png" alt="买不起房的都跑去租房了，长租公寓会是一门好生意？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/43/31.html">买不起房的都跑去租房了，长租公寓会是一门好生意？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/43/31.html">
+                                                            社会热点
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 华兴资本</span>
+                                                </div>
+                                                <div class="mob-sub"> 房价高企叠加消费升级、政策扶持等多重因素，使得长租公寓市场进入新加速阶段。目前，这一赛道宽且长，众多参与者加入竞速赛跑，但尚... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=金融" rel="tag">金融</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=公寓" rel="tag">公寓</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=品牌" rel="tag">品牌</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/40/23.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/301403022.png" alt="复盘，苏宁为什么没干过京东"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/40/23.html">复盘，苏宁为什么没干过京东</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/40/23.html">
+                                                            财经动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 自视觉中国</span>
+                                                </div>
+                                                <div class="mob-sub"> 2015年开始，情况才出现转机，苏宁线上自营业务收入先后越过400亿、600亿。2016财年，苏宁线上自营收入占比达到42.2%。虽然没有单独... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=财经" rel="tag">财经</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=股票" rel="tag">股票</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/40/22.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/30142329715.png" alt="继新美大、唯品会后，又一家公司曲线拿下支付牌照，怎么做到的？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/40/22.html">继新美大、唯品会后，又一家公司曲线拿下支付牌照，怎么做到的？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/40/22.html">
+                                                            财经动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 支付百科</span>
+                                                </div>
+                                                <div class="mob-sub"> 如果你关注金融圈的动向，可能会记得2016年时有关部门出台的一系列监管措施，其中就包括央行在给支付宝们续牌照的同时，不再批新的第... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=金融" rel="tag">金融</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/40/21.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/30144547102.png" alt="陈峰公开回应慈航基金问题：慈航没有任何中国官员及其亲属持有股份；海航高管后代不继承财富和权力，实现大众成就"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/40/21.html">陈峰公开回应慈航基金问题：慈航没有任何中国官员及其亲属持有股份；海航高管后代不继承财富和权力，实现大众成就</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/40/21.html">
+                                                            财经动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 海航集团</span>
+                                                </div>
+                                                <div class="mob-sub"> 2016年6月中旬，海航集团方面表示，集团股东将陆续把股权捐赠给公益基金会，其中约60%的股权捐赠给境内的慈航基金会，约40%股权捐赠... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=基金" rel="tag">基金</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=金融" rel="tag">金融</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/40/20.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/30145115585.png" alt="监管否定，数据收紧，想拿了牌照就“躺着收钱”的征信业到了最艰难的时刻"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/40/20.html">监管否定，数据收紧，想拿了牌照就“躺着收钱”的征信业到了最艰难的时刻</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/40/20.html">
+                                                            财经动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 一本财经</span>
+                                                </div>
+                                                <div class="mob-sub"> 征信行业，恐怕到了最为艰难的时刻。前有监管否定，后有数据收紧，现在据传又有了百度、360、小米入局的“信联”，野蛮生长了几年的... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=财经" rel="tag">财经</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/2.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/3014615543.png" alt="被妖魔化的《王者荣耀》"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/2.html">被妖魔化的《王者荣耀》</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/2.html">
+                                                            头条聚焦
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 游戏葡萄</span>
+                                                </div>
+                                                <div class="mob-sub"> 按照《王者荣耀》2亿的注册用户计算，“57%的小学生玩家”意味着有1.14亿名注册用户都是小学生。而教育部于2016年12月公布的《中国教... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=游戏" rel="tag">游戏</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=王者荣耀" rel="tag">王者荣耀</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=舆论" rel="tag">舆论</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/46/42.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/301514639.png" alt="营销做不好？李叫兽给你支几招"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/46/42.html">营销做不好？李叫兽给你支几招</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/46/42.html">
+                                                            国际视野
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 混沌大学</span>
+                                                </div>
+                                                <div class="mob-sub"> 为什么你做了那么多年营销，水平还和过去一样？因为你并不懂消费者真正的需求。近几年“风口”这个词很火。很多人都在讨论，成功的关... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=营销" rel="tag">营销</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=能力" rel="tag">能力</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=消费" rel="tag">消费</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/45/37.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/30143436592.png" alt="口碑和票房一起“坍塌”，《变形金刚5》到底做错了什么"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/45/37.html">口碑和票房一起“坍塌”，《变形金刚5》到底做错了什么</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/45/37.html">
+                                                            环球搜讯
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-30</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 公众号“三声”</span>
+                                                </div>
+                                                <div class="mob-sub"> 随着单日票房的不断下降，业内对这部电影的最终票房预测也在不断调低。与票房走低相对应的是，这部电影的烂番茄和豆瓣评分分别为17%... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=票房" rel="tag">票房</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=影视" rel="tag">影视</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=娱乐" rel="tag">娱乐</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/11.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985515272.jpg" alt="预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/11.html">预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/11.html">
+                                                            科技动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 壹娱观察</span>
+                                                </div>
+                                                <div class="mob-sub"> 对于法国导演、欧罗巴电影公司的老板吕克&#183;贝松而言，此刻正是紧要关头。预算达1.8亿美元的科幻巨制《星际特工：千星之城》... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=星际特工" rel="tag">星际特工</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/10.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985517320.png" alt="悟空保CEO陈志华：香港保险火爆背后，是独角兽级别的机会"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/10.html">悟空保CEO陈志华：香港保险火爆背后，是独角兽级别的机会</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/10.html">
+                                                            科技动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 虎嗅媒体</span>
+                                                </div>
+                                                <div class="mob-sub"> 创立不久，悟空保就融到了1500万的天使轮，投资方是梅花天使、青山资本和唱吧陈华，2016年又获得凤凰祥瑞资本领投、风云资本跟投共计... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=互联网" rel="tag">互联网</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=科技" rel="tag">科技</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/9.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985515978.jpg" alt="小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/9.html">小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/9.html">
+                                                            科技动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 米家品牌</span>
+                                                </div>
+                                                <div class="mob-sub"> 米家品牌的掌门人说过这样一句话，小米做产品的逻辑是，要针对 80% 的用户需求来做产品，满足 80% 人的 80% 的需求。去年米家的三场... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=科技" rel="tag">科技</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=小米" rel="tag">小米</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/7.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29913228.png" alt="与《冈仁波齐》一起艰难修行：导演张杨背后的三个商人"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/7.html">与《冈仁波齐》一起艰难修行：导演张杨背后的三个商人</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/7.html">
+                                                            头条聚焦
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 电影国度</span>
+                                                </div>
+                                                <div class="mob-sub"> 头天刚宣布向母校人民大学捐赠了3亿元人民币的高瓴资本创始人张磊，包场请创投圈朋友们看了电影《冈仁波齐》，并在朋友圈写道，... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=冈仁波齐" rel="tag">冈仁波齐</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/6.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2992257394.png" alt="手术方案可以用AI全程设计了，科幻离现实还有多远？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/6.html">手术方案可以用AI全程设计了，科幻离现实还有多远？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/6.html">
+                                                            头条聚焦
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 未来AI</span>
+                                                </div>
+                                                <div class="mob-sub"> 几年前，在美国科幻大片《普罗米修斯》里，全自动手术机器人给女主做手术这一情节让不少观众印象深刻，抛开外星生物不谈，人工智能何... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=普罗米修斯" rel="tag">普罗米修斯</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/3.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985513838.jpg" alt="共享单车新玩家聚焦二三线城市，但这并非一片蓝海"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/3.html">共享单车新玩家聚焦二三线城市，但这并非一片蓝海</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/3.html">
+                                                            头条聚焦
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 共享家族</span>
+                                                </div>
+                                                <div class="mob-sub"> 类似事件在摩拜单车上也曾发生。今年6月7日，摩拜投放安徽省六安市，当天中午百余辆车即被集中拉走，不少网友称其为“最短命”单车。... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/4.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2993920646.png" alt="别动我们的刘国梁"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/4.html">别动我们的刘国梁</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/4.html">
+                                                            头条聚焦
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 体育世界</span>
+                                                </div>
+                                                <div class="mob-sub"> 说实话，我们现在还并不知晓国乒队员集体退赛的真正原因，毕竟“想念刘国梁”这句话背后隐藏的可能性与信息要素，是外界所完全不了解... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=乒乓球" rel="tag">乒乓球</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/13.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29181112260.png" alt="无人机市场这么火，自拍型无人机如何突围场景？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/13.html">无人机市场这么火，自拍型无人机如何突围场景？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/13.html">
+                                                            科技动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 梦想城</span>
+                                                </div>
+                                                <div class="mob-sub">  </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=无人机" rel="tag">无人机</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=直播" rel="tag">直播</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=捷豹" rel="tag">捷豹</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/12.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29842553.png" alt="水性PK&#65281;三星S8 vs iPhone 7，究竟谁才是水下高手？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/12.html">水性PK&#65281;三星S8 vs iPhone 7，究竟谁才是水下高手？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/12.html">
+                                                            科技动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 今日头条</span>
+                                                </div>
+                                                <div class="mob-sub"> 要说如今科技发展神速，手机的功能越来越给力，但是防水功能却一直是不好征服。苹果和三星两大巨头终于相继推出了具有防水功能... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=三星" rel="tag">三星</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=小米" rel="tag">小米</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/37/5.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29929562.png" alt="孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/37/5.html">孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/37/5.html">
+                                                            头条聚焦
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-29</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 学院路51号</span>
+                                                </div>
+                                                <div class="mob-sub"> 刘国梁卸任国乒总教练之于中国体坛堪比地震。表面上看，国乒取消总教练和男女主教练，改任乒协副主席的刘国梁职位晋升，但实际上，他... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=乒乓球" rel="tag">乒乓球</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/49/57.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017250358.jpg" alt="首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/49/57.html">首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/49/57.html">
+                                                            科技专题
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-20</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span>
+                                                </div>
+                                                <div class="mob-sub">  </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=特斯拉" rel="tag">特斯拉</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=自动驾驶" rel="tag">自动驾驶</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/49/56.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017254920.jpg" alt="苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/49/56.html">苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/49/56.html">
+                                                            科技专题
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-20</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span>
+                                                </div>
+                                                <div class="mob-sub"> 据《金融时报》报道称，苹果已就收购事宜接洽著名超级跑车制造商迈凯伦（McLaren），这可能会快速推动苹果电动汽车项目的进度。 </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=苹果" rel="tag">苹果</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=迈凯伦" rel="tag">迈凯伦</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=收购" rel="tag">收购</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+
+
+                    <div id="page">
+                        <a href="/newsSite/index.html" style="background:#3CA5F6;">上一页</a>
+
+                        <a href="/newsSite/index.html">1</a><span id="page-numberscurrent">2</span><a href="/newsSite/index_3.html">3</a><a href="/newsSite/index_4.html">4</a>
+
+                        <a href="/newsSite/index_3.html" style="background:#3CA5F6;">下一页</a>
+                    </div>
+
+
+
+
+                </div>
+                <div class="wrap-right pull-right">
+                    <div class="widget widget_ztmao_hotpost2">
           <div class="box-moder hot-article">
             <h3>热评文章</h3>
           </div>
@@ -642,97 +721,111 @@ stl: <stl:contents scope="All" topLevel="0" isImage="true" groupChannelNot="not"
           </div>
           <div class="placeholder"></div>
         </div>
-        <div class="widget widget_ztmao_mostviews">
-          <div class="box-moder hot-article">
-            <h3>最热点击文章</h3>
-          </div>
-          <div class="box-moder hot-article"> <span class="span-mark"></span>
-            <ul class="hots-post-widget">
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/39/9.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985515978.jpg" alt="小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/39/9.html">小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/39/14.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/28131657850.png" alt="被誉为下一个BAT级别巨头的蚂蚁金服，是如何进行投资布局的？"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/39/14.html">被誉为下一个BAT级别巨头的蚂蚁金服，是如何进行投资布局的？</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/39/11.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985515272.jpg" alt="预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/39/11.html">预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/37/7.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29913228.png" alt="与《冈仁波齐》一起艰难修行：导演张杨背后的三个商人"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/37/7.html">与《冈仁波齐》一起艰难修行：导演张杨背后的三个商人</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/37/4.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2993920646.png" alt="别动我们的刘国梁"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/37/4.html">别动我们的刘国梁</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/37/3.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985513838.jpg" alt="共享单车新玩家聚焦二三线城市，但这并非一片蓝海"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/37/3.html">共享单车新玩家聚焦二三线城市，但这并非一片蓝海</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/42/25.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2622224292.png" alt="ROOBO雷宇——拿到1亿美金融资之后，想让机器人帮你约滴滴，订外卖"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/42/25.html">ROOBO雷宇——拿到1亿美金融资之后，想让机器人帮你约滴滴，订外卖</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/49/56.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017254920.jpg" alt="苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/49/56.html">苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/49/57.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017250358.jpg" alt="首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/49/57.html">首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/49/55.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/28132916594.png" alt="硬件与软件的辩证关系：硬件创建新世界，软件拿走利润"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/49/55.html">硬件与软件的辩证关系：硬件创建新世界，软件拿走利润</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/43/32.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2622433480.png" alt="余香 | 刘瑜：我的读书历程"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/43/32.html">余香 | 刘瑜：我的读书历程</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/37/5.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29929562.png" alt="孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/37/5.html">孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？</a> </li>
-            
-              <li>
-                <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/39/10.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985517320.png" alt="悟空保CEO陈志华：香港保险火爆背后，是独角兽级别的机会"> </a> </div>
-                <a class="transition" target="_blank" href="/newsSite/contents/39/10.html">悟空保CEO陈志华：香港保险火爆背后，是独角兽级别的机会</a> </li>
-            
-            </ul>
-          </div>
-          <div class="placeholder"></div>
+                    <div class="widget widget_ztmao_mostviews">
+                        <div class="box-moder hot-article">
+                            <h3>最热点击文章</h3>
+                        </div>
+                        <div class="box-moder hot-article">
+                            <span class="span-mark"></span>
+                            <ul class="hots-post-widget">
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/39/9.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985515978.jpg" alt="小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/39/9.html">小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/39/14.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/28131657850.png" alt="被誉为下一个BAT级别巨头的蚂蚁金服，是如何进行投资布局的？"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/39/14.html">被誉为下一个BAT级别巨头的蚂蚁金服，是如何进行投资布局的？</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/39/11.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985515272.jpg" alt="预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/39/11.html">预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/37/7.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29913228.png" alt="与《冈仁波齐》一起艰难修行：导演张杨背后的三个商人"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/37/7.html">与《冈仁波齐》一起艰难修行：导演张杨背后的三个商人</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/37/4.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2993920646.png" alt="别动我们的刘国梁"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/37/4.html">别动我们的刘国梁</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/37/3.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985513838.jpg" alt="共享单车新玩家聚焦二三线城市，但这并非一片蓝海"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/37/3.html">共享单车新玩家聚焦二三线城市，但这并非一片蓝海</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/42/25.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2622224292.png" alt="ROOBO雷宇——拿到1亿美金融资之后，想让机器人帮你约滴滴，订外卖"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/42/25.html">ROOBO雷宇——拿到1亿美金融资之后，想让机器人帮你约滴滴，订外卖</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/49/56.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017254920.jpg" alt="苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/49/56.html">苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/49/57.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017250358.jpg" alt="首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/49/57.html">首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/49/55.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/28132916594.png" alt="硬件与软件的辩证关系：硬件创建新世界，软件拿走利润"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/49/55.html">硬件与软件的辩证关系：硬件创建新世界，软件拿走利润</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/43/32.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2622433480.png" alt="余香 | 刘瑜：我的读书历程"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/43/32.html">余香 | 刘瑜：我的读书历程</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/37/5.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29929562.png" alt="孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/37/5.html">孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？</a>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/39/10.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985517320.png" alt="悟空保CEO陈志华：香港保险火爆背后，是独角兽级别的机会"> </a> </div>
+                                        <a class="transition" target="_blank" href="/newsSite/contents/39/10.html">悟空保CEO陈志华：香港保险火爆背后，是独角兽级别的机会</a>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="placeholder"></div>
+                    </div>
+                    <div class="box-moder hot-tag ztmao-lianjie">
+                        <h3>友情链接</h3>
+                        <span class="span-mark"></span>
+                        <div class="search-history search-hot">
+                            <ul>
+                                
+                                    <li><a href="http://developer.siteserver.cn/" target="_blank">开发者中心</a></li>
+                                
+                                    <li><a href="http://stl.siteserver.cn/" target="_blank">STL语言</a></li>
+                                
+                                    <li><a href="http://docs.siteserver.cn/getting-started/index.html" target="_blank">文档</a></li>
+                                
+                                    <li><a href="http://blog.siteserver.cn/" target="_blank">博客</a></li>
+                                
+                                    <li><a href="http://bbs.siteserver.cn/" target="_blank">论坛</a></li>
+                                
+                                    <li><a href="https://github.com/siteserver/cms/" target="_blank">GitHub</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="placeholder"></div>
+                </div>
+            </div>
         </div>
-        <div class="box-moder hot-tag ztmao-lianjie">
-          <h3>友情链接</h3>
-          <span class="span-mark"></span>
-          <div class="search-history search-hot">
-            <ul>
-            
-              <li><a href="http://developer.siteserver.cn/" target="_blank">开发者中心</a></li>
-            
-              <li><a href="http://stl.siteserver.cn/" target="_blank">STL语言</a></li>
-            
-              <li><a href="http://docs.siteserver.cn/getting-started/index.html" target="_blank">文档</a></li>
-            
-              <li><a href="http://blog.siteserver.cn/" target="_blank">博客</a></li>
-            
-              <li><a href="http://bbs.siteserver.cn/" target="_blank">论坛</a></li>
-            
-              <li><a href="https://github.com/siteserver/cms/" target="_blank">GitHub</a></li>
-            
-            </ul>
-          </div>
-        </div>
-        <div class="placeholder"></div>
-      </div>
     </div>
-  </div>
-</div>
-<!--底部 -->
-<div class="go-top0" id="gotopbtn" > <i class="icon icon-top"></i></div>
+    <!--底部 -->
+    <div class="go-top0" id="gotopbtn" > <i class="icon icon-top"></i></div>
 <div class="footer" id="footer">
   <div class="container">
     <div class="row">
@@ -774,21 +867,21 @@ stl: <stl:contents scope="All" topLevel="0" isImage="true" groupChannelNot="not"
   </div>
 </div>
 
-<script src="/newsSite/js/glodil.js" type="text/javascript"></script> 
-<script src="/newsSite/js/jquery-ias.min.js" type="text/javascript"></script> 
+    <script src="/newsSite/js/glodil.js" type="text/javascript"></script>
+    <script src="/newsSite/js/jquery-ias.min.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-  $('.weixin').mouseover(function(){
-  $('.weixin-Qr-code').css({"opacity":"1","margin-left":"70px","display":"block"}),
-  $('.weixin').addClass('disabled')
-    // alert('fdafdsa');
-    });
-    $('.weixin').mouseout(function(){
-  $('.weixin-Qr-code').css({"opacity":"1","margin-left":"70px","display":"none"}),
-  $('.weixin').removeClass('disabled')
-  // alert('fdafdsa');
-  });
-</script> 
-<script type='text/javascript' src='/newsSite/js/wp-embed.min.js'></script>
+    <script type="text/javascript">
+        $('.weixin').mouseover(function () {
+            $('.weixin-Qr-code').css({ "opacity": "1", "margin-left": "70px", "display": "block" }),
+                $('.weixin').addClass('disabled')
+            // alert('fdafdsa');
+        });
+        $('.weixin').mouseout(function () {
+            $('.weixin-Qr-code').css({ "opacity": "1", "margin-left": "70px", "display": "none" }),
+                $('.weixin').removeClass('disabled')
+            // alert('fdafdsa');
+        });
+    </script>
+    <script type='text/javascript' src='/newsSite/js/wp-embed.min.js'></script>
 </body>
 </html>

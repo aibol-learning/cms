@@ -99,9 +99,9 @@
         <!--公司公告 和 安全生产管理巡视-->
         <div class="contentpart announcement">
             <div class="container">
+                <h3>公司公告</h3>
                 <div class="row">
                     <div class="col-md-6" style="padding-right:35px;">
-                        <h3>公司公告</h3>
                         <ul>
                             <stl:contents channelIndex="公司公告" scope="all" totalNum="5">
                                 <li>
@@ -110,15 +110,20 @@
                                 </li>
                             </stl:contents>
                         </ul>
-                        <div class="more"><stl:a channelIndex="公司公告">更多</stl:a></div>
+                        <!--<div class="more"><stl:a channelIndex="公司公告">更多</stl:a></div>-->
                     </div>
                     <div class="col-md-6" style="padding-left:35px;">
-                        <h3>安全生产管理巡视</h3>
                         <ul>
-                            <li v-for="(task, index) in toursTask" v-if="index<5">
-                                <div class="title"><a target="_blank" :href="task.url" :title="task.Question">{{task.Question}}</a></div>
-                                <div class="info"><icon class="glyphicon glyphicon-calendar"></icon> 要求完成时间：{{task.ExpectCompletedTime}}&emsp;&emsp;<icon class="fa fa-male"></icon> 任务负责人：{{task.Principal.Name}}</div>
-                            </li>
+                            <stl:contents channelIndex="公司公告" scope="all" startNum="6" totalNum="5">
+                                <li>
+                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
+                                    <div class="info"><icon class="glyphicon glyphicon-calendar"></icon> <stl:content type="addDate"></stl:content></div>
+                                </li>
+                                <!--<li v-for="(task, index) in toursTask" v-if="index<5">
+                                    <div class="title"><a target="_blank" :href="task.url" :title="task.Question">{{task.Question}}</a></div>
+                                    <div class="info"><icon class="glyphicon glyphicon-calendar"></icon> 要求完成时间：{{task.ExpectCompletedTime}}&emsp;&emsp;<icon class="fa fa-male"></icon> 任务负责人：{{task.Principal.Name}}</div>
+                                </li>-->
+                            </stl:contents>
                         </ul>
                         <div class="more"><stl:a channelIndex="公司公告">更多</stl:a></div>
                     </div>
@@ -130,21 +135,30 @@
         <div class="contentpart" style="background:#d8d8d8 url({stl.siteurl}/images/bg.jpg) no-repeat center center fixed !important;">
             <div class="container">
                 <div class="indexabout text-center">
-                    <stl:contents channelIndex="公司介绍" totalNum="1">
-                        <h4><stl:content type="Title"></stl:content></h4>
-                        <h2><stl:content type="SubTitle"></stl:content></h2>
-                        <p><stl:content type="Summary" wordNum="100"></stl:content></p>
-                    </stl:contents>
+                    <stl:channels channelIndex="公司文化">
+                        <stl:if type="channelIndex" op="Equals" value="和文化">
+                            <stl:yes>
+                                <stl:contents channelIndex="和文化" totalNum="1">
+                                    <h4>公司文化</h4>
+                                    <h2><stl:content type="SubTitle"></stl:content></h2>
+                                    <p><stl:content type="Summary" wordNum="100"></stl:content></p>
+                                </stl:contents>
+                            </stl:yes>
+                        </stl:if>
+                    </stl:channels>
                 </div>
-                <div class="indexaboutLinks">
+                <!--<div class="indexaboutLinks">
                     <stl:channels channelIndex="公司概况" totalNum="5">
                         <stl:a><stl:channel></stl:channel></stl:a>
                     </stl:channels>
-                </div>
-                <div class="indexaboutLinks row2">
-                    <stl:channels channelIndex="公司文化" totalNum="5">
+                </div>-->
+                <div class="indexaboutLinks btns">
+                    <stl:channels channelIndex="公司文化" groupChannel="公司文化模块" totalNum="5">
                         <stl:a><stl:channel></stl:channel></stl:a>
                     </stl:channels>
+                </div>
+                <div class="indexaboutLinks">
+                    <div class="text-right"><stl:a channelIndex="公司文化" style="margin-right:20px">查看更多</stl:a></div>
                 </div>
             </div>
         </div>
@@ -153,7 +167,7 @@
         <div class="contentpart" v-if="headlineNews_focus && headlineNews_focus.length>0">
             <div class="container">
                 <div class="parttitle text-center">
-                    <h2>头条聚集</h2>
+                    <h2>头条聚焦</h2>
                 </div>
                 <div class="productpart m-t-40">
                     <div id="myTabContent" class="tab-content">
@@ -384,7 +398,13 @@
                         <div class="slider2" id="thumbnail2">
                             <ul>
                                 <stl:channels channelIndex="报刊阅览">
-                                    <li><stl:a><img src="{Channel.imageUrl}" /></stl:a></li>
+                                    <li style="position:relative">
+                                        <stl:a><img src="{Channel.imageUrl}" /></stl:a>
+                                        <div class="label_new"></div>
+                                        <stl:contents totalNum="1">
+                                            <span class="js_addDate" style="display:none"><stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span>
+                                        </stl:contents>
+                                    </li>
                                 </stl:channels>
                             </ul>
                         </div>
@@ -453,6 +473,22 @@
                                     $('#btn-left2').addClass("dasabled");
                                 }
                             }
+
+                            //判断是否为当日新添加的文章, 打上new标记
+                            var _today = new Date();
+                            var yyyy = _today.getFullYear();
+                            var MM = _today.getMonth() + 1;
+                            var dd = _today.getDate();
+                            MM = MM < 10 ? ('0' + MM) : MM;
+                            dd = dd < 10 ? ('0' + dd) : dd;
+                            var today = yyyy + "-" + MM + '-' + dd;
+                            console.log('xxxxxx')
+                            $(".js_addDate").each(function () {
+                                console.log('addDate', $(this).text());
+                                if ($(this).text() == today) {
+                                    $(this).parents("li").eq(0).find(".label_new").show();
+                                }
+                            })
                         });
                     </script>
                 </div>
