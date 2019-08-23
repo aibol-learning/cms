@@ -166,7 +166,7 @@ namespace SiteServer.BackgroundPages.Cms
 
                         switch (DdlCheckType.SelectedItem.Text)
                         {
-                            case "初审通过，等待二审":
+                            case "公司领导审批":
                                 //关闭初审代办
                                 //发送消息给其他初审员和发稿人
 
@@ -174,29 +174,29 @@ namespace SiteServer.BackgroundPages.Cms
                                 var addUserName = contentInfo.AddUserName;
                                 var author = DataProvider.AdministratorDao.GetByUserName(addUserName);
                                 lv2SSOIds.Add(author.SSOId);
-                                BackstageManager.SendMessage(MessageType.消息, lv2SSOIds, "初审通过，等待二审");
+                                BackstageManager.SendMessage(MessageType.消息, lv2SSOIds, "公司领导审批");
                                 //发送代办给二审
                                 break;
-                            case "初审退稿":
+                            case "支部书记审批退稿":
                                 //关闭初审代办
                                 //发送消息给其他初审员和发稿人
                                 //发送代办给发稿人
                                 break;
-                            case "二审通过，等待终审":
+                            case "政工部审批":
                                 //关闭二审代办
                                 //发送消息给其他二审员和发稿人
                                 //发送代办给终审员
                                 break;
-                            case "二审退稿":
+                            case "公司领导审批退稿":
                                 //关闭初审代办
                                 //发送消息给其他初审员
                                 //发送代办给发稿人
                                 break;
-                            case "终审通过":
+                            case "审批完成":
                                 //关闭终审代办
                                 //发送消息给其他终审员和发稿人
                                 break;
-                            case "终审退稿":
+                            case "政工部审批退稿":
                                 //关闭初审代办
                                 //发送消息给其他初审员
                                 //发送代办给发稿人

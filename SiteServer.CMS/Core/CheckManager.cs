@@ -34,8 +34,8 @@ namespace SiteServer.CMS.Core
 	    {
 	        public const string All = "全部";//全部
             public const string CaoGao = "草稿";//草稿
-	        public const string DaiShen = "待审核";//待审
-	        public const string YiShenHe = "已审核";//已审核
+	        public const string DaiShen = "支部书记审批";//待审
+	        public const string YiShenHe = "审批完成";//已审核
 
 	        public const string NotChange = "保持不变";//保持不变
 	    }
@@ -70,13 +70,13 @@ namespace SiteServer.CMS.Core
 
 	    private static class Level3
 	    {
-	        public const string Pass1 = "初审通过，等待二审";
-	        public const string Pass2 = "二审通过，等待终审";
-	        public const string Pass3 = "终审通过";
+	        public const string Pass1 = "公司领导审批";
+	        public const string Pass2 = "政工部审批";
+	        public const string Pass3 = "审批完成";
 
-	        public const string Fail1 = "初审退稿";
-	        public const string Fail2 = "二审退稿";
-	        public const string Fail3 = "终审退稿";
+	        public const string Fail1 = "支部书记审批退稿";
+	        public const string Fail2 = "公司领导审批退稿";
+	        public const string Fail3 = "政工部审批退稿";
 	    }
 
 	    private static class Level2
