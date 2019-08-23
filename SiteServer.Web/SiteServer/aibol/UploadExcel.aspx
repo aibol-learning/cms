@@ -6,25 +6,29 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
+    <!--#include file="../inc/head.html"-->
 </head>
 <body>
-    <div id="app">
-        <a href="信息员录入模板.xlsx">信息员录入模板.xlsx</a>
-        <a href="支部录入模板.xlsx">支部录入模板.xlsx</a>
+    <div id="app" class="card-box m-l-15 m-r-15" style="padding: 10px; margin-bottom: 10px;">
+        <a href="信息员录入模板.xlsx">下载信息员录入模板</a>
+        <br/>
+        <br/>
+        <a href="支部录入模板.xlsx">下载支部录入模板</a>
         <hr />
-
-        <form id="form01" action="/app/aibolfile/upload" method="post" enctype="multipart/form-data">
-            <input type="file" multiple="multiple" name="files" /><br />
+        <button class="btn btn-primary btn-lg" style="width: 180px" v-on:click="selectAuthor()">上传并导入信息员</button><br/><br/>
+        <button class="btn btn-primary btn-lg" style="width: 180px" v-on:click="selectDepartment()">上传并导入支部</button>
+        <form id="form01" action="/app/aibolfile/upload" method="post" enctype="multipart/form-data" style="display: none;">
+            <input type="file" id="fileInput" multiple="multiple" name="files" v-on:change="sub()" /><br />
             <input type="hidden" name="type" v-model="type" /><br />
             <button type="button" v-on:click="subAuthor">submitAuthor</button>
             <button type="button" v-on:click="subDepartment">submitDepartment</button>
         </form>
-        <hr />
+        <%--<hr />
         <button  type="button" v-on:click="getAuthors">getAuthors</button>
         <button  type="button" v-on:click="getDepartments">getDepartments</button>
         <div>
             {{res}}
-        </div>
+        </div>--%>
         
 
     </div>
@@ -39,6 +43,15 @@
                     res:""
                 },
                 methods: {
+                    selectAuthor: function() {
+                        this.type = "author";
+                        $("#fileInput").click();
+                    },
+                    selectDepartment: function () {
+                        this.type = "department";
+                        $("#fileInput").click();
+                    },
+
                     getAuthors: function() {
                         $.get("/api/aibol/GetAuthors", {}, function(re) {
                             vm.res = JSON.stringify(re);
