@@ -277,7 +277,7 @@ function detection_{attributeName}(){{
     <button class=""btn"" onclick=""{ModalTextEditorInsertVideo.GetOpenWindowString(siteInfo.Id, attributeName)}"">插入视频</button>
     <button class=""btn"" onclick=""{ModalTextEditorInsertAudio.GetOpenWindowString(siteInfo.Id, attributeName)}"">插入音频</button>
     <button class=""btn"" onclick=""getWordSpliter();return false;"">提取关键字</button>
-    <button class=""btn"" onclick=""detection_{attributeName}();return false;"">敏感词检测</button>
+    
 </div>
 ";
         }

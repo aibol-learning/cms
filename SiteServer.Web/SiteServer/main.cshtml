@@ -22,8 +22,8 @@
             <header id="topnav">
                 <div class="topbar-main">
                     <div class="logo">
-                        <a href="https://www.siteserver.cn" target="_blank" class="logo">
-                            <img src="assets/icons/logo.png" />
+                        <a href="#" target="_blank" class="logo" style="text-decoration: none;font-size: 31px;margin: 0;">
+                            平圩发电
                         </a>
                     </div>
                     <a v-if="!isDesktop" href="javascript:;" class="position-fixed" v-on:click="btnMobileMenuClick" style="right: 20px;top: 10px;">
@@ -46,7 +46,7 @@
                     </ul>
                     <div v-if="isDesktop" class="menu-extras">
                         <ul class="navigation-menu nav navbar-nav navbar-right float-right">
-                            <li v-if="newVersion" class="has-submenu dropdown">
+                            @*<li v-if="newVersion" class="has-submenu dropdown">
                                 <a href="javascript:;">
                                     <i class="ion-email-unread text-warning"></i>
                                 </a>
@@ -65,7 +65,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </li>
+                            </li>*@
                             <li v-if="$siteId > 0" class="dropdown">
                                 <a href="javascript:;" onclick="openPageCreateStatus()">
                                     <i class="ion-wand"></i>

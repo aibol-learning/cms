@@ -108,7 +108,7 @@
           <asp:Button class="btn m-r-5" id="BtnSelect" Text="选择显示项" runat="server" />
           <asp:Button class="btn m-r-5" id="BtnAddToGroup" Text="添加到内容组" runat="server" />
           <asp:Button class="btn m-r-5" id="BtnTranslate" Text="转 移" runat="server" />
-          <asp:PlaceHolder ID="PhCheck" runat="server">
+          <asp:PlaceHolder ID="PhCheck" runat="server" Visible="False">
             <asp:Button class="btn m-r-5" id="BtnCheck" Text="审 核" runat="server" />
           </asp:PlaceHolder>
           <asp:PlaceHolder id="PhTrash" runat="server" visible="false">
