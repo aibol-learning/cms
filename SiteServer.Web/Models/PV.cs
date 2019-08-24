@@ -8,7 +8,7 @@ namespace SiteServer.API.Models
     public class PV
     {
         /// <summary>
-        /// 日期 格式 yyyy-MM-dd
+        /// 日期 格式 yyyy-MM-dd + Site
         /// </summary>
         public string Id { get; set; }
 
