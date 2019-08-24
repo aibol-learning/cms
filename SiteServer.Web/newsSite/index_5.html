@@ -43,6 +43,21 @@
         <div class="clearfix"></div>
     </div>
 </div>
+<script>
+    $(function () {
+        //获取当前登录用户信息
+        $.ajax({
+            url: global.backstageAPIUrl.loginInfo,
+            type: 'get',
+            success: function (response) {
+                if (response.Code == 200 && response.Data) {
+                    global.loginInfo = response.Data; //把数据存储下来备用
+                    $("#loginInfo").text('我的工作区');
+                }
+            }
+        });
+    });
+</script>
 
 <!--<div id="top_nav" class="header yapiskan">
   <div class="container">
@@ -831,70 +846,231 @@
     </div>
 
     <!--信息员天地-->
-    <div class="publish_info" id="vm_publish_info">
+    <style type="text/css">
+        .publish_info {
+            position: relative;
+            font-family: Microsoft YaHei;
+        }
+        .publish_info .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #343434;
+            font-family: Microsoft YaHei;
+            position:absolute;
+            top:40px;
+            left:0;
+            width:100%;
+            height:50px;
+            line-height:50px;
+            text-align:center;
+        }
+        .publish_info .noData {
+            margin-top:108px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #999;
+            text-align:center;
+        }
+    </style>
+    <div class="publish_info" id="vm_publish_info" v-cloak>
         <div class="container">
             <div class="la-title">
                 <h3>信息员天地</h3>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-6">
-                    <div  style="margin: 40px auto; height: 283px; border:1px solid #ddd;" id="publish_chart_author"></div>
+                <div class="col-sm-12 col-md-6 col-lg-6 chart_warp">
+                    <div class="title">{{currentYear}}.{{currentMonth}}信息员发稿量Top6</div>
+                    <div  style="margin: 40px auto; height: 283px; border:1px solid #ddd;" id="publish_chart_author">
+                        <div class="noData">暂无数据</div>
+                    </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-6">
-                    <div style="margin: 40px auto; height: 283px; border:1px solid #ddd;" id="publish_chart_department"></div>
+                <div class="col-sm-12 col-md-6 col-lg-6 chart_warp">
+                    <div class="title">{{currentYear}}.{{currentMonth}}部门发稿量Top6</div>
+                    <div style="margin: 40px auto; height: 283px; border:1px solid #ddd;" id="publish_chart_department">
+                        <div class="noData">暂无数据</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    
-
     <!--底部 -->
-    <div class="go-top0" id="gotopbtn" > <i class="icon icon-top"></i></div>
-<div class="footer" id="footer">
-  <div class="container">
-    <div class="row">
-      <div class=" col-sm-12 col-md-6 col-lg-6 footer-left">
-        <div class="footer-icon-list pull-right0">
-          <ul>
-            <a href="javascript:">
-            <li class="Qr-code-footer">
-              <div class="app-qrcode"> <img src="/newsSite/upload/images/2017/6/17173412614.jpg" type="weixin" width="130" height="130" /> </div>
-              <i class="icon icon-footer icon-footer-wx"></i> </li>
-            </a> <a href="http://t.qq.com/siteserver2011" target="_blank">
-            <li><i class="icon icon-footer icon-footer-inter"></i></li>
-            </a> <a href="http://developer.siteserver.cn/" target="_blank">
-            <li><i class="icon icon-footer icon-footer-rss"></i></li>
-            </a>
-          </ul>
+    <div class="footer" id="vm_footer" v-cloak>
+    <div class="container">
+        <div class="footer_top">
+            <div class="footer_other">
+                <div class="footer_other_title">系统管理</div>
+                <div class="footer_other_con">
+                    <a target="_blank" href="/siteServer">登录管理后台</a><br/>
+                    <a target="_blank" href="http://10.138.20.12/main.asp">旧版新闻网站</a>
+                </div>
+            </div>
+            <div class="footer_other" style="width:18%">
+                <div class="footer_other_title">站点访问统计</div>
+                <div class="footer_other_con" id="vm_siteVisitData" v-cloak>
+                    <span>总访问量：{{siteVisitData.totalPV}}次</span><br />
+                    <span>今日访问量：{{siteVisitData.todayPV}}次</span><br />
+                    <span>日均访问量：{{siteVisitData.avgPV}}次</span>
+                </div>
+            </div>
+            <div class="footer_other wide" style="width:67%">
+                <div class="footer_other_title">集团站点</div>
+                <div class="footer_other_con">
+                    <div v-for="(siteBundle,index) in groupSites">
+                        <div style="width:100px; float:left;">
+                            <span v-for="site in siteBundle"><a target="_blank" :href="site.navigationUrl">{{site.channelName}}</a><br /></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
         </div>
-      </div>
-      <div class=" col-sm-12 col-md-6 col-lg-6  footer-right">
-        <div class="copy-right">
-          <div class="footer-tag-list"> 
-          
-          <a target="_blank" href="http://stl.siteserver.cn/">关于我们</a> 
-  
-          
-          <a target="_blank" href="http://docs.siteserver.cn/getting-started/index.html">加入我们</a> 
-  
-          
-          <a target="_blank" href="http://blog.siteserver.cn/">联系我们</a> 
-  
-          
-          <a target="_blank" href="http://bbs.siteserver.cn/">友情链接</a> 
-  
-          
-          </div>
-          <span>Copyright © 2003-2017 模板建站</span> </div>
-      </div>
+        <div class="footer-bottom">
+            <div class="copyright">版权所有：中国电力平圩发电有限责任公司</div>
+        </div>
     </div>
-  </div>
 </div>
 
+<script src="/js/global.js" type="text/javascript"></script>
+<script src="/js/vue2.5.15.min.js"></script>
+<script>
+    $(function () {
+        //Footer - 站点访问量数据收集、获取
+        vm = new Vue({
+            el: "#vm_footer",
+            data: {
+                siteVisitData: {    //站点访问量数据
+                    todayPV: null,  //站点日访问量
+                    avgPV: null,    //站点平均访问量
+                    totalPV: null   //站点总访问量
+                },
+                site: 'newsSite',   //站点访问量统计的站点标识
+                groupSites: []      //集团站点
+            },
+            methods: {
+                //获取站点日访问量数据
+                getTodayPV: function () {
+                    var self = this;
+                    $.ajax({
+                        url: '/api/aibol/GetPV?site=' + self.site,
+                        type: 'get',
+                        success: function (response) {
+                            if (response.code == 200 && response.data) {
+                                self.siteVisitData.todayPV = response.data;
+                            }
+                        }
+                    })
+                },
 
-    <script src="/js/vue2.5.15.min.js"></script>
-    <script src="/js/global.js" type="text/javascript"></script>
+                //获取站点平均访问量数据
+                getAvgPV: function () {
+                    var self = this;
+                    $.ajax({
+                        url: '/api/aibol/GetAvgPV?site=' + self.site,
+                        type: 'get',
+                        success: function (response) {
+                            if (response.code == 200 && response.data) {
+                                self.siteVisitData.avgPV = response.data;
+                            }
+                        }
+                    });
+                },
+
+                //获取站点总访问量数据
+                getTotalPV: function () {
+                    var self = this;
+                    $.ajax({
+                        url: '/api/aibol/GetTotalPV?site=' + self.site,
+                        type: 'get',
+                        success: function (response) {
+                            if (response.code == 200 && response.data) {
+                                self.siteVisitData.totalPV = response.data;
+                            }
+                        }
+                    });
+                },
+
+                //添加站点访问量数据
+                setPV: function () {
+                    var self = this;
+                    $.ajax({
+                        url: '/api/aibol/addpv?site=' + self.site,
+                        type: 'get',
+                        success: function (response) {
+                            if (response.code == 200) {
+                                self.getTodayPV();
+                                self.getAvgPV();
+                                self.getTotalPV();
+                            }
+                        }
+                    });
+                },
+
+                //获取集团站点信息(数据来源:门户网站)
+                //获取门户网站所有一级栏目
+                getChannels: function () {
+                    var def = $.Deferred();
+                    $.ajax({
+                        url: '/api/v1/stl/channels?siteId=1&apiKey=' + global.apikey,
+                        type: 'get',
+                        success: function (response) {
+                            console.log('response', response)
+                            def.resolve(response.value);
+                        },
+                        error: function (response) {
+                            def.reject(response);
+                        }
+                    });
+                    return def.promise();
+                },
+
+                //集团站点数据源请求：门户网站-集团站点
+                getGroupSites: function (node) {
+                    var self = this;
+                    if (node.indexName == '集团站点') {
+                        $.ajax({
+                            url: '/api/v1/stl/channels?siteId=1&apiKey=' + global.apikey + '&channelId=' + node.id,
+                            type: 'get',
+                            success: function (response) {
+                                console.log('response', response);
+                                var grounpCount = Math.ceil(response.value.length / 3);
+                                var tempArray = [];
+                                for (var i = 0; i < grounpCount; i++) {
+                                    var tempArray = [];
+                                    for (var j = 0; j < 3; j++) {
+                                        var c = i * 3 + j;
+                                        if (c < response.value.length) {
+                                            tempArray.push(response.value[c]);
+                                        }
+                                    }
+                                    self.groupSites.push(tempArray);
+                                }
+                                console.log('self.groupSites', self.groupSites)
+                            }
+                        })
+                    }
+                },
+            },
+            created: function () {
+                var self = this;
+
+                //站点访问量数据设置
+                this.setPV();
+
+                //Footer里"集团站点"数据请求(siteServer接口)
+                this.getChannels().done(function (data) {
+                    data.forEach(function (node, index) {
+                        self.getGroupSites(node);
+                    })
+                }).fail(function (data) {
+                    console.log("reject");
+                });
+            }
+        })
+    });
+</script>
+
+    
     <script src="/newsSite/js/glodil.js" type="text/javascript"></script>
     <script src="/newsSite/js/jquery-ias.min.js" type="text/javascript"></script>
     <script src="/js/echarts.min.js"></script>
@@ -924,7 +1100,9 @@
                                         var xAxis = [];
                                         var series = [];
                                         response.forEach(function (node, index) {
-                                            xAxis.push(node.author.replace('\(*\)', ''));
+                                            var start = node.author.indexOf("(");
+                                            node.author = node.author.substring(0, start);
+                                            xAxis.push(node.author);
                                             series.push(node.count);
                                         })
 
@@ -934,10 +1112,9 @@
                                         // 指定图表的配置项和数据
                                         var optionChartAuthor = {
                                             color: ['#ed7d31'],
-                                            title: {
-                                                text: self.currentYear + '.' + self.currentMonth + '信息员发稿量Top6',
-                                                textAlign: 'left'
-                                            },
+                                            //title: {
+                                            //    text: ''
+                                            //},
                                             tooltip: {},
                                             //legend: {
                                             //    data: ['发稿量']
@@ -946,7 +1123,7 @@
                                                 data: xAxis,
                                                 axisLabel: {
                                                     interval: 0,
-                                                    rotate: 45
+                                                    //rotate: 45
                                                 }
                                             },
                                             yAxis: {
@@ -961,13 +1138,11 @@
                                         //使用配置项和数据显示图表。
                                         chart_author.setOption(optionChartAuthor);
                                     }
-                                    else {
-
-                                    }
                                 }
                             }
                         })
                     },
+
                     //信息员天地数据请求 - 按部门
                     getPublishInfoByDepartment: function (startTime) {
                         var self = this;
@@ -991,16 +1166,19 @@
                                         // 指定图表的配置项和数据
                                         var optionChartDepartment = {
                                             color: ['#70ad47'],
-                                            title: {
-                                                text: self.currentYear + '.' + self.currentMonth + '部门发稿量Top6',
-                                                textAlign: 'left'
-                                            },
+                                            //title: {
+                                            //    text: '',
+                                            //},
                                             tooltip: {},
                                             //legend: {
                                             //    data: ['发稿量']
                                             //},
                                             xAxis: {
-                                                data: xAxis
+                                                data: xAxis,
+                                                axisLabel: {
+                                                    interval: 0,
+                                                    rotate: 45
+                                                }
                                             },
                                             yAxis: {},
                                             series: [{
@@ -1013,13 +1191,11 @@
                                         //使用配置项和数据显示图表。
                                         chart_department.setOption(optionChartDepartment);
                                     }
-                                    else {
-
-                                    }
                                 }
                             }
                         })
                     },
+
                     //获取当前月份
                     getStartTime: function () {
                         var _today = new Date();
@@ -1030,10 +1206,10 @@
                         var today = yyyy + "-" + MM + '-01';
 
                         this.currentYear = yyyy,    //客户端当前年份
-                        this.currentMonth = MM,     //客户端当前月份
+                            this.currentMonth = MM,     //客户端当前月份
 
-                        //请求信息员天地数据
-                        this.getPublishInfoByAuthor(today);
+                            //请求信息员天地数据
+                            this.getPublishInfoByAuthor(today);
                         this.getPublishInfoByDepartment(today);
                     }
                 },

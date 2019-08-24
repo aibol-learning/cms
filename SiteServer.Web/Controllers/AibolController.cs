@@ -142,14 +142,14 @@ namespace SiteServer.API.Controllers
 
             var date = DateTime.Now.ToString("yyyy-MM-dd");
 
-            var pv = db.PVs.FirstOrDefault(o => o.Site == site && o.Id == date);
+            var pv = db.PVs.FirstOrDefault(o => o.Site == site && o.Id == date + site);
 
             if (pv == null)
             {
                 pv = new PV()
                 {
                     Count = 0,
-                    Id = date,
+                    Id = date + site,
                     Site = site
                 };
 
@@ -171,13 +171,13 @@ namespace SiteServer.API.Controllers
 
             var date = DateTime.Now.ToString("yyyy-MM-dd");
 
-            var pv = db.PVs.FirstOrDefault(o => o.Site == site && o.Id == date);
+            var pv = db.PVs.FirstOrDefault(o => o.Site == site && o.Id == date + site);
             if (pv == null)
             {
                 pv = new PV()
                 {
                     Count = 0,
-                    Id = date,
+                    Id = date + site,
                     Site = site
                 };
                 db.PVs.Add(pv);
@@ -196,13 +196,13 @@ namespace SiteServer.API.Controllers
 
             var totalCount = pvs.Sum(o => o.Count);
 
-            var firstDay = pvs.OrderBy(o => Convert.ToDateTime(o.Id)).FirstOrDefault();
+            var firstDay = pvs.OrderBy(o => Convert.ToDateTime(o.Id.Substring(0,10))).FirstOrDefault();
             if (firstDay == null)
             {
                 return Json(new { code = 200, data = 0 });
             }
 
-            var firstDate = Convert.ToDateTime(firstDay.Id);
+            var firstDate = Convert.ToDateTime(firstDay.Id.Substring(0, 10));
 
             var totalDays = (DateTime.Now - firstDate).Days;
 

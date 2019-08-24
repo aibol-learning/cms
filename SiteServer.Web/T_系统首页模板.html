@@ -204,7 +204,40 @@
     </div>
 
     <!--大屏幕实时数据-->
-    <div class="contentpart" style="background: #fff;">
+<style type="text/css">
+    .slideBox1 .bd ul {
+        height: 440px;
+        text-align: center;
+    }
+
+    .slideBox1 .bd ul li {
+        padding-top: 35px;
+        height: 440px
+    }
+
+    .slideBox1 .bd ul table {
+        width: 90%;
+        font-size: 16px;
+        margin: 40px auto
+    }
+
+    .slideBox1 .bd ul div.chart {
+        width: 90%;
+        font-size: 16px;
+        margin: 40px auto;
+        height: 300px
+    }
+
+    .slideBox1 .bd ul table tr {
+        background: #000
+    }
+
+    .slideBox1 .bd ul table td {
+        background: #fff;
+        padding: 15px
+    }
+</style>
+    <div id="charts" class="contentpart" style="background: #fff;">
         <div class="container">
             <!--<div class="parttitle text-center">
                 <h2>大屏幕实时数据</h2>
@@ -212,50 +245,17 @@
             <div class="indexnews">
                 <div id="slideBox1" class="slideBox1">
                     <div class="bd">
-                        <style type="text/css">
-                            .slideBox1 .bd ul {
-                                height: 400px;
-                                text-align: center;
-                            }
-
-                                .slideBox1 .bd ul li {
-                                    padding-top: 35px;
-                                    height: 400px
-                                }
-
-                                .slideBox1 .bd ul table {
-                                    width: 90%;
-                                    font-size: 16px;
-                                    margin: 40px auto
-                                }
-
-                                .slideBox1 .bd ul div.chart {
-                                    width: 90%;
-                                    font-size: 16px;
-                                    margin: 40px auto;
-                                    height: 300px
-                                }
-
-                                .slideBox1 .bd ul table tr {
-                                    background: #000
-                                }
-
-                                .slideBox1 .bd ul table td {
-                                    background: #fff;
-                                    padding: 15px
-                                }
-                        </style>
                         <ul>
                             <li>
-                                <h2>平圩发电机组发电量统计</h2>
+                                <h2>发电机组实时运行功率</h2>
                                 <div class="chart" id="chart1">
                                 </div>
                             </li>
                             <li>
-                                <h2>平圩发电机组发电量统计</h2>
+                                <h2>发电机组发电量统计</h2>
                                 <table border="1" cellspacing="1">
                                     <tr>
-                                        <td>发电量统计</td>
+                                        <td></td>
                                         <td>一号机组</td>
                                         <td>二号机组</td>
                                         <td>三号机组</td>
@@ -264,80 +264,56 @@
                                         <td>六号机组</td>
                                     </tr>
                                     <tr>
-                                        <td>当日发电量</td>
-                                        <td>100</td>
-                                        <td>133</td>
-                                        <td>89</td>
-                                        <td>98</td>
-                                        <td>101</td>
-                                        <td>126</td>
+                                        <td>日发电量</td>
+                                        <td v-for="item in chart2.daily">{{item}}</td>
                                     </tr>
                                     <tr>
-                                        <td>当月发电量</td>
-                                        <td>12563</td>
-                                        <td>19587</td>
-                                        <td>8985</td>
-                                        <td>10236</td>
-                                        <td>11532</td>
-                                        <td>17645</td>
+                                        <td>周发电量</td>
+                                        <td v-for="item in chart2.weekly">{{item}}</td>
                                     </tr>
                                     <tr>
-                                        <td>累计发电量</td>
-                                        <td>253684</td>
-                                        <td>323431</td>
-                                        <td>201256</td>
-                                        <td>215478</td>
-                                        <td>234584</td>
-                                        <td>301254</td>
+                                        <td>月发电量</td>
+                                        <td v-for="item in chart2.monthly">{{item}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>年发电量</td>
+                                        <td v-for="item in chart2.annual">{{item}}</td>
                                     </tr>
                                 </table>
                             </li>
                             <li>
-                                <h2>平圩光伏发电生产信息</h2>
+                                <h2>发电机组发电量汇总</h2>
                                 <table border="1" cellspacing="1">
                                     <tr>
-                                        <td>发电量统计</td>
-                                        <td>一号机组</td>
-                                        <td>二号机组</td>
-                                        <td>三号机组</td>
-                                        <td>四号机组</td>
-                                        <td>五号机组</td>
-                                        <td>六号机组</td>
+                                        <td></td>
+                                        <td>全厂汇总</td>
+                                        <td>一期汇总</td>
+                                        <td>二期汇总</td>
+                                        <td>三期汇总</td>
                                     </tr>
                                     <tr>
-                                        <td>当日发电量</td>
-                                        <td>100</td>
-                                        <td>133</td>
-                                        <td>89</td>
-                                        <td>98</td>
-                                        <td>101</td>
-                                        <td>126</td>
+                                        <td>日发电量</td>
+                                        <td v-for="item in chart3.daily">{{item}}</td>
                                     </tr>
                                     <tr>
-                                        <td>当月发电量</td>
-                                        <td>12563</td>
-                                        <td>19587</td>
-                                        <td>8985</td>
-                                        <td>10236</td>
-                                        <td>11532</td>
-                                        <td>17645</td>
+                                        <td>周发电量</td>
+                                        <td v-for="item in chart3.weekly">{{item}}</td>
                                     </tr>
                                     <tr>
-                                        <td>累计发电量</td>
-                                        <td>253684</td>
-                                        <td>323431</td>
-                                        <td>201256</td>
-                                        <td>215478</td>
-                                        <td>234584</td>
-                                        <td>301254</td>
+                                        <td>月发电量</td>
+                                        <td v-for="item in chart3.monthly">{{item}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>年发电量</td>
+                                        <td v-for="item in chart3.annual">{{item}}</td>
                                     </tr>
                                 </table>
                             </li>
                             <li>
-                                <h2>平圩发电机组环保数据</h2>
+                                <h2>发电机组环保数据</h2>
                                 <table border="1" cellspacing="1">
                                     <tr>
-                                        <td>环保指标</td>
+                                        <td></td>
                                         <td>一号机组</td>
                                         <td>二号机组</td>
                                         <td>三号机组</td>
@@ -346,41 +322,178 @@
                                         <td>六号机组</td>
                                     </tr>
                                     <tr>
-                                        <td>当日发电量</td>
-                                        <td>100</td>
-                                        <td>133</td>
-                                        <td>89</td>
-                                        <td>98</td>
-                                        <td>101</td>
-                                        <td>126</td>
+                                        <td>So2浓度</td>
+                                        <td v-for="item in chart4.So2">{{item}}</td>
                                     </tr>
                                     <tr>
-                                        <td>当月发电量</td>
-                                        <td>12563</td>
-                                        <td>19587</td>
-                                        <td>8985</td>
-                                        <td>10236</td>
-                                        <td>11532</td>
-                                        <td>17645</td>
+                                        <td>Nox浓度</td>
+                                        <td v-for="item in chart4.Nox">{{item}}</td>
                                     </tr>
                                     <tr>
-                                        <td>累计发电量</td>
-                                        <td>253684</td>
-                                        <td>323431</td>
-                                        <td>201256</td>
-                                        <td>215478</td>
-                                        <td>234584</td>
-                                        <td>301254</td>
+                                        <td>烟尘浓度</td>
+                                        <td v-for="item in chart4.Dust">{{item}}</td>
                                     </tr>
                                 </table>
+                            </li>
+                            <li>
+                                <h2>光伏发电生产信息</h2>
+                                <table border="1" cellspacing="1">
+                                    <tr>
+                                        <td></td>
+                                        <td>发电量</td>
+                                        <td>总辐射值</td>
+                                        <td>等效利用小时</td>
+                                        <td>厂用电率</td>
+                                        <td>箱变投入率</td>
+                                        <td>逆变投入率</td>
+                                    </tr>
+                                    <tr>
+                                        <td>昨日</td>
+                                        <td>{{chart5.Yesterday.Power}}</td>
+                                        <td>{{chart5.Yesterday.Radiation}}</td>
+                                        <td>{{chart5.Yesterday.EquivalentUse}}</td>
+                                        <td>{{chart5.Yesterday.InternalUsageRate}}</td>
+                                        <td>{{chart5.Yesterday.YbmRate}}</td>
+                                        <td>{{chart5.Yesterday.InvRate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>本周</td>
+                                        <td>{{chart5.Weekly.Power}}</td>
+                                        <td>{{chart5.Weekly.Radiation}}</td>
+                                        <td>{{chart5.Weekly.EquivalentUse}}</td>
+                                        <td>{{chart5.Weekly.InternalUsageRate}}</td>
+                                        <td>{{chart5.Weekly.YbmRate}}</td>
+                                        <td>{{chart5.Weekly.InvRate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>本月</td>
+                                        <td>{{chart5.Monthly.Power}}</td>
+                                        <td>{{chart5.Monthly.Radiation}}</td>
+                                        <td>{{chart5.Monthly.EquivalentUse}}</td>
+                                        <td>{{chart5.Monthly.InternalUsageRate}}</td>
+                                        <td>{{chart5.Monthly.YbmRate}}</td>
+                                        <td>{{chart5.Monthly.InvRate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>年度</td>
+                                        <td>{{chart5.Annual.Power}}</td>
+                                        <td>{{chart5.Annual.Radiation}}</td>
+                                        <td>{{chart5.Annual.EquivalentUse}}</td>
+                                        <td>{{chart5.Annual.InternalUsageRate}}</td>
+                                        <td>{{chart5.Annual.YbmRate}}</td>
+                                        <td>{{chart5.Annual.InvRate}}</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                <h2>焦岗湖光伏发电生产信息</h2>
+                                <table border="1" cellspacing="1">
+                                    <tr>
+                                        <td></td>
+                                        <td>发电量</td>
+                                        <td>总辐射值</td>
+                                        <td>等效利用小时</td>
+                                        <td>厂用电率</td>
+                                        <td>箱变投入率</td>
+                                        <td>逆变投入率</td>
+                                    </tr>
+                                    <tr>
+                                        <td>昨日</td>
+                                        <td>{{chart6.Yesterday.Power}}</td>
+                                        <td>{{chart6.Yesterday.Radiation}}</td>
+                                        <td>{{chart6.Yesterday.EquivalentUse}}</td>
+                                        <td>{{chart6.Yesterday.InternalUsageRate}}</td>
+                                        <td>{{chart6.Yesterday.YbmRate}}</td>
+                                        <td>{{chart6.Yesterday.InvRate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>本周</td>
+                                        <td>{{chart6.Weekly.Power}}</td>
+                                        <td>{{chart6.Weekly.Radiation}}</td>
+                                        <td>{{chart6.Weekly.EquivalentUse}}</td>
+                                        <td>{{chart6.Weekly.InternalUsageRate}}</td>
+                                        <td>{{chart6.Weekly.YbmRate}}</td>
+                                        <td>{{chart6.Weekly.InvRate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>本月</td>
+                                        <td>{{chart6.Monthly.Power}}</td>
+                                        <td>{{chart6.Monthly.Radiation}}</td>
+                                        <td>{{chart6.Monthly.EquivalentUse}}</td>
+                                        <td>{{chart6.Monthly.InternalUsageRate}}</td>
+                                        <td>{{chart6.Monthly.YbmRate}}</td>
+                                        <td>{{chart6.Monthly.InvRate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>年度</td>
+                                        <td>{{chart6.Annual.Power}}</td>
+                                        <td>{{chart6.Annual.Radiation}}</td>
+                                        <td>{{chart6.Annual.EquivalentUse}}</td>
+                                        <td>{{chart6.Annual.InternalUsageRate}}</td>
+                                        <td>{{chart6.Annual.YbmRate}}</td>
+                                        <td>{{chart6.Annual.InvRate}}</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                <h2>施家湖光伏发电生产信息</h2>
+                                <table border="1" cellspacing="1">
+                                    <tr>
+                                        <td></td>
+                                        <td>发电量</td>
+                                        <td>总辐射值</td>
+                                        <td>等效利用小时</td>
+                                        <td>厂用电率</td>
+                                        <td>箱变投入率</td>
+                                        <td>逆变投入率</td>
+                                    </tr>
+                                    <tr>
+                                        <td>昨日</td>
+                                        <td>{{chart7.Yesterday.Power}}</td>
+                                        <td>{{chart7.Yesterday.Radiation}}</td>
+                                        <td>{{chart7.Yesterday.EquivalentUse}}</td>
+                                        <td>{{chart7.Yesterday.InternalUsageRate}}</td>
+                                        <td>{{chart7.Yesterday.YbmRate}}</td>
+                                        <td>{{chart7.Yesterday.InvRate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>本周</td>
+                                        <td>{{chart7.Weekly.Power}}</td>
+                                        <td>{{chart7.Weekly.Radiation}}</td>
+                                        <td>{{chart7.Weekly.EquivalentUse}}</td>
+                                        <td>{{chart7.Weekly.InternalUsageRate}}</td>
+                                        <td>{{chart7.Weekly.YbmRate}}</td>
+                                        <td>{{chart7.Weekly.InvRate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>本月</td>
+                                        <td>{{chart7.Monthly.Power}}</td>
+                                        <td>{{chart7.Monthly.Radiation}}</td>
+                                        <td>{{chart7.Monthly.EquivalentUse}}</td>
+                                        <td>{{chart7.Monthly.InternalUsageRate}}</td>
+                                        <td>{{chart7.Monthly.YbmRate}}</td>
+                                        <td>{{chart7.Monthly.InvRate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>年度</td>
+                                        <td>{{chart7.Annual.Power}}</td>
+                                        <td>{{chart7.Annual.Radiation}}</td>
+                                        <td>{{chart7.Annual.EquivalentUse}}</td>
+                                        <td>{{chart7.Annual.InternalUsageRate}}</td>
+                                        <td>{{chart7.Annual.YbmRate}}</td>
+                                        <td>{{chart7.Annual.InvRate}}</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                <h2>发电机组可靠性</h2>
+                                <div class="chart" id="chart8">
+                                </div>
                             </li>
                         </ul>
                     </div>
                     <a class="prev" href="javascript:void(0)"></a> <a class="next" href="javascript:void(0)"></a>
                 </div>
-                <script id="jsID" type="text/javascript">
-                    jQuery(".slideBox1").slide({ mainCell: ".bd ul", effect: "left", autoPlay: true, delayTime: 1000 });
-                </script>
             </div>
         </div>
     </div>
@@ -499,31 +612,286 @@
 
     <script>
         $(function () {
-            //大屏幕数据图片初始化
-            var myChart1 = echarts.init(document.getElementById('chart1'));
-            // 指定图表的配置项和数据
-            var optionChart1 = {
-                color: ['#3398DB'],
-                //title: {
-                //text: 'ECharts 入门示例'
-                //},
-                tooltip: {},
-                legend: {
-                    data: ['发电量']
+            var setCharts, charts;
+            
+            charts = new Vue({
+                el: "#charts",
+                data: {
+                    chart2: {
+                        daily: [],
+                        weekly: [],
+                        monthly: [],
+                        annual: []
+                    },
+                    chart3: {
+                        daily: [],
+                        weekly: [],
+                        monthly: [],
+                        annual: []
+                    },
+                    chart4: {
+                        So2: [],
+                        Nox: [],
+                        Dust: []
+                    },
+                    chart5: {
+                        Yesterday: {},
+                        Weekly: {},
+                        Monthly: {},
+                        Annual: {},
+                    },
+                    chart6: {
+                        Yesterday: {},
+                        Weekly: {},
+                        Monthly: {},
+                        Annual: {},
+                    },
+                    chart7: {
+                        Yesterday: {},
+                        Weekly: {},
+                        Monthly: {},
+                        Annual: {},
+                    },
                 },
-                xAxis: {
-                    data: ["一号机组", "二号机组", "三号机组", "四号机组", "五号机组", "六号机组"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '发电量',
-                    type: 'bar',
-                    barCategoryGap: '50%',
-                    data: [125, 120, 136, 110, 110, 120]
-                }]
-            };
-            // 使用刚指定的配置项和数据显示图表。
-            myChart1.setOption(optionChart1);
+                methods: {
+                    setData: function (data) {
+                        this.set1(data);
+                        this.set2(data);
+                        this.set3(data);
+                        this.set4(data);
+                        this.chart5 = data.Solars[0];
+                        this.chart6 = data.Solars[1];
+                        this.chart7 = data.Solars[2];
+                        this.set8(data);
+                        
+                        jQuery(".slideBox1").slide({ mainCell: ".bd ul", effect: "left", autoPlay: true, delayTime: 1000 });
+                    },
+                    set1: function (res) {
+                        var colorList = [
+                            '#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed', '#ff69b4', '#ba55d3'
+                        ];
+
+                        //大屏幕1
+                        var myChart1 = echarts.init(document.getElementById('chart1'));
+
+                        var itemStyle = {
+                            normal: {
+                                color: function (params) {
+                                    if (params.dataIndex < 0) {
+                                        // for legend
+                                        return colorList[colorList.length - 1];
+                                    }
+                                    else {
+                                        // for bar
+                                        return colorList[params.dataIndex];
+                                    }
+                                },
+                                //label : {show: true, position: 'top'}
+                            }
+                        };
+
+                        var powerData = function () {
+                            var data = [];
+                            for (var i = 0; i < 7; i++) {
+                                data.push((res.GeneratorSets[i].Powers[res.GeneratorSets[i].Powers.length - 1]).toFixed(2));
+                            }
+                            return data;
+                        }
+
+                        var powerData2 = function () {
+                            var total = [630, 630, 700, 700, 1000, 700, 500];
+                            var data = [];
+                            for (var i = 0; i < 7; i++) {
+                                data.push((total[i] - res.GeneratorSets[i].Powers[res.GeneratorSets[i].Powers.length - 1]).toFixed(2));
+                            }
+                            return data;
+                        }
+
+                        // 指定图表的配置项和数据
+                        var optionChart1 = {
+                            color: ['#3398DB'],
+                            //title: {
+                            //text: 'ECharts 入门示例'
+                            //},
+                            tooltip: {},
+                            legend: {
+                                data: ['发电量', '剩余']
+                            },
+                            xAxis: {
+                                data: ["一号机组", "二号机组", "三号机组", "四号机组", "五号机组", "六号机组", "光伏"]
+                            },
+                            yAxis: {
+                                axisLabel: {
+                                    formatter: '{value}(MW)'
+                                }
+                            },
+                            series: [{
+                                name: '发电量',
+                                type: 'bar',
+                                stack: '使用情况',
+                                barCategoryGap: '50%',
+                                itemStyle: itemStyle,
+                                data: powerData()
+                            },
+                            {
+                                name: '剩余',
+                                type: 'bar',
+                                stack: '使用情况',
+                                barCategoryGap: '50%',
+                                itemStyle: {
+                                    normal: {
+                                        color: 'rgba(0,0,255, 0.2)'
+                                    }
+                                },
+                                data: powerData2()
+                            }
+                            ]
+                        };
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart1.setOption(optionChart1);
+                    },
+                    set2: function (data) {
+                        //大屏幕2
+                        for (var i = 0; i < 6; i++) {
+                            this.chart2.daily.push(data.GeneratorSets[i].PowerReport.Daily[data.GeneratorSets[i].PowerReport.Daily.length - 1]);
+                            this.chart2.weekly.push(data.GeneratorSets[i].PowerReport.Weekly[data.GeneratorSets[i].PowerReport.Weekly.length - 1]);
+                            this.chart2.monthly.push(data.GeneratorSets[i].PowerReport.Monthly[data.GeneratorSets[i].PowerReport.Monthly.length - 1]);
+                            this.chart2.annual.push(data.GeneratorSets[i].PowerReport.Annual[data.GeneratorSets[i].PowerReport.Annual.length - 1]);
+                        }
+                    },
+                    set3: function (data) {
+                        //大屏幕3
+                        var totalDaily = 0, totalWeekly = 0, totalMonthly = 0, totalAnnual = 0;
+                        var g1Daily = 0, g1Weekly = 0, g1Monthly = 0, g1Annual = 0;
+                        var g2Daily = 0, g2Weekly = 0, g2Monthly = 0, g2Annual = 0;
+                        var g3Daily = 0, g3Weekly = 0, g3Monthly = 0, g3Annual = 0;
+                        for (var i = 0; i < 6; i++) {
+                            var d = this.chart2.daily[i];
+                            var w = this.chart2.weekly[i];
+                            var m = this.chart2.monthly[i];
+                            var a = this.chart2.annual[i];
+                            totalDaily += d;
+                            totalWeekly += w;
+                            totalMonthly += m;
+                            totalAnnual += a;
+                            if (i < 2) {
+                                g1Daily += d;
+                                g1Weekly += w;
+                                g1Monthly += m;
+                                g1Annual += a;
+                            }
+                            else if (i < 4) {
+                                g2Daily += d;
+                                g2Weekly += w;
+                                g2Monthly += m;
+                                g2Annual += a;
+                            }
+                            else if (i < 6) {
+                                g3Daily += d;
+                                g3Weekly += w;
+                                g3Monthly += m;
+                                g3Annual += a;
+                            }
+                        }
+                        this.chart3.daily.push(totalDaily);
+                        this.chart3.daily.push(g1Daily);
+                        this.chart3.daily.push(g2Daily);
+                        this.chart3.daily.push(g3Daily);
+
+                        this.chart3.weekly.push(totalWeekly);
+                        this.chart3.weekly.push(g1Weekly);
+                        this.chart3.weekly.push(g2Weekly);
+                        this.chart3.weekly.push(g3Weekly);
+
+                        this.chart3.monthly.push(totalMonthly);
+                        this.chart3.monthly.push(g1Monthly);
+                        this.chart3.monthly.push(g2Monthly);
+                        this.chart3.monthly.push(g3Monthly);
+
+                        this.chart3.annual.push(totalAnnual);
+                        this.chart3.annual.push(g1Annual);
+                        this.chart3.annual.push(g2Annual);
+                        this.chart3.annual.push(g3Annual);
+                    },
+                    set4: function (data) {
+                        for (var i = 0; i < 6; i++) {
+                            this.chart4.So2.push(data.GeneratorSets[i].So2);
+                            this.chart4.Nox.push(data.GeneratorSets[i].Nox);
+                            this.chart4.Dust.push(data.GeneratorSets[i].Dust);
+                        }
+                    },
+                    set8: function (res) {
+
+                        //大屏幕8
+
+                        var myChart8 = echarts.init(document.getElementById('chart8'));
+
+                        var getData = function() {
+                            var data = [];
+                            for (var i = 0; i < 6; i++) {
+                                data.push(res.GeneratorSets[i].RunningDays);
+                            }
+                            return data;
+                        }
+                        var getMaxData = function() {
+                            var data = [];
+                            for (var i = 0; i < 6; i++) {
+                                data.push(res.GeneratorSets[i].LongestDays);
+                            }
+                            return data;
+                        }
+
+                        var option8 = {
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            legend: {
+                                orient: 'vertical',
+                                x: 'right',
+                                y: 'bottom',
+                                data: ['连续运行时间']
+                            },
+                            polar: [
+                                {
+                                    indicator: [
+                                        { text: '一号机组', max: getMaxData()[0] },
+                                        { text: '二号机组', max: getMaxData()[1] },
+                                        { text: '三号机组', max: getMaxData()[2] },
+                                        { text: '四号机组', max: getMaxData()[3] },
+                                        { text: '五号机组', max: getMaxData()[4] },
+                                        { text: '六号机组', max: getMaxData()[5] }
+                                    ]
+                                }
+                            ],
+                            calculable: true,
+                            series: [
+                                {
+                                    name: '连续运行时间',
+                                    type: 'radar',
+                                    data: [
+                                        {
+                                            value: getData(),
+                                            name: '连续运行时间'
+                                        }
+                                    ]
+                                }
+                            ]
+                        };
+
+                        myChart8.setOption(option8);
+                    }
+                }
+            });
+            $.get("http://screen.aibol.com.cn/home/data", {}, function (res) {
+                setCharts(res);
+            });
+
+            setCharts = function (res) {
+                console.log(res);
+                //大屏幕
+                charts.setData(res);
+            }
+
 
             vm = new Vue({
                 el: "#vm",

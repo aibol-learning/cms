@@ -1045,7 +1045,7 @@ h5 {
     padding-left: 20px
 }
 
-.footer-left {
+/*.footer-left {
     float: right
 }
 
@@ -1056,7 +1056,7 @@ h5 {
 .footer .footer-icon-list {
     margin-left: auto;
     width: 80%;
-}
+}*/
 
 .btn-group {
     display: none
@@ -1322,7 +1322,7 @@ h5 {
     }
 
 /*footer*/
-.footer {
+/*.footer {
     margin-top: 20px;
     width: 100%;
     position: relative;
@@ -1600,8 +1600,75 @@ h5 {
     border-width: 10px 8px 8px;
     left: 57px;
     top: 129px
+}*/
+
+
+/*底部样式*/
+.footer {
+    background: #2d3237;
+    padding: 60px 0 30px 0;
 }
 
+.footer_top {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #666;
+    margin-bottom: 30px;
+}
+
+/*.footernav {
+    float: left;
+    width: 30%;
+}
+
+.footnav > li {
+    float: left;
+    width: 50%;
+}
+
+    .footnav > li > a {
+        font-size: 16px;
+        color: #222;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+.footnav li .sub-menu li a {
+    line-height: 24px;
+    color: #666;
+}*/
+
+.footer_other {
+    float: left;
+    width: 15%;
+}
+
+    .footer_other.wide {
+        float: left;
+        width: 70%;
+    }
+
+    .footer_other .footer_other_title {
+        font-size: 16px;
+        color: #e5e5e5;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .footer_other .footer_other_con a,
+    .footer_other .footer_other_con span {
+        color: #fff;
+        line-height: 24px;
+    }
+    .footer_other .footer_other_con a:hover{
+        color: #f5f5f5;
+    }
+
+.footer-bottom {
+    color:#e5e5e5;
+    text-align:center;
+}
 .go-top0 {
     background-color: #fff;
     border: 1px solid #eee;
@@ -2598,6 +2665,12 @@ h5 {
     margin-top: 20px;
 }
 
+/*** vue ***/
+[v-cloak] {
+    display: none
+}
+
+
 
 /* 头部导航 */
 .themenav {
@@ -2916,5 +2989,168 @@ h5 {
     }
 
         .sidebar a.sidebar_list_more:hover {
+            color: #3ca5f6;
+        }
+
+/* 信息员天地 */
+.publish_info {
+    position: relative;
+    font-family: Microsoft YaHei;
+}
+
+    .publish_info .title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #343434;
+        font-family: Microsoft YaHei;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .publish_info .noData {
+        margin-top: 108px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #999;
+        text-align: center;
+    }
+
+/* 新思想|公司要闻(左侧重要栏目) */
+.news_tab {
+    border-bottom: 1px solid #ddd;
+    margin-top: 30px;
+}
+
+    .news_tab .news_tab_item {
+        border-bottom: 3px solid transparent;
+        bottom: -3px;
+        color: #555;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: normal;
+        line-height: 32px;
+        padding-bottom: 10px;
+        padding: 0 5px 10px;
+        margin: 0 10px -3px 10px;
+    }
+
+        .news_tab .news_tab_item.active {
+            border-bottom: 3px solid #f63756;
+        }
+
+.news_contents {
+    padding: 10px;
+}
+
+    .news_contents .news_content {
+        display: none;
+    }
+
+        .news_contents .news_content.active {
+            display: block;
+        }
+
+.news_content .news_list {
+}
+
+    .news_content .news_list li {
+        position: relative;
+        padding: 25px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+.news_contents .news_list li .image_wrap {
+    max-height: 153px;
+    height: 153px;
+    overflow-y: hidden
+}
+
+    .news_contents .news_list li .image_wrap img {
+        width: 230px;
+    }
+
+.news_contents .news_list li .content_wrap {
+    margin-left: 250px;
+    position: absolute;
+    right: 0;
+    top: 25px
+}
+
+.news_content .news_list a.news_list_title {
+    font-size: 18px;
+    color: #31424e;
+    font-weight: bold;
+    display: block;
+}
+
+    .news_content .news_list a.news_list_title:hover {
+        color: #3ca5f6;
+    }
+
+
+.news_content .news_list .news_list_info {
+    font-size: 14px;
+    color: #999;
+    margin: 5px 0 5px 0;
+}
+
+.news_content .news_list .news_list_summary {
+    font-size: 14px;
+    color: #343434;
+    margin: 8px 0 5px 0;
+    line-height: 170%;
+}
+
+.news_content .news_list_more {
+    font-size: 16px;
+    color: #666;
+    margin-top: 5px;
+    text-align: right;
+    display: block;
+    margin-top: 10px;
+}
+
+    .news_content .news_list_more:hover {
+        color: #3ca5f6;
+    }
+
+/* 左侧次要栏目 */
+.news_list2 {
+    margin-bottom: 8px;
+    margin-top: 10px;
+}
+
+    .news_list2 a.head_list_title {
+        font-size: 18px;
+        color: #31424e;
+        font-weight: bold;
+        display: block;
+    }
+
+        .news_list2 a.head_list_title:hover {
+            color: #3ca5f6;
+        }
+
+
+    .news_list2 .head_list_info {
+        font-size: 14px;
+        color: #999;
+        margin: 3px 0 5px 0;
+    }
+
+    .news_list2 .head_list_more {
+        font-size: 16px;
+        color: #666;
+        margin-top: 5px;
+        text-align: right;
+        display: block;
+    }
+
+        .news_list2 .head_list_more:hover {
             color: #3ca5f6;
         }
