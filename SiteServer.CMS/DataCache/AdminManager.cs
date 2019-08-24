@@ -464,16 +464,25 @@ namespace SiteServer.CMS.DataCache
 
                 var userInfoJson = JsonConvert.DeserializeObject<dynamic>(userInfoStr);
 
-                var info = new AdministratorInfo
+                // 1. 先检查是否有相同的UserName
+                var code = userInfoJson.code.ToString();
+                AdministratorInfo info = DataProvider.AdministratorDao.GetByUserName(code);
+                if (info != null)
+                {
+                    info.SSOId = userInfoJson.sub;
+                    DataProvider.AdministratorDao.Update(info);
+                    return info;
+                }
+
+                // 2. 插入新用户
+                info = new AdministratorInfo
                 {
                     SSOId = userInfoJson.sub,
                     DisplayName = userInfoJson.name,
                     UserName = userInfoJson.code,
                     Password = "abc123"
                 };
-
                 DataProvider.AdministratorDao.Insert(info, out var errMsg);
-
                 info = GetAdminInfoByUserSub(info.SSOId);
 
                 return info;
