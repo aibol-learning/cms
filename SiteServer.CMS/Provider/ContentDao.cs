@@ -192,6 +192,11 @@ namespace SiteServer.CMS.Provider
             {
                 AttributeName = ContentAttribute.AddDate,
                 DataType = DataType.DateTime
+            },
+            new TableColumn
+            {
+                AttributeName = ContentAttribute.ShowTime,
+                DataType = DataType.DateTime
             }
         };
 
@@ -248,6 +253,31 @@ namespace SiteServer.CMS.Provider
                     DataLength = 255
                 });
 
+                tableColumns.Add(new TableColumn
+                {
+                    AttributeName = nameof(ContentInfo.Picturer),
+                    DataType = DataType.VarChar,
+                    DataLength = 255
+                });
+                tableColumns.Add(new TableColumn
+                {
+                    AttributeName = nameof(ContentInfo.Lv1AdminSub),
+                    DataType = DataType.VarChar,
+                    DataLength = 255
+                });
+                tableColumns.Add(new TableColumn
+                {
+                    AttributeName = nameof(ContentInfo.Lv2AdminSub),
+                    DataType = DataType.VarChar,
+                    DataLength = 255
+                });
+                tableColumns.Add(new TableColumn
+                {
+                    AttributeName = nameof(ContentInfo.Lv3AdminSub),
+                    DataType = DataType.VarChar,
+                    DataLength = 255
+                });
+
                 return tableColumns;
             }
         }
@@ -268,7 +298,7 @@ namespace SiteServer.CMS.Provider
             ContentManager.RemoveCache(tableName, channelId);
         }
 
-        public void UpdateIsChecked(string tableName, int siteId, int channelId, List<int> contentIdList, int translateChannelId, string userName, bool isChecked, int checkedLevel, string reasons)
+        public void UpdateIsChecked(string tableName, int siteId, int channelId, List<int> contentIdList, int translateChannelId, string userName, bool isChecked, int checkedLevel, string reasons, string checkSub)
         {
             if (isChecked)
             {
@@ -287,14 +317,40 @@ namespace SiteServer.CMS.Provider
                 attributes.Set(ContentAttribute.CheckDate, DateUtils.GetDateAndTimeString(checkDate));
                 attributes.Set(ContentAttribute.CheckReasons, reasons);
 
+                var checkAdminSql = "";
+                if (checkedLevel > 0)
+                {
+                    var adminLv = "";
+                    switch (checkedLevel)
+                    {
+                        case 0:
+                            adminLv = "Lv1AdminSub";
+                            break;
+                        case 1:
+                            adminLv = "Lv2AdminSub";
+                            break;
+                        case 2:
+                            adminLv = "Lv3AdminSub";
+                            break;
+
+                    }
+
+                    checkAdminSql = $",{adminLv} = '{checkSub}'";
+                }
+
+
                 var sqlString =
-                    $"UPDATE {tableName} SET {ContentAttribute.IsChecked} = '{isChecked}', {ContentAttribute.CheckedLevel} = {checkedLevel}, {ContentAttribute.SettingsXml} = '{attributes}' WHERE {ContentAttribute.Id} = {contentId}";
+                    $"UPDATE {tableName} SET {ContentAttribute.IsChecked} = '{isChecked}', {ContentAttribute.CheckedLevel} = {checkedLevel}, {ContentAttribute.SettingsXml} = '{attributes}' {checkAdminSql} WHERE {ContentAttribute.Id} = {contentId}";
                 if (translateChannelId > 0)
                 {
                     sqlString =
-                        $"UPDATE {tableName} SET {ContentAttribute.IsChecked} = '{isChecked}', {ContentAttribute.CheckedLevel} = {checkedLevel}, {ContentAttribute.SettingsXml} = '{attributes}', {ContentAttribute.ChannelId} = {translateChannelId} WHERE {ContentAttribute.Id} = {contentId}";
+                        $"UPDATE {tableName} SET {ContentAttribute.IsChecked} = '{isChecked}', {ContentAttribute.CheckedLevel} = {checkedLevel}, {ContentAttribute.SettingsXml} = '{attributes}', {ContentAttribute.ChannelId} = {translateChannelId} {checkAdminSql} WHERE {ContentAttribute.Id} = {contentId}";
                 }
+
+
                 ExecuteNonQuery(sqlString);
+
+
 
                 var checkInfo = new ContentCheckInfo(0, tableName, siteId, channelId, contentId, userName, isChecked, checkedLevel, checkDate, reasons);
                 DataProvider.ContentCheckDao.Insert(checkInfo);
@@ -303,7 +359,7 @@ namespace SiteServer.CMS.Provider
             ContentManager.RemoveCache(tableName, channelId);
         }
 
-        
+
 
         public void SetAutoPageContentToSite(SiteInfo siteInfo)
         {
@@ -478,7 +534,7 @@ namespace SiteServer.CMS.Provider
             if (!string.IsNullOrEmpty(tableName) && contentIdList != null && contentIdList.Count > 0)
             {
                 TagUtils.RemoveTags(siteId, contentIdList);
-                
+
                 var sqlString =
                     $"DELETE FROM {tableName} WHERE SiteId = {siteId} AND {ContentAttribute.ReferenceId} > 0 AND Id IN ({TranslateUtils.ToSqlInStringWithoutQuote(contentIdList)})";
 
@@ -932,6 +988,12 @@ namespace SiteServer.CMS.Provider
 
             return ExecuteDataset(sqlString);
         }
+        public DataSet GetDataSetOfDepartmentExcludeRecycle(string tableName, int siteId, DateTime begin, DateTime end)
+        {
+            var sqlString = GetSqlStringOfDepartmentExcludeRecycle(tableName, siteId, begin, end);
+
+            return ExecuteDataset(sqlString);
+        }
 
         public int Insert(string tableName, SiteInfo siteInfo, ChannelInfo channelInfo, ContentInfo contentInfo)
         {
@@ -1215,6 +1277,7 @@ UPDATE {tableName} SET
     {ContentAttribute.IsColor} = @{ContentAttribute.IsColor},
     {ContentAttribute.LinkUrl} = @{ContentAttribute.LinkUrl},
     {ContentAttribute.AddDate} = @{ContentAttribute.AddDate}
+
     {sets}
 WHERE {ContentAttribute.Id} = @{ContentAttribute.Id}";
 
@@ -1846,6 +1909,28 @@ group by tmp.userName";
             return sqlString;
         }
 
+        public string GetSqlStringOfDepartmentExcludeRecycle(string tableName, int siteId, DateTime begin, DateTime end)
+        {
+            var sqlString = $@"select source,SUM(addCount) as addCount, SUM(updateCount) as updateCount from( 
+SELECT Source as source, Count(Source) as addCount, 0 as updateCount FROM {tableName} 
+INNER JOIN {DataProvider.AdministratorDao.TableName} ON AddUserName = {DataProvider.AdministratorDao.TableName}.UserName 
+WHERE {tableName}.SiteId = {siteId} AND (({tableName}.ChannelId > 0)) 
+AND LastEditDate BETWEEN {SqlUtils.GetComparableDate(begin)} AND {SqlUtils.GetComparableDate(end.AddDays(1))}
+GROUP BY Source
+Union
+SELECT Source as source,0 as addCount, Count(Source) as updateCount FROM {tableName} 
+INNER JOIN {DataProvider.AdministratorDao.TableName} ON LastEditUserName = {DataProvider.AdministratorDao.TableName}.UserName 
+WHERE {tableName}.SiteId = {siteId} AND (({tableName}.ChannelId > 0)) 
+AND LastEditDate BETWEEN {SqlUtils.GetComparableDate(begin)} AND {SqlUtils.GetComparableDate(end.AddDays(1))}
+AND LastEditDate != AddDate
+GROUP BY Source
+) as tmp
+group by tmp.source";
+
+
+            return sqlString;
+        }
+
         public string GetStlWhereString(int siteId, string group, string groupNot, string tags, bool isTopExists, bool isTop, string where)
         {
             var whereStringBuilder = new StringBuilder();
@@ -2430,10 +2515,14 @@ group by tmp.userName";
             return DataProvider.DatabaseDao.GetSelectSqlString(tableName, SqlUtils.Asterisk, whereString.ToString());
         }
 
-        public string GetPagerWhereSqlString(SiteInfo siteInfo, ChannelInfo channelInfo, string searchType, string keyword, string dateFrom, string dateTo, int checkLevel, bool isCheckOnly, bool isSelfOnly, bool isTrashOnly, bool isWritingOnly, int? onlyAdminId, PermissionsImpl adminPermissions, List<string> allAttributeNameList)
+        public string GetPagerWhereSqlString(SiteInfo siteInfo, ChannelInfo channelInfo, string searchType,
+            string keyword, string dateFrom, string dateTo, int checkLevel, bool isCheckOnly, bool isSelfOnly,
+            bool isTrashOnly, bool isWritingOnly, int? onlyAdminId, PermissionsImpl adminPermissions, List<string> allAttributeNameList, string adminSub = "")
         {
             var isAllChannels = false;
             var searchChannelIdList = new List<int>();
+
+
 
             if (isSelfOnly)
             {
@@ -2476,6 +2565,11 @@ group by tmp.userName";
                 $"{nameof(ContentAttribute.SiteId)} = {siteInfo.Id}",
                 $"{nameof(ContentAttribute.SourceId)} != {SourceManager.Preview}"
             };
+
+            if (!string.IsNullOrEmpty(adminSub))
+            {
+                whereList.Add($"(Lv1AdminSub = '{adminSub}' or Lv2AdminSub = '{adminSub}' or Lv3AdminSub = '{adminSub}')");
+            }
 
             if (!string.IsNullOrEmpty(dateFrom))
             {

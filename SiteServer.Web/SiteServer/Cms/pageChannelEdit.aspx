@@ -168,7 +168,7 @@
         </div>
         <div class="col-sm-1"></div>
       </div>
-      <div class="form-group form-row">
+      <div class="form-group form-row" style="display: none">
         <label class="col-sm-2 col-form-label text-right">关键字列表</label>
         <div class="col-sm-4">
           <asp:TextBox Rows="3" TextMode="MultiLine" ID="TbKeywords" class="form-control" runat="server" />

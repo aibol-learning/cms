@@ -50,6 +50,15 @@
     <Reference Include="Datory, Version=0.1.15.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Datory.0.1.15\lib\net452\Datory.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.2, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.2\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.5.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
@@ -81,6 +90,7 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="QueryBuilder, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SqlKata.1.1.7\lib\net45\QueryBuilder.dll</HintPath>
     </Reference>
@@ -123,6 +133,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -174,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="SiteServer\aibol\UploadExcel.aspx" />
     <Content Include="SiteServer\assets\codeMirror\LICENSE" />
     <Content Include="SiteServer\assets\echarts\.DS_Store" />
     <Content Include="SiteServer\assets\fonts\fontawesome-webfont.eot" />
@@ -189,6 +202,71 @@
     <Content Include="SiteServer\assets\menus\Settings.config" />
     <Content Include="SiteServer\assets\menus\Site.config" />
     <Content Include="SiteServer\assets\menus\Top.config" />
+    <Content Include="SiteServer\assets\select2\dist\css\select2.css" />
+    <Content Include="SiteServer\assets\select2\dist\css\select2.min.css" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\af.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\ar.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\az.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\bg.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\bn.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\bs.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\ca.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\cs.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\da.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\de.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\dsb.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\el.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\en.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\es.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\et.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\eu.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\fa.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\fi.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\fr.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\gl.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\he.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\hi.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\hr.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\hsb.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\hu.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\hy.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\id.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\is.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\it.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\ja.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\ka.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\km.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\ko.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\lt.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\lv.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\mk.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\ms.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\nb.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\ne.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\nl.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\pl.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\ps.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\pt-BR.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\pt.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\ro.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\ru.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\sk.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\sl.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\sq.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\sr-Cyrl.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\sr.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\sv.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\th.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\tk.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\tr.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\uk.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\vi.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\zh-CN.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\i18n\zh-TW.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\select2.full.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\select2.full.min.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\select2.js" />
+    <Content Include="SiteServer\assets\select2\dist\js\select2.min.js" />
     <Content Include="SiteServer\assets\ueditor\config.json" />
     <Content Include="SiteServer\assets\ueditor\third-party\jquery-1.10.2.min.map" />
     <Content Include="SiteServer\assets\ueditor\third-party\video-js\font\vjs.eot" />
@@ -248,6 +326,8 @@
     <Content Include="SiteServer\Shared\_LayoutWhite.cshtml" />
     <Content Include="SiteServer\toHtmlDemo\toHtml.aspx" />
     <Content Include="SiteServer\web.config" />
+    <Content Include="SiteServer\aibol\信息员录入模板.xlsx" />
+    <Content Include="SiteServer\aibol\支部录入模板.xlsx" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1587,6 +1667,14 @@
     <Content Include="SiteServer\Settings\userStyle.js" />
     <Content Include="SiteServer\Shared\tableStyle.js" />
     <Content Include="SiteServer\Shared\tableValidate.js" />
+    <Content Include="Template\Content\T_系统内容模板.html" />
+    <Content Include="Template\T_search.html" />
+    <Content Include="Template\T_产品展示.html" />
+    <Content Include="Template\T_关于我们.html" />
+    <Content Include="Template\T_图片新闻列表.html" />
+    <Content Include="Template\T_系统栏目模板.html" />
+    <Content Include="Template\T_经典案例.html" />
+    <Content Include="T_系统首页模板.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1594,6 +1682,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CentralizedPrefixProvider.cs" />
+    <Compile Include="Controllers\AibolController.cs" />
     <Compile Include="Controllers\Home\HomeContentAddLayerImageController.cs" />
     <Compile Include="Controllers\Home\HomeContentsLayerCopyController.cs" />
     <Compile Include="Controllers\Home\HomeContentsLayerCutController.cs" />
@@ -1675,8 +1764,66 @@
     <Compile Include="Controllers\V1\V1PingController.cs" />
     <Compile Include="Controllers\V1\V1StlController.cs" />
     <Compile Include="ErrorRedirectModule.cs" />
+    <Compile Include="Migrations\201908050615409_initPV.cs" />
+    <Compile Include="Migrations\201908050615409_initPV.Designer.cs">
+      <DependentUpon>201908050615409_initPV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908060659512_authorAndDepartment.cs" />
+    <Compile Include="Migrations\201908060659512_authorAndDepartment.Designer.cs">
+      <DependentUpon>201908060659512_authorAndDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908080323094_PVSite.cs" />
+    <Compile Include="Migrations\201908080323094_PVSite.Designer.cs">
+      <DependentUpon>201908080323094_PVSite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\Db.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\PV.cs" />
+    <Compile Include="Models\siteserver_AccessToken.cs" />
+    <Compile Include="Models\siteserver_Administrator.cs" />
+    <Compile Include="Models\siteserver_AdministratorsInRoles.cs" />
+    <Compile Include="Models\siteserver_Area.cs" />
+    <Compile Include="Models\siteserver_Channel.cs" />
+    <Compile Include="Models\siteserver_ChannelGroup.cs" />
+    <Compile Include="Models\siteserver_Config.cs" />
+    <Compile Include="Models\siteserver_ContentCheck.cs" />
+    <Compile Include="Models\siteserver_ContentGroup.cs" />
+    <Compile Include="Models\siteserver_DbCache.cs" />
+    <Compile Include="Models\siteserver_Department.cs" />
+    <Compile Include="Models\siteserver_ErrorLog.cs" />
+    <Compile Include="Models\siteserver_Keyword.cs" />
+    <Compile Include="Models\siteserver_Log.cs" />
+    <Compile Include="Models\siteserver_PermissionsInRoles.cs" />
+    <Compile Include="Models\siteserver_Plugin.cs" />
+    <Compile Include="Models\siteserver_PluginConfig.cs" />
+    <Compile Include="Models\siteserver_RelatedField.cs" />
+    <Compile Include="Models\siteserver_RelatedFieldItem.cs" />
+    <Compile Include="Models\siteserver_Role.cs" />
+    <Compile Include="Models\siteserver_Site.cs" />
+    <Compile Include="Models\siteserver_SiteLog.cs" />
+    <Compile Include="Models\siteserver_SitePermissions.cs" />
+    <Compile Include="Models\siteserver_Special.cs" />
+    <Compile Include="Models\siteserver_TableStyle.cs" />
+    <Compile Include="Models\siteserver_TableStyleItem.cs" />
+    <Compile Include="Models\siteserver_Tag.cs" />
+    <Compile Include="Models\siteserver_Template.cs" />
+    <Compile Include="Models\siteserver_TemplateLog.cs" />
+    <Compile Include="Models\siteserver_TemplateMatch.cs" />
+    <Compile Include="Models\siteserver_User.cs" />
+    <Compile Include="Models\siteserver_UserGroup.cs" />
+    <Compile Include="Models\siteserver_UserLog.cs" />
+    <Compile Include="Models\siteserver_UserMenu.cs" />
     <Compile Include="NamespaceHttpControllerSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteServer\aibol\UploadExcel.aspx.cs">
+      <DependentUpon>UploadExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteServer\aibol\UploadExcel.aspx.designer.cs">
+      <DependentUpon>UploadExcel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SiteServer\toHtmlDemo\toHtml.aspx.cs">
       <DependentUpon>toHtml.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1701,7 +1848,17 @@
       <Name>SiteServer.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201908050615409_initPV.resx">
+      <DependentUpon>201908050615409_initPV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908060659512_authorAndDepartment.resx">
+      <DependentUpon>201908060659512_authorAndDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908080323094_PVSite.resx">
+      <DependentUpon>201908080323094_PVSite.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

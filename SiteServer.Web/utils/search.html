@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>平圩门户网站</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="/js/vue2.5.15.min.js"></script>
+    <script src="/js/global.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel='stylesheet' id='font-awesome-four-css' href='/css/font-awesome.min.css' type='text/css' media='all' />
+    <!-- <meta name="vfb" version="2.9.3" /> -->
+</head>
+  <body>
+<script src="/sitefiles/assets/components/jquery-1.9.1.min.js" type="text/javascript"></script>
+
+    <div class="themenav">
+    <!--logo+搜索+工作区登录信息-->
+    <div class="container">
+        <div class="logo"> <a href="/index.html"> <img src="/upload/images/2019/8/5aaf4f4ead0167e6.png" type="Logo" /> </a> </div>
+        <div class="search">
+            <div id="sb-search" class="sb-search sb-search sb-search-open">
+                <form id="searchform" method="get" action="/utils/search.html">
+                    <input class="sb-search-input" placeholder="输入关键词查找..." type="text" name="word">
+                    <input id="searchsubmit" class="sb-search-submit" type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </form>
+            </div>
+            <script src="/js/classie.js"></script>
+            <script src="/js/uisearch.js"></script>
+            <script>
+                new UISearch(document.getElementById('sb-search'));
+            </script>
+        </div>
+        <div class="loginInfo"><a href="#" id="loginInfo">登录工作区</a></div>
+        <div class="clearfix"></div>
+    </div>
+
+
+    <!--站点导航-->
+    <div class="container">
+        <div class="headerNav">
+            <ul class="navItem">
+                <!--stl:if testType="ChannelIndex" testOperate="Equals" testValue="首页"-->
+                <li><a href='/index.html'>首页</a></li>
+                <!--/stl:if-->
+                
+                    <li>
+                        <a href="/contents/3/1.html">公司概况</a>
+                        <ul class="second-nav">
+                            
+                                <li>
+                                    <a href="/contents/3/1.html">公司介绍</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a href="/contents/25/103.html">公司领导</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a href="/contents/26/104.html">组织结构</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a href="/channels/27.html">企业年鉴</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a href="/channels/28.html">年度大事记</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" href="/newsSite/">新闻中心</a>
+                        <ul class="second-nav">
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/57.html">头条新闻</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/58.html">新思想</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/59.html">公司要闻</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/60.html">红色教育活动</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/61.html">检修现场</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/62.html">月度学习</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/63.html">上级动态</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/64.html">部门动态</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/65.html">效益攻坚</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/66.html">通讯报道</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/67.html">文学天地</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/68.html">视频照片</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/69.html">职工风采</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="/newsSite/channels/70.html">新闻公告</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a href="javascript:;" target="">经营管理</a>
+                        <ul class="second-nav">
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.12/news.asp?typeid=78">电力市场</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.12/news.asp?typeid=79">财务管理</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.12/news.asp?typeid=80">燃料管理</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.12/news.asp?typeid=81">物资管理</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.12/news.asp?typeid=82">风险控制</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" href="http://10.78.100.120">协同办公</a>
+                        <ul class="second-nav">
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a href="javascript:;" target="">ERP系统</a>
+                        <ul class="second-nav">
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.81:8888/maximo">Maximo平台</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://erp.cpih.com.cn:8000/">ORACLE平台</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.70.101.32:9080/grm">财务共享系统</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.70.101.96:8000/">人力资源系统</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.100.126/">安健环信息</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.70.101.99/lds">Saba培训管理系统</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.70.101.230:8000/">安健环&生产管理系统</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.100.241/login.jsp">ERP运维平台</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a href="javascript:;" target="">生产实时系统</a>
+                        <ul class="second-nav">
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.111/portal/">SIS系统</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.45/">调度负荷曲线</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.90:8001/Bowlder/main.jsp">图模导航</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.86:8008/dcmis/power/pub/jsp/Login.jsp">操作票管理系统</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.50/">燃料管理系统</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.124/pwpeas/platform/login/login.jsp">两个细则考核</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://220.178.198.243:800/">污染排放平台</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a href="javascript:;" target="">专项管理</a>
+                        <ul class="second-nav">
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.100.119/thams/">档案管理系统</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.70.101.68:8000/">物资编码管理</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.86:88/">三期基建信息网</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a href="javascript:;" target="">标准化管理</a>
+                        <ul class="second-nav">
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.39:8081/dlbz/system/bzlist.htm">电力技术标准</a>
+                                    <ul class="third-nav">
+                                        
+                                            <li>
+                                                <a target="_blank" href="https://www.baidu.com">test1</a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" href="https://www.163.com">test2</a>
+                                            </li>
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.78/kns55/">期刊查询数据库</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.138.20.86/">标准化管理网</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" href="http://10.138.20.37:5555/">检修信息网</a>
+                        <ul class="second-nav">
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a href="javascript:;" target="">集团站点</a>
+                        <ul class="second-nav">
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.0.155/">国家电投</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://www.cpih.com.cn/">中电国际</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.113.119/">中电新能源</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.77.192.32/">中电检修</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.101.15/">清河发电</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.107.253/index.aspx">神头发电</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.106.15/">芜湖电厂</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.102.15/">姚孟电厂</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.110.15/">大别山发电</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.105.15/">常熟发电</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a target="_blank" href="http://10.78.108.121/">福溪发电</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            //三级导航交互
+            var _this1 = null;
+            $('.headerNav .navItem>li').hover(function () {
+                _this1 = $(this);
+                _this1.find('.second-nav').show();
+                var _this2 = null;
+                _this1.find('.second-nav').find('li').hover(function () {
+                    _this2 = $(this);
+                    _this2.find('.third-nav').show();
+                    _this2.find('.third-nav').hover(function () {
+                        $(this).show();
+                    }, function () {
+                        $(this).hide();
+                    });
+                }, function () {
+                    _this2.find('.third-nav').hide();
+                });
+            }, function () {
+                if (_this1) {
+                    _this1.find('.second-nav').hide();
+                }
+            });
+
+            //获取当前登录用户信息
+            $.ajax({
+                url: global.backstageAPIUrl.loginInfo,
+                type: 'get',
+                success: function (response) {
+                    if (response.Code == 200 && response.Data) {
+                        global.loginInfo = response.Data; //把数据存储下来备用
+                        $("#loginInfo").text('我的工作区');
+                    }
+                }
+            });
+        });
+    </script>
+</div>
+    <div class="clearfix"></div>
+    <div class="maincon">
+      <div class="container neicon">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="sidbar">
+              <div class="sidbarnav">
+                <div class="tzggtit"> <span> 首页 </span> </div>
+                <ul class="ymtitle">
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="listcon">
+              <div class="bread">
+                <div itemscope class="breadcrumbs"> 
+                  搜索结果页
+                </div>
+              </div>
+              
+<div id="ajaxElement_1_991">
+    <div class="stl_loading"><div class="alert alert-info" role="alert">
+                    <strong>提示!</strong> 系统正在搜索中，请稍后...
+                  </div></div>
+    <div class="stl_yes" style="display:none"></div>
+    <div class="stl_no" style="display:none"><div class="alert alert-danger" role="alert">
+                    <strong>抱歉!</strong> 找不到和您的查询相符的项目
+                  </div></div>
+</div>
+
+<script type="text/javascript" language="javascript">
+jQuery(document).ready(function(){
+    var url = '/api/sys/stl/actions/search';
+    var parameters = 
+{
+    isallsites: false,
+    sitename: '',
+    sitedir: '',
+    siteids: '',
+    channelindex: '',
+    channelname: '',
+    channelids: '',
+    type: 'title,content',
+    word: '',
+    dateattribute: 'AddDate',
+    datefrom: '',
+    dateto: '',
+    since: '',
+    pagenum: 0,
+    ishighlight: true,
+    siteid: '1',
+    ajaxdivid: 'ajaxElement_1_991',
+    template: 'kQVCkn3Jj8frv5wmfft6gDKusU3QEOlPh2P5MhaQARMyub0slash0EWGaR2mWRSTigkOgRxDucPw0add0JCSigd7iZJIheiezyDfsRkD2jUpsmZOn9JDh4HKIbMczBCaEfYA7Vo9S0slash0OSJOAiRKD1jICLSuyvurwqsTUuezXQZjHHt0MoFcfMaGiHs6CBhiPBDUx1pBUcefilPVZOLruPoHFi50slash0U9rXlpiGKdLpthjap3iS3nxhXN0add0INCgonLq8eDhyvjyEEFMOzBMDeobf25u50slash0wW5hlOHd9gExN9UpslBuKpVyLVQJ8jiCg7QWukD2eNS7LC0slash0AUgE8LBqebgxWCaZZAqV8TLwchAOYNYze7uQEFKajnc3aHR6f2nPaOYzb4c0p51Zfm7Of0add0NZftE4bfzj5iVB0slash0CU5dMz0slash0EIDwDw80HdpdX47ABvhsvOY2V70add0iddCgppYBRjCB9LZMtoqDLtjRMnSzUvVBr1AUSNgMmqg6mduUViTtbcW8zKr4IiBU0slash0yxiUHBebdX6W0add0B0add066X2b9BB0slash0mu8Sf0add0r0D0sXHJ9KUamJmP66xMcFWEp1Wf0IDgV1NKjZamRQwutCaxqIEOY0add0oe0slash0ezZ0kjGAY4OtEsXlwmv80add0wD0slash0rt2HVUrICfDIuVuzjpxOqeSCc5M290slash00slash0DmDXfngPc6DoE3Y71aJ0slash065kZtZEFqU5ehb31S15gLIpY1HGUNJwOEwpxQpbbTFFsN6hqai8aEO9GW8sI45YNPkfcBc1IHEQXWly0j1g8SCxgFvR0slash0EDkHrfZ9EafGkxO5nAgHiIMeDFnZ3fllI4D3x2kXeVOnUeR8iJTQ2FgwQzlhjAbkTWr4DHCOMuT9JiV7A4HkRtLhoV5fFjoOIr1AWQTlUsgsunyTRW1PF6TZ8kHFR2COcPksaFFFThoDU7Z0hVdqJatTqCIlt1eD75Sek7mWasgV8Xi0slash08Uk5Vu6yI6imBz2DLiSiYi82TCmxI9LfrQC9dk4y30NIsY0slash0Y057AyZkuHMCnQXbRW0slash0zZaeODXXkxP3cplix0slash0wi9dQk6C6tXItvBCb1QpVzjiddlStP0slash0hPGJvq01bs3jo053SmPMpLPUFyaq2Xa4HnnyTqgpyfTVXZmJ3WQ4YXkEKfflJCDAqDy0add0Cu2eMPt948mVcpOQSApx84mhPMC2DTy0slash0gsyCdL9LHoLYFoNlhm6s0add0A2hkMqRPwH0add0KBXUUC6UbDZlL0slash0fv8SVY2quo20SQols20slash0ViHxh8C8pGxM4D8v0slash0xyY97iDg27SQIlpFYi5MKr7I4owxahDQjrUbAYH0slash0sEmy68NJi7qXoHiWSsSKYtm0KVNefgQAPfoZyTil3PohJ15to6O4jafAWLauSPrMsiHsw0iDj0slash0pcKTJdJaYnwpkP63j7MDXJh0add0kF0slash0w0iv7cG4dzYY6xQ9xzGuqKtTrTK8JcdidXgZrCbzxpxCVyrfyOr40q9TZPq4JxaN40add0md6A0CUhOzozGVGHqX3oA9UZkyj3PMAtypzsrOnK4EVKY2U7mPmLVRM991eGb75NtXUQY7xANBoXrxVQqDM6mQfJkniB1KVzOL7crGXYLdIh0z09KYTv67ifrypcqzHpr2o3r93ZlE7ozOFfpadYtn5QOadl8dnHvETaVinSDmJPBNPQaB4K5R92VILMWvy8TXxQmCwXsjnPPmxKB9pzV9Sm1a49ThvPTwWZ27yIz8UYhVkB4hX0add095H4WZKqGlHjD36XM1VZWdiKszlsTTSXngSc0slash0yFUvIPa4qfzBk7LmXvZm0add0R0add0on30add09anBj89fF0Xhe0slash0GLdBpNoMgVM6SI0slash0i8FzQP2UPv0RhCKNtVYbgcFfBKV89dRj8FC8iJdZXT5G0DKj10slash08MFTU8LfxBgfW80xxEU3WeOpswNelDt0add0d0Qv8JegoV1giVAdc1qD0add080slash0k9xgZtLb0slash0F5yGuG8mMPssd4kzi26brluarygBaRJMoYscffdDy3nJRxRjfEQfP8CDMQRMcqyVJWhgYn7VI9WeQtK7BLUGB0FG5BF7YjO9HJO30slash0KEKD2RXb0add0kSCkWpuV54rASk1kaMwoO8cf7xMq44r1au12EvJc5ErH5Tl4AcBP8XeyCtakncAyJ4BWC1W9BEmfL1p9J2MGIIRn2ATJhPQ4yKES4cd1FNmSGRh1Q2dRhNzuiTYLp67JfvvBDZP5OaGYAsBW90add0FV82CHBjHAz0slash0SnIEcPJuYAo3v4G0m1QTI1JUf97p14NzCV7IfbuD0slash0OyIHUcQX5A4t0add070RaeP9Eh9m4oSS9gBM6qJnL6ItDtM2YxUvV2jaBawUiVM6IUh8ds0WshNWAXvZwmGgFx0SHqgGQg0slash0EIoyl83h5086qJwi8zG74Ie4vWlozuHA0slash0F4QVSvGAWPNMll5n0slash0YI1yr21Yml4xflmcCvHpIrJiHEyh81GQaD63aT75i4vPWdFFrFta0add0Q0slash0lk1vj35zou08pb634um0slash0CUM600add0M6a7D0FFDaAW7mm1EoXTqNYonIsZ14hlk0slash0uQjrG0add0cbWfa3Ez33JtvangzYsm0aMExevbvoCnN5y5M1p60add05Q4eN0slash0hFZW9RGW98woKPSuBbFszNLtd98pkpvZbf0add0W30add05ILaXYlpBsqQ7BGe0slash0H0S5OmnbRzI8AiizxAOGBlH0add0kUZBJgFU2RQbdKzJY0add0NZr0bt8vN1hP90slash0XfJQKy0slash0d6tpW6A4MVjvtZiq8Yg3EZg8znUSyNRPA0slash06tHswJgDS4xQCcdb0GtmUE39siybaJzvuJn0slash00slash0SWveL0slash0Cnb383ADs3kt3C0slash0sIlwPiCq06s1iCC3HmjZO0slash0hRQIC8XgbeMr4uDDsC0add0dfyQiB4h3AS5ntJBRC9AAuSkW3wzphRLrq8Smew1bPnd0wNKcAZv9IcgZYCDOh0slash0uaiK8lTc0slash0U2EbEzqydwDI0slash0x2UFIgJVhMph3SYQ7uhnAi0slash00add03BRWY2vs4U4ScytaPnqInZBbLySuTmFlVnsGOS5LeZ8f0QLKcKCXYx207kpBM10slash0QVlMERBIF00slash0esxhCjy1XvDO2Im7BoAMVpS3AI0slash0ksFTA49DabLQjqYSEHAsNEqyAdYJm7Lb8KFwDErzqB4UWy02lx0add0T0add0hta4kfRENhUgbeT6HIIN060secret0',
+};
+
+    var queryString = document.location.search;
+    if (queryString && queryString.length > 1) {
+        queryString = queryString.substring(1);
+        var arr = queryString.split('&');
+        for(var i=0; i < arr.length; i++) {
+            var item = arr[i];
+            var arr2 = item.split('=');
+            if (arr2 && arr2.length == 2) {
+                var key = (arr2[0] || '').toLowerCase();
+                if (key) {
+                    parameters[key] = decodeURIComponent(arr2[1]);
+                }
+            }
+        }
+        if (!parameters['page']) {
+            parameters['page'] = 1;
+        }
+
+        jQuery.support.cors = true;
+        jQuery.ajax({
+            url: url,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(parameters),
+            dataType: 'json',
+            success: function(res) {
+                jQuery("#ajaxElement_1_991 .stl_loading").hide();
+                jQuery("#ajaxElement_1_991 .stl_yes").show();
+                jQuery("#ajaxElement_1_991 .stl_no").hide();
+                jQuery("#ajaxElement_1_991 .stl_yes").html(res);
+            },
+            error: function(e) {
+                jQuery("#ajaxElement_1_991 .stl_loading").hide();
+                jQuery("#ajaxElement_1_991 .stl_yes").hide();
+                jQuery("#ajaxElement_1_991 .stl_no").show();
+            }
+        });
+    } else {
+        jQuery("#ajaxElement_1_991 .stl_loading").hide();
+        jQuery("#ajaxElement_1_991 .stl_yes").hide();
+        jQuery("#ajaxElement_1_991 .stl_no").hide();
+    }
+});
+
+function stlRedirectajaxElement_1_991(page)
+{
+    var queryString = document.location.search;
+    if (queryString && queryString.length > 1) {
+        queryString = queryString.substring(1);
+        var parameters = '';
+        var arr = queryString.split('&');
+        for(var i=0; i < arr.length; i++) {
+            var item = arr[i];
+            var arr2 = item.split('=');
+            if (arr2 && arr2.length == 2) {
+                if (arr2[0] !== 'page') {
+                    parameters += item + '&';
+                }
+            }
+        }
+        parameters += 'page=' + page;
+        location.href = location.protocol + '//' + location.host + location.pathname + location.hash + '?' + parameters;
+    }
+}
+
+function stlJumpajaxElement_1_991(selObj)
+{
+    stlRedirectajaxElement_1_991(selObj.options[selObj.selectedIndex].value);
+}
+</script>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <div class="footer">
+  <div class="container">
+    <div class="footer_top">
+      <div class="footernav">
+        <div class="menu-%e5%ba%95%e9%83%a8%e8%8f%9c%e5%8d%95-container">
+          <ul id="menu-%e5%ba%95%e9%83%a8%e8%8f%9c%e5%8d%95" class="footnav">
+          
+            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="/contents/3/1.html">公司概况</a>
+              <ul class="sub-menu">
+              
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/contents/3/1.html">公司介绍</a></li>
+              
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/contents/25/103.html">公司领导</a></li>
+              
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/channels/27.html">企业年鉴</a></li>
+              
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/channels/28.html">年度大事记</a></li>
+              
+              </ul>
+            </li>
+          
+            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="/contents/30/111.html">公司文化</a>
+              <ul class="sub-menu">
+              
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/contents/30/111.html">核心价值观</a></li>
+              
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/contents/31/112.html">文化体系</a></li>
+              
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/contents/33/114.html">高层观点</a></li>
+              
+              </ul>
+            </li>
+          
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer_other">
+        <div class="footer_other_title">资源下载</div>
+        <div class="footer_other_con">
+          
+          <a target="_blank" href="https://www.baidu.com">消息助手</a><br>
+        
+          <a href="/upload/files/2019/8/5024da72853cb2c.txt">谷歌浏览器</a><br>
+        
+          <a href="/upload/files/2019/8/be6ba5ba750cd332.txt">IE9浏览器</a><br>
+        
+        </div>
+      </div>  
+      <div class="footer_other">
+        <div class="footer_other_title">系统管理</div>
+        <div class="footer_other_con"> 
+          <a target="_blank" href="https://www.baidu.com">登录管理后台</a>
+        </div>
+      </div>
+      <div class="footer_other">
+        <div class="footer_other_title">站点访问统计</div>
+        <div class="footer_other_con" id="vm_siteVisitData" v-cloak>
+            <span>总访问量：{{siteVisitData.totalPV}}次</span><br />
+            <span>今日访问量：{{siteVisitData.todayPV}}次</span><br />
+            <span>日均访问量：{{siteVisitData.avgPV}}次</span>
+        </div>
+      </div>
+      <div class="footer_other wide">
+        <div class="footer_other_title">联系方式</div>
+        <div class="footer_other_con">
+          <span>公司地址：安徽省淮南市平圩镇某某路1322号</span><br/>
+          <span>联系电话：0566-87654321</span><br/>
+          <span>电子邮箱：test@pw.com</span></div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="footer-bottom" style="text-align:center;">
+      <div class="copyright">版权所有：中国电力平圩发电有限责任公司</div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(function () {
+        //Footer - 站点访问量数据收集、获取
+        vm = new Vue({
+            el: "#vm_siteVisitData",
+            data: {
+                siteVisitData: {    //站点访问量数据
+                    todayPV: null,  //站点日访问量
+                    avgPV: null,    //站点平均访问量
+                    totalPV: null   //站点总访问量
+                },
+                site: 'major'       //站点访问量统计的站点标识
+            },
+            methods: {
+                //获取站点日访问量数据
+                getTodayPV: function () {
+                    var self = this;
+                    $.ajax({
+                        url: '/api/aibol/GetPV?site=' + self.site,
+                        type: 'get',
+                        success: function (response) {
+                            if (response.code == 200 && response.data) {
+                                self.siteVisitData.todayPV = response.data;
+                            }
+                        }
+                    })
+                },
+
+                //获取站点平均访问量数据
+                getAvgPV: function () {
+                    var self = this;
+                    $.ajax({
+                        url: '/api/aibol/GetAvgPV?site=' + self.site,
+                        type: 'get',
+                        success: function (response) {
+                            if (response.code == 200 && response.data) {
+                                self.siteVisitData.avgPV = response.data;
+                            }
+                        }
+                    });
+                },
+
+                //获取站点总访问量数据
+                getTotalPV: function () {
+                    var self = this;
+                    $.ajax({
+                        url: '/api/aibol/GetTotalPV?site=' + self.site,
+                        type: 'get',
+                        success: function (response) {
+                            if (response.code == 200 && response.data) {
+                                self.siteVisitData.totalPV = response.data;
+                            }
+                        }
+                    });
+                },
+
+                //添加站点访问量数据
+                setPV: function () {
+                    var self = this;
+                    $.ajax({
+                        url: '/api/aibol/addpv?site=' + self.site,
+                        type: 'get',
+                        success: function (response) {
+                            if (response.code == 200) {
+                                self.getTodayPV();
+                                self.getAvgPV();
+                                self.getTotalPV();
+                            }
+                        }
+                    });
+                }
+            },
+            created: function () {
+                var self = this;
+
+                //站点访问量数据设置
+                this.setPV();
+            }
+        })
+    });
+</script>
+  </body>
+</html>

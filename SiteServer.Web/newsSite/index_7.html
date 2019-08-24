@@ -1,0 +1,841 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        新闻中心网站
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="/newsSite/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="/newsSite/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="/newsSite/css/common.css" type="text/css" rel="stylesheet" />
+    <link href="/newsSite/css/swiper.min.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/newsSite/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/newsSite/js/swiper.min.js"></script>
+    <script type="text/javascript" src="/newsSite/js/js.js"></script>
+    <link rel='stylesheet' id='font-awesome-four-css' href='/css/font-awesome.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='style-css' href='/newsSite/css/style.css' type='text/css' media='all' />
+</head>
+<body class="home blog">
+<script src="/sitefiles/assets/components/jquery-1.9.1.min.js" type="text/javascript"></script>
+
+    <!--Logo+导航+搜索-->
+    <div class="themenav">
+    <!--logo+搜索+工作区登录信息-->
+    <div class="container" style="position:relative">
+        <div class="logo"> <a href="/newsSite/index.html"> <img src="/newsSite/upload/images/2019/8/243b59459414fb98.png" type="Logo" /> </a> </div>
+        <div class="search">
+            <div id="sb-search" class="sb-search sb-search-open">
+                <form id="searchform" method="get" action="/newsSite/utils/search.html">
+                    <input class="sb-search-input" placeholder="输入关键词查找..." type="text" name="word">
+                    <input id="searchsubmit" class="sb-search-submit" type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </form>
+            </div>
+            <script src="/js/classie.js"></script>
+            <script src="/js/uisearch.js"></script>
+            <script>
+                new UISearch(document.getElementById('sb-search'));
+            </script>
+        </div>
+        <div class="loginInfo"><a href="#" id="loginInfo">登录工作区</a></div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<!--<div id="top_nav" class="header yapiskan">
+  <div class="container">
+    <div class="row">
+      <div class="top-bar mnav">
+        <button class="navbar-toggle js-open-nav" type="button">
+        <div class="icon-bar"> </div>
+        <div class="icon-bar"> </div>
+        <div class="icon-bar"> </div>
+        </button>
+      </div>
+      <div class="logo mnav"> <a href="/newsSite/index.html"> <img src="/newsSite/upload/images/2019/8/243b59459414fb98.png" type="Logo" /> </a> </div>
+      <div class="pull-right mnav"> <i class="icon icon-search" id="msearch"></i> </div>
+      <div class="nav-left" id="nav">
+        
+        <ul class="nav-menu clearfix">
+        
+        </ul>
+        
+      </div>
+      <div class="nav-right">
+        <ul class="clearfix">
+          <li class="wx-li">
+            <div class="wx-pic"> <img src="/newsSite/upload/images/2017/6/17173412614.jpg" type="weixin" alt="微信服务号" />
+              <div class="wx-text"> <span>微信扫一扫</span> </div>
+            </div>
+            <i class="icon wx-icon"></i><span>微信</span><em class="guide-prompt" style="display: none;"></em> </li>
+          <li class="search-li"><i class="icon icon-search "></i><span>搜索</span></li>
+          <li class="login-li"><a href="/Home/pages/login.html?returnUrl=/newsSite" target="_blank" title="登录网站">登录</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+    <div class="clearfix"></div>
+
+    <!--头部重要内容信息-->
+    <div>
+        <div class="container">
+            <!--宣传大图 -->
+            <div class="row" style="padding-top:20px;">
+                
+                    <a target="_blank" href="https://www.baidu.com"><img src="/newsSite/upload/images/2019/8/7a366803db4d6aa8.jpg" width="1170"></a>
+                
+            </div>
+
+            <!--头条聚焦-->
+            <div class="row" style="padding-top: 20px;margin-bottom: -20px;">
+                <div class="col-sm-12 col-md-6 col-lg-6 pic-left">
+                    
+                        <img src="/newsSite/upload/images/2019/8/fcb2076ff0ee387a.jpg" width="575" height="383" onclick="window.location.href='/newsSite/contents/57/76.html'" alt="第五条头条新闻标题标标标题第五条头条新闻的标题放在这里，标题要足够长哦再长一点 ">
+                        <div class="pic-left_title">第五条头条新闻标题标标标题第五条头条新闻的标题放在这里，...</div>
+                    
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-mid">
+                    <ul>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/79.html">
+                                    <img src="/newsSite/upload/images/2019/8/2c84488bb5328e63.jpg" alt="车顶戴柑东奔西走枯干">
+                                    <div class="pic-title2">
+                                        车顶戴柑东奔西走枯干
+                                    </div>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/77.html">
+                                    <img src="/newsSite/upload/images/2019/8/6e8446c6075b227d.jpg" alt="第六条胜多负少读书法顶戴">
+                                    <div class="pic-title2">
+                                        第六条胜多负少读书法顶戴
+                                    </div>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-right">
+                    <ul>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/75.html">
+                                    <img src="/newsSite/upload/images/2019/8/f257a173be502002.jpg" alt="第四条第四条头条新闻第四条第四条头条新闻">
+                                    <div class="pic-title2">
+                                        第四条第四条头条新闻第四条第四条...
+                                    </div>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/newsSite/contents/57/74.html">
+                                    <img src="/newsSite/upload/images/2019/8/616315b60ad9fc5a.jpg" alt="第三条头条新闻标题">
+                                    <div class="pic-title2">
+                                        第三条头条新闻标题
+                                    </div>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+
+            <!--通知公告-->
+            <div class="marquee_wrap">
+                <div class="marquee_title">通知公告：</div>
+                <marquee onmouseout="this.start()" onmouseover="this.stop()">
+                    
+                        <a href="/newsSite/contents/70/1091.html">习近平新时代中国特色社会主义思想的鲜明品格 2019-08-23</a>
+                    
+                        <a href="/newsSite/contents/70/1090.html">新时代与习近平新时代中国特色社会主义思想 2019-08-23</a>
+                    
+                        <a href="/newsSite/contents/70/1089.html">新时代·幸福美丽新边疆 2019-08-23</a>
+                    
+                        <a href="/newsSite/contents/70/1088.html">新时代与中国特色社会主义 2019-08-23</a>
+                    
+                        <a href="/newsSite/contents/70/1087.html">新时代“赶考”路上，习近平这些话掷地有声 2019-08-23</a>
+                    
+                        <a href="/newsSite/contents/70/1086.html">华为麒麟 970 国内发布 2019-08-23</a>
+                    
+                        <a href="/newsSite/contents/70/1085.html">我厂某某项目荣获某某奖 2019-08-23</a>
+                    
+                        <a href="/newsSite/contents/70/1084.html">新闻公告啦啦啦啦噜 2019-08-23</a>
+                    
+                </marquee>
+                <a class="more" href="/newsSite/channels/70.html">查看更多&gt;&gt;</a>
+            </div>
+
+            <!--头条新闻-->
+            <div class="headline_warp">
+                <div class="la-title">
+                    <h3>最新文章</h3>
+                </div>
+                <div class="row m-t-20">
+                    <div class="col-md-5">
+                        
+                            <a href="/newsSite/contents/57/76.html"><img src="/newsSite/upload/images/2019/8/fcb2076ff0ee387a.jpg" class="head_img"></a>
+                        
+                    </div>
+                    <div class="col-md-3">
+                        
+                            <a class="head_title" href="/newsSite/contents/57/76.html">第五条头条新闻标题标标标题第五条头条新闻...</a>
+                            <div class="head_summary">第五条头条新闻内容摘要放在这里，用于在页面上显示，数字超长可以加省略号。第五条头条新闻内容摘要放在这里，用于在页面上显示，数字超长可以加省略号。第五条头条新闻内容摘要放在这里，用于在页面上显示，数字超长可以加省略号。第五条头条新闻内容摘要放在这里，用于在页面上...</div>
+                        
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="head_list">
+                            
+                                <a class="head_list_title" href="/newsSite/contents/57/76.html">第五条头条新闻标题标标标题第五条头条新...</a>
+                                <div class="head_list_info">
+                                    <i class="iconfont icon-shijian"></i> 2019-08-16&emsp;&emsp;
+                                    <i class="iconfont icon-faxian"></i> 红旗支部
+                                </div>
+                            
+                                <a class="head_list_title" href="/newsSite/contents/57/78.html">第七条头条新闻标题</a>
+                                <div class="head_list_info">
+                                    <i class="iconfont icon-shijian"></i> 2019-08-16&emsp;&emsp;
+                                    <i class="iconfont icon-faxian"></i> 信息支部
+                                </div>
+                            
+                                <a class="head_list_title" href="/newsSite/contents/57/80.html">非机动车顶戴柑东奔西走枯干</a>
+                                <div class="head_list_info">
+                                    <i class="iconfont icon-shijian"></i> 2019-08-16&emsp;&emsp;
+                                    <i class="iconfont icon-faxian"></i> 发电支部
+                                </div>
+                            
+                                <a class="head_list_title" href="/newsSite/contents/57/79.html">车顶戴柑东奔西走枯干</a>
+                                <div class="head_list_info">
+                                    <i class="iconfont icon-shijian"></i> 2019-08-16&emsp;&emsp;
+                                    <i class="iconfont icon-faxian"></i> 第三支部
+                                </div>
+                            
+                                <a class="head_list_title" href="/newsSite/contents/57/77.html">第六条胜多负少读书法顶戴</a>
+                                <div class="head_list_info">
+                                    <i class="iconfont icon-shijian"></i> 2019-08-16&emsp;&emsp;
+                                    <i class="iconfont icon-faxian"></i> 第三支部
+                                </div>
+                            
+
+                            <a class="head_list_more" href="/newsSite/channels/57.html">更多……</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--主要内容 -->
+    <div>
+        <div class="container">
+            <div class="row">
+                <!--左侧内容-->
+                <div class="col-sm-12 col-md-8 col-lg-8 cont-left">
+                    <!--新思想/公司要闻 -->
+                    <div class="la-title">
+                        <h3>新思想</h3>
+                        <h3>公司要闻</h3>
+                    </div>
+
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/18.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/15184428989.jpg" alt="BAT都着力发展消费金融，相比之下有什么不同？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/18.html">BAT都着力发展消费金融，相比之下有什么不同？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/18.html">
+                                                            科技动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-15</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span>
+                                                </div>
+                                                <div class="mob-sub"> 消费金融是当下互联网金融乃至整个金融领域的热点，企业降杠杆、居民升杠杆被认为是未来经济大趋势，消费金融前景可观。巨头在做，创... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=互联网" rel="tag">互联网</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=金融" rel="tag">金融</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/17.html"> <img class="xyscale" src="/newsSite/images/timthu.jpg" alt="观念总是被用来打破的"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/17.html">观念总是被用来打破的</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/17.html">
+                                                            科技动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-15</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span>
+                                                </div>
+                                                <div class="mob-sub"> 注：观念的形成来自于已有知识，而已知的边缘才是更为广泛的未知空间。或许站在知识的顶点，所有现在的科学、知识、观点都是愚昧，但... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=金融" rel="tag">金融</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=经济" rel="tag">经济</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/14.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/28131657850.png" alt="被誉为下一个BAT级别巨头的蚂蚁金服，是如何进行投资布局的？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/14.html">被誉为下一个BAT级别巨头的蚂蚁金服，是如何进行投资布局的？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/14.html">
+                                                            科技动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-15</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span>
+                                                </div>
+                                                <div class="mob-sub"> 蚂蚁金融服务集团在最近六个月里，密集投资了10家公司，从滴滴出行到百盛中国，覆盖了餐饮O2O、交通出行、影视、私募基金数据、生物... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=蚂蚁金服" rel="tag">蚂蚁金服</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=BAT" rel="tag">BAT</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=互联网" rel="tag">互联网</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/15.html"> <img class="xyscale" src="/newsSite/images/timthumb (5).jpg" alt="人工智能创业到底能不能挣钱，可盈利的机会又在哪儿？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/15.html">人工智能创业到底能不能挣钱，可盈利的机会又在哪儿？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/15.html">
+                                                            科技动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-15</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span>
+                                                </div>
+                                                <div class="mob-sub"> 去年流行的还是马斯克、霍金、哈撒比斯等人背书的“人工智能恐怖论”，但到了2016年，人工智能却摇身一变成为创业的新风口。尽管人工... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=人工智能" rel="tag">人工智能</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/39/16.html"> <img class="xyscale" src="/newsSite/images/ss.jpg" alt="融资12亿的春雨CEO去世，为什么创业者的焦虑停不下来？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/39/16.html">融资12亿的春雨CEO去世，为什么创业者的焦虑停不下来？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/39/16.html">
+                                                            科技动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-15</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span>
+                                                </div>
+                                                <div class="mob-sub"> 昨天中午开始，关于春雨医生创始人张锐突发心肌梗塞去世的消息，开始刷爆微信朋友圈和微博，随后各家媒体和医疗界相关人士证实并跟进... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=互联网" rel="tag">互联网</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/49/55.html"> <img class="xyscale" src="/newsSite/upload/images/2017/6/28132916594.png" alt="硬件与软件的辩证关系：硬件创建新世界，软件拿走利润"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/49/55.html">硬件与软件的辩证关系：硬件创建新世界，软件拿走利润</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/49/55.html">
+                                                            科技专题
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-15</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> </span>
+                                                </div>
+                                                <div class="mob-sub"> 在这篇文章里我们会持续思考一个非常辩证的问题：硬件和软件到底是怎么样一种关系？这种关系之所以重要在于软件公司做硬件或者硬件公... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=Google" rel="tag">Google</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=微软" rel="tag">微软</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=软件" rel="tag">软件</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=iT" rel="tag">iT</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/42/26.html"> <img class="xyscale" src="/newsSite/images/timthumb (3).jpg" alt="在科技公司看来，福特汽车最令人羡慕的是什么？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/42/26.html">在科技公司看来，福特汽车最令人羡慕的是什么？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/42/26.html">
+                                                            企业热点
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-15</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 汽车家族</span>
+                                                </div>
+                                                <div class="mob-sub"> 我们先来做一个测试：你面前有一个巧克力盒子，里面装了一半的巧克力，你可以选择现在就享受这个美味，也可以选择再等一个星期，为了... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=科技" rel="tag">科技</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=福特" rel="tag">福特</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=汽车" rel="tag">汽车</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/42/27.html"> <img class="xyscale" src="/newsSite/images/banner-3.jpg" alt="硬件与软件的辩证关系：硬件创建新世界，软件拿走利润"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/42/27.html">硬件与软件的辩证关系：硬件创建新世界，软件拿走利润</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/42/27.html">
+                                                            企业热点
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-15</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 软件世界</span>
+                                                </div>
+                                                <div class="mob-sub"> 在这篇文章里我们会持续思考一个非常辩证的问题：硬件和软件到底是怎么样一种关系？这种关系之所以重要在于软件公司做硬件或者硬件公... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=金融" rel="tag">金融</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=科技" rel="tag">科技</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/40/19.html"> <img class="xyscale" src="/newsSite/images/banner-2.jpg" alt="刚发布了新产品，维基解密就要揭 Google 的老底？"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/40/19.html">刚发布了新产品，维基解密就要揭 Google 的老底？</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/40/19.html">
+                                                            财经动态
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-15</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 维基解密</span>
+                                                </div>
+                                                <div class="mob-sub"> Google 大部分的新产品发布，在媒体对围绕关于外观、参数和体验的连篇累牍的报道之后，最终无一例外都要落到一个结论上：Google 希望... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=谷歌" rel="tag">谷歌</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                        <div class="la-list02 line-botm clearfix">
+                                            <div class="la-l-img"> <a target="_blank" href="/newsSite/contents/45/41.html"> <img class="xyscale" src="/newsSite/images/banner-1.jpg" alt="“严冬”已至，实业凋零，民营企业是清场出局的主角"> </a> </div>
+                                            <div class="la-r-text">
+                                                <h3> <a class="htitle-color" target="_blank" href="/newsSite/contents/45/41.html">“严冬”已至，实业凋零，民营企业是清场出局的主角</a> </h3>
+                                                <div class="mob-author">
+                                                    <span class="time">
+                                                        <i class="iconfont icon-mulutubiao"></i> <a style="color: #bbb;" href="/newsSite/contents/45/41.html">
+                                                            环球搜讯
+                                                        </a>
+                                                    </span> <span class="time"><i class="iconfont icon-shijian"></i> 2017-06-15</span> <span class="time liulan"><i class="iconfont icon-faxian"></i> 民营世界</span>
+                                                </div>
+                                                <div class="mob-sub"> 李清乐: “ 产能过剩，结构性调整，供给侧改革......现实情况是民营企业正经历倒闭潮，特别是制造业。昔日实业老板们已身心疲惫，他... </div>
+                                                <div class="tags">
+                                                    <i class="iconfont icon-biaoqian"></i>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=实业" rel="tag">实业</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=民营" rel="tag">民营</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=产业" rel="tag">产业</a>
+                                                    
+                                                        <a href="/newsSite/utils/tags.html?tagName=A股" rel="tag">A股</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                    <div id="page">
+                        <a href="/newsSite/index_6.html" style="background:#3CA5F6;">上一页</a>
+
+                        <a href="/newsSite/index_3.html">3</a><a href="/newsSite/index_4.html">4</a><a href="/newsSite/index_5.html">5</a><a href="/newsSite/index_6.html">6</a><span id="page-numberscurrent">7</span>
+
+                        <a href="javascript:;">下一页</a>
+                    </div>
+                </div>
+
+                <!--右侧边栏-->
+                <div class="wrap-right pull-right" style="width:30%; padding-top:30px;">
+                    
+                        <div class="sidebar">
+                            <div class="sidebar_title">领导讲话</div>
+                            <div class="sidebar_list">
+                                
+                                    <a href="/newsSite/contents/147/1101.html">处暑都有啥习俗？举办“开渔节”?出游迎秋</a>
+                                
+                                    <a href="/newsSite/contents/147/1100.html">31省份低保标准公布：上海、北京、天津位居...</a>
+                                
+                                    <a href="/newsSite/contents/147/1098.html">【中国吸引力】港珠澳大桥，“世界奇迹”背...</a>
+                                
+                                    <a href="/newsSite/contents/147/1096.html">&quot;时代新人说——我和祖国共成长&quot;演讲大赛举...</a>
+                                
+                                    <a href="/newsSite/contents/147/1094.html">习近平向第十二届中国－东北亚博览会致贺信</a>
+                                
+                            </div>
+                            <a class="sidebar_list_more" href="/newsSite/channels/147.html">更多……</a>
+                        </div>
+                    
+                        <div class="sidebar">
+                            <div class="sidebar_title">通知公告</div>
+                            <div class="sidebar_list">
+                                
+                                    <a href="/newsSite/contents/70/1091.html">习近平新时代中国特色社会主义思想的鲜明品...</a>
+                                
+                                    <a href="/newsSite/contents/70/1090.html">新时代与习近平新时代中国特色社会主义思想</a>
+                                
+                                    <a href="/newsSite/contents/70/1089.html">新时代&#183;幸福美丽新边疆</a>
+                                
+                                    <a href="/newsSite/contents/70/1088.html">新时代与中国特色社会主义</a>
+                                
+                                    <a href="/newsSite/contents/70/1087.html">新时代“赶考”路上，习近平这些话掷地有声</a>
+                                
+                                    <a href="/newsSite/contents/70/1086.html">华为麒麟 970 国内发布</a>
+                                
+                            </div>
+                            <a class="sidebar_list_more" href="/newsSite/channels/70.html">更多……</a>
+                        </div>
+                    
+                        <div class="sidebar">
+                            <div class="sidebar_title">学习资料</div>
+                            <div class="sidebar_list">
+                                
+                                    <a href="/newsSite/contents/62/1108.html">今天的金门很热闹！蔡英文巧遇马英九：你看...</a>
+                                
+                                    <a href="/newsSite/contents/62/1107.html">“白鹿”周日登陆粤闽交界 粤北山区特大暴...</a>
+                                
+                                    <a href="/newsSite/contents/62/1106.html">北京卫健委：2020年底 北京将消除艾滋病梅...</a>
+                                
+                            </div>
+                            <a class="sidebar_list_more" href="/newsSite/channels/62.html">更多……</a>
+                        </div>
+                    
+                        <div class="sidebar">
+                            <div class="sidebar_title">通讯报道</div>
+                            <div class="sidebar_list">
+                                
+                                    <a href="/newsSite/contents/66/1117.html">为应对美国加征关税冲击?iPhone新机或将采...</a>
+                                
+                                    <a href="/newsSite/contents/66/1116.html">中国民企500强发榜：华为四连冠，56家去年...</a>
+                                
+                                    <a href="/newsSite/contents/66/1115.html">浦东消保委：上海迪士尼不接受调解 坚持翻...</a>
+                                
+                                    <a href="/newsSite/contents/66/1114.html">马克龙要G7重点讨论热带雨林大火 被巴总统...</a>
+                                
+                                    <a href="/newsSite/contents/66/1113.html">特朗普“忠诚论”引争议，被指“分裂”美国...</a>
+                                
+                                    <a href="/newsSite/contents/66/1112.html">日本要建“宇宙作战队”？ 日媒称将与美方...</a>
+                                
+                                    <a href="/newsSite/contents/66/1111.html">特朗普要拿波多黎各换格陵兰岛？波多黎各人...</a>
+                                
+                                    <a href="/newsSite/contents/66/1110.html">“英国要成美国的附庸？”马克龙就无协议脱...</a>
+                                
+                                    <a href="/newsSite/contents/66/1109.html">日本舆论呼吁韩日理性处理争端:两国关系需...</a>
+                                
+                            </div>
+                            <a class="sidebar_list_more" href="/newsSite/channels/66.html">更多……</a>
+                        </div>
+                    
+                        <div class="sidebar">
+                            <div class="sidebar_title">常用工具</div>
+                            <div class="sidebar_list">
+                                
+                                    <a href="/newsSite/contents/148/1129.html">俄媒：为什么美国离不了华为？</a>
+                                
+                                    <a href="/newsSite/contents/148/1128.html">4G真降速了？测试北京10个地方找到真相</a>
+                                
+                                    <a href="/newsSite/contents/148/1127.html">蔚来员工：公司继续裁员，保留7500人</a>
+                                
+                                    <a href="/newsSite/contents/148/1126.html">雷军：上了新闻联播有点小激动</a>
+                                
+                                    <a href="/newsSite/contents/148/1125.html">扎克伯格八月抛售脸书股票套现近21亿</a>
+                                
+                                    <a href="/newsSite/contents/148/1119.html">是否会申办世界杯？中国足协主席这样回应</a>
+                                
+                                    <a href="/newsSite/contents/148/1118.html">“地球之肺”燃烧：亚马孙雨林大火创纪录 ...</a>
+                                
+                            </div>
+                            <a class="sidebar_list_more" href="/newsSite/channels/148.html">更多……</a>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--职工风采-->
+    <div>
+        <div class="container">
+            <div class="la-title">
+                <h3>职工风采</h3>
+            </div>
+        </div>
+    </div>
+
+    <!--信息员天地-->
+    <div class="publish_info" id="vm_publish_info">
+        <div class="container">
+            <div class="la-title">
+                <h3>信息员天地</h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div  style="margin: 40px auto; height: 283px; border:1px solid #ddd;" id="publish_chart_author"></div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div style="margin: 40px auto; height: 283px; border:1px solid #ddd;" id="publish_chart_department"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!--底部 -->
+    <div class="go-top0" id="gotopbtn" > <i class="icon icon-top"></i></div>
+<div class="footer" id="footer">
+  <div class="container">
+    <div class="row">
+      <div class=" col-sm-12 col-md-6 col-lg-6 footer-left">
+        <div class="footer-icon-list pull-right0">
+          <ul>
+            <a href="javascript:">
+            <li class="Qr-code-footer">
+              <div class="app-qrcode"> <img src="/newsSite/upload/images/2017/6/17173412614.jpg" type="weixin" width="130" height="130" /> </div>
+              <i class="icon icon-footer icon-footer-wx"></i> </li>
+            </a> <a href="http://t.qq.com/siteserver2011" target="_blank">
+            <li><i class="icon icon-footer icon-footer-inter"></i></li>
+            </a> <a href="http://developer.siteserver.cn/" target="_blank">
+            <li><i class="icon icon-footer icon-footer-rss"></i></li>
+            </a>
+          </ul>
+        </div>
+      </div>
+      <div class=" col-sm-12 col-md-6 col-lg-6  footer-right">
+        <div class="copy-right">
+          <div class="footer-tag-list"> 
+          
+          <a target="_blank" href="http://stl.siteserver.cn/">关于我们</a> 
+  
+          
+          <a target="_blank" href="http://docs.siteserver.cn/getting-started/index.html">加入我们</a> 
+  
+          
+          <a target="_blank" href="http://blog.siteserver.cn/">联系我们</a> 
+  
+          
+          <a target="_blank" href="http://bbs.siteserver.cn/">友情链接</a> 
+  
+          
+          </div>
+          <span>Copyright © 2003-2017 模板建站</span> </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="/js/vue2.5.15.min.js"></script>
+    <script src="/js/global.js" type="text/javascript"></script>
+    <script src="/newsSite/js/glodil.js" type="text/javascript"></script>
+    <script src="/newsSite/js/jquery-ias.min.js" type="text/javascript"></script>
+    <script src="/js/echarts.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            //信息员天地数据请求
+            vm = new Vue({
+                el: "#vm_publish_info",
+                data: {
+                    currentYear: null,  //客户端当前年份
+                    currentMonth: null, //客户端当前月份
+                    authorTop6: [],     //信息员Top6
+                    departmentTop6: []  //部门发稿量Top6
+                },
+                methods: {
+                    //信息员天地数据请求 - 按信息员
+                    getPublishInfoByAuthor: function (startTime) {
+                        var self = this;
+                        $.ajax({
+                            url: '/api/aibol/GetAuthorTop6?siteId=' + global.newsSiteId + "&startTime=" + startTime,
+                            type: 'get',
+                            success: function (response) {
+                                if (response) {
+                                    self.authorTop6 = response;
+                                    if (response.length > 0) {
+                                        var xAxis = [];
+                                        var series = [];
+                                        response.forEach(function (node, index) {
+                                            xAxis.push(node.author.replace('\(*\)', ''));
+                                            series.push(node.count);
+                                        })
+
+                                        //图表初始化
+                                        var chart_author = echarts.init(document.getElementById('publish_chart_author'));
+
+                                        // 指定图表的配置项和数据
+                                        var optionChartAuthor = {
+                                            color: ['#ed7d31'],
+                                            title: {
+                                                text: self.currentYear + '.' + self.currentMonth + '信息员发稿量Top6',
+                                                textAlign: 'left'
+                                            },
+                                            tooltip: {},
+                                            //legend: {
+                                            //    data: ['发稿量']
+                                            //},
+                                            xAxis: {
+                                                data: xAxis,
+                                                axisLabel: {
+                                                    interval: 0,
+                                                    rotate: 45
+                                                }
+                                            },
+                                            yAxis: {
+                                            },
+                                            series: [{
+                                                name: '发稿量',
+                                                type: 'bar',
+                                                barCategoryGap: '50%',
+                                                data: series
+                                            }]
+                                        };
+                                        //使用配置项和数据显示图表。
+                                        chart_author.setOption(optionChartAuthor);
+                                    }
+                                    else {
+
+                                    }
+                                }
+                            }
+                        })
+                    },
+                    //信息员天地数据请求 - 按部门
+                    getPublishInfoByDepartment: function (startTime) {
+                        var self = this;
+                        $.ajax({
+                            url: '/api/aibol/GetDepartmentTop6?siteId=' + global.newsSiteId + "&startTime=" + startTime,
+                            type: 'get',
+                            success: function (response) {
+                                if (response) {
+                                    self.departmentTop6 = response;
+                                    if (response.length > 0) {
+                                        var xAxis = [];
+                                        var series = [];
+                                        response.forEach(function (node, index) {
+                                            xAxis.push(node.department);
+                                            series.push(node.count)
+                                        })
+
+                                        //图表初始化
+                                        var chart_department = echarts.init(document.getElementById('publish_chart_department'));
+
+                                        // 指定图表的配置项和数据
+                                        var optionChartDepartment = {
+                                            color: ['#70ad47'],
+                                            title: {
+                                                text: self.currentYear + '.' + self.currentMonth + '部门发稿量Top6',
+                                                textAlign: 'left'
+                                            },
+                                            tooltip: {},
+                                            //legend: {
+                                            //    data: ['发稿量']
+                                            //},
+                                            xAxis: {
+                                                data: xAxis
+                                            },
+                                            yAxis: {},
+                                            series: [{
+                                                name: '发稿量',
+                                                type: 'bar',
+                                                barCategoryGap: '50%',
+                                                data: series
+                                            }]
+                                        };
+                                        //使用配置项和数据显示图表。
+                                        chart_department.setOption(optionChartDepartment);
+                                    }
+                                    else {
+
+                                    }
+                                }
+                            }
+                        })
+                    },
+                    //获取当前月份
+                    getStartTime: function () {
+                        var _today = new Date();
+                        var yyyy = _today.getFullYear();
+                        var MM = _today.getMonth() + 1;
+                        var dd = _today.getDate();
+                        MM = MM < 10 ? ('0' + MM) : MM;
+                        var today = yyyy + "-" + MM + '-01';
+
+                        this.currentYear = yyyy,    //客户端当前年份
+                        this.currentMonth = MM,     //客户端当前月份
+
+                        //请求信息员天地数据
+                        this.getPublishInfoByAuthor(today);
+                        this.getPublishInfoByDepartment(today);
+                    }
+                },
+                created: function () {
+                    var self = this;
+                    //待办任务(外部接口)
+                    this.getStartTime();
+                }
+            })
+        })
+    </script>
+
+    <!--<script type="text/javascript">
+        $('.weixin').mouseover(function () {
+            $('.weixin-Qr-code').css({ "opacity": "1", "margin-left": "70px", "display": "block" }),
+                $('.weixin').addClass('disabled')
+            // alert('fdafdsa');
+        });
+        $('.weixin').mouseout(function () {
+            $('.weixin-Qr-code').css({ "opacity": "1", "margin-left": "70px", "display": "none" }),
+                $('.weixin').removeClass('disabled')
+            // alert('fdafdsa');
+        });
+        </script>-->
+    <!--<script type='text/javascript' src='/newsSite/js/wp-embed.min.js'></script>-->
+</body>
+</html>

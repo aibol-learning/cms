@@ -68,6 +68,8 @@ namespace SiteServer.BackgroundPages.Cms
         {
             if (IsForbidden) return;
 
+            var adminInfo = AuthRequest.AdminInfo;
+
             PageUtils.CheckRequestParameter("siteId");
             _channelId = AuthRequest.IsQueryExists("channelId") ? AuthRequest.GetQueryInt("channelId") : SiteId;
 
@@ -117,7 +119,7 @@ namespace SiteServer.BackgroundPages.Cms
                 searchType, keyword,
                 dateFrom, dateTo, state, _isCheckOnly, false, _isTrashOnly, _isWritingOnly, onlyAdminId,
                 AuthRequest.AdminPermissionsImpl,
-                allAttributeNameList);
+                allAttributeNameList,isChecked?adminInfo.SSOId:"");
 
             PgContents.Param = new PagerParam
             {

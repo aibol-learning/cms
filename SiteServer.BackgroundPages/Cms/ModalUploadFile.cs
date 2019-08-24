@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.IO;
+using System.Web.Security;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using SiteServer.Utils;
 using SiteServer.CMS.Core;
 using SiteServer.Utils.Enumerations;
+using Spire.Pdf;
+using Spire.Doc;
+using Spire.Doc.Documents;
+using FileFormat = Spire.Doc.FileFormat;
 
 namespace SiteServer.BackgroundPages.Cms
 {
@@ -92,8 +98,61 @@ namespace SiteServer.BackgroundPages.Cms
                     return;
                 }
 
-                HifUpload.PostedFile.SaveAs(localFilePath);
+                //如果是pdf 或者 word 转图片保存
+                var path = string.Empty;
+                if (localFileName.EndsWith(".pdf"))
+                {
+                    PdfDocument doc = new PdfDocument();
+                    doc.LoadFromStream(HifUpload.PostedFile.InputStream);
 
+                    path = localFilePath.Replace(".pdf", "")+ $"_{ doc.Pages.Count}";
+                    localFilePath = $"{path}.pdf";
+                    for (int i = 0; i < doc.Pages.Count; i++)
+                    {
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        var image = doc.SaveAsImage(i);
+                        image.Save(path  + $"/{i + 1}.png");
+                    }
+                }
+                else if (localFileName.EndsWith(".docx"))
+                {
+                    Document doc = new Document();
+                    doc.LoadFromStream(HifUpload.PostedFile.InputStream, FileFormat.Docx);
+
+                    path = localFilePath.Replace(".docx", "") + $"_{ doc.PageCount}";
+                    localFilePath = $"{path}.docx";
+                    for (int i = 0; i < doc.PageCount; i++)
+                    {
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        var image = doc.SaveToImages(i,ImageType.Bitmap);
+                        image.Save(path + $"/{i + 1}.png");
+                    }
+                }
+                else if (localFileName.EndsWith(".doc"))
+                {
+                    Document doc = new Document();
+                    doc.LoadFromStream(HifUpload.PostedFile.InputStream, FileFormat.Doc);
+
+                    path = localFilePath.Replace(".doc", "") + $"_{ doc.PageCount}";
+                    localFilePath = $"{path}.doc";
+                    for (int i = 0; i < doc.PageCount; i++)
+                    {
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        var image = doc.SaveToImages(i, ImageType.Bitmap);
+                        image.Save(path + $"/{i + 1}.png");
+                    }
+                }
+
+                HifUpload.PostedFile.SaveAs(localFilePath);
                 FileUtility.AddWaterMark(SiteInfo, localFilePath);
 
                 var fileUrl = PageUtility.GetSiteUrlByPhysicalPath(SiteInfo, localFilePath, true);

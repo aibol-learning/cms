@@ -58,11 +58,11 @@
     <i class="fa fa-trash"></i>
     删除
   </button>
-  <button v-if="count > 0 && permissions.isCheck" :class="{'btn-outline-primary': selectedContentIds.length > 0, disabled: selectedContentIds.length === 0}"
+  @*<button v-if="count > 0 && permissions.isCheck" :class="{'btn-outline-primary': selectedContentIds.length > 0, disabled: selectedContentIds.length === 0}"
     v-on:click="btnLayerClick({title: '批量审核', name: 'Check', full: true, withContents: true}, $event)" class="btn btn-sm">
     <i class="fa fa-shield"></i>
     审核
-  </button>
+  </button>*@
   <button v-if="count > 0 && permissions.isCreate" :class="{'btn-outline-primary': selectedContentIds.length > 0, disabled: selectedContentIds.length === 0}"
     v-on:click="btnCreateClick" class="btn btn-sm">
     <i class="ion-wand"></i>
@@ -200,11 +200,11 @@
     <i class="fa fa-trash"></i>
     删除
   </button>
-  <button v-if="count > 0 && permissions.isCheck" :class="{'btn-outline-primary': selectedContentIds.length > 0, disabled: selectedContentIds.length === 0}"
+  @*<button v-if="count > 0 && permissions.isCheck" :class="{'btn-outline-primary': selectedContentIds.length > 0, disabled: selectedContentIds.length === 0}"
     v-on:click="btnLayerClick({title: '批量审核', name: 'Check', full: true, withContents: true}, $event)" class="btn btn-sm">
     <i class="fa fa-shield"></i>
     审核
-  </button>
+  </button>*@
   <button v-if="count > 0 && permissions.isCreate" :class="{'btn-outline-primary': selectedContentIds.length > 0, disabled: selectedContentIds.length === 0}"
     v-on:click="btnCreateClick" class="btn btn-sm">
     <i class="ion-wand"></i>

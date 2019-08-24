@@ -229,6 +229,11 @@ namespace SiteServer.CMS.Model
             get => GetDateTime(ContentAttribute.AddDate, DateTime.Now);
             set => Set(ContentAttribute.AddDate, value);
         }
+        public DateTime? ShowTime
+        {
+            get => GetDateTime(ContentAttribute.ShowTime, DateTime.Now);
+            set => Set(ContentAttribute.ShowTime, value);
+        }
 
         public string LinkUrl
         {
@@ -271,8 +276,12 @@ namespace SiteServer.CMS.Model
 	        get => GetString(BackgroundContentAttribute.Source);
 	        set => Set(BackgroundContentAttribute.Source, value);
 	    }
+        public string Picturer { get; set; }
+        public string Lv1AdminSub { get; set; }
+        public string Lv2AdminSub { get; set; }
+        public string Lv3AdminSub { get; set; }
 
-	    public string Summary
+        public string Summary
 	    {
 	        get => GetString(BackgroundContentAttribute.Summary);
 	        set => Set(BackgroundContentAttribute.Summary, value);

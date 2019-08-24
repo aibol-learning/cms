@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using SiteServer.Utils;
 using SiteServer.CMS.Core;
@@ -18,9 +20,13 @@ namespace SiteServer.BackgroundPages.Cms
     {
         protected override bool IsSinglePage => true;
         public Literal LtlTitles;
+        public HtmlInputText Checker;
         public DropDownList DdlCheckType;
         public DropDownList DdlTranslateChannelId;
         public TextBox TbCheckReasons;
+
+        public int _channelId { get; set; }
+        public int _contentId { get; set; }
 
         private Dictionary<int, List<int>> _idsDictionary = new Dictionary<int, List<int>>();
         private string _returnUrl;
@@ -78,6 +84,11 @@ namespace SiteServer.BackgroundPages.Cms
             {
                 var tableName = ChannelManager.GetTableName(SiteInfo, channelId);
                 var contentIdList = _idsDictionary[channelId];
+
+                //aibol 规定只能一条审核 channelId contentId
+                _channelId = channelId;
+                _contentId = contentIdList.FirstOrDefault();
+
                 foreach (var contentId in contentIdList)
                 {
                     var title = DataProvider.ContentDao.GetValue(tableName, contentId, ContentAttribute.Title);
@@ -120,6 +131,9 @@ namespace SiteServer.BackgroundPages.Cms
         {
             var checkedLevel = TranslateUtils.ToIntWithNagetive(DdlCheckType.SelectedValue);
 
+            var checkSub = this.Checker.Value; // "73213610577d4d9ba88b549e61c24c8e";
+
+
             var isChecked = checkedLevel >= SiteInfo.Additional.CheckContentLevel;
 
             var contentInfoListToCheck = new List<ContentInfo>();
@@ -152,7 +166,7 @@ namespace SiteServer.BackgroundPages.Cms
 
                         switch (DdlCheckType.SelectedItem.Text)
                         {
-                            case "初审通过，等待二审":
+                            case "公司领导审批":
                                 //关闭初审代办
                                 //发送消息给其他初审员和发稿人
 
@@ -160,29 +174,29 @@ namespace SiteServer.BackgroundPages.Cms
                                 var addUserName = contentInfo.AddUserName;
                                 var author = DataProvider.AdministratorDao.GetByUserName(addUserName);
                                 lv2SSOIds.Add(author.SSOId);
-                                BackstageManager.SendMessage(MessageType.消息, lv2SSOIds, "初审通过，等待二审");
+                                BackstageManager.SendMessage(MessageType.消息, lv2SSOIds, "公司领导审批");
                                 //发送代办给二审
                                 break;
-                            case "初审退稿":
+                            case "支部书记审批退稿":
                                 //关闭初审代办
                                 //发送消息给其他初审员和发稿人
                                 //发送代办给发稿人
                                 break;
-                            case "二审通过，等待终审":
+                            case "政工部审批":
                                 //关闭二审代办
                                 //发送消息给其他二审员和发稿人
                                 //发送代办给终审员
                                 break;
-                            case "二审退稿":
+                            case "公司领导审批退稿":
                                 //关闭初审代办
                                 //发送消息给其他初审员
                                 //发送代办给发稿人
                                 break;
-                            case "终审通过":
+                            case "审批完成":
                                 //关闭终审代办
                                 //发送消息给其他终审员和发稿人
                                 break;
-                            case "终审退稿":
+                            case "政工部审批退稿":
                                 //关闭初审代办
                                 //发送消息给其他初审员
                                 //发送代办给发稿人
@@ -212,7 +226,7 @@ namespace SiteServer.BackgroundPages.Cms
             {
                 var tableName = ChannelManager.GetTableName(SiteInfo, channelId);
                 var contentIdList = idsDictionaryToCheck[channelId];
-                DataProvider.ContentDao.UpdateIsChecked(tableName, SiteId, channelId, contentIdList, translateChannelId, AuthRequest.AdminName, isChecked, checkedLevel, TbCheckReasons.Text);
+                DataProvider.ContentDao.UpdateIsChecked(tableName, SiteId, channelId, contentIdList, translateChannelId, AuthRequest.AdminName, isChecked, checkedLevel, TbCheckReasons.Text, checkSub);
             }
 
             if (translateChannelId > 0)

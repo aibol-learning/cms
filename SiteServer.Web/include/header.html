@@ -1,0 +1,112 @@
+<div class="themenav">
+    <!--logo+搜索+工作区登录信息-->
+    <div class="container">
+        <div class="logo"> <a href="{Stl.SiteUrl}/index.html"> {stl:value type=Logo} </a> </div>
+        <div class="search">
+            <div id="sb-search" class="sb-search sb-search sb-search-open">
+                <form id="searchform" method="get" action="/newsSite/utils/search.html">
+                    <input class="sb-search-input" placeholder="输入关键词查找..." type="text" name="word">
+                    <input id="searchsubmit" class="sb-search-submit" type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </form>
+            </div>
+            <script src="{Stl.SiteUrl}/js/classie.js"></script>
+            <script src="{Stl.SiteUrl}/js/uisearch.js"></script>
+            <script>
+                new UISearch(document.getElementById('sb-search'));
+            </script>
+        </div>
+        <div class="loginInfo"><a href="#" id="loginInfo">登录工作区</a></div>
+        <div class="clearfix"></div>
+    </div>
+
+
+    <!--站点导航-->
+    <div class="container">
+        <div class="headerNav">
+            <ul class="navItem">
+                <!--stl:if testType="ChannelIndex" testOperate="Equals" testValue="首页"-->
+                <li><a href='{Stl.SiteUrl}/index.html'>首页</a></li>
+                <!--/stl:if-->
+                <stl:channels topLevel="0" groupChannel="头部导航">
+                    <li>
+                        <stl:if type="linkUrl" op="Empty">
+                            <stl:yes>
+                                <stl:a>{Channel.Title}</stl:a>
+                            </stl:yes>
+                            <stl:no>
+                                <stl:a target="_blank">{Channel.Title}</stl:a>
+                            </stl:no>
+                        </stl:if>
+                        <ul class="second-nav">
+                            <stl:channels>
+                                <li>
+                                    <stl:if type="linkUrl" op="Empty">
+                                        <stl:yes>
+                                            <stl:a>{Channel.Title}</stl:a>
+                                        </stl:yes>
+                                        <stl:no>
+                                            <stl:a target="_blank">{Channel.Title}</stl:a>
+                                        </stl:no>
+                                    </stl:if>
+                                    <ul class="third-nav">
+                                        <stl:channels>
+                                            <li>
+                                                <stl:if type="linkUrl" op="Empty">
+                                                    <stl:yes>
+                                                        <stl:a>{Channel.Title}</stl:a>
+                                                    </stl:yes>
+                                                    <stl:no>
+                                                        <stl:a target="_blank">{Channel.Title}</stl:a>
+                                                    </stl:no>
+                                                </stl:if>
+                                            </li>
+                                        </stl:channels>
+                                    </ul>
+                                </li>
+                            </stl:channels>
+                        </ul>
+                    </li>
+                </stl:channels>
+            </ul>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            //三级导航交互
+            var _this1 = null;
+            $('.headerNav .navItem>li').hover(function () {
+                _this1 = $(this);
+                _this1.find('.second-nav').show();
+                var _this2 = null;
+                _this1.find('.second-nav').find('li').hover(function () {
+                    _this2 = $(this);
+                    _this2.find('.third-nav').show();
+                    _this2.find('.third-nav').hover(function () {
+                        $(this).show();
+                    }, function () {
+                        $(this).hide();
+                    });
+                }, function () {
+                    _this2.find('.third-nav').hide();
+                });
+            }, function () {
+                if (_this1) {
+                    _this1.find('.second-nav').hide();
+                }
+            });
+
+            //获取当前登录用户信息
+            $.ajax({
+                url: global.backstageAPIUrl.loginInfo,
+                type: 'get',
+                success: function (response) {
+                    if (response.Code == 200 && response.Data) {
+                        global.loginInfo = response.Data; //把数据存储下来备用
+                        $("#loginInfo").text('我的工作区');
+                    }
+                }
+            });
+        });
+    </script>
+</div>

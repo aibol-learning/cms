@@ -29379,14 +29379,49 @@
             </summary>
             <value></value>
         </member>
+        <member name="F:Spire.Pdf.Annotations.PdfFreeTextAnnotation.m_rectangularDifferenceArray">
+            <summary>
+            An array that describing the rectangular differences between the annotation rectganle entry 
+            and the actual boundaries
+            </summary>
+        </member>
         <member name="F:Spire.Pdf.Annotations.PdfFreeTextAnnotation.m_author">
             <summary>
             The author
             </summary>
         </member>
+        <member name="P:Spire.Pdf.Annotations.PdfFreeTextAnnotation.RectangleDifferences">
+            <summary>
+            Gets or sets the rectangular diffecences
+            </summary>
+        </member>
         <member name="P:Spire.Pdf.Annotations.PdfFreeTextAnnotation.Author">
             <summary>
             Gets or sets the user who created the annotation.
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Annotations.PdfFreeTextAnnotation.SaveRectangularDifferenceArray">
+            <summary>
+            Save the rectangular differences array
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Annotations.PdfFreeTextAnnotation.CheckValidity(System.Single[])">
+            <summary>
+            Check the validity of the array 
+            </summary>
+            <param name="f">The float array</param>
+            <returns>Validity return true ,or false</returns>
+        </member>
+        <member name="M:Spire.Pdf.Annotations.PdfFreeTextAnnotation.CheckDigitalValidity(System.Single[])">
+            <summary>
+            Check the validity of the number in array  
+            </summary>
+            <param name="f">The array</param>
+            <returns>Validity return true ,or false</returns>
+        </member>
+        <member name="M:Spire.Pdf.Annotations.PdfFreeTextAnnotation.SaveCalloutLines">
+            <summary>
+            Save the callout lines
             </summary>
         </member>
         <member name="T:Spire.Pdf.Annotations.PdfLineAnnotation">
@@ -29821,10 +29856,10 @@
             The dictionary
             </summary>
         </member>
-        <member name="F:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.m_numbericalDifferences">
+        <member name="F:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.m_rectangularDifferenceArray">
             <summary>
-            Describing the numerical differences between the annotation rect entry and the actual
-            boundaries of the underlying caret
+            An array that describing the numerical differences between the annotation rectganle entry 
+            and the actual boundaries
             </summary>
         </member>
         <member name="F:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.m_symbol">
@@ -29837,9 +29872,9 @@
             Gets or sets the symbol
             </summary>
         </member>
-        <member name="P:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.NumbericalDifferences">
+        <member name="P:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.RectangularDifferenceArray">
             <summary>
-            Gets or sets the bound diffecences
+            Gets or sets the rectangular diffecences array
             </summary>
         </member>
         <member name="M:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.#ctor(Spire.Pdf.Primitives.PdfDictionary,Spire.Pdf.IO.PdfCrossTable)">
@@ -29849,11 +29884,11 @@
             <param name="dictionary">The dictionary.</param>
             <param name="crossTable">The cross table.</param>
         </member>
-        <member name="M:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.GetNumbericalDifferences">
+        <member name="M:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.GetRectDifferenceArray">
             <summary>
-            Gets the bound diffecences
+            Set the rectangular differences array
             </summary>
-            <returns></returns>
+            <returns>An float array</returns>
         </member>
         <member name="M:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.GetSymbol">
             <summary>
@@ -29861,10 +29896,17 @@
             </summary>
             <returns>The symbol</returns>
         </member>
-        <member name="M:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.SetNumbericalDifferences(System.Single[])">
+        <member name="M:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.SetRectDifferenceArray(System.Single[])">
             <summary>
-            Set the numberical differences array
+            Set the rectangular differences array
             </summary>
+        </member>
+        <member name="M:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.CheckValidity(System.Single[])">
+            <summary>
+            Check the validity of the array 
+            </summary>
+            <param name="f">The float array</param>
+            <returns>Validity return true or false</returns>
         </member>
         <member name="M:Spire.Pdf.Annotations.PdfCaretAnnotationWidget.CheckDigitalValidity(System.Single[])">
             <summary>
@@ -29898,9 +29940,20 @@
             Represents the free text annotation widget.
             </summary>
         </member>
+        <member name="F:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.m_rectangularDifferenceArray">
+            <summary>
+            An array that describing the numerical differences between the annotation rectganle entry 
+            and the actual boundaries
+            </summary>
+        </member>
         <member name="P:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.ModifiedDate">
             <summary>
             Gets or sets the date and time when the annotation was most recently modified.
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.RectangularDifferenceArray">
+            <summary>
+            Gets or sets the rectangular diffecences array
             </summary>
         </member>
         <member name="P:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.Intent">
@@ -29910,12 +29963,12 @@
         </member>
         <member name="P:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.LineEndingStyle">
             <summary>
-            Get or set the line ending style
+            Get the line ending style
             </summary>
         </member>
         <member name="P:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.CalloutLines">
             <summary>
-            Get or set the callout line
+            Get the callout line
             </summary>
         </member>
         <member name="P:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.BorderWidth">
@@ -29932,6 +29985,31 @@
             <summary>
             Gets the border style
             </summary>
+        </member>
+        <member name="M:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.GetRectDifferenceArray">
+            <summary>
+            Gets the rectangular diffecences array
+            </summary>
+            <returns>An float array</returns>
+        </member>
+        <member name="M:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.SetRectDifferenceArray(System.Single[])">
+            <summary>
+            Set the rectangular differences array
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.CheckValidity(System.Single[])">
+            <summary>
+            Check the validity of the array 
+            </summary>
+            <param name="f">The float array</param>
+            <returns>Validity return true ,or false</returns>
+        </member>
+        <member name="M:Spire.Pdf.Annotations.PdfFreeTextAnnotationWidget.CheckDigitalValidity(System.Single[])">
+            <summary>
+            Check the validity of the number in array  
+            </summary>
+            <param name="f">The array</param>
+            <returns>Validity return true ,or false</returns>
         </member>
         <member name="T:Spire.Pdf.Annotations.PdfLineAnnotationWidget">
             <summary>
@@ -34472,7 +34550,7 @@
         </member>
         <member name="P:Spire.Pdf.Exporting.PdfImageInfo.Image">
             <summary>
-            Gets the Image.
+            Gets the Image,save to stream.
             </summary>
         </member>
         <member name="P:Spire.Pdf.Exporting.PdfImageInfo.Index">
@@ -36447,6 +36525,12 @@
             <summary>
             Gets or sets a value indicating whether this  is flatten.
             </summary>
+        </member>
+        <member name="M:Spire.Pdf.Fields.PdfField.SaveFieldAppearance(System.String)">
+            <summary>
+            Save the field apprearance
+            </summary>
+            <param name="text">The text</param>
         </member>
         <member name="P:Spire.Pdf.Fields.PdfField.Spire#Pdf#Interfaces#IPdfWrapper#Element">
             <summary>
@@ -38561,6 +38645,18 @@
             Gets a value indicating the visibility of the field.
             </summary>
         </member>
+        <member name="M:Spire.Pdf.Widget.PdfStyledFieldWidget.GetXfaFieldFromTemplate">
+            <summary>
+            Get the xfa field from template
+            </summary>
+            <returns>A xmlnode</returns>
+        </member>
+        <member name="M:Spire.Pdf.Widget.PdfStyledFieldWidget.GetAttributeValue(System.String)">
+            <summary>
+            Get the value of the specified attribute
+            </summary>
+            <returns>The value</returns>
+        </member>
         <member name="M:Spire.Pdf.Widget.PdfStyledFieldWidget.GraphicsProperties.#ctor(Spire.Pdf.Widget.PdfStyledFieldWidget)">
             <summary>
             Initializes a new instance of the  struct.
@@ -38673,6 +38769,12 @@
             <summary>
             Gets the collection of text box field items. 
             </summary>
+        </member>
+        <member name="M:Spire.Pdf.Widget.PdfTextBoxFieldWidget.SaveFieldAppearance(System.String)">
+            <summary>
+            Save the text box field appearance
+            </summary>
+            <param name="text">the text value</param>
         </member>
         <member name="T:Spire.Pdf.Widget.PdfTextBoxWidgetItemCollection">
             <summary>
@@ -40340,6 +40442,11 @@
             specify the quality level of decode image
             </summary>
         </member>
+        <member name="P:Spire.Pdf.General.Render.PdfImageDecoder.IsSMaskDecode">
+            <summary>
+            specify if the Decoder if for SMask image
+            </summary>
+        </member>
         <member name="P:Spire.Pdf.General.Render.PdfImageDecoder.ImageQualityMode">
             <summary>
             specify the quality level of decode image
@@ -40685,10 +40792,35 @@
             draw page annot
             </summary>
         </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.DrawPageAnnot(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="highlightFormField"></param>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.DrawHighLightForFormField(Spire.Pdf.Interfaces.IPdfPrimitive)">
+            <summary>
+            
+            </summary>
+            <param name="annotObj"></param>
+        </member>
         <member name="P:Spire.Pdf.General.Render.PdfToImageRenderer.IsDisposeFont">
             <summary>
             Modify Bug1801,pdf to xps(false),font whether need dispose
             </summary>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.ProcessPageAnnotations(Spire.Pdf.Interfaces.IPdfPrimitive)">
+            <summary>
+            Parse signle annotation
+            </summary>
+            <param name="obj">IPdfPrimitive obj</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.GetAnnotationsDisplay(Spire.Pdf.Primitives.PdfDictionary)">
+            <summary>
+            
+            </summary>
+            <param name="annotElements"></param>
+            <returns></returns>
         </member>
         <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.GetFormWidget">
             <summary>
@@ -40861,6 +40993,19 @@
             <param name="isNonStroking"></param>
             <param name="colorRGB"></param>
         </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToPsRenderer.RenderOptionContent(Spire.Pdf.General.Render.PdfElement.XObjectElement)">
+            <summary>
+            Render the option content
+            </summary>
+            <param name="element">The xobject element</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToPsRenderer.RenderOCGsContent(Spire.Pdf.General.Render.PdfElement.XObjectElement,Spire.Pdf.Interfaces.IPdfPrimitive)">
+            <summary>
+            Render OCGs contents
+            </summary>
+            <param name="ocgsDic">The ocgs dictionary</param>
+            <param name="element">The xobject element</param>
+        </member>
         <member name="M:Spire.Pdf.General.Render.PdfToPsRenderer.Process">
             
         </member>
@@ -40870,6 +41015,12 @@
             </summary>
             <param name="annotDic"></param>
             <returns></returns>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToPsRenderer.ParseElementInMK(Spire.Pdf.Primitives.PdfArray)">
+            <summary>
+            Parse the element in MK entry of annotation
+            </summary>
+            <param name="colorSpaceArr">The element in MK entry</param>
         </member>
         <member name="M:Spire.Pdf.General.Render.PdfToPsRenderer.AddInsetForAP(Spire.Pdf.Primitives.PdfDictionary,System.Drawing.RectangleF,System.String)">
             <summary>
@@ -40990,7 +41141,7 @@
             <param name="layerType">The presenter type</param>
             <returns></returns>
         </member>
-        <!-- 对于成员“M:Spire.Pdf.General.Render.ViewLayer.PresentationFactory.CreateLinearGradientBrush(System.Drawing.RectangleF,Spire.Pdf.General.Paper.Drawing.PsColor,Spire.Pdf.General.Paper.Drawing.PsColor,Spire.Pdf.General.Render.ViewLayer.LayerType)”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“M:Spire.Pdf.General.Render.ViewLayer.PresentationFactory.CreateLinearGradientBrush(Spire.Pdf.General.Render.ViewLayer.LayerType,System.Drawing.Drawing2D.LinearGradientBrush)”忽略有格式错误的 XML 注释 -->
         <member name="M:Spire.Pdf.General.Render.ViewLayer.PresentationFactory.CreateHatchBrush(System.Drawing.Drawing2D.HatchStyle,Spire.Pdf.General.Paper.Drawing.PsColor,Spire.Pdf.General.Paper.Drawing.PsColor,Spire.Pdf.General.Render.ViewLayer.LayerType)">
             <summary>
             Create the brush.
@@ -51071,12 +51222,6 @@
             When replacing the picture,use this property
             </summary>
         </member>
-        <member name="M:Spire.Pdf.Graphics.PdfBitmap.#ctor(System.Drawing.Image)">
-            <summary>
-            Creates new PdfBitmap instance.
-            </summary>
-            <param name="image">The image.</param>
-        </member>
         <member name="M:Spire.Pdf.Graphics.PdfBitmap.#ctor(System.String)">
             <summary>
             Creates new PdfBitmap instance.
@@ -51121,6 +51266,11 @@
             <param name="index"></param>
             <param name="flag"></param>
             <returns></returns>
+        </member>
+        <member name="M:Spire.Pdf.Graphics.PdfBitmap.BitmapRgbToCmyk">
+            <summary>
+            rgb image to cmyk
+            </summary>
         </member>
         <member name="T:Spire.Pdf.Graphics.PdfColorMask">
             <summary>
@@ -51371,21 +51521,6 @@
             Clips width and height
             </summary>
         </member>
-        <member name="T:Spire.Pdf.HtmlConverter.LoadHtmlType">
-            <summary>
-            load from  content type
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.HtmlConverter.LoadHtmlType.URL">
-            <summary>
-            load from ulr or file
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.HtmlConverter.LoadHtmlType.SourceCode">
-            <summary>
-            load html SourceCode
-            </summary>
-        </member>
         <member name="F:Spire.Pdf.HtmlConverter.PdfHtmlLayoutFormat.m_loadHtmlTimeout">
             <summary>
             default 30 s
@@ -51452,6 +51587,21 @@
         <member name="P:Spire.Pdf.HtmlConverter.PdfHtmlLayoutFormat.LoadComplete">
             <summary>
             WebBrowser load Complete
+            </summary>
+        </member>
+        <member name="T:Spire.Pdf.HtmlConverter.LoadHtmlType">
+            <summary>
+            load from  content type
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.HtmlConverter.LoadHtmlType.URL">
+            <summary>
+            load from ulr or file
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.HtmlConverter.LoadHtmlType.SourceCode">
+            <summary>
+            load html SourceCode
             </summary>
         </member>
         <member name="F:Spire.Pdf.HtmlConverter.Qt.Clip.None">
@@ -51647,6 +51797,108 @@
             <param name="pageSize">The page size of output pdf file.</param>
             <param name="margins">The margins of output pdf file.</param>
             <param name="urlHtml">url or htmlcontent</param>
+        </member>
+        <member name="T:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary">
+            <summary>
+            Support functions about Qt plugin library.
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.LoadLibrary(System.String)">
+            <summary>
+            Load plugin library from plugin directory.
+            </summary>
+            <param name="pluginDirectory">The plugin directory.</param>
+            <returns>The plugin library ptr.</returns>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.FreeLibrary(System.IntPtr)">
+            <summary>
+            Free plugin library.
+            </summary>
+            <param name="libraryPtr">The plugin library ptr.</param>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.GetMethod``1(System.IntPtr)">
+            <summary>
+            Get method delegate from plugin library.
+            </summary>
+            <typeparam name="T">The method delegate type.</typeparam>
+            <param name="libraryPtr">The plugin library ptr.</param>
+            <returns>The method delegate.</returns>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.GetDefaultPluginDirectory">
+            <summary>
+            Get default plugin directory.
+            </summary>
+            <returns>The default plugin directory.</returns>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.GetAbsolutePath(System.String)">
+            <summary>
+            Get the absolute path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>The absolute path.</returns>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.GenerateTempFileAbsolutePath(System.String)">
+            <summary>
+            Generate temp file absolute path.
+            </summary>
+            <param name="tempFileName">The temp file name.</param>
+            <returns>The temp file absolute path.</returns>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.GetPlatformInstance">
+            <summary>
+            Get plugin library helper on current platform.
+            </summary>
+            <returns>The plugin library helper.</returns>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.Load(System.String)">
+            <summary>
+            Load library.
+            </summary>
+            <param name="fullLibraryFileName">The full library file path.</param>
+            <returns>The plugin library ptr.</returns>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.Free(System.IntPtr)">
+            <summary>
+            Free library.
+            </summary>
+            <param name="libraryPtr">The plugin library ptr.</param>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.GetMethod(System.IntPtr,System.String)">
+            <summary>
+            Get method ptr.
+            </summary>
+            <param name="libraryPtr">The plugin library ptr.</param>
+            <param name="method">The method name.</param>
+            <returns>The method ptr.</returns>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.GetError">
+            <summary>
+            Get error.
+            </summary>
+            <returns>The error.</returns>
+        </member>
+        <member name="M:Spire.Pdf.HtmlConverter.Qt.QtPluginLibrary.PrepareFullLibraryFileName(System.String,System.String)">
+            <summary>
+            Prepare full library file name.
+            </summary>
+            <param name="libraryDirectory">The library directory.</param>
+            <param name="libraryFileName">The library file name,not include extensions.</param>
+            <returns>The full library file name.</returns>
+        </member>
+        <member name="T:Spire.Pdf.HtmlConverter.Qt.QtWindowsPluginLibrary">
+            <summary>
+            Support functions about qt plugin library on windows.
+            </summary>
+        </member>
+        <member name="T:Spire.Pdf.HtmlConverter.Qt.QtLinuxPluginLibrary">
+            <summary>
+            Support functions about qt plugin library on linux.
+            </summary>
+        </member>
+        <member name="T:Spire.Pdf.HtmlConverter.Qt.QtMacxPluginLibrary">
+            <summary>
+            Support functions about qt plugin library on unix-like.
+            </summary>
         </member>
         <member name="T:Spire.Pdf.HtmlToPdf.HtmlToPdfLayoutParams">
             <summary>

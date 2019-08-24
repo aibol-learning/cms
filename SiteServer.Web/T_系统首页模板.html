@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<stl:include file="/include/head.html"></stl:include>
+<body>
+    <div id="slideBox" class="slideBox hid">
+        <div class="hd">
+            <ul>
+                <stl:contents channelIndex="首页轮播图" totalNum="3">
+                    <li></li>
+                </stl:contents>
+            </ul>
+        </div>
+        <div class="bd">
+            <ul>
+                <stl:contents channelIndex="首页轮播图" totalNum="3">
+                    <li>
+                        <a href="javascript:;" target="_blank">
+                            <div class="divContent{Content.ItemIndex} bdimg" style="background: url({Content.ImageUrl});"></div>
+                        </a>
+                    </li>
+                </stl:contents>
+            </ul>
+        </div>
+        <a class="prev" href="javascript:void(0)"></a> <a class="next" href="javascript:void(0)"></a>
+    </div>
+
+    <!--Logo+导航+搜索-->
+    <stl:include file="/include/header.html"></stl:include>
+    <div class="clearfix"></div>
+
+    <!--轮播图-->
+    <div id="slideBox" class="slideBox underslideBox">
+        <div class="hd">
+            <ul>
+                <stl:contents channelIndex="首页轮播图" totalNum="10" isRecommend="true">
+                    <li></li>
+                </stl:contents>
+            </ul>
+        </div>
+        <div class="bd underhd">
+            <ul>
+                <stl:contents channelIndex="首页轮播图" totalNum="10" isRecommend="true">
+                    <li>
+                        <stl:if type="linkUrl" op="Empty">
+                            <stl:yes>
+                                <stl:if type="content" op="Empty">
+                                    <stl:yes>
+                                        <a href="javascript:;"><img src="{Content.ImageUrl}"></a>
+                                    </stl:yes>
+                                    <stl:no>
+                                        <stl:a><img src="{Content.ImageUrl}"></stl:a>
+                                    </stl:no>
+                                </stl:if>
+                            </stl:yes>
+                            <stl:no>
+                                <stl:a target="_blank"><img src="{Content.ImageUrl}"></stl:a>
+                            </stl:no>
+                        </stl:if>
+                    </li>
+                </stl:contents>
+            </ul>
+        </div>
+        <a class="prev" href="javascript:void(0)"></a>
+        <a class="next" href="javascript:void(0)"></a>
+    </div>
+    <script id="jsID" type="text/javascript">
+        var ary = location.href.split("&");
+        jQuery(".slideBox").slide({
+            mainCell: ".bd ul",
+            effect: ary[1],
+            autoPlay: true,
+            trigger: ary[3],
+            easing: ary[4],
+            delayTime: ary[10],
+            mouseOverStop: ary[6],
+            pnLoop: ary[7]
+        });
+    </script>
+
+    <div id="vm" v-cloak>
+        <!--头条新闻-->
+        <div class="contentpart">
+            <div class="container">
+                <div class="parttitle text-center">
+                    <h2>头条新闻</h2>
+                </div>
+                <div class="row m-t-40">
+                    <div class="col-md-3" v-for="news in headlineNews">
+                        <div class="youshipart text-center">
+                            <a :href="news.navigationUrl" target="_blank"><img :src="news.imageUrl ? news.imageUrl : '/images/thumbnail.png'"></a>
+                            <a :href="news.navigationUrl" target="_blank"><h3>{{news.title}}</h3></a>
+                            <p>{{news.summary}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--公司公告 和 安全生产管理巡视-->
+        <div class="contentpart announcement">
+            <div class="container">
+                <h3>公司公告</h3>
+                <div class="row">
+                    <div class="col-md-6" style="padding-right:35px;">
+                        <ul>
+                            <stl:contents channelIndex="公司公告" scope="all" totalNum="5">
+                                <li>
+                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
+                                    <div class="info"><icon class="glyphicon glyphicon-calendar"></icon> <stl:content type="addDate"></stl:content></div>
+                                </li>
+                            </stl:contents>
+                        </ul>
+                        <!--<div class="more"><stl:a channelIndex="公司公告">更多</stl:a></div>-->
+                    </div>
+                    <div class="col-md-6" style="padding-left:35px;">
+                        <ul>
+                            <stl:contents channelIndex="公司公告" scope="all" startNum="6" totalNum="5">
+                                <li>
+                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
+                                    <div class="info"><icon class="glyphicon glyphicon-calendar"></icon> <stl:content type="addDate"></stl:content></div>
+                                </li>
+                                <!--<li v-for="(task, index) in toursTask" v-if="index<5">
+                                    <div class="title"><a target="_blank" :href="task.url" :title="task.Question">{{task.Question}}</a></div>
+                                    <div class="info"><icon class="glyphicon glyphicon-calendar"></icon> 要求完成时间：{{task.ExpectCompletedTime}}&emsp;&emsp;<icon class="fa fa-male"></icon> 任务负责人：{{task.Principal.Name}}</div>
+                                </li>-->
+                            </stl:contents>
+                        </ul>
+                        <div class="more"><stl:a channelIndex="公司公告">更多</stl:a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--公司介绍-->
+        <div class="contentpart" style="background:#d8d8d8 url({stl.siteurl}/images/bg.jpg) no-repeat center center fixed !important;">
+            <div class="container">
+                <div class="indexabout text-center">
+                    <stl:channels channelIndex="公司文化">
+                        <stl:if type="channelIndex" op="Equals" value="和文化">
+                            <stl:yes>
+                                <stl:contents channelIndex="和文化" totalNum="1">
+                                    <h4>公司文化</h4>
+                                    <h2><stl:content type="SubTitle"></stl:content></h2>
+                                    <p><stl:content type="Summary" wordNum="100"></stl:content></p>
+                                </stl:contents>
+                            </stl:yes>
+                        </stl:if>
+                    </stl:channels>
+                </div>
+                <!--<div class="indexaboutLinks">
+                    <stl:channels channelIndex="公司概况" totalNum="5">
+                        <stl:a><stl:channel></stl:channel></stl:a>
+                    </stl:channels>
+                </div>-->
+                <div class="indexaboutLinks btns">
+                    <stl:channels channelIndex="公司文化" groupChannel="公司文化模块" totalNum="5">
+                        <stl:a><stl:channel></stl:channel></stl:a>
+                    </stl:channels>
+                </div>
+                <div class="indexaboutLinks">
+                    <div class="text-right"><stl:a channelIndex="公司文化" style="margin-right:20px">查看更多</stl:a></div>
+                </div>
+            </div>
+        </div>
+
+        <!--头条聚集-->
+        <div class="contentpart" v-if="headlineNews_focus && headlineNews_focus.length>0">
+            <div class="container">
+                <div class="parttitle text-center">
+                    <h2>头条聚焦</h2>
+                </div>
+                <div class="productpart m-t-40">
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade active in">
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6" v-for="(news,index) in headlineNews_focus" v-if="index<4">
+                                    <div class="propart">
+                                        <div class="proimg">
+                                            <a :href="news.navigationUrl" target="_blank">
+                                                <img width="260" height="160" :src="news.imageUrl ? news.imageUrl : '/images/thumbnail.png'" class="attachment-product-thumb size-product-thumb wp-post-image" :alt="news.title" />
+                                            </a>
+                                        </div>
+                                        <a :href="news.navigationUrl" class="indexprotit" target="_blank">{{news.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-t-20" v-if="headlineNews_focus && headlineNews_focus.length>=8">
+                                <div class="col-md-3 col-xs-6" v-for="(news,index) in headlineNews_focus" v-if="index>3">
+                                    <div class="propart">
+                                        <div class="proimg">
+                                            <a :href="news.navigationUrl" target="_blank">
+                                                <img width="260" height="160" :src="news.imageUrl ? news.imageUrl : '/images/thumbnail.png'" class="attachment-product-thumb size-product-thumb wp-post-image" :alt="news.title" />
+                                            </a>
+                                        </div>
+                                        <a :href="news.navigationUrl" class="indexprotit" target="_blank">{{news.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--大屏幕实时数据-->
+    <div class="contentpart" style="background: #fff;">
+        <div class="container">
+            <!--<div class="parttitle text-center">
+                <h2>大屏幕实时数据</h2>
+            </div>-->
+            <div class="indexnews">
+                <div id="slideBox1" class="slideBox1">
+                    <div class="bd">
+                        <style type="text/css">
+                            .slideBox1 .bd ul {
+                                height: 400px;
+                                text-align: center;
+                            }
+
+                                .slideBox1 .bd ul li {
+                                    padding-top: 35px;
+                                    height: 400px
+                                }
+
+                                .slideBox1 .bd ul table {
+                                    width: 90%;
+                                    font-size: 16px;
+                                    margin: 40px auto
+                                }
+
+                                .slideBox1 .bd ul div.chart {
+                                    width: 90%;
+                                    font-size: 16px;
+                                    margin: 40px auto;
+                                    height: 300px
+                                }
+
+                                .slideBox1 .bd ul table tr {
+                                    background: #000
+                                }
+
+                                .slideBox1 .bd ul table td {
+                                    background: #fff;
+                                    padding: 15px
+                                }
+                        </style>
+                        <ul>
+                            <li>
+                                <h2>平圩发电机组发电量统计</h2>
+                                <div class="chart" id="chart1">
+                                </div>
+                            </li>
+                            <li>
+                                <h2>平圩发电机组发电量统计</h2>
+                                <table border="1" cellspacing="1">
+                                    <tr>
+                                        <td>发电量统计</td>
+                                        <td>一号机组</td>
+                                        <td>二号机组</td>
+                                        <td>三号机组</td>
+                                        <td>四号机组</td>
+                                        <td>五号机组</td>
+                                        <td>六号机组</td>
+                                    </tr>
+                                    <tr>
+                                        <td>当日发电量</td>
+                                        <td>100</td>
+                                        <td>133</td>
+                                        <td>89</td>
+                                        <td>98</td>
+                                        <td>101</td>
+                                        <td>126</td>
+                                    </tr>
+                                    <tr>
+                                        <td>当月发电量</td>
+                                        <td>12563</td>
+                                        <td>19587</td>
+                                        <td>8985</td>
+                                        <td>10236</td>
+                                        <td>11532</td>
+                                        <td>17645</td>
+                                    </tr>
+                                    <tr>
+                                        <td>累计发电量</td>
+                                        <td>253684</td>
+                                        <td>323431</td>
+                                        <td>201256</td>
+                                        <td>215478</td>
+                                        <td>234584</td>
+                                        <td>301254</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                <h2>平圩光伏发电生产信息</h2>
+                                <table border="1" cellspacing="1">
+                                    <tr>
+                                        <td>发电量统计</td>
+                                        <td>一号机组</td>
+                                        <td>二号机组</td>
+                                        <td>三号机组</td>
+                                        <td>四号机组</td>
+                                        <td>五号机组</td>
+                                        <td>六号机组</td>
+                                    </tr>
+                                    <tr>
+                                        <td>当日发电量</td>
+                                        <td>100</td>
+                                        <td>133</td>
+                                        <td>89</td>
+                                        <td>98</td>
+                                        <td>101</td>
+                                        <td>126</td>
+                                    </tr>
+                                    <tr>
+                                        <td>当月发电量</td>
+                                        <td>12563</td>
+                                        <td>19587</td>
+                                        <td>8985</td>
+                                        <td>10236</td>
+                                        <td>11532</td>
+                                        <td>17645</td>
+                                    </tr>
+                                    <tr>
+                                        <td>累计发电量</td>
+                                        <td>253684</td>
+                                        <td>323431</td>
+                                        <td>201256</td>
+                                        <td>215478</td>
+                                        <td>234584</td>
+                                        <td>301254</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                <h2>平圩发电机组环保数据</h2>
+                                <table border="1" cellspacing="1">
+                                    <tr>
+                                        <td>环保指标</td>
+                                        <td>一号机组</td>
+                                        <td>二号机组</td>
+                                        <td>三号机组</td>
+                                        <td>四号机组</td>
+                                        <td>五号机组</td>
+                                        <td>六号机组</td>
+                                    </tr>
+                                    <tr>
+                                        <td>当日发电量</td>
+                                        <td>100</td>
+                                        <td>133</td>
+                                        <td>89</td>
+                                        <td>98</td>
+                                        <td>101</td>
+                                        <td>126</td>
+                                    </tr>
+                                    <tr>
+                                        <td>当月发电量</td>
+                                        <td>12563</td>
+                                        <td>19587</td>
+                                        <td>8985</td>
+                                        <td>10236</td>
+                                        <td>11532</td>
+                                        <td>17645</td>
+                                    </tr>
+                                    <tr>
+                                        <td>累计发电量</td>
+                                        <td>253684</td>
+                                        <td>323431</td>
+                                        <td>201256</td>
+                                        <td>215478</td>
+                                        <td>234584</td>
+                                        <td>301254</td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="prev" href="javascript:void(0)"></a> <a class="next" href="javascript:void(0)"></a>
+                </div>
+                <script id="jsID" type="text/javascript">
+                    jQuery(".slideBox1").slide({ mainCell: ".bd ul", effect: "left", autoPlay: true, delayTime: 1000 });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!--报刊阅览-->
+    <div class="contentpart" style="background:#333">
+        <div class="container">
+            <div class="parttitle text-center">
+                <h2 style="color:#fff">报刊阅览</h2>
+            </div>
+            <div class="indexcase m-t-40">
+                <div class="row">
+                    <div class="sliderbox2">
+                        <div id="btn-left2" class="arrow-btn2 dasabled"></div>
+                        <div class="slider2" id="thumbnail2">
+                            <ul>
+                                <stl:channels channelIndex="报刊阅览">
+                                    <li style="position:relative">
+                                        <stl:a><img src="{Channel.imageUrl}" /></stl:a>
+                                        <div class="label_new"></div>
+                                        <stl:contents totalNum="1">
+                                            <span class="js_addDate" style="display:none"><stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span>
+                                        </stl:contents>
+                                    </li>
+                                </stl:channels>
+                            </ul>
+                        </div>
+                        <div id="btn-right2" class="arrow-btn2"></div>
+                    </div>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            var sliderSize2 = 3;
+                            //图片左右滚动
+                            var $slider2 = $('.slider2 ul');
+                            var $slider_child_l2 = $('.slider2 ul li').length;
+                            var $slider_width2 = $('.slider2 ul li').width() + 12;
+                            $slider2.width($slider_child_l2 * $slider_width2);
+
+                            var slider_count2 = 0;
+
+                            if ($slider_child_l2 < sliderSize2) {
+                                $('#btn-right2').css({
+                                    cursor: 'auto'
+                                });
+                                $('#btn-right2').removeClass("dasabled");
+                            }
+
+                            $('#btn-right2').click(function () {
+                                if ($slider_child_l2 < sliderSize2 || slider_count2 >= $slider_child_l2 - sliderSize2) {
+                                    return false;
+                                }
+
+                                slider_count2++;
+                                $slider2.animate({
+                                    left: '-=' + $slider_width2 + 'px'
+                                }, 'fast');
+                                slider_pic2();
+                            });
+
+                            $('#btn-left2').click(function () {
+                                if (slider_count2 <= 0) {
+                                    return false;
+                                }
+                                slider_count2--;
+                                $slider2.animate({
+                                    left: '+=' + $slider_width2 + 'px'
+                                }, 'fast');
+                                slider_pic2();
+                            });
+
+                            function slider_pic2() {
+                                if (slider_count2 >= $slider_child_l2 - sliderSize2) {
+                                    $('#btn-right2').css({
+                                        cursor: 'auto'
+                                    });
+                                    $('#btn-right2').addClass("dasabled");
+                                } else if (slider_count2 > 0 && slider_count2 <= $slider_child_l2 - sliderSize2) {
+                                    $('#btn-left2').css({
+                                        cursor: 'pointer'
+                                    });
+                                    $('#btn-left2').removeClass("dasabled");
+                                    $('#btn-right2').css({
+                                        cursor: 'pointer'
+                                    });
+                                    $('#btn-right2').removeClass("dasabled");
+                                } else if (slider_count2 <= 0) {
+                                    $('#btn-left2').css({
+                                        cursor: 'auto'
+                                    });
+                                    $('#btn-left2').addClass("dasabled");
+                                }
+                            }
+
+                            //判断是否为当日新添加的文章, 打上new标记
+                            var _today = new Date();
+                            var yyyy = _today.getFullYear();
+                            var MM = _today.getMonth() + 1;
+                            var dd = _today.getDate();
+                            MM = MM < 10 ? ('0' + MM) : MM;
+                            dd = dd < 10 ? ('0' + dd) : dd;
+                            var today = yyyy + "-" + MM + '-' + dd;
+                            $(".js_addDate").each(function () {
+                                if ($(this).text() == today) {
+                                    $(this).parents("li").eq(0).find(".label_new").show();
+                                }
+                            })
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <stl:include file="/include/footer.html"></stl:include>
+    <stl:include file="/include/floating_side_bar.html"></stl:include>
+    <script src="{Stl.SiteUrl}/js/echarts.min.js"></script>
+
+    <script>
+        $(function () {
+            //大屏幕数据图片初始化
+            var myChart1 = echarts.init(document.getElementById('chart1'));
+            // 指定图表的配置项和数据
+            var optionChart1 = {
+                color: ['#3398DB'],
+                //title: {
+                //text: 'ECharts 入门示例'
+                //},
+                tooltip: {},
+                legend: {
+                    data: ['发电量']
+                },
+                xAxis: {
+                    data: ["一号机组", "二号机组", "三号机组", "四号机组", "五号机组", "六号机组"]
+                },
+                yAxis: {},
+                series: [{
+                    name: '发电量',
+                    type: 'bar',
+                    barCategoryGap: '50%',
+                    data: [125, 120, 136, 110, 110, 120]
+                }]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart1.setOption(optionChart1);
+
+            vm = new Vue({
+                el: "#vm",
+                data: {
+                    headlineNews_focus: [],     //头条聚集
+                    headlineNews: [],           //头条新闻
+                    toursTask: [],              //安全生产管理巡视
+                },
+                methods: {
+                    //获取新闻中心网站所有一级栏目
+                    getChannels: function () {
+                        var def = $.Deferred();
+                        $.ajax({
+                            url: '/api/v1/stl/channels?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey,
+                            type: 'get',
+                            success: function (response) {
+                                def.resolve(response.value);
+                            },
+                            error: function (response) {
+                                def.reject(response);
+                            }
+                        });
+                        return def.promise();
+                    },
+
+                    //头条新闻数据源请求：新闻中心-头条新闻，前4条
+                    getHeadlineNews: function (node) {
+                        var self = this;
+                        if (node.indexName == '头条新闻') {
+                            $.ajax({
+                                url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&totalNum=4&apiKey=' + global.apikey + '&channelId=' + node.id,
+                                type: 'get',
+                                success: function (response) {
+                                    self.headlineNews = response.value;
+                                }
+                            })
+                        }
+                    },
+
+                    //头条聚焦数据源请求： 新闻中心-头条新闻，有“推荐”属性的内容，前8条
+                    getHeadlineNewsFocus: function (node) {
+                        var self = this;
+                        if (node.indexName == '头条新闻') {
+                            $.ajax({
+                                url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&isRecommend=true&totalNum=8&apiKey=' + global.apikey + '&channelId=' + node.id,
+                                type: 'get',
+                                success: function (response) {
+                                    self.headlineNews_focus = response.value;
+                                }
+                            })
+                        }
+                    },
+
+                    //安全生产管理巡视(外部接口)
+                    //getTours: function () {
+                    //    var self = this;
+                    //    $.ajax({
+                    //        url: global.backstageAPIUrl.tours,
+                    //        type: 'get',
+                    //        success: function (response) {
+                    //            if (response.Code == 200 && response.Data) {
+                    //                response.Data.forEach(function (node, index) {
+                    //                    if (node.ExpectCompletedTime) {
+                    //                        node.ExpectCompletedTime = node.ExpectCompletedTime.replace("T", " ");
+                    //                        node.url = global.toursTaskUrl + node.ID;
+                    //                    }
+                    //                });
+                    //                self.toursTask = response.Data;
+                    //            }
+                    //        }
+                    //    })
+                    //}
+                },
+                created: function () {
+                    var self = this;
+
+                    //头条新闻|头条聚焦数据请求(siteServer接口)
+                    this.getChannels().done(function (data) {
+                        data.forEach(function (node, index) {
+                            self.getHeadlineNews(node);
+                            self.getHeadlineNewsFocus(node);
+                        })
+                    }).fail(function (data) {
+                        console.log("reject");
+                    });
+
+                    //安全生产管理巡视(外部接口)
+                    //this.getTours();
+                }
+            })
+        })
+    </script>
+</body>
+</html>
+​

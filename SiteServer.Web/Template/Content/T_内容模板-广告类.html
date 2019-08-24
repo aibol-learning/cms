@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <stl:include file="/include/head1.html"></stl:include>
+  <body>
+    <stl:include file="/include/header.html"></stl:include>
+    <div class="clearfix"></div>
+    <div class="maincon">
+      <stl:include file="/include/banner.html"></stl:include>
+      <div class="container neicon">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="listcon">
+              <div class="pagecon">
+                <h1 class="pagetit text-center">
+                  {Content.Title}
+                </h1>
+                <div class="content-info">
+                  作者: <stl:content type="author"></stl:content>&emsp;&emsp;
+                  来源: <stl:content type="source"></stl:content>&emsp;&emsp;
+                  发布时间: <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
+                  阅读次数: <stl:content type="hits"></stl:content>
+                </div>
+                <div class="pagecontent m-t-20">
+                  <stl:content type="Content"></stl:content>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <stl:include file="/include/footer.html"></stl:include>
+    <!--<stl:include file="/include/right_bar.html"></stl:include>
+    <stl:include file="/include/foot_js.html"></stl:include>-->
+  </body>
+</html>
+

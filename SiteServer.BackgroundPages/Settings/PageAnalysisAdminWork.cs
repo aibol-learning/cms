@@ -19,7 +19,11 @@ namespace SiteServer.BackgroundPages.Settings
         public DateTimeTextBox TbEndDate;
         public PlaceHolder PhAnalysis;
         public Repeater RptContents;
+        public Repeater RptContentDepartments;
+        
         public SqlPager SpContents;
+        public System.Web.UI.HtmlControls.HtmlGenericControl AdminDiv;
+        public System.Web.UI.HtmlControls.HtmlGenericControl DepartmentDiv;
 
         public string StrArray { get; set; }
 
@@ -36,8 +40,18 @@ namespace SiteServer.BackgroundPages.Settings
 
         protected override bool IsSinglePage => true;
 
-        public static string GetRedirectUrl(int siteId, string startDate, string endDate)
+        public static string GetRedirectUrl(int siteId, string startDate, string endDate,bool groupByDepartment = false)
         {
+            if (groupByDepartment)
+            {
+                return PageUtils.GetSettingsUrl(nameof(PageAnalysisAdminWork), new NameValueCollection
+                {
+                    {"siteId", siteId.ToString()},
+                    {"startDate", startDate},
+                    {"endDate", endDate},
+                    {"groupByDepartment", "true"}
+                });
+            }
             return PageUtils.GetSettingsUrl(nameof(PageAnalysisAdminWork), new NameValueCollection
             {
                 {"siteId", siteId.ToString()},
@@ -49,6 +63,16 @@ namespace SiteServer.BackgroundPages.Settings
         public void Page_Load(object sender, EventArgs e)
         {
             if (IsForbidden) return;
+
+
+            if (AuthRequest.GetQueryBool("groupByDepartment"))
+            {
+                groupByDepartment(sender, e);
+                AdminDiv.Style["display"] = "none";
+                return;
+            }
+
+            DepartmentDiv.Style["display"] = "none";
 
             if (string.IsNullOrEmpty(AuthRequest.GetQueryString("startDate")))
             {
@@ -122,6 +146,82 @@ yArrayUpdate.push('{yValueUpdate}');";
             SpContents.DataBind();
         }
 
+
+        private void groupByDepartment(object sender, EventArgs e)
+        {
+            
+            if (string.IsNullOrEmpty(AuthRequest.GetQueryString("startDate")))
+            {
+                _begin = DateTime.Now.AddMonths(-1);
+                _end = DateTime.Now;
+            }
+            else
+            {
+                _begin = TranslateUtils.ToDateTime(AuthRequest.GetQueryString("startDate"));
+                _end = TranslateUtils.ToDateTime(AuthRequest.GetQueryString("endDate"));
+            }
+            var siteIdList = SiteManager.GetSiteIdListOrderByLevel();
+
+            if (SiteId == 0 && siteIdList.Count > 0)
+            {
+                PageUtils.Redirect(GetRedirectUrl(siteIdList[0], DateUtils.GetDateAndTimeString(_begin), DateUtils.GetDateAndTimeString(_end)));
+                return;
+            }
+
+            if (IsPostBack) return;
+
+            VerifySystemPermissions(ConfigManager.SettingsPermissions.Chart);
+
+            foreach (var siteId in siteIdList)
+            {
+                var siteInfo = SiteManager.GetSiteInfo(siteId);
+                DdlSiteId.Items.Add(new ListItem(siteInfo.SiteName, siteId.ToString()));
+            }
+            ControlUtils.SelectSingleItem(DdlSiteId, SiteId.ToString());
+
+            TbStartDate.Text = DateUtils.GetDateAndTimeString(_begin);
+            TbEndDate.Text = DateUtils.GetDateAndTimeString(_end);
+
+            if (SiteInfo == null)
+            {
+                PhAnalysis.Visible = false;
+                return;
+            }
+
+            var ds = DataProvider.ContentDao.GetDataSetOfDepartmentExcludeRecycle(SiteInfo.TableName, SiteId, _begin, _end);
+            if (ds == null || ds.Tables.Count <= 0) return;
+
+            var dt = ds.Tables[0];
+            if (dt.Rows.Count <= 0) return;
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                SetXHashtableUser(dr["source"].ToString(), dr["source"].ToString());
+                SetYHashtableUser(dr["source"].ToString(), TranslateUtils.ToInt(dr["addCount"].ToString()), YTypeNew);
+                SetYHashtableUser(dr["source"].ToString(), TranslateUtils.ToInt(dr["updateCount"].ToString()), YTypeUpdate);
+            }
+
+            foreach (var key in _userNameList)
+            {
+                var yValueNew = GetYHashtableUser(key, YTypeNew);
+                var yValueUpdate = GetYHashtableUser(key, YTypeUpdate);
+                StrArray += $@"
+xArrayNew.push('{GetXHashtableUser(key)}');
+yArrayNew.push('{yValueNew}');
+yArrayUpdate.push('{yValueUpdate}');";
+            }
+
+            SpContents.ControlToPaginate = RptContentDepartments;
+            RptContentDepartments.ItemDataBound += RptContents_ItemDataBoundByDepartment;
+            SpContents.ItemsPerPage = Constants.PageSize;
+            SpContents.SortField = "Source";
+            SpContents.SortMode = SortMode.DESC;
+
+            SpContents.SelectCommand = DataProvider.ContentDao.GetSqlStringOfDepartmentExcludeRecycle(SiteInfo.TableName, SiteId, _begin, _end);
+
+            SpContents.DataBind();
+        }
+
         private void RptContents_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem) return;
@@ -142,9 +242,32 @@ yArrayUpdate.push('{yValueUpdate}');";
             ltlContentUpdate.Text = updateCount == 0 ? "0" : $"<strong>{updateCount}</strong>";
         }
 
+        private void RptContents_ItemDataBoundByDepartment(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem) return;
+
+            var source = SqlUtils.EvalString(e.Item.DataItem, "source");
+            var addCount = SqlUtils.EvalInt(e.Item.DataItem, "addCount");
+            var updateCount = SqlUtils.EvalInt(e.Item.DataItem, "updateCount");
+
+            var ltlSource = (Literal)e.Item.FindControl("ltlSource");
+            var ltlContentAdd = (Literal)e.Item.FindControl("ltlContentAdd");
+            var ltlContentUpdate = (Literal)e.Item.FindControl("ltlContentUpdate");
+
+            ltlSource.Text = source;
+
+            ltlContentAdd.Text = addCount == 0 ? "0" : $"<strong>{addCount}</strong>";
+            ltlContentUpdate.Text = updateCount == 0 ? "0" : $"<strong>{updateCount}</strong>";
+        }
+
         public void Analysis_OnClick(object sender, EventArgs e)
         {
             PageUtils.Redirect(GetRedirectUrl(TranslateUtils.ToInt(DdlSiteId.SelectedValue), TbStartDate.Text, TbEndDate.Text));
+        }
+
+        public void Analysis_OnClick2(object sender, EventArgs e)
+        {
+            PageUtils.Redirect(GetRedirectUrl(TranslateUtils.ToInt(DdlSiteId.SelectedValue), TbStartDate.Text, TbEndDate.Text,true));
         }
 
         private void SetXHashtableUser(string userName, string siteName)

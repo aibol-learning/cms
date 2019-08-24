@@ -11,7 +11,8 @@ namespace SiteServer.CMS.Model.Attributes
         public const string Source = nameof(Source);
         public const string Summary = nameof(Summary);
         public const string Content = nameof(Content);
+        public const string ShowTime = nameof(ShowTime);
         //not exists
-        
-	}
+
+    }
 }
