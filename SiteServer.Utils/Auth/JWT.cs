@@ -10,7 +10,8 @@ namespace SiteServer.Utils.Auth
     {
         HS256,
         HS384,
-        HS512
+        HS512,
+        RS256
     }
 
     /// <summary>
@@ -31,7 +32,8 @@ namespace SiteServer.Utils.Auth
             {
                 { JwtHashAlgorithm.HS256, (key, value) => { using (var sha = new HMACSHA256(key)) { return sha.ComputeHash(value); } } },
                 { JwtHashAlgorithm.HS384, (key, value) => { using (var sha = new HMACSHA384(key)) { return sha.ComputeHash(value); } } },
-                { JwtHashAlgorithm.HS512, (key, value) => { using (var sha = new HMACSHA512(key)) { return sha.ComputeHash(value); } } }
+                { JwtHashAlgorithm.HS512, (key, value) => { using (var sha = new HMACSHA512(key)) { return sha.ComputeHash(value); } } },
+                { JwtHashAlgorithm.RS256, (key, value) => { using (var sha = new HMACSHA256(key)) { return sha.ComputeHash(value); } } }
             };
         }
 
@@ -250,6 +252,7 @@ namespace SiteServer.Utils.Auth
                 case "HS256": return JwtHashAlgorithm.HS256;
                 case "HS384": return JwtHashAlgorithm.HS384;
                 case "HS512": return JwtHashAlgorithm.HS512;
+                case "RS256": return JwtHashAlgorithm.RS256;
                 default: throw new SignatureVerificationException("Algorithm not supported.");
             }
         }

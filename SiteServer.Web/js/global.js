@@ -22,9 +22,12 @@ var global = {
 
 //获取当前登录用户信息
 $.ajax({
-    url: '/api/v1/users/current',
+    url: '/api/aibol/userinfo',
     type: 'post',
     success: function (response) {
-        console.log(response);
+        $.ajaxSetup({
+            
+        })
+        console.log(response.token);
     }
 });

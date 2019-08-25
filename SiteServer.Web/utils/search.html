@@ -34,7 +34,7 @@
         <div class="logo"> <a href="/index.html"> <img src="/upload/images/2019/8/5aaf4f4ead0167e6.png" type="Logo" /> </a> </div>
         <div class="search">
             <div id="sb-search" class="sb-search sb-search sb-search-open">
-                <form id="searchform" method="get" action="/utils/search.html">
+                <form id="searchform" method="get" action="/newsSite/utils/search.html">
                     <input class="sb-search-input" placeholder="输入关键词查找..." type="text" name="word">
                     <input id="searchsubmit" class="sb-search-submit" type="submit">
                     <span class="glyphicon glyphicon-search"></span>
@@ -556,18 +556,6 @@
                     _this1.find('.second-nav').hide();
                 }
             });
-
-            //获取当前登录用户信息
-            $.ajax({
-                url: global.backstageAPIUrl.loginInfo,
-                type: 'get',
-                success: function (response) {
-                    if (response.Code == 200 && response.Data) {
-                        global.loginInfo = response.Data; //把数据存储下来备用
-                        $("#loginInfo").text('我的工作区');
-                    }
-                }
-            });
         });
     </script>
 </div>
@@ -593,7 +581,7 @@
                 </div>
               </div>
               
-<div id="ajaxElement_1_991">
+<div id="ajaxElement_1_604">
     <div class="stl_loading"><div class="alert alert-info" role="alert">
                     <strong>提示!</strong> 系统正在搜索中，请稍后...
                   </div></div>
@@ -624,7 +612,7 @@ jQuery(document).ready(function(){
     pagenum: 0,
     ishighlight: true,
     siteid: '1',
-    ajaxdivid: 'ajaxElement_1_991',
+    ajaxdivid: 'ajaxElement_1_604',
     template: 'kQVCkn3Jj8frv5wmfft6gDKusU3QEOlPh2P5MhaQARMyub0slash0EWGaR2mWRSTigkOgRxDucPw0add0JCSigd7iZJIheiezyDfsRkD2jUpsmZOn9JDh4HKIbMczBCaEfYA7Vo9S0slash0OSJOAiRKD1jICLSuyvurwqsTUuezXQZjHHt0MoFcfMaGiHs6CBhiPBDUx1pBUcefilPVZOLruPoHFi50slash0U9rXlpiGKdLpthjap3iS3nxhXN0add0INCgonLq8eDhyvjyEEFMOzBMDeobf25u50slash0wW5hlOHd9gExN9UpslBuKpVyLVQJ8jiCg7QWukD2eNS7LC0slash0AUgE8LBqebgxWCaZZAqV8TLwchAOYNYze7uQEFKajnc3aHR6f2nPaOYzb4c0p51Zfm7Of0add0NZftE4bfzj5iVB0slash0CU5dMz0slash0EIDwDw80HdpdX47ABvhsvOY2V70add0iddCgppYBRjCB9LZMtoqDLtjRMnSzUvVBr1AUSNgMmqg6mduUViTtbcW8zKr4IiBU0slash0yxiUHBebdX6W0add0B0add066X2b9BB0slash0mu8Sf0add0r0D0sXHJ9KUamJmP66xMcFWEp1Wf0IDgV1NKjZamRQwutCaxqIEOY0add0oe0slash0ezZ0kjGAY4OtEsXlwmv80add0wD0slash0rt2HVUrICfDIuVuzjpxOqeSCc5M290slash00slash0DmDXfngPc6DoE3Y71aJ0slash065kZtZEFqU5ehb31S15gLIpY1HGUNJwOEwpxQpbbTFFsN6hqai8aEO9GW8sI45YNPkfcBc1IHEQXWly0j1g8SCxgFvR0slash0EDkHrfZ9EafGkxO5nAgHiIMeDFnZ3fllI4D3x2kXeVOnUeR8iJTQ2FgwQzlhjAbkTWr4DHCOMuT9JiV7A4HkRtLhoV5fFjoOIr1AWQTlUsgsunyTRW1PF6TZ8kHFR2COcPksaFFFThoDU7Z0hVdqJatTqCIlt1eD75Sek7mWasgV8Xi0slash08Uk5Vu6yI6imBz2DLiSiYi82TCmxI9LfrQC9dk4y30NIsY0slash0Y057AyZkuHMCnQXbRW0slash0zZaeODXXkxP3cplix0slash0wi9dQk6C6tXItvBCb1QpVzjiddlStP0slash0hPGJvq01bs3jo053SmPMpLPUFyaq2Xa4HnnyTqgpyfTVXZmJ3WQ4YXkEKfflJCDAqDy0add0Cu2eMPt948mVcpOQSApx84mhPMC2DTy0slash0gsyCdL9LHoLYFoNlhm6s0add0A2hkMqRPwH0add0KBXUUC6UbDZlL0slash0fv8SVY2quo20SQols20slash0ViHxh8C8pGxM4D8v0slash0xyY97iDg27SQIlpFYi5MKr7I4owxahDQjrUbAYH0slash0sEmy68NJi7qXoHiWSsSKYtm0KVNefgQAPfoZyTil3PohJ15to6O4jafAWLauSPrMsiHsw0iDj0slash0pcKTJdJaYnwpkP63j7MDXJh0add0kF0slash0w0iv7cG4dzYY6xQ9xzGuqKtTrTK8JcdidXgZrCbzxpxCVyrfyOr40q9TZPq4JxaN40add0md6A0CUhOzozGVGHqX3oA9UZkyj3PMAtypzsrOnK4EVKY2U7mPmLVRM991eGb75NtXUQY7xANBoXrxVQqDM6mQfJkniB1KVzOL7crGXYLdIh0z09KYTv67ifrypcqzHpr2o3r93ZlE7ozOFfpadYtn5QOadl8dnHvETaVinSDmJPBNPQaB4K5R92VILMWvy8TXxQmCwXsjnPPmxKB9pzV9Sm1a49ThvPTwWZ27yIz8UYhVkB4hX0add095H4WZKqGlHjD36XM1VZWdiKszlsTTSXngSc0slash0yFUvIPa4qfzBk7LmXvZm0add0R0add0on30add09anBj89fF0Xhe0slash0GLdBpNoMgVM6SI0slash0i8FzQP2UPv0RhCKNtVYbgcFfBKV89dRj8FC8iJdZXT5G0DKj10slash08MFTU8LfxBgfW80xxEU3WeOpswNelDt0add0d0Qv8JegoV1giVAdc1qD0add080slash0k9xgZtLb0slash0F5yGuG8mMPssd4kzi26brluarygBaRJMoYscffdDy3nJRxRjfEQfP8CDMQRMcqyVJWhgYn7VI9WeQtK7BLUGB0FG5BF7YjO9HJO30slash0KEKD2RXb0add0kSCkWpuV54rASk1kaMwoO8cf7xMq44r1au12EvJc5ErH5Tl4AcBP8XeyCtakncAyJ4BWC1W9BEmfL1p9J2MGIIRn2ATJhPQ4yKES4cd1FNmSGRh1Q2dRhNzuiTYLp67JfvvBDZP5OaGYAsBW90add0FV82CHBjHAz0slash0SnIEcPJuYAo3v4G0m1QTI1JUf97p14NzCV7IfbuD0slash0OyIHUcQX5A4t0add070RaeP9Eh9m4oSS9gBM6qJnL6ItDtM2YxUvV2jaBawUiVM6IUh8ds0WshNWAXvZwmGgFx0SHqgGQg0slash0EIoyl83h5086qJwi8zG74Ie4vWlozuHA0slash0F4QVSvGAWPNMll5n0slash0YI1yr21Yml4xflmcCvHpIrJiHEyh81GQaD63aT75i4vPWdFFrFta0add0Q0slash0lk1vj35zou08pb634um0slash0CUM600add0M6a7D0FFDaAW7mm1EoXTqNYonIsZ14hlk0slash0uQjrG0add0cbWfa3Ez33JtvangzYsm0aMExevbvoCnN5y5M1p60add05Q4eN0slash0hFZW9RGW98woKPSuBbFszNLtd98pkpvZbf0add0W30add05ILaXYlpBsqQ7BGe0slash0H0S5OmnbRzI8AiizxAOGBlH0add0kUZBJgFU2RQbdKzJY0add0NZr0bt8vN1hP90slash0XfJQKy0slash0d6tpW6A4MVjvtZiq8Yg3EZg8znUSyNRPA0slash06tHswJgDS4xQCcdb0GtmUE39siybaJzvuJn0slash00slash0SWveL0slash0Cnb383ADs3kt3C0slash0sIlwPiCq06s1iCC3HmjZO0slash0hRQIC8XgbeMr4uDDsC0add0dfyQiB4h3AS5ntJBRC9AAuSkW3wzphRLrq8Smew1bPnd0wNKcAZv9IcgZYCDOh0slash0uaiK8lTc0slash0U2EbEzqydwDI0slash0x2UFIgJVhMph3SYQ7uhnAi0slash00add03BRWY2vs4U4ScytaPnqInZBbLySuTmFlVnsGOS5LeZ8f0QLKcKCXYx207kpBM10slash0QVlMERBIF00slash0esxhCjy1XvDO2Im7BoAMVpS3AI0slash0ksFTA49DabLQjqYSEHAsNEqyAdYJm7Lb8KFwDErzqB4UWy02lx0add0T0add0hta4kfRENhUgbeT6HIIN060secret0',
 };
 
@@ -654,25 +642,25 @@ jQuery(document).ready(function(){
             data: JSON.stringify(parameters),
             dataType: 'json',
             success: function(res) {
-                jQuery("#ajaxElement_1_991 .stl_loading").hide();
-                jQuery("#ajaxElement_1_991 .stl_yes").show();
-                jQuery("#ajaxElement_1_991 .stl_no").hide();
-                jQuery("#ajaxElement_1_991 .stl_yes").html(res);
+                jQuery("#ajaxElement_1_604 .stl_loading").hide();
+                jQuery("#ajaxElement_1_604 .stl_yes").show();
+                jQuery("#ajaxElement_1_604 .stl_no").hide();
+                jQuery("#ajaxElement_1_604 .stl_yes").html(res);
             },
             error: function(e) {
-                jQuery("#ajaxElement_1_991 .stl_loading").hide();
-                jQuery("#ajaxElement_1_991 .stl_yes").hide();
-                jQuery("#ajaxElement_1_991 .stl_no").show();
+                jQuery("#ajaxElement_1_604 .stl_loading").hide();
+                jQuery("#ajaxElement_1_604 .stl_yes").hide();
+                jQuery("#ajaxElement_1_604 .stl_no").show();
             }
         });
     } else {
-        jQuery("#ajaxElement_1_991 .stl_loading").hide();
-        jQuery("#ajaxElement_1_991 .stl_yes").hide();
-        jQuery("#ajaxElement_1_991 .stl_no").hide();
+        jQuery("#ajaxElement_1_604 .stl_loading").hide();
+        jQuery("#ajaxElement_1_604 .stl_yes").hide();
+        jQuery("#ajaxElement_1_604 .stl_no").hide();
     }
 });
 
-function stlRedirectajaxElement_1_991(page)
+function stlRedirectajaxElement_1_604(page)
 {
     var queryString = document.location.search;
     if (queryString && queryString.length > 1) {
@@ -693,9 +681,9 @@ function stlRedirectajaxElement_1_991(page)
     }
 }
 
-function stlJumpajaxElement_1_991(selObj)
+function stlJumpajaxElement_1_604(selObj)
 {
-    stlRedirectajaxElement_1_991(selObj.options[selObj.selectedIndex].value);
+    stlRedirectajaxElement_1_604(selObj.options[selObj.selectedIndex].value);
 }
 </script>
 
@@ -708,31 +696,31 @@ function stlJumpajaxElement_1_991(selObj)
   <div class="container">
     <div class="footer_top">
       <div class="footernav">
-        <div class="menu-%e5%ba%95%e9%83%a8%e8%8f%9c%e5%8d%95-container">
-          <ul id="menu-%e5%ba%95%e9%83%a8%e8%8f%9c%e5%8d%95" class="footnav">
+        <div>
+          <ul class="footnav">
           
-            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="/contents/3/1.html">公司概况</a>
+            <li><a href="/contents/3/1.html">公司概况</a>
               <ul class="sub-menu">
               
-                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/contents/3/1.html">公司介绍</a></li>
+                <li><a href="/contents/3/1.html">公司介绍</a></li>
               
-                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/contents/25/103.html">公司领导</a></li>
+                <li><a href="/contents/25/103.html">公司领导</a></li>
               
-                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/channels/27.html">企业年鉴</a></li>
+                <li><a href="/channels/27.html">企业年鉴</a></li>
               
-                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/channels/28.html">年度大事记</a></li>
+                <li><a href="/channels/28.html">年度大事记</a></li>
               
               </ul>
             </li>
           
-            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="/contents/30/111.html">公司文化</a>
+            <li><a href="/contents/30/111.html">公司文化</a>
               <ul class="sub-menu">
               
-                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/contents/30/111.html">核心价值观</a></li>
+                <li><a href="/contents/30/111.html">核心价值观</a></li>
               
-                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/contents/31/112.html">文化体系</a></li>
+                <li><a href="/contents/31/112.html">文化体系</a></li>
               
-                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/contents/33/114.html">高层观点</a></li>
+                <li><a href="/contents/33/114.html">高层观点</a></li>
               
               </ul>
             </li>
@@ -756,7 +744,7 @@ function stlJumpajaxElement_1_991(selObj)
       <div class="footer_other">
         <div class="footer_other_title">系统管理</div>
         <div class="footer_other_con"> 
-          <a target="_blank" href="https://www.baidu.com">登录管理后台</a>
+          <a target="_blank" href="/siterServer">登录管理后台</a>
         </div>
       </div>
       <div class="footer_other">

@@ -8,13 +8,14 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
 using OfficeOpenXml;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
 using OfficeOpenXml.Style;
 using SiteServer.API.Models;
+using SiteServer.CMS.Core;
+using SiteServer.CMS.DataCache;
+using SiteServer.Utils;
 
 namespace SiteServer.API.Controllers
 {
-
     [RoutePrefix("aibol")]
     public class AibolController : ApiController
     {
@@ -514,5 +515,35 @@ namespace SiteServer.API.Controllers
 
         #endregion
 
+        #region 用户登录相关的一些接口
+
+        private const string RouteUserInfo = "userinfo";
+
+        [HttpPost, Route(RouteUserInfo)]
+        public IHttpActionResult CurrentUserInfo()
+        {
+            var request = new AuthenticatedRequest();
+            var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
+
+            var at = AuthenticatedRequest.ParseAccessToken(accessToken, false);
+            if (string.IsNullOrEmpty(at.sub))
+                return Ok();
+
+            var user = AdminManager.GetAdminInfoByUserSub(at.sub);
+            if (user == null)
+            {
+                // 新增用户
+                user = AdminManager.UpdateNewUserFromIdentityServer(accessToken);
+            }
+
+            return Ok(new
+            {
+                user.UserName,
+                user.DisplayName,
+                token = accessToken
+            });
+        }
+
+        #endregion
     }
 }
