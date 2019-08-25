@@ -2,6 +2,7 @@ var global = {
     apikey: "38bfc679-ec19-488d-9877-c66016bbe2d5", //apikey
     newsSiteId: 36, //新闻中心网站id
     loginInfo: null,  //当前登录信息
+    sso: 'https://pass.aibol.com/backstage/identity/connect/authorize?client_id=backstage_cms_debug&redirect_uri=http://localhost:51687/&scope=openid%20profile&response_mode=form_post&response_type=id_token%20token&state=1234&nonce=abcd',
     backstageAPIUrl: {//工作区接口访问url
         loginInfo: 'http://backstage.aibol.com.cn/api/backstage/logininfo', //当前登录信息接口url
         tours: 'http://backstage.aibol.com.cn/api/backstage/tours', //安全生产管理巡视接口url
@@ -19,15 +20,11 @@ var global = {
         // 外网测试服务：http://backstage.aibol.com.cn/{redirectUrl}
 } 
 
-
-//获取当前登录用户信息
+// 获取当前登录用户信息
 $.ajax({
     url: '/api/aibol/userinfo',
     type: 'post',
     success: function (response) {
-        $.ajaxSetup({
-            
-        })
-        console.log(response.token);
+        console.log(response);
     }
 });

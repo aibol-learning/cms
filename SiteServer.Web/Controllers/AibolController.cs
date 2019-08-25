@@ -539,8 +539,7 @@ namespace SiteServer.API.Controllers
             return Ok(new
             {
                 user.UserName,
-                user.DisplayName,
-                token = accessToken
+                user.DisplayName
             });
         }
 
