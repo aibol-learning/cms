@@ -96,17 +96,17 @@
                 }
             });
 
-            //获取当前登录用户信息
-            $.ajax({
-                url: global.backstageAPIUrl.loginInfo,
-                type: 'get',
-                success: function (response) {
-                    if (response.Code == 200 && response.Data) {
-                        global.loginInfo = response.Data; //把数据存储下来备用
-                        $("#loginInfo").text('我的工作区');
-                    }
-                }
-            });
+            ////获取当前登录用户信息
+            //$.ajax({
+            //    url: global.backstageAPIUrl.loginInfo,
+            //    type: 'get',
+            //    success: function (response) {
+            //        if (response.Code == 200 && response.Data) {
+            //            global.loginInfo = response.Data; //把数据存储下来备用
+            //            $("#loginInfo").text('我的工作区');
+            //        }
+            //    }
+            //});
         });
     </script>
 </div>

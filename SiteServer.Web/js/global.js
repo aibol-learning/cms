@@ -18,3 +18,13 @@ var global = {
         // 内网测试服：http://10.138.20.219:82/{redirectUrl}
         // 外网测试服务：http://backstage.aibol.com.cn/{redirectUrl}
 } 
+
+
+//获取当前登录用户信息
+$.ajax({
+    url: '/api/v1/users/current',
+    type: 'post',
+    success: function (response) {
+        console.log(response);
+    }
+});

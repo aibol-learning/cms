@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 using SiteServer.CMS.Api.V1;
@@ -22,6 +24,7 @@ namespace SiteServer.API.Controllers.V1
         private const string RouteUserAvatar = "{id:int}/avatar";
         private const string RouteUserLogs = "{id:int}/logs";
         private const string RouteUserResetPassword = "{id:int}/actions/resetPassword";
+        private const string RouteUserInfo = "current";
 
         [HttpPost, Route(Route)]
         public IHttpActionResult Create()
@@ -282,6 +285,32 @@ namespace SiteServer.API.Controllers.V1
                 LogUtils.AddErrorLog(ex);
                 return InternalServerError(ex);
             }
+        }
+
+        [HttpPost, Route(RouteUserInfo)]
+        public IHttpActionResult CurrentUserInfo()
+        {
+            var request = new AuthenticatedRequest();
+            var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
+
+            var at = AuthenticatedRequest.ParseAccessToken(accessToken);
+            if (string.IsNullOrEmpty(at.sub))
+                return Ok();
+
+            var user = UserManager.GetUserInfoBySub(at.sub);
+            if (user == null)
+            {
+                return Ok();
+                // 新增用户
+                // user = UserManager.UpdateNewUserFromIdentityServer(accessToken);
+            }
+
+            return Ok(new
+            {
+                user.UserName,
+                user.DisplayName
+            });
+
         }
 
         [HttpPost, Route(RouteActionsLogout)]
