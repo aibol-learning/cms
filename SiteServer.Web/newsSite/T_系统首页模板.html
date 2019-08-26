@@ -159,12 +159,12 @@
                 <div class="col-sm-12 col-md-8 col-lg-8 cont-left">
                     <!--新思想/公司要闻(左侧主要内容) -->
                     <div class="news_tab">
-                        <div class="news_tab_item">新思想</div>
-                        <div class="news_tab_item active">公司要闻</div>
+                        <div class="news_tab_item active">新思想</div>
+                        <div class="news_tab_item">公司要闻</div>
                     </div>
 
                     <div class="news_contents">
-                        <div class="news_content">
+                        <div class="news_content active">
                             <ul class="news_list">
                                 <stl:contents channelIndex="新思想" totalNum="3">
                                     <li>
@@ -189,7 +189,7 @@
                             </ul>
                             <stl:a channelIndex="新思想" class="news_list_more">更多……</stl:a>
                         </div>
-                        <div class="news_content active">
+                        <div class="news_content">
                             <ul class="news_list">
                                 <stl:contents channelIndex="公司要闻" totalNum="3">
                                     <li>
@@ -216,63 +216,29 @@
                         </div>
                     </div>
 
-                    <!--左侧次要内容 -->
-                    <!--<div v-for="(channelBundle,index) in leftChannels">
-                        <div style="width:100px; float:left;">
-                            <span v-for="site in siteBundle"><a target="_blank" :href="site.navigationUrl">{{site.channelName}}</a><br /></span>
-                        </div>
-                    </div>-->
-                    <!--<div class="news_tab">
-                        <div class="news_tab_item">新思想</div>
-                        <div class="news_tab_item active">公司要闻</div>
-                        <div class="news_tab_item">新思想</div>
-                        <div class="news_tab_item active">公司要闻</div>
-                        <div class="news_tab_item">新思想</div>
-                        <div class="news_tab_item active">公司要闻</div>
-                    </div>-->
-
-                    <!--<div class="news_contents">
-                        <div class="news_content">
-                            <div class="news_list2">
-                                <stl:contents channelIndex="新思想" totalNum="3">
-                                    <stl:contents channelIndex="头条新闻" totalNum="5">
-                                        <stl:a class="head_list_title"><stl:content wordNum="19" ellipsis="..."></stl:content></stl:a>
-                                        <div class="head_list_info">
-                                            <i class="iconfont icon-shijian"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
-                                            <i class="iconfont icon-faxian"></i> <stl:content type="source"></stl:content>
-                                            <stl:if type="tags" op="NotEmpty">
-                                                <stl:yes>
-                                                    <i class="iconfont icon-biaoqian"></i> <stl:content type="tags"></stl:content>
-                                                </stl:yes>
-                                            </stl:if>
-                                        </div>
-                                    </stl:contents>
-                                    <stl:a channelIndex="头条新闻" class="head_list_more">更多……</stl:a>
-                                </stl:contents>
+                    <!--左侧栏目 -->
+                    <div id="vm_left_channels" v-cloak>
+                        <div v-for="(ccc,index) in leftChannels">
+                            <div class="news_tab">
+                                <div class="news_tab_item" :class="{active: cc.active}" v-for="(cc,idx) in ccc" @click="changeTab(index, idx)">{{cc.channelName}}</div>
                             </div>
-                            <stl:a channelIndex="新思想" class="news_list_more">更多……</stl:a>
-                        </div>
-                        <div class="news_content active">
-                            <div class="news_list2">
-                                <stl:contents channelIndex="新思想" totalNum="3">
-                                    <stl:contents channelIndex="头条新闻" totalNum="5">
-                                        <stl:a class="head_list_title"><stl:content wordNum="19" ellipsis="..."></stl:content></stl:a>
-                                        <div class="head_list_info">
-                                            <i class="iconfont icon-shijian"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
-                                            <i class="iconfont icon-faxian"></i> <stl:content type="source"></stl:content>
-                                            <stl:if type="tags" op="NotEmpty">
-                                                <stl:yes>
-                                                    <i class="iconfont icon-biaoqian"></i> <stl:content type="tags"></stl:content>
-                                                </stl:yes>
-                                            </stl:if>
+                            <div class="news_contents">
+                                <div class="news_content" :class="{active: cc.active}" v-for="(cc,idx) in ccc">
+                                    <div class="news_list2">
+                                        <div v-for="c in cc.contents">
+                                            <a :href="c.navigationUrl" class="list_title" :title="c.title">{{c.title}}</a>
+                                            <div class="list_info">
+                                                <i class="iconfont icon-shijian"></i> {{c.addDate}}&emsp;&emsp;
+                                                <i class="iconfont icon-faxian"></i> {{c.source}}&emsp;&emsp;
+                                                <span v-if="c.tags"><i class="iconfont icon-biaoqian"></i> {{c.tags}}</span>
+                                            </div>
                                         </div>
-                                    </stl:contents>
-                                    <stl:a channelIndex="头条新闻" class="head_list_more">更多……</stl:a>
-                                </stl:contents>
+                                        <a :href="cc.navigationUrl" class="list_more">更多……</a>
+                                    </div>
+                                </div>
                             </div>
-                            <stl:a channelIndex="新思想" class="news_list_more">更多……</stl:a>
                         </div>
-                    </div>-->
+                    </div>
                 </div>
 
                 <!--右侧边栏-->
@@ -282,7 +248,7 @@
                             <div class="sidebar_title"><stl:channel></stl:channel></div>
                             <div class="sidebar_list">
                                 <stl:contents channelIndex="{Channel.title}" isRecommend="true">
-                                    <stl:a><stl:content type="title" wordNum="20" ellipsis="..."></stl:content></stl:a>
+                                    <stl:a title="{Content.title}"><stl:content type="title" wordNum="20" ellipsis="..."></stl:content></stl:a>
                                 </stl:contents>
                             </div>
                             <stl:a channelIndex="{Channel.title}" class="sidebar_list_more">更多……</stl:a>
@@ -333,13 +299,93 @@
 
     <script type="text/javascript">
         $(function () {
-            //tab切换
+            //新思想|公司要闻 tab切换
             $('.news_tab_item').click(function () {
-                var index = $('.news_tab_item').index($(this));
-                $(".news_tab_item.active").removeClass("active");
-                $(".news_tab_item").eq(index).addClass("active");
-                $(".news_content.active").removeClass("active");
-                $(".news_content").eq(index).addClass("active");
+                var news_tabs = $(this).parent(".news_tab").eq(0);
+                var news_contents = $(this).parent(".news_tab").eq(0).next(".news_contents")
+                var index = news_tabs.find('.news_tab_item').index($(this));
+                news_tabs.find(".news_tab_item.active").removeClass("active");
+                news_tabs.find(".news_tab_item").eq(index).addClass("active");
+                news_contents.find(".news_content.active").removeClass("active");
+                news_contents.find(".news_content").eq(index).addClass("active");
+            });
+
+            //左侧次要栏目数据请求
+            vm = new Vue({
+                el: "#vm_left_channels",
+                data: {
+                    leftChannels: [],  //左侧栏目
+                    leftChannelContents: [],  //左侧栏目内容
+                },
+                methods: {
+                    //获取栏目 
+                    getLeftChannels: function () {
+                        var self = this;
+                        $.ajax({
+                            url: '/api/v1/stl/channels?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&groupChannel=左侧栏目',
+                            type: 'get',
+                            success: function (response) {
+                                var grounpCount = Math.ceil(response.value.length / 5);
+                                var tempArray = [];
+                                for (var i = 0; i < grounpCount; i++) {
+                                    var tempArray = [];
+                                    for (var j = 0; j < 5; j++) {
+                                        var c = i * 5 + j;
+                                        if (c < response.value.length) {
+                                            var tempObj = {
+                                                id: response.value[c].id,
+                                                channelName: response.value[c].channelName,
+                                                navigationUrl: response.value[c].navigationUrl,
+                                                contents: []
+                                            }
+                                            if (j == 0) {
+                                                tempObj.active = true;
+                                            }
+                                            else {
+                                                tempObj.active = false;
+                                            }
+                                            tempArray.push(tempObj);
+
+                                            self.getLeftChannelContents(tempObj.id);
+                                        }
+                                    }
+                                    self.leftChannels.push(tempArray);
+                                    
+                                }
+                            }
+                        })
+                    },
+
+                    //获取内容
+                    getLeftChannelContents: function (channelId) {
+                        var self = this;
+                        $.ajax({
+                            url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelId='+channelId+"&totalNum=5",
+                            type: 'get',
+                            success: function (response) {
+                                for (var i = 0; i < self.leftChannels.length; i++) {
+                                    for (var j = 0; j < self.leftChannels[i].length; j++) {
+                                        if (self.leftChannels[i][j].id == channelId) {
+                                            self.leftChannels[i][j].contents = response.value;
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                    },
+
+                    //tab切换
+                    changeTab: function (bundleIndex, tabIndex) {
+                        this.leftChannels[bundleIndex].forEach(function (node, index) {
+                            node.active = false;
+                        });
+                        this.leftChannels[bundleIndex][tabIndex].active = true;
+                    }
+                },
+                created: function () {
+                    //左侧栏目及内容数据请求
+                    this.getLeftChannels();
+                }
             });
 
             //信息员天地数据请求
@@ -480,6 +526,7 @@
                 },
                 created: function () {
                     var self = this;
+
                     //待办任务(外部接口)
                     this.getStartTime();
                 }
