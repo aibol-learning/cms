@@ -238,7 +238,7 @@ namespace SiteServer.API.Controllers
         {
             var contents = GetContents();
 
-            var re = contents.GroupBy(o => o.Source).Select(o => new { department = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Take(6).ToList();
+            var re = contents.GroupBy(o => o.Source).Select(o => new { department = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Where(o=>!string.IsNullOrEmpty(o.department)).Take(6).ToList();
 
             return Json(re);
         }
@@ -281,7 +281,7 @@ namespace SiteServer.API.Controllers
 
             var list = contents.SelectMany(o => o.Author.Split(','));
 
-            var re = list.GroupBy(o => o).Select(o => new { author = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Take(6).ToList();
+            var re = list.GroupBy(o => o).Select(o => new { author = o.Key, count = o.Count() }).Where(o=>!string.IsNullOrEmpty(o.author)).OrderByDescending(o => o.count).Take(6).ToList();
 
             return Json(re);
         }
