@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
@@ -313,7 +314,10 @@ namespace SiteServer.BackgroundPages.Settings
         {
             var re = string.Empty;
             var i = 0;
-            if(WebClientUtils.Get("http://pss.aibol.com.cn/system/users?LastRetrieveDate=2000-01-01&PageSize=30000", out re))
+
+            var url = ConfigurationManager.AppSettings["UsersApiUrl"];
+
+            if(WebClientUtils.Get(url+ "?LastRetrieveDate=2000-01-01&PageSize=30000", out re))
             {
                 JObject result = JObject.Parse(re);
                 var admins = DataProvider.AdministratorDao.ApiGetAdministrators(0, Int32.MaxValue);
@@ -342,7 +346,6 @@ namespace SiteServer.BackgroundPages.Settings
                         {
                             i++;
                         }
-
                     }
                     else
                     {
@@ -353,7 +356,6 @@ namespace SiteServer.BackgroundPages.Settings
                             DataProvider.AdministratorDao.Update(adminInfo);
                         }
                     }
-
                 }
                 SuccessMessage($"导入成功,本次新增{i}条");
             }
