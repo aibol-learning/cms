@@ -37,6 +37,7 @@
         <div class="col-sm-6">
           <asp:RegularExpressionValidator runat="server" ControlToValidate="TbNodeIndexName" ValidationExpression="[^']+"
             ErrorMessage=" *" ForeColor="red" Display="Dynamic" />
+            <small class="form-text text-muted">注意:栏目索引确定后,不可改动,如需修改请联系信息中心</small>
         </div>
       </div>
 

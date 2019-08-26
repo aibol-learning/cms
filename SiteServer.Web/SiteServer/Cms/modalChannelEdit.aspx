@@ -31,6 +31,8 @@
           <div class="col-6">
             <asp:RegularExpressionValidator runat="server" ControlToValidate="TbNodeIndexName" ValidationExpression="[^']+" errorMessage=" *"
               foreColor="red" Display="Dynamic" />
+              
+              <small class="form-text text-muted">注意:栏目索引确定后,不可改动,如需修改请联系信息中心</small>
           </div>
         </div>
 
@@ -67,7 +69,7 @@
           <div class="col-1 help-block"></div>
         </div>
 
-        <%--<div class="form-group form-row">
+        <div class="form-group form-row" style="display: none;">
           <label class="col-2 col-form-label text-right">关键字列表</label>
           <div class="col-4">
             <asp:TextBox class="form-control" Rows="3" TextMode="MultiLine" id="TbKeywords" runat="server" />
@@ -76,7 +78,7 @@
             <asp:RegularExpressionValidator runat="server" ControlToValidate="TbKeywords" ValidationExpression="[^']+" errorMessage=" *"
               foreColor="red" display="Dynamic" /> 注意：各关键词间用英文逗号“,”隔开。
           </div>
-        </div>--%>
+        </div>
 
         <div class="form-group form-row">
           <label class="col-2 col-form-label text-right">页面描述</label>
