@@ -16,12 +16,29 @@
                 new UISearch(document.getElementById('sb-search'));
             </script>
         </div>
-        <div class="loginInfo"><a href="#" id="loginInfo">登录工作区</a></div>
+        <div class="loginInfo"  id="loginInfoVM">
+            <a href="#" id="loginInfo">登录工作区</a>
+
+            <a v-if="isLogin" href="#">退出</a>
+            <a v-if="isLogin" href="#">进入工作区</a>
+        </div>
         <div class="clearfix"></div>
     </div>
 </div>
 <script>
     $(function () {
+        var loginInfoVM = new Vue({
+                el: "#loginInfoVM",
+                data: {
+                    isLogin:  global.loginInfo
+                },
+                created: function () {
+                    setInterval(function () {
+                        loginInfoVM.isLogin = global.loginInfo
+                    }, 1000);
+                }
+            })
+
         //获取当前登录用户信息
         $.ajax({
             url: global.backstageAPIUrl.loginInfo,

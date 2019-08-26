@@ -24,6 +24,8 @@ $.ajax({
     url: '/api/aibol/userinfo',
     type: 'post',
     success: function (response) {
-        console.log(response);
+        if (response.displayName || response.userName) {
+            global.loginInfo = response;
+        }
     }
 });
