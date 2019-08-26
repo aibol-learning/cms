@@ -7,7 +7,6 @@ var global = {
         loginInfo: 'http://backstage.aibol.com.cn/api/backstage/logininfo', //当前登录信息接口url
         tours: 'http://backstage.aibol.com.cn/api/backstage/tours', //安全生产管理巡视接口url
         tasks: 'http://backstage.aibol.com.cn/api/backstage/tasks', //待办任务接口url
-        loginInfo: 'http://backstage.aibol.com.cn/api/backstage/logininfo', //工作区当前登录信息接口Url
         screenData: ' http://screen.aibol.com.cn/home/data' //大屏幕数据接口Url
     },
     toursTaskUrl: 'http://backstage.aibol.com.cn/tour/',  //安全生产管理巡视任务点击跳转的页面url
