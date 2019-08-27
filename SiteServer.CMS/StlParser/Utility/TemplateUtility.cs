@@ -9,6 +9,7 @@ using SiteServer.CMS.Model.Attributes;
 using SiteServer.CMS.Model.Enumerations;
 using SiteServer.CMS.StlParser.Model;
 using SiteServer.CMS.StlParser.StlElement;
+using System;
 
 namespace SiteServer.CMS.StlParser.Utility
 {
@@ -43,7 +44,11 @@ namespace SiteServer.CMS.StlParser.Utility
             {
                 var siteInfo = SiteManager.GetSiteInfo(contentInfo.SiteId);
                 contextInfo.SiteInfo = siteInfo;
-                pageInfo.ChangeSite(siteInfo, siteInfo.Id, 0, contextInfo);
+                try
+                {
+                    pageInfo.ChangeSite(siteInfo, siteInfo.Id, 0, contextInfo);
+                }
+                catch (Exception e) { }
             }
 
             var theTemplateString = string.Empty;

@@ -196,7 +196,6 @@ span.comment_admin {color: #FFF;}
 .icon-search-close {right: 30px;top: 30px;}*/
 .author-info{width: 100%;margin-left: -20px;padding-left: 40px;}
 .options {display: none;}
-#page {margin-bottom: 30px;}
 .user-state .state-list li .l-cont{text-align: right;padding: 10px;}
 .user-state .state-list li .r-cont{padding: 15px;}
 .content-box {width: 100%;}
@@ -228,7 +227,7 @@ span.comment_admin {color: #FFF;}
 #commentsnavi .btn-bordered {width: auto;display: inline-block;height: 38px;line-height: 36px;box-sizing: border-box;font-size: 14px;font-size: 1.4rem;padding: 0 20px;-webkit-border-radius: 40px;-moz-border-radius: 40px;border-radius: 40px;color: #3CA5F6;border-color: #3CA5F6;background-color: transparent;}
 /*作者页面 翻页*/
 #page a {text-decoration: none;color: #FFF;background: #6B6E81;display: inline-block;line-height: 16px;border-radius: 2px;margin: 0 0px 2px 10px;padding: 5px 14px;}
-#page {text-align: center;margin-top: 30px;}
+#page {text-align: center;margin: 30px auto;}
 #page a:hover,#page a.current {color:#FFF;background:#3CA5F6;border-radius: 2px;}
 /**面包屑**/
 .breadcrumbs {padding: 6px 15px;margin-top: 30px;list-style: none;background-color: #f5f5f5;border-radius: 4px;height: 30px;}
