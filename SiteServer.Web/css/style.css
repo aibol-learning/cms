@@ -1910,3 +1910,44 @@ a:hover {
   text-align:center;
   color:#999;
 }
+
+/*大屏幕实时数据*/
+.slideBox1 .bd ul {
+    height: 440px;
+    text-align: center;
+}
+
+    .slideBox1 .bd ul li {
+        padding-top: 35px;
+        height: 440px
+    }
+
+    .slideBox1 .bd ul table {
+        width: 90%;
+        font-size: 16px;
+        margin: 40px auto
+    }
+
+    .slideBox1 .bd ul div.chart {
+        width: 90%;
+        font-size: 16px;
+        margin: 40px auto;
+        height: 300px
+    }
+
+    .slideBox1 .bd ul table th,
+    .slideBox1 .bd ul table td {
+        padding: 12px
+    }
+
+    .slideBox1 .bd ul table th {
+        background-color: #f0f0f0;
+    }
+
+.portlet .table-striped tr:nth-child(even) td {
+    background-color: #f5f5f5;
+}
+
+.portlet .table-striped tr:nth-child(odd) td {
+    background-color: #fff;
+}
