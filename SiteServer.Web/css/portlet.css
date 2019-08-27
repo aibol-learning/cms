@@ -1,0 +1,452 @@
+/* portlet */
+.portlet {
+    margin-top: 0px;
+    margin-bottom: 25px;
+    padding: 0px;
+}
+    .portlet > .portlet-title {
+        border-bottom: 1px solid #eee;
+        padding: 0;
+        margin-bottom: 10px;
+        min-height: 41px;
+    }
+
+        .portlet > .portlet-title:before, .portlet > .portlet-title:after {
+            content: " ";
+            display: table;
+        }
+
+        .portlet > .portlet-title:after {
+            clear: both;
+        }
+
+        .portlet > .portlet-title > .caption {
+            float: left;
+            display: inline-block;
+            font-size: 18px;
+            line-height: 18px;
+            padding: 10px 0;
+        }
+
+            .portlet > .portlet-title > .caption.bold {
+                font-weight: 400;
+            }
+
+            .portlet > .portlet-title > .caption > i {
+                float: left;
+                margin-top: 4px;
+                display: inline-block;
+                font-size: 13px;
+                margin-right: 5px;
+                color: #666;
+            }
+
+                .portlet > .portlet-title > .caption > i.glyphicon {
+                    margin-top: 2px;
+                }
+
+            .portlet > .portlet-title > .caption > .caption-helper {
+                padding: 0;
+                margin: 0;
+                line-height: 13px;
+                color: #9eacb4;
+                font-size: 13px;
+                font-weight: 400;
+            }
+
+    .portlet > .portlet-body {
+        clear: both;
+    }
+
+    .portlet > .portlet-empty {
+        min-height: 125px;
+    }
+
+    .portlet.full-height-content {
+        margin-bottom: 0;
+    }
+    /* Portlet background colors */ /* Side bordered portlet */
+
+    .portlet.bordered {
+        border-left: 2px solid #e6e9ec !important;
+    }
+
+        .portlet.bordered > .portlet-title {
+            border-bottom: 0;
+        }
+    
+    /* Box portlet */
+
+    .portlet.box {
+        padding: 0px !important;
+    }
+
+        .portlet.box > .portlet-title {
+            border-bottom: 0;
+            padding: 0 10px;
+            margin-bottom: 0;
+            color: #fff;
+        }
+
+            .portlet.box > .portlet-title > .caption {
+                padding: 11px 0 9px 0;
+            }
+
+
+        .portlet.box > .portlet-body {
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        .portlet.box.portlet-fullscreen > .portlet-body {
+            padding: 10px;
+        }
+   
+/*** Customized Bootstrap Tables ***/ /*** Default table ***/
+
+.table.table-bordered thead > tr > th {
+    border-bottom: 0;
+}
+
+.table tr.heading > th {
+    background-color: #eee !important;
+}
+
+.table td .img-responsive {
+    width: 100%;
+}
+/* Contextual table row variants */
+
+.table > thead > tr > td.active, .table > thead > tr > th.active, .table > thead > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr > td.active, .table > tbody > tr > th.active, .table > tbody > tr.active > td, .table > tbody > tr.active > th, .table > tfoot > tr > td.active, .table > tfoot > tr > th.active, .table > tfoot > tr.active > td, .table > tfoot > tr.active > th {
+    background: #a6c8e6;
+    color: #132339;
+}
+
+.table-hover > tbody > tr > td.active:hover, .table-hover > tbody > tr > th.active:hover, .table-hover > tbody > tr.active:hover > td, .table-hover > tbody > tr.active:hover > th {
+    background: #92bce0;
+}
+
+.table > thead > tr > td.success, .table > thead > tr > th.success, .table > thead > tr.success > td, .table > thead > tr.success > th, .table > tbody > tr > td.success, .table > tbody > tr > th.success, .table > tbody > tr.success > td, .table > tbody > tr.success > th, .table > tfoot > tr > td.success, .table > tfoot > tr > th.success, .table > tfoot > tr.success > td, .table > tfoot > tr.success > th {
+    background: #dff0d8;
+    color: #3c763d;
+}
+
+.table-hover > tbody > tr > td.success:hover, .table-hover > tbody > tr > th.success:hover, .table-hover > tbody > tr.success:hover > td, .table-hover > tbody > tr.success:hover > th {
+    background: #d0e9c6;
+}
+
+.table > thead > tr > td.info, .table > thead > tr > th.info, .table > thead > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr > td.info, .table > tbody > tr > th.info, .table > tbody > tr.info > td, .table > tbody > tr.info > th, .table > tfoot > tr > td.info, .table > tfoot > tr > th.info, .table > tfoot > tr.info > td, .table > tfoot > tr.info > th {
+    background: #d9edf7;
+    color: #31708f;
+}
+
+.table-hover > tbody > tr > td.info:hover, .table-hover > tbody > tr > th.info:hover, .table-hover > tbody > tr.info:hover > td, .table-hover > tbody > tr.info:hover > th {
+    background: #c4e3f3;
+}
+
+.table > thead > tr > td.warning, .table > thead > tr > th.warning, .table > thead > tr.warning > td, .table > thead > tr.warning > th, .table > tbody > tr > td.warning, .table > tbody > tr > th.warning, .table > tbody > tr.warning > td, .table > tbody > tr.warning > th, .table > tfoot > tr > td.warning, .table > tfoot > tr > th.warning, .table > tfoot > tr.warning > td, .table > tfoot > tr.warning > th {
+    background: #fcf8e3;
+    color: #8a6d3b;
+}
+
+.table-hover > tbody > tr > td.warning:hover, .table-hover > tbody > tr > th.warning:hover, .table-hover > tbody > tr.warning:hover > td, .table-hover > tbody > tr.warning:hover > th {
+    background: #faf2cc;
+}
+
+.table > thead > tr > td.danger, .table > thead > tr > th.danger, .table > thead > tr.danger > td, .table > thead > tr.danger > th, .table > tbody > tr > td.danger, .table > tbody > tr > th.danger, .table > tbody > tr.danger > td, .table > tbody > tr.danger > th, .table > tfoot > tr > td.danger, .table > tfoot > tr > th.danger, .table > tfoot > tr.danger > td, .table > tfoot > tr.danger > th {
+    background: #f2dede;
+    color: #a94442;
+}
+
+.table-hover > tbody > tr > td.danger:hover, .table-hover > tbody > tr > th.danger:hover, .table-hover > tbody > tr.danger:hover > td, .table-hover > tbody > tr.danger:hover > th {
+    background: #ebcccc;
+}
+/*** Responsive & Scrollable Tables ***/
+
+.table-scrollable {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: 1px solid #dddddd;
+    margin: 10px 0 !important;
+}
+
+    .table-scrollable.table-scrollable-borderless {
+        border: 0;
+    }
+
+    .table-scrollable > .table {
+        width: 100% !important;
+        margin: 0 !important;
+        margin-bottom: 0;
+        background-color: #fff;
+    }
+
+        .table-scrollable > .table > thead > tr > th, .table-scrollable > .table > tbody > tr > th, .table-scrollable > .table > tfoot > tr > th, .table-scrollable > .table > tfoot > tr > th, .table-scrollable > .table > tfoot > tr > td {
+            white-space: nowrap;
+        }
+
+    .table-scrollable > .table-bordered {
+        border: 0;
+    }
+
+        .table-scrollable > .table-bordered > thead > tr > th:first-child, .table-scrollable > .table-bordered > tbody > tr > th:first-child, .table-scrollable > .table-bordered > tfoot > tr > th:first-child, .table-scrollable > .table-bordered > thead > tr > td:first-child, .table-scrollable > .table-bordered > tbody > tr > td:first-child, .table-scrollable > .table-bordered > tfoot > tr > td:first-child {
+            border-left: 0;
+        }
+
+        .table-scrollable > .table-bordered > thead > tr > th:last-child, .table-scrollable > .table-bordered > tbody > tr > th:last-child, .table-scrollable > .table-bordered > tfoot > tr > th:last-child, .table-scrollable > .table-bordered > thead > tr > td:last-child, .table-scrollable > .table-bordered > tbody > tr > td:last-child, .table-scrollable > .table-bordered > tfoot > tr > td:last-child {
+            border-right: 0;
+        }
+
+        .table-scrollable > .table-bordered > thead > tr:last-child > th, .table-scrollable > .table-bordered > tbody > tr:last-child > th, .table-scrollable > .table-bordered > tfoot > tr:last-child > th, .table-scrollable > .table-bordered > thead > tr:last-child > td, .table-scrollable > .table-bordered > tbody > tr:last-child > td, .table-scrollable > .table-bordered > tfoot > tr:last-child > td {
+            border-bottom: 0;
+        }
+
+
+
+/* Portlet - blue */
+
+.portlet > .portlet-body.blue, .portlet.blue {
+    background-color: #3598dc;
+}
+
+.portlet.solid.blue > .portlet-title, .portlet.solid.blue > .portlet-body {
+    border: 0;
+    color: #FFFFFF;
+}
+
+    .portlet.solid.blue > .portlet-title > .caption {
+        font-weight: 400;
+    }
+
+        .portlet.solid.blue > .portlet-title > .caption > i {
+            color: #FFFFFF;
+        }
+
+.portlet.box.blue {
+    border: 1px solid #60aee4;
+    border-top: 0;
+}
+
+    .portlet.box.blue > .portlet-title {
+        background-color: #3598dc;
+    }
+
+        .portlet.box.blue > .portlet-title > .caption {
+            color: #FFFFFF;
+        }
+
+            .portlet.box.blue > .portlet-title > .caption > i {
+                color: #FFFFFF;
+            }
+
+        .portlet.box.blue > .portlet-title > .actions .btn-default {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: 1px solid #95c9ed;
+            color: #aad4f0;
+        }
+
+            .portlet.box.blue > .portlet-title > .actions .btn-default > i {
+                color: #b7daf3;
+            }
+
+            .portlet.box.blue > .portlet-title > .actions .btn-default:hover, .portlet.box.blue > .portlet-title > .actions .btn-default:focus, .portlet.box.blue > .portlet-title > .actions .btn-default:active, .portlet.box.blue > .portlet-title > .actions .btn-default.active {
+                border: 1px solid #c0dff4;
+                color: #d6eaf8;
+            }
+
+/* Portlet - green */
+
+.portlet > .portlet-body.green, .portlet.green {
+    background-color: #26a69a;
+}
+
+.portlet.solid.green > .portlet-title, .portlet.solid.green > .portlet-body {
+    border: 0;
+    color: #FFFFFF;
+}
+
+    .portlet.solid.green > .portlet-title > .caption {
+        font-weight: 400;
+    }
+
+        .portlet.solid.green > .portlet-title > .caption > i {
+            color: #FFFFFF;
+        }
+
+.portlet.box.green {
+    border: 1px solid #30d0c1;
+    border-top: 0;
+}
+
+    .portlet.box.green > .portlet-title {
+        background-color: #26a69a;
+    }
+
+        .portlet.box.green > .portlet-title > .caption {
+            color: #FFFFFF;
+        }
+
+            .portlet.box.green > .portlet-title > .caption > i {
+                color: #FFFFFF;
+            }
+
+        .portlet.box.green > .portlet-title > .actions .btn-default {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: 1px solid #61dbd0;
+            color: #76e0d6;
+        }
+
+            .portlet.box.green > .portlet-title > .actions .btn-default > i {
+                color: #83e3da;
+            }
+
+            .portlet.box.green > .portlet-title > .actions .btn-default:hover, .portlet.box.green > .portlet-title > .actions .btn-default:focus, .portlet.box.green > .portlet-title > .actions .btn-default:active, .portlet.box.green > .portlet-title > .actions .btn-default.active {
+                border: 1px solid #8be4dc;
+                color: #a0e9e2;
+            }
+
+/* Portlet - yellow */
+
+.portlet > .portlet-body.yellow, .portlet.yellow {
+    background-color: #c49f47;
+}
+
+.portlet.solid.yellow > .portlet-title, .portlet.solid.yellow > .portlet-body {
+    border: 0;
+    color: #FFFFFF;
+}
+
+    .portlet.solid.yellow > .portlet-title > .caption {
+        font-weight: 400;
+    }
+
+        .portlet.solid.yellow > .portlet-title > .caption > i {
+            color: #FFFFFF;
+        }
+
+.portlet.box.yellow {
+    border: 1px solid #d0b36e;
+    border-top: 0;
+}
+
+    .portlet.box.yellow > .portlet-title {
+        background-color: #c49f47;
+    }
+
+        .portlet.box.yellow > .portlet-title > .caption {
+            color: #FFFFFF;
+        }
+
+            .portlet.box.yellow > .portlet-title > .caption > i {
+                color: #FFFFFF;
+            }
+
+        .portlet.box.yellow > .portlet-title > .actions .btn-default {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: 1px solid #dfcb9c;
+            color: #e5d5af;
+        }
+
+            .portlet.box.yellow > .portlet-title > .actions .btn-default > i {
+                color: #e9dbbb;
+            }
+
+            .portlet.box.yellow > .portlet-title > .actions .btn-default:hover, .portlet.box.yellow > .portlet-title > .actions .btn-default:focus, .portlet.box.yellow > .portlet-title > .actions .btn-default:active, .portlet.box.yellow > .portlet-title > .actions .btn-default.active {
+                border: 1px solid #ecdfc3;
+                color: #f2ead6;
+            }
+
+
+
+/* Portlet - red */
+
+.portlet.box.red {
+    border: 1px solid #d78184;
+    border-top: 0;
+}
+
+    .portlet.box.red > .portlet-title {
+        background-color: #cb5a5e;
+    }
+
+        .portlet.box.red > .portlet-title > .caption {
+            color: #FFFFFF;
+        }
+
+            .portlet.box.red > .portlet-title > .caption > i {
+                color: #FFFFFF;
+            }
+
+        .portlet.box.red > .portlet-title > .actions .btn-default {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: 1px solid #e6afb1;
+            color: #ecc3c4;
+        }
+
+            .portlet.box.red > .portlet-title > .actions .btn-default > i {
+                color: #f0ced0;
+            }
+
+            .portlet.box.red > .portlet-title > .actions .btn-default:hover, .portlet.box.red > .portlet-title > .actions .btn-default:focus, .portlet.box.red > .portlet-title > .actions .btn-default:active, .portlet.box.red > .portlet-title > .actions .btn-default.active {
+                border: 1px solid #f2d6d7;
+                color: #f8e9ea;
+            }
+
+/* Portlet - purple */
+
+.portlet > .portlet-body.purple, .portlet.purple {
+    background-color: #8e5fa2;
+}
+
+.portlet.solid.purple > .portlet-title, .portlet.solid.purple > .portlet-body {
+    border: 0;
+    color: #FFFFFF;
+}
+
+    .portlet.solid.purple > .portlet-title > .caption {
+        font-weight: 400;
+    }
+
+        .portlet.solid.purple > .portlet-title > .caption > i {
+            color: #FFFFFF;
+        }
+
+    
+
+.portlet.box.purple {
+    border: 1px solid #a57fb5;
+    border-top: 0;
+}
+
+    .portlet.box.purple > .portlet-title {
+        background-color: #8e5fa2;
+    }
+
+        .portlet.box.purple > .portlet-title > .caption {
+            color: #FFFFFF;
+        }
+
+            .portlet.box.purple > .portlet-title > .caption > i {
+                color: #FFFFFF;
+            }
+
+        .portlet.box.purple > .portlet-title > .actions .btn-default {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: 1px solid #c0a6cb;
+            color: #ccb6d5;
+        }
+
+            .portlet.box.purple > .portlet-title > .actions .btn-default > i {
+                color: #d2c0da;
+            }
+
+            .portlet.box.purple > .portlet-title > .actions .btn-default:hover, .portlet.box.purple > .portlet-title > .actions .btn-default:focus, .portlet.box.purple > .portlet-title > .actions .btn-default:active, .portlet.box.purple > .portlet-title > .actions .btn-default.active {
+                border: 1px solid #d7c6de;
+                color: #e2d6e7;
+            }
