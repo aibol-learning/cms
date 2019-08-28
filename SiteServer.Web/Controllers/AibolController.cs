@@ -604,7 +604,7 @@ namespace SiteServer.API.Controllers
         /// 退出
         /// </summary>
         /// <returns></returns>
-        [Route("logout")]
+        [HttpGet, Route("logout")]
         public IHttpActionResult Logout()
         {
             var request = new AuthenticatedRequest();
