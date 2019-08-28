@@ -2779,23 +2779,6 @@ h5 {
     z-index: -1;
 }
 
-.glyphicon-search {
-    color: #222;
-    z-index: 90;
-    font-size: 18px;
-    font-family: 'icomoon';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    -webkit-font-smoothing: antialiased;
-}
-
-    .glyphicon-search:before {
-        content: "\e003";
-    }
-
 .sb-search.sb-search-open,
 .no-js .sb-search {
     width: 350px;
