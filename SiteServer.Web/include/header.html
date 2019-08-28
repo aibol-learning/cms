@@ -16,11 +16,10 @@
                 new UISearch(document.getElementById('sb-search'));
             </script>
         </div>
-        <div class="loginInfo" id="loginInfoVM">
-            <a v-if="!isLogin" href="#" id="loginInfo">登录</a>
-
-            <a v-if="isLogin" href="#">退出</a>
-            <a v-if="isLogin" href="#">进入工作区</a>
+        <div class="loginInfo" v-cloak id="loginInfoVM">
+            <a v-if="!isLogin" v-bind:href="login">登录</a>
+            <a v-if="isLogin" v-bind:href="logout">退出</a>
+            <a v-if="isLogin" v-bind:href="backstage">进入工作区</a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -80,11 +79,17 @@
             var loginInfoVM = new Vue({
                 el: "#loginInfoVM",
                 data: {
-                    isLogin:  global.loginInfo
+                    isLogin: false,
+                    login: null
                 },
                 created: function () {
+                    this.login = global.clients.getLoginUrl('portal');
+                    this.logout = global.clients.getLogoutUrl('portal');
+                    this.backstage = global.urls.backstage;
                     setInterval(function () {
-                        loginInfoVM.isLogin = global.loginInfo
+                        if (global.loginInfo) {
+                            loginInfoVM.isLogin = true;
+                        }
                     }, 1000);
                 }
             })
