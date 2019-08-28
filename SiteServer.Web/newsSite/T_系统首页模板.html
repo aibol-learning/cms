@@ -265,34 +265,124 @@
             <div class="la-title">
                 <h3>职工风采</h3>
             </div>
-            <div style="border:1px solid #bbb;overflow-x: auto;padding:8px;">
-
-                <div style="width:max-content;">
-                    <stl:contents channelIndex="职工风采" isRecommend="true" totalNum="20">
-                        <span style="width:300px;display:inline-block;">
-                            <a class="light_box_images" href="{Content.imageUrl}" data-lightbox="image-1" data-title="职工风采"><img src="{Content.imageUrl}" /></a>
-                        </span>
-                    </stl:contents>
+            <div style="padding: 45px 0;">
+                <div class="row">
+                    <div class="sliderbox2">
+                        <div id="btn-left2" class="arrow-btn2 dasabled"></div>
+                        <div class="slider2" id="thumbnail2">
+                            <ul>
+                                <stl:contents channelIndex="职工风采" isRecommend="true" totalNum="20">
+                                    <li style="position:relative">
+                                        <a class="light_box_images" href="{Content.imageUrl}" data-lightbox="image-1" data-title="职工风采">
+                                            <span style="background-image:url('{Content.imageUrl}')" class="light_box_item">
+                                            </span>
+                                        </a>
+                                    </li>
+                                </stl:contents>
+                            </ul>
+                        </div>
+                        <div id="btn-right2" class="arrow-btn2"></div>
+                    </div>
                 </div>
 
+                <script>
+                    var sliderSize2 = 4;
+
+    var $slider2 = $('.slider2 ul');
+    var $slider_child_l2 = $('.slider2 ul li').length;
+    var $slider_width2 = $('.slider2 ul li').width() + 12;
+    $slider2.width($slider_child_l2 * $slider_width2);
+
+    var slider_count2 = 0;
+
+    if ($slider_child_l2 < sliderSize2) {
+        $('#btn-right2').css({
+            cursor: 'auto'
+        });
+        $('#btn-right2').removeClass("dasabled");
+    }
+
+    $('#btn-right2').click(function () {
+        if ($slider_child_l2 < sliderSize2 || slider_count2 >= $slider_child_l2 - sliderSize2) {
+            return false;
+        }
+
+        slider_count2++;
+        $slider2.animate({
+            left: '-=' + $slider_width2 + 'px'
+        }, 'fast');
+        slider_pic2();
+    });
+
+    $('#btn-left2').click(function () {
+        if (slider_count2 <= 0) {
+            return false;
+        }
+        slider_count2--;
+        $slider2.animate({
+            left: '+=' + $slider_width2 + 'px'
+        }, 'fast');
+        slider_pic2();
+    });
+
+    function slider_pic2() {
+        if (slider_count2 >= $slider_child_l2 - sliderSize2) {
+            $('#btn-right2').css({
+                cursor: 'auto'
+            });
+            $('#btn-right2').addClass("dasabled");
+        } else if (slider_count2 > 0 && slider_count2 <= $slider_child_l2 - sliderSize2) {
+            $('#btn-left2').css({
+                cursor: 'pointer'
+            });
+            $('#btn-left2').removeClass("dasabled");
+            $('#btn-right2').css({
+                cursor: 'pointer'
+            });
+            $('#btn-right2').removeClass("dasabled");
+        } else if (slider_count2 <= 0) {
+            $('#btn-left2').css({
+                cursor: 'auto'
+            });
+            $('#btn-left2').addClass("dasabled");
+        }
+    }
+                </script>
+
+                <style>
+                    .light_box_item {
+                        width: 300px;
+                        display: inline-block;
+                        height: 200px;
+                        width: 250px;
+                        overflow: hidden;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+
+                    .light_box_images {
+                        width: 100%;
+                        height: 100%;
+                    }
+                </style>
                 <link href="../css/lightbox.min.css" rel="stylesheet" />
                 <script src="../js/lightbox.min.js"></script>
                 <script>
-                    $(function(){
-                        $(".light_box_images").each(function(){
-                        var oldhref = $(this).attr("href");
-                        var obj=oldhref.lastIndexOf("/");
-                        var path = oldhref.substr(0,obj);
-                        var t_name = oldhref.substr(obj+1);
-                        var name =t_name.substr(2,t_name.length-2);
-                        $(this).attr("href",path+"/"+name);
-                    });
+                    $(function () {
+                        $(".light_box_images").each(function () {
+                            var oldhref = $(this).attr("href");
+                            var obj = oldhref.lastIndexOf("/");
+                            var path = oldhref.substr(0, obj);
+                            var t_name = oldhref.substr(obj + 1);
+                            var name = t_name.substr(2, t_name.length - 2);
+                            $(this).attr("href", path + "/" + name);
+                        });
 
                         lightbox.option({
-                          'resizeDuration': 200,
-                          'wrapAround': true,
-                          'albumLabel':'"第 %1 张,共 %2 张"',
-                          'wrapAround':true
+                            'resizeDuration': 200,
+                            'wrapAround': true,
+                            'albumLabel': '"第 %1 张,共 %2 张"',
+                            'wrapAround': true
                         })
                     })
                 </script>
