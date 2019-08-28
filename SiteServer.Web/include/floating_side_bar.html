@@ -327,49 +327,49 @@
         });
 
         //待办任务
-        vm = new Vue({
-            el: "#vm_backstageTasks",
-            data: {
-                backstageTasks: [],         //待办任务
-            },
-            methods: {
-                //待办任务(外部接口)
-                getBackstageTasks: function () {
-                    var self = this;
-                    $.ajax({
-                        async: true,
-                        url: global.backstageAPIUrl.tasks,
-                        type: "GET",
-                        dataType: 'jsonp',
-                        jsonp: 'jsoncallback',
-                        data: {
-                            accept: 'jsonp'
-                        },
-                        timeout: 5000,
-                        contentType: "application/json;utf-8",
-                        success: function (resp) {
-                            console.log('response------', response)
-                            if (response.Code == 200 && response.Data) {
-                                response.Data.forEach(function (node, index) {
-                                    if (node.CreatedWhen) {
-                                        node.CreatedWhen = node.CreatedWhen.replace("T", " ");
-                                        node.url = global.backstageTaskUrl + node.ID;
-                                    }
-                                });
-                                self.backstageTasks = response.Data;
-                            }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            // alert(textStatus);
-                        }
-                    });
-                }
-            },
-            created: function () {
-                var self = this;
-                //待办任务(外部接口)
-                this.getBackstageTasks();
-            }
-        })
+        //vm = new Vue({
+        //    el: "#vm_backstageTasks",
+        //    data: {
+        //        backstageTasks: [],         //待办任务
+        //    },
+        //    methods: {
+        //        //待办任务(外部接口)
+        //        getBackstageTasks: function () {
+        //            var self = this;
+        //            $.ajax({
+        //                async: true,
+        //                url: global.backstageAPIUrl.tasks,
+        //                type: "GET",
+        //                dataType: 'jsonp',
+        //                jsonp: 'jsoncallback',
+        //                data: {
+        //                    accept: 'jsonp'
+        //                },
+        //                timeout: 5000,
+        //                contentType: "application/json;utf-8",
+        //                success: function (resp) {
+        //                    console.log('response------', response)
+        //                    if (response.Code == 200 && response.Data) {
+        //                        response.Data.forEach(function (node, index) {
+        //                            if (node.CreatedWhen) {
+        //                                node.CreatedWhen = node.CreatedWhen.replace("T", " ");
+        //                                node.url = global.backstageTaskUrl + node.ID;
+        //                            }
+        //                        });
+        //                        self.backstageTasks = response.Data;
+        //                    }
+        //                },
+        //                error: function (jqXHR, textStatus, errorThrown) {
+        //                    // alert(textStatus);
+        //                }
+        //            });
+        //        }
+        //    },
+        //    created: function () {
+        //        var self = this;
+        //        //待办任务(外部接口)
+        //        this.getBackstageTasks();
+        //    }
+        //})
     });
 </script>
