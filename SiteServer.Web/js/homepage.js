@@ -101,7 +101,7 @@ $(function () {
                 }
 
                 var powerData2 = function () {
-                    var total = [630, 630, 700, 700, 1000, 700, 500];
+                    var total = [630, 630, 700, 700, 1000, 1000, 500];
                     var data = [];
                     for (var i = 0; i < 7; i++) {
                         data.push((total[i] - res.GeneratorSets[i].Powers[res.GeneratorSets[i].Powers.length - 1]).toFixed(2));
@@ -266,7 +266,7 @@ $(function () {
             }
         }
     });
-    $.get("http://screen.aibol.com.cn/home/data", {}, function (res) {
+    $.get(global.backstageAPIUrl.screenData, {}, function (res) {
         setCharts(res);
     });
 
