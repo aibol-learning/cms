@@ -31,9 +31,8 @@ var global = {
                 '&state=' + new Date().getTime() +
                 '&nonce=' + clientId;
         },
-        getLogoutUrl: function (clientId) {
-            var clientConfig = global.clients[clientId];
-            return "https://";
+        getLogoutUrl: function () {
+            return "/api/aibol/logout";
         }
     }
 };

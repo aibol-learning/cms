@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 using OfficeOpenXml;
@@ -594,6 +595,32 @@ namespace SiteServer.API.Controllers
                 user.DisplayName,
                 token = accessToken
             });
+        }
+
+        /// <summary>
+        /// 退出
+        /// </summary>
+        /// <returns></returns>
+        [Route("logout")]
+        public IHttpActionResult Logout()
+        {
+            var request = new AuthenticatedRequest();
+            var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
+            var requestUrl = request.HttpRequest.Url;
+            var postLogoutUrl = HttpUtility.UrlEncode($"{requestUrl.Scheme}://{requestUrl.Authority}/");
+
+            // SiteServer退出
+            request.AdminLogout();
+
+            // SSO退出
+            //using (var client = new WebClient())
+            //{
+            //    var byteArray = client.DownloadData(WebConfigUtils.SSOService.LogoutEndPoint(accessToken, postLogoutUrl));
+
+            //    var result = Encoding.UTF8.GetString(byteArray);
+            //}
+
+            return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(accessToken, postLogoutUrl));
         }
 
         #endregion
