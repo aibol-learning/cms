@@ -3168,3 +3168,14 @@ h5 {
         .news_list2 .list_more:hover {
             color: #3ca5f6;
         }
+
+/* 面包屑 */
+.bread {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    color: #999;
+}
+
+.bread a {
+    color: #009d8e;
+}

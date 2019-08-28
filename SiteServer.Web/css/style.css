@@ -1190,6 +1190,7 @@ a:hover {
         font-size: 16px;
         margin: 0;
         margin-top: 15px;
+        position:relative;
     }
 
         .downloadlistpart h1 .label_new {
@@ -1198,6 +1199,16 @@ a:hover {
             margin-left: 10px;
             display: none;
         }
+
+    .downloadlistpart h1 a.download {
+        font-size: 14px;
+        margin: 0;
+        position: absolute;
+        top:4px;
+        right:0;
+        color:#777;
+    }
+
 
 .downloadtime {
     font-size: 12px;
@@ -1951,3 +1962,5 @@ a:hover {
 .portlet .table-striped tr:nth-child(odd) td {
     background-color: #fff;
 }
+
+

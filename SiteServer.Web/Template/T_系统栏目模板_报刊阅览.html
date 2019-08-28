@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<stl:include file="/include/head1.html"></stl:include>
+<stl:include file="/include/head.html"></stl:include>
 <body>
     <stl:include file="/include/header.html"></stl:include>
     <div class="clearfix"></div>
@@ -17,9 +17,11 @@
                                 <div class="downloadlistpart">
                                     <h1>
                                         <stl:a>
-                                            <stl:content type="Title" wordNum="45" ellipsis="..."></stl:content>
+                                            <stl:content type="Title" wordNum="40" ellipsis="..."></stl:content>
                                         </stl:a>
                                         <span class="label_new">NEW</span>
+
+                                        <a class="download" href="{Content.fileUrl}" download="{Content.fileUrl}"><icon class="fa fa-download"></icon> 下载</a>
                                     </h1>
                                     <div class="downloadtime">
                                         来源: <stl:content type="source"></stl:content>&emsp;
