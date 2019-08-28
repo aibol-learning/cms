@@ -280,11 +280,14 @@
 <script>
     $(function () {
         // 左侧悬浮窗口hover事件
-        $(".lf_container").hover(function () {
-            $(".lf_container").css("left", "0");
-        }, function () {
-            $(".lf_container").css("left", "-154px");
-        });
+        console.log('$(".lf_container img").length', $(".lf_container img").length);
+        if ($(".lf_container img").length > 0) {
+            $(".lf_container").hover(function () {
+                $(".lf_container").css("left", "0");
+            }, function () {
+                $(".lf_container").css("left", "-154px");
+            });
+        }
 
         // 右侧悬浮窗口hover事件
         //返回顶部

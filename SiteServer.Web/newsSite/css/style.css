@@ -295,66 +295,6 @@ a:hover {
     position: relative;
 }
 
-
-/*底部样式*/
-/*.footer {
-    background: #fff;
-    padding: 60px 0 30px 0;
-}
-
-.footer_top {
-    padding-bottom: 30px;
-    border-bottom: 1px solid #e5e5e5;
-    margin-bottom: 30px;
-}
-
-.footernav {
-    float: left;
-    width: 30%;
-}
-
-.footnav > li {
-    float: left;
-    width: 50%;
-}
-
-    .footnav > li > a {
-        font-size: 16px;
-        color: #222;
-        font-weight: bold;
-        margin-bottom: 10px;
-        display: block;
-    }
-
-.footnav li .sub-menu li a {
-    line-height: 24px;
-    color: #666;
-}
-
-.footer_other {
-    float: left;
-    width: 15%;
-}
-
-    .footer_other.wide {
-        float: left;
-        width: 25%;
-    }
-
-    .footer_other .footer_other_title {
-        font-size: 16px;
-        color: #222;
-        font-weight: bold;
-        margin-bottom: 10px;
-        display: block;
-    }
-
-    .footer_other .footer_other_con a,
-    .footer_other .footer_other_con span {
-        color: #666;
-        line-height: 24px;
-    }*/
-
 /*头部样式*/
 .themenav {
     background: #fff;
