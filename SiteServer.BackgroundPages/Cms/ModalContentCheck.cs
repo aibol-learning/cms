@@ -167,14 +167,14 @@ namespace SiteServer.BackgroundPages.Cms
                         switch (DdlCheckType.SelectedItem.Text)
                         {
                             case "公司领导审批":
-                                //关闭初审代办
+                                //关闭初审代办 todo
                                 //发送消息给其他初审员和发稿人
 
                                 var lv2SSOIds = DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(2);
                                 var addUserName = contentInfo.AddUserName;
                                 var author = DataProvider.AdministratorDao.GetByUserName(addUserName);
                                 lv2SSOIds.Add(author.SSOId);
-                                BackstageManager.SendMessage(MessageType.消息, lv2SSOIds, "公司领导审批");
+                                BackstageManager.SendMessage(MessageType.消息, new List<string>() { contentInfo.Lv2AdminSub, author.SSOId }, "公司领导审批");
                                 //发送代办给二审
                                 break;
                             case "支部书记审批退稿":

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,11 +9,13 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
 using System.Web.Http;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using SiteServer.API.Models;
 using SiteServer.CMS.Core;
 using SiteServer.CMS.DataCache;
+using SiteServer.CMS.Model;
 using SiteServer.Utils;
 
 namespace SiteServer.API.Controllers
@@ -621,6 +624,52 @@ namespace SiteServer.API.Controllers
             //}
 
             return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(accessToken, postLogoutUrl));
+        }
+
+        [HttpGet, Route("tasks")]
+        public IHttpActionResult Tasks()
+        {
+            var request = new AuthenticatedRequest();
+            var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
+            if (accessToken =="")
+            {
+                return Ok(new {code=401});
+            }
+
+            using (var client = new WebClient())
+            {
+                client.Encoding = Encoding.UTF8;
+                client.Headers.Add("Authorization", $"Bearer {accessToken}");
+
+                var TasksApiUrl = ConfigurationManager.AppSettings["TasksApiUrl"];
+
+                var re = client.DownloadString(TasksApiUrl);
+
+                var json = JsonConvert.DeserializeObject<dynamic>(re);
+
+                return Ok(json);
+            }
+
+        }
+
+        //screenData: ' http://screen.aibol.com.cn/home/data' //大屏幕数据接口Url
+        [HttpGet, Route("screenData")]
+        public IHttpActionResult ScreenData()
+        {
+
+            using (var client = new WebClient())
+            {
+                client.Encoding = Encoding.UTF8;
+
+                var ScreenData = ConfigurationManager.AppSettings["ScreenDataApiUrl"];
+
+                var re = client.DownloadString(ScreenData);
+
+                var json = JsonConvert.DeserializeObject<dynamic>(re);
+
+                return Ok(json);
+            }
+
         }
 
         #endregion
