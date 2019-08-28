@@ -545,8 +545,11 @@ namespace SiteServer.API.Controllers
             // 记录最后登录时间、失败次数清零
             DataProvider.AdministratorDao.UpdateLastActivityDateAndCountOfLogin(adminInfo);
             request.AdminLogin(adminInfo.UserName, false);
+
             // add idserver cookie
             CookieUtils.SetCookie(Constants.AuthKeyIdentityServer, accessToken);
+            var idToken = request.HttpRequest.Form["id_token"];
+            CookieUtils.SetCookie(Constants.AuthKeyIdentityServerIdToken, idToken);
 
             var mainUrl = GetRelativeUrl(parsed2.client_id);
             var requestUrl = request.HttpRequest.Url;
@@ -608,22 +611,15 @@ namespace SiteServer.API.Controllers
         public IHttpActionResult Logout()
         {
             var request = new AuthenticatedRequest();
-            var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
+            var idToken = request.GetCookie(Constants.AuthKeyIdentityServerIdToken);
+
             var requestUrl = request.HttpRequest.Url;
             var postLogoutUrl = HttpUtility.UrlEncode($"{requestUrl.Scheme}://{requestUrl.Authority}/");
 
             // SiteServer退出
             request.AdminLogout();
 
-            // SSO退出
-            //using (var client = new WebClient())
-            //{
-            //    var byteArray = client.DownloadData(WebConfigUtils.SSOService.LogoutEndPoint(accessToken, postLogoutUrl));
-
-            //    var result = Encoding.UTF8.GetString(byteArray);
-            //}
-
-            return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(accessToken, postLogoutUrl));
+            return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(idToken, postLogoutUrl));
         }
 
         [HttpGet, Route("tasks")]

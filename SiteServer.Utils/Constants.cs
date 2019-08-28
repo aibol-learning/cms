@@ -14,6 +14,7 @@
 
         // identity server
         public const string AuthKeyIdentityServer = "ID-USER-TOKEN";
+        public const string AuthKeyIdentityServerIdToken = "ID-ID-TOKEN";
 
         public const int AccessTokenExpireDays = 7;
 

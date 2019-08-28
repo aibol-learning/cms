@@ -1,16 +1,21 @@
 @{ Layout = "./Shared/_LayoutRoot.cshtml"; }
 
 <style>
-  .ion-person:before,
-  .ion-locked:before,
-  .ion-image:before {
-    width: 20px;
-    font-size: 18px;
-  }
+    .ion-person:before,
+    .ion-locked:before,
+    .ion-image:before {
+        width: 20px;
+        font-size: 18px;
+    }
 </style>
 
 <div class="wrapper-page">
-  <div class="card-box">
-    <h4 class="m-l-5 text-center">单点登录跳转中...</h4>
-  </div>
+    <div class="card-box">
+        <h4 class="m-l-5 text-center">单点登录跳转中...</h4>
+    </div>
 </div>
+
+@section Scripts{
+    <script src="assets/js/md5-2.10.0.min.js" type="text/javascript"></script>
+    <script src="pageLogin.js" type="text/javascript"></script>
+}
