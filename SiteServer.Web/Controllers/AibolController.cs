@@ -604,7 +604,7 @@ namespace SiteServer.API.Controllers
         }
 
         /// <summary>
-        /// 退出
+        /// 用户退出
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("logout")]

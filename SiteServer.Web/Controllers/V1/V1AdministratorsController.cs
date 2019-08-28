@@ -196,6 +196,25 @@ namespace SiteServer.API.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// 管理员退出
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("actions/logout")]
+        public IHttpActionResult Logout()
+        {
+            var request = new AuthenticatedRequest();
+            var idToken = request.GetCookie(Constants.AuthKeyIdentityServerIdToken);
+
+            var requestUrl = request.HttpRequest.Url;
+            var postLogoutUrl = HttpUtility.UrlEncode($"{requestUrl.Scheme}://{requestUrl.Authority}/");
+
+            // SiteServer退出
+            request.AdminLogout();
+
+            return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(idToken, postLogoutUrl));
+        }
+
         [HttpPost, Route(RouteActionsResetPassword)]
         public IHttpActionResult ResetPassword()
         {

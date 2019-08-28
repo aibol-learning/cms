@@ -164,6 +164,8 @@ namespace SiteServer.API.Controllers.Pages
             request.AdminLogin(adminInfo.UserName, false);
             // add idserver cookie
             CookieUtils.SetCookie(Constants.AuthKeyIdentityServer, accessToken);
+            var idToken = request.HttpRequest.Form["id_token"];
+            CookieUtils.SetCookie(Constants.AuthKeyIdentityServerIdToken, idToken);
 
             var mainUrl = PageUtils.GetMainUrl(adminInfo.SiteId);
             var requestUrl = request.HttpRequest.Url;
