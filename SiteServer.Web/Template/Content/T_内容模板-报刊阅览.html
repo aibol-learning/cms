@@ -23,7 +23,7 @@
     }
 
     .zoompic {
-        margin-top: 20px;
+        margin: 20px auto;
         width: 100%;
         height: auto;
         text-align: center;
@@ -142,23 +142,22 @@
             var fileUrl = $("#fileUrl").text();
 
             if (fileUrl != "") {
-                var fileUrlRegex = /(?<=_).+(?=\.)/;
-                var matchResult = fileUrl.match(fileUrlRegex);
-                var fileUrlPrefixRegex = /^(.+?)\./;
-                var matchResult2 = fileUrl.match(fileUrlPrefixRegex);
-                var imageUrlPrefix = '';
-                if (matchResult2 && matchResult2.length > 0) {
-                    imageUrlPrefix = matchResult2[0].substring(0, matchResult2[0].length - 1) + "/";
+                //将后台生成的文件路径转换为图片路径
+                var start = fileUrl.lastIndexOf("_");
+                var end = fileUrl.lastIndexOf(".");
+                var imageCount = fileUrl.substring(start + 1, end) * 1; //图片张数
+                var imageUrlPrefix = fileUrl.substring(0, end) + '/';   //图片路径前缀
+
+                //生成小图
+                for (var i = 1; i <= imageCount; i++) {
+                    $("#imageList").append('<li><a href="' + imageUrlPrefix + i + '.png"><img src="' + imageUrlPrefix + i + '.png" width="112" height="150" /></a></li>');
                 }
-                var imageCount = 0;
-                if (matchResult && matchResult.length > 0) {
-                    imageCount = matchResult[0];
-                    for (var i = 1; i <= imageCount; i++) {
-                        $("#imageList").append('<li><a href="' + imageUrlPrefix + i + '.png"><img src="' + imageUrlPrefix + i + '.png" width="112" height="150" /></a></li>');
-                    }
-                    $("#preview").attr("src", imageUrlPrefix + "1.png");
-                }
+                //生成大图
+                $("#preview").attr("src", imageUrlPrefix + "1.png");
+
+                //根据有无图片显示不同内容
                 if (imageCount > 0) {
+                    $("#thumbnail li").eq(0).addClass("current");
                     $("#previewWrap").show();
                 }
                 else {
