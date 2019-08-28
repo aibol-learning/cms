@@ -284,9 +284,9 @@ a:hover {
     -webkit-font-smoothing: antialiased;
 }
 
-    .glyphicon-search:before {
+    /*.glyphicon-search:before {
         content: "\e000";
-    }
+    }*/
 
 /* Open state */
 .sb-search.sb-search-open,
