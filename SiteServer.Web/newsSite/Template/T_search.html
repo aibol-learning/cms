@@ -5,8 +5,8 @@
     <title>{Channel.Title} - {Stl.SiteName}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel='stylesheet' id='font-awesome-four-css' href='/css/font-awesome.min.css' type='text/css' media='all' />
     <link href="{Stl.SiteUrl}/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link href="{Stl.SiteUrl}/css/iconfont.css" type="text/css" rel="stylesheet" />
     <link href="{Stl.SiteUrl}/css/common.css" type="text/css" rel="stylesheet" />
     <link href="{Stl.SiteUrl}/css/swiper.min.css" type="text/css" rel="stylesheet" />
     <link rel='stylesheet' id='style-css' href='{Stl.SiteUrl}/css/style.css' type='text/css' media='all' />
@@ -97,21 +97,23 @@
                                     <div>
                                         <div class="mob-author" style="color: #bbb;margin-top:2px;">
                                             <span class="time" style="margin-left:0;">
-                                                <i class="iconfont icon-mulutubiao"></i> <stl:a href="" style="color: #bbb;">
+                                                <i class="fa fa-file-text-o"></i> <stl:a href="" style="color: #bbb;">
                                                     {Channel.Title}
                                                 </stl:a>
                                             </span>
                                             <span class="time">
-                                                <i class="iconfont icon-shijian"></i>
+                                                <i class="fa fa-calendar"></i>
                                                 <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>
                                             </span>
                                             <span class="time liulan">
-                                                <i class="iconfont icon-faxian"></i>
+                                                <i class="fa fa-hand-o-up"></i>
                                                 <stl:content type="Hits"></stl:content>
                                             </span>
                                             <stl:if type="tags" op="NotEmpty">
                                                 <stl:yes>
-                                                    <i class="iconfont icon-biaoqian"></i> <stl:content type="tags"></stl:content>
+                                                    <span class="time">
+                                                        <i class="fa fa-tags"></i> <stl:content type="tags"></stl:content>
+                                                    </span>
                                                 </stl:yes>
                                             </stl:if>
                                         </div>
@@ -169,7 +171,7 @@
                                 <stl:contents channelIndex="公司要闻" totalNum="5">
                                     <li>
                                         <!--<div class="hot-article-img"> <stl:a target="_blank"> <img class="xyscale" src="{Content.ImageUrl}" alt="{Content.Title}"/> </stl:a> </div>-->
-                                        <stl:a class="transition" target="_blank"><stl:content type="Title"></stl:content></stl:a>
+                                        <stl:a class="transition" target="_blank"><stl:content type="Title" wordNum="18" ellipsis="..."></stl:content></stl:a>
                                     </li>
                                 </stl:contents>
                             </ul>

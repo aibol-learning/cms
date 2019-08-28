@@ -28,7 +28,7 @@
 .box-moder h3{height:60px;font-size:20px;font-weight:400;padding:30px 30px 0;margin:0}
 .box-moder{background-color:#fafafa}
 .span-mark{display:inline-block;background-color:#f63756;position:absolute;z-index:1;height:20px;line-height:20px;margin:-28px 0 0;width:4px}
-.hot-article ul li{padding:20px 20px 20px;border-bottom:1px solid #f0f0f0;overflow:hidden}
+.hot-article ul li{padding:10px 20px;border-bottom:1px solid #f0f0f0;overflow:hidden}
 .hots-post-widget .mod-thumb{width:100px;height:74px;float:left}
 .mod-thumb{width:220px;height:165px;display:block;overflow:hidden;position:relative}
 .hot-article ul li a{font-size:16px;line-height:28px;color:#666}
@@ -451,23 +451,6 @@ a:hover {
     outline: none;
     z-index: -1;
 }
-
-.glyphicon-search {
-    color: #222;
-    z-index: 90;
-    font-size: 18px;
-    font-family: 'icomoon';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    -webkit-font-smoothing: antialiased;
-}
-
-    .glyphicon-search:before {
-        content: "\e000";
-    }
 
 /* Open state */
 .sb-search.sb-search-open,

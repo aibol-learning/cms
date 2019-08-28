@@ -134,11 +134,11 @@
                             <stl:contents channelIndex="头条新闻" totalNum="5">
                                 <stl:a class="head_list_title"><stl:content wordNum="19" ellipsis="..."></stl:content></stl:a>
                                 <div class="head_list_info">
-                                    <i class="iconfont icon-shijian"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
-                                    <i class="iconfont icon-faxian"></i> <stl:content type="source"></stl:content>
+                                    <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
+                                    <i class="fa fa-group"></i> <stl:content type="source"></stl:content>
                                     <stl:if type="tags" op="NotEmpty">
                                         <stl:yes>
-                                            <i class="iconfont icon-biaoqian"></i> <stl:content type="tags"></stl:content>
+                                            <i class="fa fa-tags"></i> <stl:content type="tags"></stl:content>
                                         </stl:yes>
                                     </stl:if>
                                 </div>
@@ -172,11 +172,11 @@
                                         <div class="content_wrap">
                                             <stl:a class="news_list_title"><stl:content wordNum="20" ellipsis="..."></stl:content></stl:a>
                                             <div class="news_list_info">
-                                                <i class="iconfont icon-shijian"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
-                                                <i class="iconfont icon-faxian"></i> <stl:content type="source"></stl:content>&emsp;&emsp;
+                                                <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
+                                                <i class="fa fa-group"></i> <stl:content type="source"></stl:content>&emsp;&emsp;
                                                 <stl:if type="tags" op="NotEmpty">
                                                     <stl:yes>
-                                                        <i class="iconfont icon-biaoqian"></i> <stl:content type="tags"></stl:content>
+                                                        <i class="fa fa-tags"></i> <stl:content type="tags"></stl:content>
                                                     </stl:yes>
                                                 </stl:if>
                                             </div>
@@ -228,9 +228,9 @@
                                         <div v-for="c in cc.contents">
                                             <a :href="c.navigationUrl" class="list_title" :title="c.title">{{c.title}}</a>
                                             <div class="list_info">
-                                                <i class="iconfont icon-shijian"></i> {{c.addDate}}&emsp;&emsp;
-                                                <i class="iconfont icon-faxian"></i> {{c.source}}&emsp;&emsp;
-                                                <span v-if="c.tags"><i class="iconfont icon-biaoqian"></i> {{c.tags}}</span>
+                                                <i class="fa fa-calendar"></i> {{c.addDate}}&emsp;&emsp;
+                                                <i class="fa fa-group"></i> {{c.source}}&emsp;&emsp;
+                                                <span v-if="c.tags"><i class="fa fa-tags"></i> {{c.tags}}</span>
                                             </div>
                                         </div>
                                         <a :href="cc.navigationUrl" class="list_more">更多……</a>
