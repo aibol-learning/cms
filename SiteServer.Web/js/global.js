@@ -18,7 +18,7 @@ var global = {
         // 新闻中心
         news: {
             clientId: 'pw_news',
-            redirectUri: escape('http://localhost:51687/newssite/')
+            redirectUri: escape('http://localhost:51687/api/aibol/idlogon')
         },
         getLoginUrl: function (clientId) {
             var clientConfig = global.clients[clientId];
