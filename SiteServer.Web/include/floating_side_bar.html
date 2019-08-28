@@ -120,6 +120,7 @@
                 width: 279px;
                 line-height: 150%;
                 border-radius: 0 0 3px 3px;
+                border-left:1px solid #eee;
                 box-shadow: 1px 2px 2px rgba(33,33,33,.4)
             }
 
@@ -137,6 +138,12 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
+        .task_list li .task_item_title a{
+            color:#222;
+        }
+            .task_list li .task_item_title a:hover {
+                color: #009d8e;
+            }
 
         .task_list li .task_item_time {
             padding: 0 15px;
@@ -147,10 +154,10 @@
             color: #999;
             text-align: center;
             line-height: 65px;
+            font-size:16px;
         }
 
-    .task_list_more,
-    .task_list_more:hover {
+    .task_list_more{
         text-align: center;
         font-size: 16px;
         font-weight: bold;
@@ -159,6 +166,9 @@
         height: 36px;
         line-height: 36px;
     }
+        .task_list_more:hover {
+            color: #009d8e;
+        }
 
     .rf_container.rf_top {
         top: 206px;
@@ -230,43 +240,23 @@
     <div class="rf_task_title">
         <div class="wrap">
             待办任务 - 统一集成平台
-            <div class="taskCount">12</div>
+            <!--<div class="taskCount" v-if="taskCount">{{taskCount}}</div>-->
         </div>
     </div>
-    <div class="rf_task_content">
-        <ul class="task_list" id="vm_backstageTasks">
-            <!--<li v-for="(task,index) in backstageTasks" v-if="backstageTasks && backstageTasks.length>0 && index < 5" >
+    <div class="rf_task_content" id="vm_backstageTasks">
+        <ul class="task_list">
+            <li v-for="(task,index) in backstageTasks" v-if="backstageTasks && backstageTasks.length>0 && index < 5" >
                 <div class="task_item_title"><a :href="task.url" target="blank" :title="task.Name">{{task.Name}}</a></div>
                 <div class="task_item_time">{{task.CreatedWhen}}</div>
-            </li>-->
-            <!--<li v-if="islogin && backstageTasks && backstageTasks.length==0" >
+            </li>
+            <li v-if="islogin && backstageTasks && backstageTasks.length==0" >
                 <div class="task_item_prompt">暂无待办任务</div>
-            </li>-->
-            <!--<li v-if="!islogin" >
-                <div class="task_item_prompt"><a href="#" target="_blank">暂未登录工作区，请点击登录</a></div>
-            </li>-->
-            <li>
-                <div class="task_item_title">外包工程人员进厂管理：RY20190210003审批任务被许章征竞争执行。</div>
-                <div class="task_item_time">2019-07-21 19:35:21</div>
             </li>
-            <li>
-                <div class="task_item_title">外包工程人员进厂管理：RY20190210003审批任务被许章征竞争执行。</div>
-                <div class="task_item_time">2019-07-21 19:35:21</div>
-            </li>
-            <li>
-                <div class="task_item_title">外包工程人员进厂管理：RY20190210003审批任务被许章征竞争执行。</div>
-                <div class="task_item_time">2019-07-21 19:35:21</div>
-            </li>
-            <li>
-                <div class="task_item_title">外包工程人员进厂管理：RY20190210003审批任务被许章征竞争执行。</div>
-                <div class="task_item_time">2019-07-21 19:35:21</div>
-            </li>
-            <li>
-                <div class="task_item_title">外包工程人员进厂管理：RY20190210003审批任务被许章征竞争执行。</div>
-                <div class="task_item_time">2019-07-21 19:35:21</div>
+            <li v-if="!islogin" >
+                <div class="task_item_prompt">暂未登录工作区</div>
             </li>
         </ul>
-        <a href="" target="_blank" class="task_list_more">查看更多…</a>
+        <a :href="tasksUrl" target="_blank" class="task_list_more" v-if="backstageTasks && backstageTasks.length>0">查看更多…</a>
     </div>
 </div>
 <div class="rf_container rf_top" id="rf_top">返回顶部</div>
@@ -280,7 +270,6 @@
 <script>
     $(function () {
         // 左侧悬浮窗口hover事件
-        console.log('$(".lf_container img").length', $(".lf_container img").length);
         if ($(".lf_container img").length > 0) {
             $(".lf_container").hover(function () {
                 $(".lf_container").css("left", "0");
@@ -327,49 +316,36 @@
         });
 
         //待办任务
-        //vm = new Vue({
-        //    el: "#vm_backstageTasks",
-        //    data: {
-        //        backstageTasks: [],         //待办任务
-        //    },
-        //    methods: {
-        //        //待办任务(外部接口)
-        //        getBackstageTasks: function () {
-        //            var self = this;
-        //            $.ajax({
-        //                async: true,
-        //                url: global.backstageAPIUrl.tasks,
-        //                type: "GET",
-        //                dataType: 'jsonp',
-        //                jsonp: 'jsoncallback',
-        //                data: {
-        //                    accept: 'jsonp'
-        //                },
-        //                timeout: 5000,
-        //                contentType: "application/json;utf-8",
-        //                success: function (resp) {
-        //                    console.log('response------', response)
-        //                    if (response.Code == 200 && response.Data) {
-        //                        response.Data.forEach(function (node, index) {
-        //                            if (node.CreatedWhen) {
-        //                                node.CreatedWhen = node.CreatedWhen.replace("T", " ");
-        //                                node.url = global.backstageTaskUrl + node.ID;
-        //                            }
-        //                        });
-        //                        self.backstageTasks = response.Data;
-        //                    }
-        //                },
-        //                error: function (jqXHR, textStatus, errorThrown) {
-        //                    // alert(textStatus);
-        //                }
-        //            });
-        //        }
-        //    },
-        //    created: function () {
-        //        var self = this;
-        //        //待办任务(外部接口)
-        //        this.getBackstageTasks();
-        //    }
-        //})
+        vm = new Vue({
+            el: "#vm_backstageTasks",
+            data: {
+                tasksUrl: global.urls.backstageTasks,
+                islogin: false,
+                taskCount: 10,
+                backstageTasks: [],         //待办任务
+            },
+            methods: {
+                //待办任务
+                getBackstageTasks: function () {
+                    var self = this;
+                    $.get('/api/aibol/tasks', {}, function (response) {
+                        if (response.Code == 200 && response.Data) {
+                            self.islogin = true;
+                            response.Data.forEach(function (node, index) {
+                                if (node.CreatedWhen) {
+                                    node.CreatedWhen = node.CreatedWhen.replace("T", " ");
+                                    node.url = global.urls.backstageTask + node.ID;
+                                }
+                            });
+                            self.backstageTasks = response.Data;
+                        }
+                    });
+                }
+            },
+            created: function () {
+                //待办任务
+                this.getBackstageTasks();
+            }
+        })
     });
 </script>
