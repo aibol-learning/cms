@@ -13,23 +13,21 @@
             <div class="listcon">
               <stl:include file="/include/location.html"></stl:include>
               <stl:pageContents pageNum="15" order="AddDate">
-                <div class="download">
-                  <div class="downloadlistpart">
-                    <span class="downloadtime pull-right">
-                      来源: <stl:content type="source"></stl:content><!--来源-->
-                      作者: <stl:content type="author"></stl:content><!--作者-->
-                      阅读次数: <stl:content type="hits"></stl:content><!--阅读次数-->
-                      发布时间: <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content><!--发布时间-->
-                    </span>
-                    <h1 class="pull-left">
-                      <stl:a>
-                        <stl:content type="Title" wordNum="45" ellipsis="..."></stl:content>                      
-                      </stl:a>
-                    </h1>
-                    
-                    <div class="clearfix"></div>
+                  <div class="download">
+                      <div class="downloadlistpart">
+                          <h1>
+                              <stl:a>
+                                  <stl:content type="Title" wordNum="45" ellipsis="..."></stl:content>
+                              </stl:a>
+                          </h1>
+                          <div class="downloadtime">
+                              来源: <stl:content type="source"></stl:content>&emsp;
+                              作者: <stl:content type="author"></stl:content>&emsp;
+                              阅读次数: <stl:content type="hits"></stl:content>&emsp;
+                              发布时间: <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>
+                          </div>
+                      </div>
                   </div>
-                </div>
               </stl:pageContents>
               <div class="page_navi text-center">
                 <stl:pageItems autoHide="true">
