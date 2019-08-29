@@ -12,6 +12,12 @@ namespace SiteServer.CMS.Plugin.Impl
         /// </summary>
         public string sub { get; set; }
 
+
+        /// <summary>
+        /// clientid in Identity Server
+        /// </summary>
+        public string client_id { get; set; }
+
         /// <summary>
         /// exp in Identity Server
         /// </summary>

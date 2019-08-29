@@ -196,31 +196,23 @@ namespace SiteServer.API.Controllers.V1
             }
         }
 
-        [HttpPost, Route(RouteActionsLogout)]
+        /// <summary>
+        /// 管理员退出
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("actions/logout")]
         public IHttpActionResult Logout()
         {
-            try
-            {
-                var request = new AuthenticatedRequest();
-                request.AdminLogout();
+            var request = new AuthenticatedRequest();
+            var idToken = request.GetCookie(Constants.AuthKeyIdentityServerIdToken);
 
-                var idToken = request.HttpRequest.Cookies.Get(Constants.AuthKeyIdentityServer)?.Value;
-                var requestUrl = request.HttpRequest.Url;
-                var postLogoutUrl = HttpUtility.UrlEncode($"{requestUrl.Scheme}://{requestUrl.Authority}/");
+            var requestUrl = request.HttpRequest.Url;
+            var postLogoutUrl = HttpUtility.UrlEncode($"{requestUrl.Scheme}://{requestUrl.Authority}/");
 
-                using (var client = new WebClient())
-                {
-                    var byteArray = client.DownloadData(WebConfigUtils.SSOService.LogoutEndPoint(idToken, postLogoutUrl));
+            // SiteServer退出
+            request.AdminLogout();
 
-                    var result = Encoding.UTF8.GetString(byteArray);
-                }
-                return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(idToken, postLogoutUrl));
-            }
-            catch (Exception ex)
-            {
-                LogUtils.AddErrorLog(ex);
-                return InternalServerError(ex);
-            }
+            return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(idToken, postLogoutUrl));
         }
 
         [HttpPost, Route(RouteActionsResetPassword)]

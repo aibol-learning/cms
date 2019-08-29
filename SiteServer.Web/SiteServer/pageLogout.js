@@ -15,7 +15,7 @@ var $vue = new Vue({
     },
 
     redirect: function () {
-      window.top.location.href = 'pageLogin.cshtml';
+      window.top.location.href = '/siteserver';
     }
   }
 });

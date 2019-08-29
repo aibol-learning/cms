@@ -8,7 +8,7 @@ if (window.top != self) {
 }
 
 var data = {
-  pageLoad: false,
+  pageLoad: true,
   pageSubmit: false,
   pageAlert: null,
   account: null,

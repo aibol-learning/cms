@@ -201,7 +201,7 @@ namespace SiteServer.API.Controllers
 
             var totalCount = pvs.Sum(o => o.Count);
 
-            var firstDay = pvs.OrderBy(o => Convert.ToDateTime(o.Id.Substring(0,10))).FirstOrDefault();
+            var firstDay = pvs.OrderBy(o => Convert.ToDateTime(o.Id.Substring(0, 10))).FirstOrDefault();
             if (firstDay == null)
             {
                 return Json(new { code = 200, data = 0 });
@@ -242,7 +242,7 @@ namespace SiteServer.API.Controllers
         {
             var contents = GetContents();
 
-            var re = contents.GroupBy(o => o.Source).Select(o => new { department = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Where(o=>!string.IsNullOrEmpty(o.department)).Take(6).ToList();
+            var re = contents.GroupBy(o => o.Source).Select(o => new { department = o.Key, count = o.Count() }).OrderByDescending(o => o.count).Where(o => !string.IsNullOrEmpty(o.department)).Take(6).ToList();
 
             return Json(re);
         }
@@ -285,7 +285,7 @@ namespace SiteServer.API.Controllers
 
             var list = contents.SelectMany(o => o.Author.Split(','));
 
-            var re = list.GroupBy(o => o).Select(o => new { author = o.Key, count = o.Count() }).Where(o=>!string.IsNullOrEmpty(o.author)).OrderByDescending(o => o.count).Take(6).ToList();
+            var re = list.GroupBy(o => o).Select(o => new { author = o.Key, count = o.Count() }).Where(o => !string.IsNullOrEmpty(o.author)).OrderByDescending(o => o.count).Take(6).ToList();
 
             return Json(re);
         }
@@ -519,11 +519,66 @@ namespace SiteServer.API.Controllers
 
         #endregion
 
-        #region 用户登录相关的一些接口
+        #region 和令牌及跨域数据相关的一些接口
 
-        private const string RouteUserInfo = "userinfo";
+        [Route("idlogon")]
+        public IHttpActionResult IdentityServerLogon()
+        {
+            var request = new AuthenticatedRequest();
 
-        [HttpPost, Route(RouteUserInfo)]
+            var accessToken = request.HttpRequest.Form["access_token"];
+            if (string.IsNullOrEmpty(accessToken))
+            {
+                var redirect = request.AdminRedirectCheck(true, true, true);
+                if (redirect != null) return Redirect(redirect.RedirectUrl);
+            }
+
+            var parsed2 = AuthenticatedRequest.ParseAccessToken(accessToken, false);
+            var adminInfo = AdminManager.GetAdminInfoByUserSub(parsed2.sub);
+
+            // 新用户自动登录
+            if (adminInfo == null)
+            {
+                adminInfo = AdminManager.UpdateNewUserFromIdentityServer(accessToken);
+            }
+
+            // 记录最后登录时间、失败次数清零
+            DataProvider.AdministratorDao.UpdateLastActivityDateAndCountOfLogin(adminInfo);
+            request.AdminLogin(adminInfo.UserName, false);
+
+            // add idserver cookie
+            CookieUtils.SetCookie(Constants.AuthKeyIdentityServer, accessToken);
+            var idToken = request.HttpRequest.Form["id_token"];
+            CookieUtils.SetCookie(Constants.AuthKeyIdentityServerIdToken, idToken);
+
+            var mainUrl = GetRelativeUrl(parsed2.client_id);
+            var requestUrl = request.HttpRequest.Url;
+
+            return Redirect($"{requestUrl.Scheme}://{requestUrl.Authority}{mainUrl}");
+        }
+
+        /// <summary>
+        /// 根据clientId获取redirectUrl
+        ///     todo: 这种硬编码设计会导致增加新网站时需要修改此处代码
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
+        private static string GetRelativeUrl(string clientId)
+        {
+            if (clientId.IndexOf("portal", StringComparison.CurrentCultureIgnoreCase) > -1)
+                return "/";
+
+            if (clientId.IndexOf("news", StringComparison.CurrentCultureIgnoreCase) > -1)
+                return "/newssite";
+
+            return "";
+        }
+
+        /// <summary>
+        /// 用户登录信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost, Route("userinfo")]
         public IHttpActionResult CurrentUserInfo()
         {
             var request = new AuthenticatedRequest();
@@ -543,12 +598,30 @@ namespace SiteServer.API.Controllers
             return Ok(new
             {
                 user.UserName,
-                user.DisplayName
+                user.DisplayName,
+                token = accessToken
             });
         }
 
+        /// <summary>
+        /// 用户退出
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("logout")]
+        public IHttpActionResult Logout()
+        {
+            var request = new AuthenticatedRequest();
+            var idToken = request.GetCookie(Constants.AuthKeyIdentityServerIdToken);
 
-        //tasks: 'http://backstage.aibol.com.cn/api/backstage/tasks', //待办任务接口url
+            var requestUrl = request.HttpRequest.Url;
+            var postLogoutUrl = HttpUtility.UrlEncode($"{requestUrl.Scheme}://{requestUrl.Authority}/");
+
+            // SiteServer退出
+            request.AdminLogout();
+
+            return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(idToken, postLogoutUrl));
+        }
+
         [HttpGet, Route("tasks")]
         public IHttpActionResult Tasks()
         {
@@ -574,7 +647,6 @@ namespace SiteServer.API.Controllers
             }
 
         }
-
 
         //screenData: ' http://screen.aibol.com.cn/home/data' //大屏幕数据接口Url
         [HttpGet, Route("screenData")]

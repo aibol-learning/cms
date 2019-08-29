@@ -55,12 +55,8 @@ $(function () {
                 Annual: {},
             },
         },
-        created: function () {
-            console.log('created!')
-        },
         methods: {
             setData: function (data) {
-                console.log('setData----')
                 this.set1(data);
                 this.set2(data);
                 this.set3(data);
@@ -69,8 +65,12 @@ $(function () {
                 this.chart6 = data.Solars[1];
                 this.chart7 = data.Solars[2];
                 this.set8(data);
-                        
+                    
                 jQuery(".slideBox1").slide({ mainCell: ".bd ul", effect: "left", autoPlay: true, delayTime: 1000 });
+                setTimeout(function () {
+                    $("#charts").css("visibility", "visible");
+                },100)
+                
             },
             set1: function (res) {
                 var colorList = [
@@ -270,15 +270,13 @@ $(function () {
             }
         }
     });
-    console.log('00000000000000')
-    $.get(global.backstageAPIUrl.screenData, {}, function (res) {
-        console.log('1111111111111111')
+    
+    $.get('/api/aibol/screenData', {}, function (res) {
         setCharts(res);
     });
 
     var setCharts = function (res) {
         //大屏幕
-        console.log('setChart')
         charts.setData(res);
     }
 
