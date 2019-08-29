@@ -135,7 +135,11 @@
                                 <stl:a class="head_list_title"><stl:content wordNum="19" ellipsis="..."></stl:content></stl:a>
                                 <div class="head_list_info">
                                     <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
-                                    <i class="fa fa-group"></i> <stl:content type="source"></stl:content>
+                                    <stl:if type="source" op="NotEmpty">
+                                        <stl:yes>
+                                            <i class="fa fa-group"></i> <stl:content type="source"></stl:content>
+                                        </stl:yes>
+                                    </stl:if>
                                     <stl:if type="tags" op="NotEmpty">
                                         <stl:yes>
                                             <i class="fa fa-tags"></i> <stl:content type="tags"></stl:content>
@@ -169,11 +173,15 @@
                                 <stl:contents channelIndex="新思想" totalNum="3">
                                     <li>
                                         <div class="image_wrap"><img src="{Content.imageUrl}" /></div>
-                                        <div class="content_wrap">
+                                        <div class="content_wrap" style="right:initial">
                                             <stl:a class="news_list_title"><stl:content wordNum="20" ellipsis="..."></stl:content></stl:a>
                                             <div class="news_list_info">
                                                 <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
-                                                <i class="fa fa-group"></i> <stl:content type="source"></stl:content>&emsp;&emsp;
+                                                <stl:if type="source" op="NotEmpty">
+                                                    <stl:yes>
+                                                        <i class="fa fa-group"></i> <stl:content type="source"></stl:content>&emsp;&emsp;
+                                                    </stl:yes>
+                                                </stl:if>
                                                 <stl:if type="tags" op="NotEmpty">
                                                     <stl:yes>
                                                         <i class="fa fa-tags"></i> <stl:content type="tags"></stl:content>
@@ -194,14 +202,18 @@
                                 <stl:contents channelIndex="公司要闻" totalNum="3">
                                     <li>
                                         <div class="image_wrap"><img src="{Content.imageUrl}" /></div>
-                                        <div class="content_wrap">
+                                        <div class="content_wrap" style="right:initial">
                                             <stl:a class="news_list_title"><stl:content wordNum="20" ellipsis="..."></stl:content></stl:a>
                                             <div class="news_list_info">
-                                                <i class="iconfont icon-shijian"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
-                                                <i class="iconfont icon-faxian"></i> <stl:content type="source"></stl:content>&emsp;&emsp;
+                                                <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
+                                                <stl:if type="source" op="NotEmpty">
+                                                    <stl:yes>
+                                                        <i class="fa fa-group"></i> <stl:content type="source"></stl:content>&emsp;&emsp;
+                                                    </stl:yes>
+                                                </stl:if>
                                                 <stl:if type="tags" op="NotEmpty">
                                                     <stl:yes>
-                                                        <i class="iconfont icon-biaoqian"></i> <stl:content type="tags"></stl:content>
+                                                        <i class="fa fa-tags"></i> <stl:content type="tags"></stl:content>
                                                     </stl:yes>
                                                 </stl:if>
                                             </div>
@@ -229,7 +241,7 @@
                                             <a :href="c.navigationUrl" class="list_title" :title="c.title">{{c.title}}</a>
                                             <div class="list_info">
                                                 <i class="fa fa-calendar"></i> {{c.addDate}}&emsp;&emsp;
-                                                <i class="fa fa-group"></i> {{c.source}}&emsp;&emsp;
+                                                <span v-if="c.source"><i class="fa fa-group"></i> {{c.source}}&emsp;&emsp;</span>
                                                 <span v-if="c.tags"><i class="fa fa-tags"></i> {{c.tags}}</span>
                                             </div>
                                         </div>

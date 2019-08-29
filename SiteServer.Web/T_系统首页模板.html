@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <!--公司公告 和 安全生产管理巡视-->
+        <!--公司公告-->
         <div class="contentpart announcement">
             <div class="container">
                 <h3>公司公告</h3>
@@ -73,10 +73,17 @@
                                     <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
                                     <div class="info">
                                         <icon class="fa fa-calendar"></icon> <stl:content type="addDate"></stl:content>&emsp;
-                                        <icon class="fa fa-edit"></icon> <stl:content type="author"></stl:content>&emsp;
-                                        <icon class="fa fa-group"></icon> <stl:content type="source"></stl:content>&emsp;
+                                        <stl:if type="author" op="NotEmpty">
+                                            <stl:yes>
+                                                <icon class="fa fa-edit"></icon> <stl:content type="author"></stl:content>&emsp;
+                                            </stl:yes>
+                                        </stl:if>
+                                        <stl:if type="source" op="NotEmpty">
+                                            <stl:yes>
+                                                <icon class="fa fa-group"></icon> <stl:content type="source"></stl:content>&emsp;
+                                            </stl:yes>
+                                        </stl:if>
                                         <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits"></stl:content>
-                                        
                                     </div>
                                 </li>
                             </stl:contents>
@@ -89,8 +96,16 @@
                                     <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
                                     <div class="info">
                                         <icon class="fa fa-calendar"></icon> <stl:content type="addDate"></stl:content>&emsp;
-                                        <icon class="fa fa-edit"></icon> <stl:content type="author"></stl:content>&emsp;
-                                        <icon class="fa fa-group"></icon> <stl:content type="source"></stl:content>&emsp;
+                                        <stl:if type="author" op="NotEmpty">
+                                            <stl:yes>
+                                                <icon class="fa fa-edit"></icon> <stl:content type="author"></stl:content>&emsp;
+                                            </stl:yes>
+                                        </stl:if>
+                                        <stl:if type="source" op="NotEmpty">
+                                            <stl:yes>
+                                                <icon class="fa fa-group"></icon> <stl:content type="source"></stl:content>&emsp;
+                                            </stl:yes>
+                                        </stl:if>
                                         <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits"></stl:content>
                                     </div>
                                 </li>
