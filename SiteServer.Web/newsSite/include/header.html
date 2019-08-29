@@ -27,21 +27,24 @@
 <script>
     $(function () {
         var loginInfoVM = new Vue({
-                el: "#loginInfoVM",
-                data: {
-                    isLogin: false,
-                    login: null
-                },
-                created: function () {
-                    this.login = global.clients.getLoginUrl('news');
-                    this.logout = global.clients.getLogoutUrl('news');
-                    this.backstage = global.urls.backstage;
-                    setInterval(function () {
-                        if (global.loginInfo) {
-                            loginInfoVM.isLogin = true;
-                        }
-                    }, 1000);
-                }
+            el: "#loginInfoVM",
+            data: {
+                isLogin: false,
+                login: null
+            },
+            created: function () {
+                this.login = global.clients.getLoginUrl('news');
+                this.logout = global.clients.getLogoutUrl('news');
+                this.backstage = global.urls.backstage;
+                setInterval(function () {
+                    if (global.loginInfo) {
+                        loginInfoVM.isLogin = true;
+                    }
+                }, 1000);
+            }
         })
+
+        //IE9 placeholder支持
+        $('input, textarea').placeholder();    
     });
 </script>
