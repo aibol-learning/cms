@@ -444,7 +444,7 @@
                     getLeftChannels: function () {
                         var self = this;
                         $.ajax({
-                            url: '/api/v1/stl/channels?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&groupChannel=左侧栏目',
+                            url: encodeURI('/api/v1/stl/channels?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&groupChannel=左侧栏目'),
                             type: 'get',
                             success: function (response) {
                                 var grounpCount = Math.ceil(response.value.length / 5);
