@@ -565,11 +565,11 @@ namespace SiteServer.API.Controllers
         /// <returns></returns>
         private static string GetRelativeUrl(string clientId)
         {
-            if (clientId.IndexOf("portal", StringComparison.CurrentCultureIgnoreCase) > -1)
-                return "/";
-
             if (clientId.IndexOf("news", StringComparison.CurrentCultureIgnoreCase) > -1)
                 return "/newssite";
+
+            if (clientId.IndexOf("portal", StringComparison.CurrentCultureIgnoreCase) > -1)
+                return "/";
 
             return "";
         }
@@ -617,8 +617,17 @@ namespace SiteServer.API.Controllers
             var postLogoutUrl = HttpUtility.UrlEncode($"{requestUrl.Scheme}://{requestUrl.Authority}/");
 
             // SiteServer退出
-            request.AdminLogout();
+            //request.AdminLogout();
 
+            using (var client = new WebClient())
+            {
+                var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
+                var at = AuthenticatedRequest.ParseAccessToken(accessToken, false);
+
+                var idToken1 = AdminManager.GetIdTokenBy(accessToken);
+            }
+
+            throw new NotImplementedException();
             return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(idToken, postLogoutUrl));
         }
 
