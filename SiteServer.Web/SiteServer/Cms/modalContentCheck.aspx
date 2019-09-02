@@ -112,7 +112,10 @@
             <div class="col-1"></div>
         </div>
 
-        <div class="form-group form-row" id="checkDiv">
+        <div class="form-group form-row" id="checkDiv" style="position: relative; padding-top: 40px;">
+            <div style="color: red; position: absolute;top:0px; text-align: center; left: 143px;">
+                是否确认需要公司领导审批?
+            </div>
             <label class="col-3 col-form-label text-right">指定审核人</label>
             <div class="col-8">
                 <select id="CheckerSelect2" class="form-control"></select>
