@@ -21,7 +21,7 @@
 
             var lv1 = $("#Lv1AdminSub").parent().parent();
             lv1.hide();
-            lv1.children().eq(0).html("初审员");
+            lv1.children().eq(0).html("选择支部书记");
             $("#Lv2AdminSub").parent().parent().hide();
             $("#Lv3AdminSub").parent().parent().hide();
             lv1.show();
