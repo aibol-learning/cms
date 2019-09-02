@@ -61,62 +61,6 @@
             </div>
         </div>
 
-        <!--公司公告-->
-        <div class="contentpart announcement">
-            <div class="container">
-                <h3>公司公告</h3>
-                <div class="row">
-                    <div class="col-md-6" style="padding-right:35px;">
-                        <ul>
-                            <stl:contents channelIndex="公司公告" scope="all" totalNum="5">
-                                <li>
-                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
-                                    <div class="info">
-                                        <icon class="fa fa-calendar"></icon> <stl:content type="addDate"></stl:content>&emsp;
-                                        <stl:if type="author" op="NotEmpty">
-                                            <stl:yes>
-                                                <icon class="fa fa-edit"></icon> <stl:content type="author"></stl:content>&emsp;
-                                            </stl:yes>
-                                        </stl:if>
-                                        <stl:if type="source" op="NotEmpty">
-                                            <stl:yes>
-                                                <icon class="fa fa-group"></icon> <stl:content type="source"></stl:content>&emsp;
-                                            </stl:yes>
-                                        </stl:if>
-                                        <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits"></stl:content>
-                                    </div>
-                                </li>
-                            </stl:contents>
-                        </ul>
-                    </div>
-                    <div class="col-md-6" style="padding-left:35px;">
-                        <ul>
-                            <stl:contents channelIndex="公司公告" scope="all" startNum="6" totalNum="5">
-                                <li>
-                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
-                                    <div class="info">
-                                        <icon class="fa fa-calendar"></icon> <stl:content type="addDate"></stl:content>&emsp;
-                                        <stl:if type="author" op="NotEmpty">
-                                            <stl:yes>
-                                                <icon class="fa fa-edit"></icon> <stl:content type="author"></stl:content>&emsp;
-                                            </stl:yes>
-                                        </stl:if>
-                                        <stl:if type="source" op="NotEmpty">
-                                            <stl:yes>
-                                                <icon class="fa fa-group"></icon> <stl:content type="source"></stl:content>&emsp;
-                                            </stl:yes>
-                                        </stl:if>
-                                        <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits"></stl:content>
-                                    </div>
-                                </li>
-                            </stl:contents>
-                        </ul>
-                        <div class="more"><stl:a channelIndex="公司公告">更多</stl:a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!--公司介绍-->
         <div class="contentpart" style="background:#d8d8d8 url({stl.siteurl}/images/bg.jpg) no-repeat center center fixed !important;">
             <div class="container">
@@ -182,10 +126,66 @@
                 </div>
             </div>
         </div>
+
+        <!--公司公告-->
+        <div class="contentpart announcement" style="background:#FFF;">
+            <div class="container">
+                <h3>公司公告</h3>
+                <div class="row">
+                    <div class="col-md-6" style="padding-right:35px;">
+                        <ul>
+                            <stl:contents channelIndex="公司公告" scope="all" totalNum="5">
+                                <li>
+                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
+                                    <div class="info">
+                                        <icon class="fa fa-calendar"></icon> <stl:content type="addDate"></stl:content>&emsp;
+                                        <stl:if type="author" op="NotEmpty">
+                                            <stl:yes>
+                                                <icon class="fa fa-edit"></icon> <stl:content type="author"></stl:content>&emsp;
+                                            </stl:yes>
+                                        </stl:if>
+                                        <stl:if type="source" op="NotEmpty">
+                                            <stl:yes>
+                                                <icon class="fa fa-group"></icon> <stl:content type="source"></stl:content>&emsp;
+                                            </stl:yes>
+                                        </stl:if>
+                                        <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits"></stl:content>
+                                    </div>
+                                </li>
+                            </stl:contents>
+                        </ul>
+                    </div>
+                    <div class="col-md-6" style="padding-left:35px;">
+                        <ul>
+                            <stl:contents channelIndex="公司公告" scope="all" startNum="6" totalNum="5">
+                                <li>
+                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
+                                    <div class="info">
+                                        <icon class="fa fa-calendar"></icon> <stl:content type="addDate"></stl:content>&emsp;
+                                        <stl:if type="author" op="NotEmpty">
+                                            <stl:yes>
+                                                <icon class="fa fa-edit"></icon> <stl:content type="author"></stl:content>&emsp;
+                                            </stl:yes>
+                                        </stl:if>
+                                        <stl:if type="source" op="NotEmpty">
+                                            <stl:yes>
+                                                <icon class="fa fa-group"></icon> <stl:content type="source"></stl:content>&emsp;
+                                            </stl:yes>
+                                        </stl:if>
+                                        <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits"></stl:content>
+                                    </div>
+                                </li>
+                            </stl:contents>
+                        </ul>
+                        <div class="more"><stl:a channelIndex="公司公告">更多</stl:a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--大屏幕实时数据-->
-    <div id="charts" class="contentpart" style="background: #fff;visibility:hidden" v-cloak>
+    <div id="charts" class="contentpart" style="visibility:hidden" v-cloak>
         <div class="container">
             <div class="indexnews">
                 <div id="slideBox1" class="slideBox1">

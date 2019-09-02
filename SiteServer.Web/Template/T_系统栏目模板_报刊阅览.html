@@ -12,7 +12,7 @@
                 <div class="col-md-9">
                     <div class="listcon">
                         <stl:include file="/include/location.html"></stl:include>
-                        <stl:pageContents pageNum="10" order="AddDate">
+                        <stl:pageContents pageNum="10" order="AddDate" where="addDate > dateadd(year, -1, getdate())">
                             <div class="download">
                                 <div class="downloadlistpart">
                                     <h1>
@@ -20,7 +20,6 @@
                                             <stl:content type="Title" wordNum="40" ellipsis="..."></stl:content>
                                         </stl:a>
                                         <span class="label_new">NEW</span>
-
                                         <a class="download" href="{Content.fileUrl}" download="{Content.fileUrl}"><icon class="fa fa-download"></icon> 下载</a>
                                     </h1>
                                     <div class="downloadtime">
@@ -67,7 +66,7 @@
             </div>
         </div>
     </div>
-    <stl:include file="/include/footer.html"></stl:include>
+    <stl:include file="/include/footer_black.html"></stl:include>
     <script>
         $(function () {
             //判断是否为当日新添加的文章, 打上new标记
@@ -83,7 +82,7 @@
                 if ($(this).text() == today) {
                     $(this).parents(".downloadlistpart").eq(0).find(".label_new").show();
                 }
-            })
+            });
         })
     </script>
 </body>

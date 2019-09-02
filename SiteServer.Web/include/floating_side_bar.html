@@ -1,61 +1,43 @@
 <style type="text/css">
     /*** 左侧悬浮窗 ***/
     .lf_container {
-        width: 207px;
+        width: 154px;
         position: fixed;
         top: 120px;
-        left: -154px;
-        transition: all .5s ease;
+        left: 10px;
+        transition: all 1s ease;
         z-index: 9999999;
-        cursor: pointer;
+        display: none;
+        border: 1px solid #ff8c01;
+        background: #ffb559;
+        padding: 0 6px 10px 6px;
     }
-
-        .lf_container .imgWrap {
-            border: 1px solid #ff8c01;
-            background: #ffb559;
-            padding: 10px 6px;
-            float: left;
-            margin: 0;
-            width: 154px;
+        .lf_container .operation {
+            height:30px;
+            text-align:right;
         }
-
-            .lf_container .imgWrap a {
-                margin-bottom: 5px;
-                display: block;
+            .lf_container .operation i {
+                width: 24px;
+                height: 24px;
+                display: inline-block;
+                line-height: 24px;
+                font-size: 18px;
+                color: #FFF;
+                cursor: pointer;
             }
 
-                .lf_container .imgWrap a:last-of-type {
-                    margin-bottom: 0;
-                }
+        .lf_container a.imgWrap {
+            margin-bottom: 5px;
+            display: block;
+        }
 
-            .lf_container .imgWrap img {
+        .lf_container a.imgWrap:last-of-type {
+            margin-bottom: 0;
+        }
+
+            .lf_container a.imgWrap img {
                 width: 140px;
             }
-
-        .lf_container .labels {
-            width: 53px;
-            float: left;
-            margin: 0;
-            margin-top: 30px;
-        }
-
-            .lf_container .labels .label {
-                width: 53px;
-                height: 53px;
-                line-height: 53px;
-                margin-bottom: 3px;
-                background: #ff8c00;
-                color: #fff;
-                text-align: center;
-                display: block;
-                border-radius: 0 3px 3px 0;
-                padding: 0;
-            }
-
-                .lf_container .labels .label icon {
-                    font-size: 35px;
-                    padding-top: 9px;
-                }
 
     /*** 右侧悬浮窗 ***/
     .rf_container {
@@ -207,31 +189,26 @@
 
 <!--左侧悬浮窗-->
 <div class="lf_container">
-    <div class="imgWrap">
-        <stl:contents channelIndex="左侧悬浮窗" isRecommend="true">
-            <stl:if type="linkUrl" op="Empty">
-                <stl:yes>
-                    <stl:if type="content" op="Empty">
-                        <stl:yes>
-                            <a href="javascript:;"><img src="{Content.ImageUrl}"></a>
-                        </stl:yes>
-                        <stl:no>
-                            <stl:a><img src="{Content.ImageUrl}"></stl:a>
-                        </stl:no>
-                    </stl:if>
-                </stl:yes>
-                <stl:no>
-                    <stl:a target="_blank"><img src="{Content.imageUrl}" /></stl:a>
-                </stl:no>
-            </stl:if>
-        </stl:contents>
+    <div class="operation">
+        <i class="fa fa-close"></i>
     </div>
-    <div class="labels">
-        <stl:contents channelIndex="左侧悬浮窗" isRecommend="true">
-            <div class="label"><icon class="fa fa-star"></icon></div>
-        </stl:contents>
-    </div>
-    <div class="clearfix"></div>
+    <stl:contents channelIndex="左侧悬浮窗" isRecommend="true">
+        <stl:if type="linkUrl" op="Empty">
+            <stl:yes>
+                <stl:if type="content" op="Empty">
+                    <stl:yes>
+                        <a class="imgWrap" href="javascript:;"><img src="{Content.ImageUrl}"></a>
+                    </stl:yes>
+                    <stl:no>
+                        <stl:a class="imgWrap"><img src="{Content.ImageUrl}"></stl:a>
+                    </stl:no>
+                </stl:if>
+            </stl:yes>
+            <stl:no>
+                <stl:a target="_blank" class="imgWrap"><img src="{Content.imageUrl}" /></stl:a>
+            </stl:no>
+        </stl:if>
+    </stl:contents>
 </div>
 
 <!--右侧悬浮窗-->
@@ -271,11 +248,10 @@
     $(function () {
         // 左侧悬浮窗口hover事件
         if ($(".lf_container img").length > 0) {
-            $(".lf_container").hover(function () {
-                $(".lf_container").css("left", "0");
-            }, function () {
-                $(".lf_container").css("left", "-154px");
-            });
+            $(".lf_container").show();
+            $(".lf_container .operation i").click(function () {
+                $(".lf_container").css("left", "-999px");
+            })
         }
 
         // 右侧悬浮窗口hover事件
