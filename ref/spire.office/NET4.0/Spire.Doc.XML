@@ -1690,6 +1690,20 @@
             <param name="image">The image</param>
             <returns></returns>
         </member>
+        <member name="M:Spire.Doc.Documents.Paragraph.AppendPicture(System.String)">
+            <summary>
+            Appends the picture.
+            </summary>
+            <param name="imgFile">The img file.</param>
+            <returns>DocPicture.</returns>
+        </member>
+        <member name="M:Spire.Doc.Documents.Paragraph.AppendPicture(System.IO.Stream)">
+            <summary>
+            Appends the picture.
+            </summary>
+            <param name="imgStream">The img stream.</param>
+            <returns>DocPicture.</returns>
+        </member>
         <member name="M:Spire.Doc.Documents.Paragraph.AppendHTML(System.String)">
             <summary>
             Appends the HTML.
@@ -2311,15 +2325,6 @@
             <param name="ltWidget"></param>
             <param name="textdirection"></param>
         </member>
-        <member name="M:Spire.Doc.Documents.Rendering.DrawingContext.GetPointRotate(System.Drawing.PointF,System.Drawing.PointF,System.Double)">
-            <summary>
-            获取一个坐标点围绕一个中心旋转角度后的新坐标点.
-            </summary>
-            <param name="loation">要旋转的点</param>
-            <param name="center">中心点</param>
-            <param name="angle">旋转角度，笛卡尔直角坐标</param>
-            <returns></returns>
-        </member>
         <member name="M:Spire.Doc.Documents.Rendering.DrawingContext.ConvertToStringFromBytes(System.Byte[])">
             <summary>
             
@@ -2386,36 +2391,6 @@
         <member name="P:Spire.Doc.Documents.Rendering.FontAscentDescent.Size">
             <summary>
             Gets/Sets the size of the font.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Documents.Rendering.DrawingTextDirection.Horizontal">
-            <summary>
-            从左到右,字符不旋转.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Documents.Rendering.DrawingTextDirection.HorizontalEastAsiaRotation">
-            <summary>
-            从左到右,东亚字符旋转270.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Documents.Rendering.DrawingTextDirection.Vertical">
-            <summary>
-             从右到左,垂直排列,英文字符旋转90.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Documents.Rendering.DrawingTextDirection.TopToBottom">
-            <summary>
-            从上到下,所有字符旋转90.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Documents.Rendering.DrawingTextDirection.BottomToTop">
-             <summary>
-             从下到上,所有字符旋转270.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Documents.Rendering.DrawingTextDirection.RightToLeft">
-            <summary>
-            从右到左,字符不旋转.
             </summary>
         </member>
         <member name="P:Spire.Doc.Documents.Rendering.PictureAndTextPositionInfo.Picture">
@@ -2983,20 +2958,6 @@
             
             </summary>
             <param name="strDigit"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Spire.Doc.Documents.DigitToChnText.ConvertIntegral(System.String)">
-            <summary>
-            转换整数部分
-            </summary>
-            <param name="strIntegral"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Spire.Doc.Documents.DigitToChnText.ConvertFractional(System.String)">
-            <summary>
-            转换小数部分
-            </summary>
-            <param name="strFractional"></param>
             <returns></returns>
         </member>
         <member name="M:Spire.Doc.Documents.DigitToChnText.GetChicago(System.String)">
@@ -10131,6 +10092,24 @@
             Gets or sets the a valeu specifies whether the fill is rotated
             </summary>
         </member>
+        <member name="M:Spire.Doc.Background.SetPicture(System.String)">
+            <summary>
+            Sets the picture.
+            </summary>
+            <param name="imgFile">The image file.</param>
+        </member>
+        <member name="M:Spire.Doc.Background.SetPicture(System.IO.Stream)">
+            <summary>
+            Sets the picture.
+            </summary>
+            <param name="imgStream">The image stream.</param>
+        </member>
+        <member name="M:Spire.Doc.Background.SetPicture(System.Byte[])">
+            <summary>
+            Sets the picture.
+            </summary>
+            <param name="imgBytes">The image bytes.</param>
+        </member>
         <member name="P:Spire.Doc.BackgroundGradient.Color1">
             <summary>
             Gets or sets first color for gradient.
@@ -10657,6 +10636,18 @@
             </summary>
             <param name="image">Image for picture watermark</param>
             <param name="washout">IsWashout property</param>
+        </member>
+        <member name="M:Spire.Doc.PictureWatermark.SetPicture(System.String)">
+            <summary>
+            Sets the picture.
+            </summary>
+            <param name="ImgFile">The image file.</param>
+        </member>
+        <member name="M:Spire.Doc.PictureWatermark.SetPicture(System.IO.Stream)">
+            <summary>
+            Sets the picture.
+            </summary>
+            <param name="imgStream">The img stream.</param>
         </member>
         <member name="F:Spire.Doc.MailMergeMainDocumentType.NotAMergeDocument">
             <summary>
@@ -13654,6 +13645,168 @@
             </summary>
             <returns>System.String.</returns>
         </member>
+        <member name="F:Spire.Doc.Fields.Barcode.CheckSumMode.Auto">
+            <summary>
+            Enable or disable checksum according barcode type.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Fields.Barcode.CheckSumMode.ForceEnable">
+            <summary>
+            Force enable checksum.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Fields.Barcode.CheckSumMode.ForceDisable">
+            <summary>
+            Force disable checksum.
+            </summary>
+        </member>
+        <member name="T:Spire.Doc.Fields.Barcode.Implementation.Dimension">
+            <summary>
+            Simply encapsulates a width and height.
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Dimension.#ctor(System.Int32,System.Int32)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="P:Spire.Doc.Fields.Barcode.Implementation.Dimension.Width">
+            <summary>
+            the width
+            </summary>
+        </member>
+        <member name="P:Spire.Doc.Fields.Barcode.Implementation.Dimension.Height">
+            <summary>
+            the height
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Dimension.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Dimension.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Dimension.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.Codes.NewRowToSeparator">
+            For RSS.When 2D part finished and need to change to draw the separator part
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.DataMatrix.Encoder.C40Encoder.handleEOD(Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.DataMatrix.Encoder.EncoderContext,System.Text.StringBuilder)">
+            <summary>
+            Handle "end of data" situations
+            </summary>
+            <param name="context">the encoder context</param>
+            <param name="buffer">the buffer with the remaining encoded characters</param>
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.DataMatrix.Encoder.EdifactEncoder.handleEOD(Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.DataMatrix.Encoder.EncoderContext,System.Text.StringBuilder)">
+            <summary>
+            Handle "end of data" situations
+            </summary>
+            <param name="context">the encoder context</param>
+            <param name="buffer">the buffer with the remaining encoded characters</param>
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.DataMatrix.Encoder.SymbolInfo.overrideSymbolSet(Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.DataMatrix.Encoder.SymbolInfo[])">
+             Overrides the symbol info set used by this class. Used for testing purposes.
+            
+             @param override the symbol info set to use
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256.#ctor(System.Int32)">
+             Create a representation of GF(256) using the given primitive polynomial.
+            
+             @param primitive irreducible polynomial whose coefficients are represented by
+              the bits of an int, where the least-significant bit represents the constant
+              coefficient
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256.BuildMonomial(System.Int32,System.Int32)">
+            @return the monomial representing coefficient * x^degree
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256.AddOrSubtract(System.Int32,System.Int32)">
+             Implements both addition and subtraction -- they are the same in GF(256).
+            
+             @return sum/difference of a and b
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256.Exp(System.Int32)">
+            @return 2 to the power of a in GF(256)
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256.Log(System.Int32)">
+            @return base 2 log of a in GF(256)
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256.Inverse(System.Int32)">
+            @return multiplicative inverse of a
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256.Multiply(System.Int32,System.Int32)">
+            @param a
+            @param b
+            @return product of a and b in GF(256)
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256Poly.#ctor(System.Int32[])">
+            @param field the {@link GF256} instance representing the field to use
+            to perform computations
+            @param coefficients coefficients as ints representing elements of GF(256), arranged
+            from most significant (highest-power term) coefficient to least significant
+            @throws IllegalArgumentException if argument is null or empty,
+            or if leading coefficient is 0 and this is not a
+            constant polynomial (that is, it is not the monomial "0")
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256Poly.evaluateAt(System.Int32)">
+            @return evaluation of this polynomial at a given point
+        </member>
+        <member name="P:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256Poly.Degree">
+            @return degree of this polynomial
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256Poly.IsZero">
+            @return true iff this polynomial is the monomial "0"
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.Implementation.Generator.Encoder.GF256Poly.GetCoefficient(System.Int32)">
+            @return coefficient of x^degree term in this polynomial
+        </member>
+        <!-- 对于成员“P:Spire.Doc.Fields.Barcode.Implementation.Generator.Generation.BarcodeCreator.DataMatrixSymbolShape”忽略有格式错误的 XML 注释 -->
+        <member name="P:Spire.Doc.Fields.Barcode.Implementation.Generator.Generation.BarcodeCreator.AztecLayers">
+            <summary>
+            Layers of Aztect type of barcode. value should between -4 to 32.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Fields.Barcode.ITF14BorderType.None">
+            <summary>
+            No border enclosing the Barcode
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Fields.Barcode.ITF14BorderType.Frame">
+            <summary>
+            Frame enclosing the Barcode
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Fields.Barcode.ITF14BorderType.Bar">
+            <summary>
+            Tow horizontal bars enclosing the Barcode
+            </summary>
+        </member>
+        <member name="T:Spire.Doc.Fields.Barcode.StringHelper">
+            <summary>
+            Utility class for common string operations.
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Fields.Barcode.StringHelper.IsNullOrEmpty(System.String)">
+            <summary>
+            Determines if a string is null of empty. It's emptiness is
+            determined by first trimming it.
+            </summary>
+            <param name="stringToCheck">String to check for nullness or emptiness.</param>
+            <returns><c>True</c> if the string is null or empty, <c>false</c> otherwise.</returns>
+        </member>
         <member name="M:Spire.Doc.Fields.Shape.C14NTransform.Apply(System.IO.Stream)">
             <summary>
             Applies transformation to given stream.
@@ -15151,6 +15304,18 @@
             <summary>
             Loads image.
             </summary>
+        </member>
+        <member name="M:Spire.Doc.Fields.DocPicture.LoadImage(System.String)">
+            <summary>
+            Loads the image.
+            </summary>
+            <param name="imgFile">The img file.</param>
+        </member>
+        <member name="M:Spire.Doc.Fields.DocPicture.LoadImage(System.IO.Stream)">
+            <summary>
+            Loads the image.
+            </summary>
+            <param name="imgStream">The img stream.</param>
         </member>
         <member name="M:Spire.Doc.Fields.DocPicture.LoadImage(System.Byte[])">
             <summary>
@@ -18982,6 +19147,45 @@
             Represents data during MergeImageField event.
             </summary>
         </member>
+        <member name="P:Spire.Doc.Reporting.MergeImageFieldEventArgs.PictureSize">
+            <summary>
+            Gets or sets the size of the picture.
+            </summary>
+            <value>The size of the picture.</value>
+        </member>
+        <member name="M:Spire.Doc.Reporting.MergeImageFieldEventArgs.#ctor(Spire.Doc.Interface.IDocument,System.String,System.Int32,Spire.Doc.Interface.IMergeField,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spire.Doc.Reporting.MergeImageFieldEventArgs"/> class.
+            </summary>
+            <param name="doc">The document.</param>
+            <param name="tableName">Name of the table.</param>
+            <param name="rowIndex">Index of the row.</param>
+            <param name="field">The field.</param>
+            <param name="obj">The object.</param>
+        </member>
+        <member name="M:Spire.Doc.Reporting.MergeImageFieldEventArgs.#ctor(Spire.Doc.Interface.IDocument,System.String,System.Int32,Spire.Doc.Interface.IMergeField,System.Object,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spire.Doc.Reporting.MergeImageFieldEventArgs"/> class.
+            </summary>
+            <param name="doc">The document.</param>
+            <param name="tableName">Name of the table.</param>
+            <param name="rowIndex">Index of the row.</param>
+            <param name="field">The field.</param>
+            <param name="obj">The object.</param>
+            <param name="imageName">Name of the image.</param>
+        </member>
+        <member name="M:Spire.Doc.Reporting.MergeImageFieldEventArgs.SetImage(System.String)">
+            <summary>
+            Sets the image.
+            </summary>
+            <param name="imgFile">The image file.</param>
+        </member>
+        <member name="M:Spire.Doc.Reporting.MergeImageFieldEventArgs.SetImage(System.IO.Stream)">
+            <summary>
+            Sets the image.
+            </summary>
+            <param name="imgStream">The image stream.</param>
+        </member>
         <member name="M:Spire.Doc.Utilities.OfficeMathHelper.IsPointInsideBounds(System.Drawing.PointF,Spire.Pdf.General.Paper.Drawing.Rendering.Ps.PsPolyLineSegment)">
             <summary>
             Checks if the point is inside of bounds.
@@ -19111,27 +19315,6 @@
             <param name="tr"></param>
             <param name="dc"></param>
             <returns>the compressed width</returns>
-        </member>
-        <member name="M:Spire.Doc.Layout.LayoutedWidget.RemoveDontCompressPunctuation(Spire.Doc.Layout.SplitStringWidget,Spire.Doc.Fields.TextRange)">
-            <summary>
-            删除前一个TEXTRANGE最后一个不压缩标点, //删除当前TEXTRANGE的第一个不压缩标点
-            </summary>
-            <param name="splitTextRange"></param>
-            <param name="currTr"></param>
-        </member>
-        <member name="M:Spire.Doc.Layout.LayoutedWidget.RemoveDontCompressPunctuation(Spire.Doc.Fields.TextRange,Spire.Doc.Fields.TextRange)">
-            <summary>
-            删除前一个TEXTRANGE最后一个不压缩标点, //删除当前TEXTRANGE的第一个不压缩标点
-            </summary>
-            <param name="splitTextRange"></param>
-            <param name="currTr"></param>
-        </member>
-        <member name="M:Spire.Doc.Layout.LayoutedWidget.RemoveDontCompressPunctuationEx(System.Collections.Generic.List{Spire.Doc.Fields.ChinesePunctuation},System.Collections.Generic.List{Spire.Doc.Fields.ChinesePunctuation},System.String,System.Boolean,System.Boolean,Spire.Doc.CharacterSpacing)">
-            <summary>
-            删除当前TEXTRANGE里的不压缩标点，除了第一个字符与最后一个字符
-            </summary>
-            <param name="source"></param>
-            <param name="txtLength"></param>
         </member>
         <member name="M:Spire.Doc.Layout.LayoutedWidget.UpdateGridVerticalAlignment(System.Double)">
             <summary>
@@ -19389,46 +19572,6 @@
             <param name="row"></param>
             <param name="cellIndex"></param>
             <returns></returns>
-        </member>
-        <member name="F:Spire.Doc.Layout.TableWidthInfo.m_isEqualsWidthOfPreRow">
-            <summary>
-            每行宽度是否相等.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Layout.TableWidthInfo.m_isEqualsCellCountOfPreRow">
-            <summary>
-            每行单元格数量是否相等.
-            </summary>IsEqualsCellCountOfPreRow
-        </member>
-        <member name="F:Spire.Doc.Layout.TableWidthInfo.m_isEqualsScalingSumOfAllRow">
-            <summary>
-            所有行百分比是否相等.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Layout.TableWidthInfo.m_isZoreOfAllRowWidth">
-            <summary>
-            所有行宽是否为零.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Layout.TableWidthInfo.m_isEqualsGridSpanCountOfAllRow">
-            <summary>
-            所有行的GridSpan数量是否相等.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Layout.TableWidthInfo.m_allCellWidthTypeIsPoint">
-            <summary>
-            所有单元格的宽度类型是否相同.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Layout.TableWidthInfo.m_tableRowInfo">
-            <summary>
-            每行宽度信息.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Layout.TableWidthInfo.m_tableWidth">
-            <summary>
-            表格宽度.
-            </summary>
         </member>
         <member name="P:Spire.Doc.Layout.TableWidthInfo.IsEqualsScalingSumAndNotZeroOfRows">
              <summary>
