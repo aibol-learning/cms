@@ -97,14 +97,15 @@
     <Reference Include="SiteServer.Plugin, Version=2.3.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SiteServer.Plugin.2.3.6\lib\net452\SiteServer.Plugin.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.Doc, Version=7.7.10.18040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+    <Reference Include="Spire.Doc, Version=7.1.7.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\spire.office\NET4.0\Spire.Doc.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.License">
+    <Reference Include="Spire.License, Version=1.3.7.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\spire.office\NET4.0\Spire.License.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.Pdf, Version=5.7.14.18040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+    <Reference Include="Spire.Pdf, Version=5.8.7.2040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\spire.office\NET4.0\Spire.Pdf.dll</HintPath>
     </Reference>
@@ -186,6 +187,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="css\jsPlumbToolkit-defaults.css" />
+    <Content Include="js\jsPlumb-1.7.9-min.js" />
     <Content Include="SiteServer\aibol\UploadExcel.aspx" />
     <Content Include="SiteServer\assets\codeMirror\LICENSE" />
     <Content Include="SiteServer\assets\echarts\.DS_Store" />

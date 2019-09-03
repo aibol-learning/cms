@@ -71,7 +71,13 @@
             var DdlCheckTypeChange = function () {
                 if ($("#DdlCheckType").val() == 0 || $("#DdlCheckType").val() == 1 || $("#DdlCheckType").val() == 2) {
                     $("#checkDiv").show();
-
+                    if ($("#DdlCheckType").val() == 1) {
+                        $("#confirmText").show();
+                        $("#checkDiv").css("padding-top"," 40px");
+                    } else {
+                        $("#confirmText").hide();
+                        $("#checkDiv").css("padding-top", "0px");
+                    }
 
                     getChecker();
                 } else {
@@ -113,7 +119,7 @@
         </div>
 
         <div class="form-group form-row" id="checkDiv" style="position: relative; padding-top: 40px;">
-            <div style="color: red; position: absolute;top:0px; text-align: center; left: 143px;">
+            <div id="confirmText" style="color: red; position: absolute;top:0px; text-align: center; left: 143px;">
                 是否确认需要公司领导审批?
             </div>
             <label class="col-3 col-form-label text-right">指定审核人</label>
