@@ -10,8 +10,8 @@
                     <span class="glyphicon glyphicon-search"></span>
                 </form>
             </div>
-            <script src="{Stl.SiteUrl}/js/classie.js"></script>
-            <script src="{Stl.SiteUrl}/js/uisearch.js"></script>
+            <script type="text/javascript" src="{Stl.SiteUrl}/js/classie.js"></script>
+            <script type="text/javascript" src="{Stl.SiteUrl}/js/uisearch.js"></script>
             <script>
                 new UISearch(document.getElementById('sb-search'));
             </script>
@@ -26,11 +26,9 @@
 
     <!--站点导航-->
     <div class="container">
-        <div class="headerNav">
-            <ul class="navItem">
-                <!--stl:if testType="ChannelIndex" testOperate="Equals" testValue="首页"-->
+        <div class="headerNav" id="headerNav">
+            <ul class="navItem" id="headerNavItem">
                 <li><a href='{Stl.SiteUrl}/index.html'>首页</a></li>
-                <!--/stl:if-->
                 <stl:channels topLevel="0" groupChannel="头部导航">
                     <li>
                         <stl:if type="linkUrl" op="Empty">
@@ -72,6 +70,7 @@
                     </li>
                 </stl:channels>
             </ul>
+            <a href="javascript:;" class="handleMore" id="navHandleMore"><span>更多</span><i class="fa fa-angle-double-right"></i></a>
         </div>
     </div>
     <script>
@@ -83,8 +82,8 @@
                     login: null
                 },
                 created: function () {
-                    this.login = global.clients.getLoginUrl('portal');
-                    this.logout = global.clients.getLogoutUrl('portal');
+                    this.login = '/api/aibol/login?returnurl=' + escape(window.location);
+                    this.logout = '/api/aibol/logout';
                     this.backstage = global.urls.backstage;
                     setInterval(function () {
                         if (global.loginInfo) {
@@ -117,9 +116,25 @@
                 }
             });
 
+            //导航上的"更多"
+            if ($("#headerNav")[0].scrollHeight > 40) {
+               $("#navHandleMore").css("display", "block");
+            }
+            $("#navHandleMore").on('click', function () {
+                if ($("#headerNav").css("overflow-y") == 'hidden') {
+                    $("#headerNav").css("overflow-y", "visible");
+                    $("#navHandleMore i").removeClass("fa-angle-double-right").addClass("fa-angle-double-up")
+                    $("#navHandleMore span").text("收起");
+                }
+                else {
+                    $("#headerNav").css("overflow-y", "hidden");
+                    $("#navHandleMore i").removeClass("fa-angle-double-up").addClass("fa-angle-double-right")
+                    $("#navHandleMore span").text("更多");
+                }
+            })
 
             //IE9 placeholder支持
-            $('input, textarea').placeholder();
+            //$('input, textarea').placeholder();
         });
     </script>
 </div>

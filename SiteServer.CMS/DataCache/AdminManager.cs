@@ -488,19 +488,5 @@ namespace SiteServer.CMS.DataCache
                 return info;
             }
         }
-
-        public static string GetIdTokenBy(string accessToken)
-        {
-            using (var client = new WebClient())
-            {
-                client.Encoding = Encoding.UTF8;
-
-                var userInfoStr = client.DownloadString(WebConfigUtils.SSOService.AuthorizeEndPoint());
-
-                var userInfoJson = JsonConvert.DeserializeObject<dynamic>(userInfoStr);
-
-                return userInfoJson.id_token;
-            }
-        }
     }
 }

@@ -522,7 +522,23 @@ namespace SiteServer.API.Controllers
 
         #region 和令牌及跨域数据相关的一些接口
 
-        [Route("idlogon")]
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("Login")]
+        public IHttpActionResult Login(string returnUrl)
+        {
+            var redirectUrl = WebConfigUtils.SSOService.AuthorizeEndPoint(returnUrl);
+
+            return Redirect(redirectUrl);
+        }
+
+        /// <summary>
+        /// 用户已登录的回调
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost, Route("idlogon")]
         public IHttpActionResult IdentityServerLogon()
         {
             var request = new AuthenticatedRequest();
@@ -552,27 +568,16 @@ namespace SiteServer.API.Controllers
             var idToken = request.HttpRequest.Form["id_token"];
             CookieUtils.SetCookie(Constants.AuthKeyIdentityServerIdToken, idToken);
 
-            var mainUrl = GetRelativeUrl(parsed2.client_id);
-            var requestUrl = request.HttpRequest.Url;
+            // 获取转向地址
+            var state = request.HttpRequest.Form["state"].Replace('.', '=');
+            var returnUrl = Encoding.UTF8.GetString(Convert.FromBase64String(state));
+            if (!returnUrl.StartsWith("http"))
+            {
+                var requestUrl = request.HttpRequest.Url;
+                returnUrl = $"{requestUrl.Scheme}://{requestUrl.Authority}{returnUrl}";
+            }
 
-            return Redirect($"{requestUrl.Scheme}://{requestUrl.Authority}{mainUrl}");
-        }
-
-        /// <summary>
-        /// 根据clientId获取redirectUrl
-        ///     todo: 这种硬编码设计会导致增加新网站时需要修改此处代码
-        /// </summary>
-        /// <param name="clientId"></param>
-        /// <returns></returns>
-        private static string GetRelativeUrl(string clientId)
-        {
-            if (clientId.IndexOf("news", StringComparison.CurrentCultureIgnoreCase) > -1)
-                return "/newssite";
-
-            if (clientId.IndexOf("portal", StringComparison.CurrentCultureIgnoreCase) > -1)
-                return "/";
-
-            return "";
+            return Redirect(returnUrl);
         }
 
         /// <summary>
@@ -618,17 +623,9 @@ namespace SiteServer.API.Controllers
             var postLogoutUrl = HttpUtility.UrlEncode($"{requestUrl.Scheme}://{requestUrl.Authority}/");
 
             // SiteServer退出
-            //request.AdminLogout();
-
-            using (var client = new WebClient())
-            {
-                var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
-                var at = AuthenticatedRequest.ParseAccessToken(accessToken, false);
-
-                var idToken1 = AdminManager.GetIdTokenBy(accessToken);
-            }
-
-            throw new NotImplementedException();
+            request.AdminLogout();
+        
+            // IdentityServer退出
             return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(idToken, postLogoutUrl));
         }
 

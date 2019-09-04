@@ -3,7 +3,7 @@
     .lf_container {
         width: 154px;
         position: fixed;
-        top: 120px;
+        top: 150px;
         left: 10px;
         transition: all 1s ease;
         z-index: 9999999;
@@ -212,28 +212,29 @@
 </div>
 
 <!--右侧悬浮窗-->
-
 <div class="rf_container rf_task">
-    <div class="rf_task_title">
-        <div class="wrap">
-            待办任务 - 统一集成平台
-            <!--<div class="taskCount" v-if="taskCount">{{taskCount}}</div>-->
+    <div id="vm_backstageTasks" v-cloak>
+        <div class="rf_task_title">
+            <div class="wrap">
+                待办任务 - 统一集成平台
+                <div class="taskCount" v-if="taskCount">{{taskCount}}</div>
+            </div>
         </div>
-    </div>
-    <div class="rf_task_content" id="vm_backstageTasks">
-        <ul class="task_list">
-            <li v-for="(task,index) in backstageTasks" v-if="backstageTasks && backstageTasks.length>0 && index < 5" >
-                <div class="task_item_title"><a :href="task.url" target="blank" :title="task.Name">{{task.Name}}</a></div>
-                <div class="task_item_time">{{task.CreatedWhen}}</div>
-            </li>
-            <li v-if="islogin && backstageTasks && backstageTasks.length==0" >
-                <div class="task_item_prompt">暂无待办任务</div>
-            </li>
-            <li v-if="!islogin" >
-                <div class="task_item_prompt">暂未登录工作区</div>
-            </li>
-        </ul>
-        <a :href="tasksUrl" target="_blank" class="task_list_more" v-if="backstageTasks && backstageTasks.length>0">查看更多…</a>
+        <div class="rf_task_content">
+            <ul class="task_list">
+                <li v-for="(task,index) in backstageTasks" v-if="backstageTasks && backstageTasks.length>0 && index < 5">
+                    <div class="task_item_title"><a :href="task.url" target="blank" :title="task.Name">{{task.Name}}</a></div>
+                    <div class="task_item_time">{{task.CreatedWhen}}</div>
+                </li>
+                <li v-if="islogin && backstageTasks && backstageTasks.length==0">
+                    <div class="task_item_prompt">暂无待办任务</div>
+                </li>
+                <li v-if="!islogin">
+                    <div class="task_item_prompt">暂未登录工作区</div>
+                </li>
+            </ul>
+            <a :href="tasksUrl" target="_blank" class="task_list_more" v-if="backstageTasks && backstageTasks.length>0">查看更多…</a>
+        </div>
     </div>
 </div>
 <div class="rf_container rf_top" id="rf_top">返回顶部</div>
@@ -297,7 +298,7 @@
             data: {
                 tasksUrl: global.urls.backstageTasks,
                 islogin: false,
-                taskCount: 10,
+                taskCount: null,
                 backstageTasks: [],         //待办任务
             },
             methods: {
@@ -305,15 +306,21 @@
                 getBackstageTasks: function () {
                     var self = this;
                     $.get('/api/aibol/tasks', {}, function (response) {
-                        if (response.Code == 200 && response.Data) {
+                        if (response.code && response.code == 401) {//用户未登录工作区
+                            self.islogin = false;
+                        }
+                        if (response.Records) {//用户已登录工作区
                             self.islogin = true;
-                            response.Data.forEach(function (node, index) {
+                            response.Records.forEach(function (node, index) {
                                 if (node.CreatedWhen) {
                                     node.CreatedWhen = node.CreatedWhen.replace("T", " ");
-                                    node.url = global.urls.backstageTask + node.ID;
+                                    node.url = node.RedirectUrl;
                                 }
                             });
-                            self.backstageTasks = response.Data;
+                            self.backstageTasks = response.Records;
+                        }
+                        if (response && response.TotalItemCount) {//待办任务总数
+                            self.taskCount = response.TotalItemCount;
                         }
                     });
                 }

@@ -113,9 +113,53 @@
     #previewWrap {
         display: none;
     }
+    #btn_prev {
+        position: fixed;
+        left: 10%;
+        margin-left: -60px;
+        top: 50%;
+        margin-top: -25px;
+        display: block;
+        width: 50px;
+        height: 80px;
+        background: #009d8e url(/images/slider-arrow.png) -101px 24px no-repeat;
+        filter: alpha(opacity=50);
+        opacity: 0.5;
+        display: block;
+        border: none;
+    }
+        #btn_prev:hover, #btn_next:hover {
+            filter: alpha(opacity=100);
+            opacity: 1;
+        }
+    #btn_next {
+        position: fixed;
+        right: 10%;
+        margin-right: -60px;
+        top: 50%;
+        margin-top: -25px;
+        display: block;
+        width: 50px;
+        height: 80px;
+        background: #009d8e url(/images/slider-arrow.png) 17px 24px no-repeat;
+        filter: alpha(opacity=50);
+        opacity: 0.5;
+        display:block;
+        border:none;
+    }
+        #btn_prev:disabled,
+        #btn_next:disabled {
+            background-color: #aaa;
+        }
+            #btn_prev:disabled:hover,
+            #btn_next:disabled:hover {
+                background-color: #aaa;
+                filter: alpha(opacity=50);
+                opacity: 0.5;
+            }
 </style>
 
-<body>
+<body style="margin-top:0;">
     <h1 id="noData">暂无内容</h1>
     <div id="previewWrap">
         <div class="container">
@@ -134,6 +178,8 @@
         <div class="zoompic">
             <img id="preview" />
         </div>
+        <input type="button" id="btn_prev" />
+        <input type="button" id="btn_next" />
     </div>
 
     <script type="text/javascript">
@@ -156,8 +202,10 @@
                 $("#preview").attr("src", imageUrlPrefix + "1.png");
 
                 //根据有无图片显示不同内容
+                var currentIndex = 0;
                 if (imageCount > 0) {
                     $("#thumbnail li").eq(0).addClass("current");
+                    $("#btn_prev").attr("disabled", true);
                     $("#previewWrap").show();
                 }
                 else {
@@ -166,12 +214,25 @@
 
                 //点击小图切换大图
                 $("#thumbnail li a").click(function () {
+                    currentIndex = $("#thumbnail li a").index($(this));
                     $(".zoompic img").hide().attr({
                         "src": $(this).attr("href")
                     });
                     $("#thumbnail li.current").removeClass("current");
                     $(this).parents("li").addClass("current");
 
+                    if (currentIndex == 0) {
+                        $("#btn_prev").attr("disabled", true);
+                    }
+                    else {
+                        $("#btn_prev").attr("disabled", false);
+                    }
+                    if (currentIndex == $("#thumbnail li a").length - 1) {
+                        $("#btn_next").attr("disabled", true);
+                    }
+                    else {
+                        $("#btn_next").attr("disabled", false);
+                    }
                     return false;
                 });
                 $(".zoompic>img").load(function () {
@@ -214,6 +275,15 @@
                         left: '+=' + $slider_width + 'px'
                     }, 'fast');
                     slider_pic();
+                });
+
+                $('#btn_prev').click(function () {
+                    if (currentIndex == 0) return false;
+                    $("#thumbnail li a").eq(currentIndex - 1).trigger("click");
+                });
+                $('#btn_next').click(function () {
+                    if (currentIndex == $("#thumbnail li a").length - 1) return false;
+                    $("#thumbnail li a").eq(currentIndex + 1).trigger("click");
                 });
 
                 function slider_pic() {
