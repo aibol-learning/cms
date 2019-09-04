@@ -69,7 +69,7 @@
             }
 
             var DdlCheckTypeChange = function () {
-                if ($("#DdlCheckType").val() == 0 || $("#DdlCheckType").val() == 1 || $("#DdlCheckType").val() == 2) {
+                if ($("#DdlCheckType").val() == 0 || $("#DdlCheckType").val() == 1) {
                     $("#checkDiv").show();
                     if ($("#DdlCheckType").val() == 1) {
                         $("#confirmText").show();

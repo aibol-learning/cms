@@ -23,6 +23,8 @@ namespace SiteServer.BackgroundPages.Cms
         private int _contentId;
         private string _returnUrl;
 
+        public ContentInfo ContentInfo;
+
         public static string GetOpenWindowString(int siteId, ContentInfo contentInfo, string returnUrl)
         {
             return LayerUtils.GetOpenScript("审核状态",
@@ -46,6 +48,11 @@ namespace SiteServer.BackgroundPages.Cms
             _returnUrl = StringUtils.ValueFromUrl(AuthRequest.GetQueryString("returnUrl"));
 
             var contentInfo = ContentManager.GetContentInfo(SiteInfo, _channelId, _contentId);
+            ContentInfo = contentInfo;
+
+            ContentInfo.Lv1AdminSub = contentInfo.Get("Lv1AdminSub").ToString();
+            ContentInfo.Lv2AdminSub = contentInfo.Get("Lv2AdminSub").ToString();
+            ContentInfo.Lv3AdminSub = contentInfo.Get("Lv3AdminSub").ToString();
 
             int checkedLevel;
             var isChecked = CheckManager.GetUserCheckLevel(AuthRequest.AdminPermissionsImpl, SiteInfo, SiteId, out checkedLevel);

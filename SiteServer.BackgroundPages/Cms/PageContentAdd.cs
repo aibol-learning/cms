@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Web.UI.WebControls;
 using SiteServer.Utils;
 using SiteServer.BackgroundPages.Ajax;
@@ -236,6 +237,7 @@ namespace SiteServer.BackgroundPages.Cms
 
             var contentId = AuthRequest.GetQueryInt("id");
             var redirectUrl = string.Empty;
+            var needSeedMsg = false;
 
             if (contentId == 0)
             {
@@ -298,6 +300,10 @@ namespace SiteServer.BackgroundPages.Cms
                         {
                             contentInfo.CheckedLevel = 0;
                         }
+                        else if (contentInfo.CheckedLevel == 0)
+                        {
+                            needSeedMsg = true;
+                        }
 
                         contentInfo.Set(ContentAttribute.CheckUserName, AuthRequest.AdminName);
                         contentInfo.Set(ContentAttribute.CheckDate, DateUtils.GetDateAndTimeString(DateTime.Now));
@@ -305,9 +311,7 @@ namespace SiteServer.BackgroundPages.Cms
                     }
                     else
                     {
-                        //发送初审代办
-                        var lv1SSOIds = DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(1);
-                        BackstageManager.SendMessage(MessageType.消息, lv1SSOIds, "等待初审");
+                        needSeedMsg = true;
                     }
 
                     contentInfo.Id = DataProvider.ContentDao.Insert(_tableName, SiteInfo, _channelInfo, contentInfo);
@@ -324,6 +328,14 @@ namespace SiteServer.BackgroundPages.Cms
 
                     redirectUrl = PageContentAddAfter.GetRedirectUrl(SiteId, _channelInfo.Id, contentInfo.Id,
                         ReturnUrl);
+
+                    if (needSeedMsg)
+                    {
+                        //发送初审代办
+                        var RootAddress = ConfigurationManager.AppSettings["RootAddress"];
+                        BackstageManager.SendMessage(MessageType.任务, new List<string>() { contentInfo.GetString("Lv1AdminSub") }, "您有一条新闻审核任务待处理", RootAddress + $"?siteId={contentInfo.SiteId}&frmMain=check", $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}");
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -363,6 +375,13 @@ namespace SiteServer.BackgroundPages.Cms
                     var checkedLevel = TranslateUtils.ToIntWithNagetive(DdlContentLevel.SelectedValue);
                     if (checkedLevel != CheckManager.LevelInt.NotChange)
                     {
+                        if (contentInfo.CheckedLevel != checkedLevel)
+                        {
+                            //关闭代办
+                            var RootAddress = ConfigurationManager.AppSettings["RootAddress"];
+                            BackstageManager.CloseMessage(MessageType.任务, $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}");
+                        }
+
                         contentInfo.IsChecked = checkedLevel >= SiteInfo.Additional.CheckContentLevel;
                         contentInfo.CheckedLevel = checkedLevel;
                     }

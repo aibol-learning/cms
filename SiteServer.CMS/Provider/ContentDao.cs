@@ -2517,7 +2517,7 @@ group by tmp.source";
 
         public string GetPagerWhereSqlString(SiteInfo siteInfo, ChannelInfo channelInfo, string searchType,
             string keyword, string dateFrom, string dateTo, int checkLevel, bool isCheckOnly, bool isSelfOnly,
-            bool isTrashOnly, bool isWritingOnly, int? onlyAdminId, PermissionsImpl adminPermissions, List<string> allAttributeNameList, string adminSub = "")
+            bool isTrashOnly, bool isWritingOnly, int? onlyAdminId, PermissionsImpl adminPermissions, List<string> allAttributeNameList, string adminSub = "",bool isAdminLv3 = false)
         {
             var isAllChannels = false;
             var searchChannelIdList = new List<int>();
@@ -2566,10 +2566,17 @@ group by tmp.source";
                 $"{nameof(ContentAttribute.SourceId)} != {SourceManager.Preview}"
             };
 
+            //审核隔离
             if (!string.IsNullOrEmpty(adminSub))
             {
-                whereList.Add($"(Lv1AdminSub = '{adminSub}' or Lv2AdminSub = '{adminSub}' or Lv3AdminSub = '{adminSub}')");
+                whereList.Add($"(Lv1AdminSub = '{adminSub}' or Lv2AdminSub = '{adminSub}')");
             }
+
+            if (!isAdminLv3)
+            {
+                whereList.Add($" CheckedLevel != 3");
+            }
+
 
             if (!string.IsNullOrEmpty(dateFrom))
             {

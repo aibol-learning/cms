@@ -168,6 +168,7 @@
     <Compile Include="Core\CmsPages.cs" />
     <Compile Include="Core\ContentColumn.cs" />
     <Compile Include="Core\ContentCountInfo.cs" />
+    <Compile Include="Core\HttpHelper.cs" />
     <Compile Include="Core\InputTypeUtils.cs" />
     <Compile Include="Core\SqlUtils.cs" />
     <Compile Include="DataCache\Content\ContentManager.ContentCache.cs" />

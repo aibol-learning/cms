@@ -115,11 +115,15 @@ namespace SiteServer.BackgroundPages.Cms
             var onlyAdminId = _isAdminOnly
                 ? AuthRequest.AdminId
                 : AuthRequest.AdminPermissionsImpl.GetOnlyAdminId(SiteInfo.Id, _channelInfo.Id);
+
+
+            var SSOIds = DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(3);
+
             var whereString = DataProvider.ContentDao.GetPagerWhereSqlString(SiteInfo, _channelInfo,
                 searchType, keyword,
                 dateFrom, dateTo, state, _isCheckOnly, false, _isTrashOnly, _isWritingOnly, onlyAdminId,
                 AuthRequest.AdminPermissionsImpl,
-                allAttributeNameList,!isChecked?Guid.Parse(adminInfo.SSOId).ToString() :"");
+                allAttributeNameList, !isChecked ? Guid.Parse(adminInfo.SSOId).ToString() : "", SSOIds.Contains(adminInfo.SSOId));
 
             PgContents.Param = new PagerParam
             {
@@ -179,7 +183,7 @@ namespace SiteServer.BackgroundPages.Cms
             {
                 CheckManager.LoadContentLevelToList(DdlState, SiteInfo, _isCheckOnly, isChecked, checkedLevel);
             }
-            
+
             ControlUtils.SelectSingleItem(DdlState, state.ToString());
 
             foreach (var styleInfo in _allStyleInfoList)
@@ -205,7 +209,7 @@ namespace SiteServer.BackgroundPages.Cms
             PgContents.DataBind();
 
             LtlColumnsHead.Text += TextUtility.GetColumnsHeadHtml(_styleInfoList, _pluginColumns, _attributesOfDisplay);
-            
+
 
             BtnSelect.Attributes.Add("onclick", ModalSelectColumns.GetOpenWindowString(SiteId, _channelId));
 
@@ -281,7 +285,7 @@ namespace SiteServer.BackgroundPages.Cms
             ltlTitle.Text = WebUtils.GetContentTitle(SiteInfo, contentInfo, PageUrl);
 
             var specialHtml = string.Empty;
-            
+
             if (_isTrashOnly)
             {
                 specialHtml = DateUtils.GetDateAndTimeString(contentInfo.LastEditDate);

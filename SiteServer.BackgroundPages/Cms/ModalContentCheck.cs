@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Web.UI.HtmlControls;
@@ -135,6 +136,8 @@ namespace SiteServer.BackgroundPages.Cms
 
 
             var isChecked = checkedLevel >= SiteInfo.Additional.CheckContentLevel;
+            
+
 
             var contentInfoListToCheck = new List<ContentInfo>();
             var idsDictionaryToCheck = new Dictionary<int, List<int>>();
@@ -163,43 +166,62 @@ namespace SiteServer.BackgroundPages.Cms
                         //CreateManager.CreateContent(SiteId, contentInfo.ChannelId, contentId);
                         //CreateManager.TriggerContentChangedEvent(SiteId, contentInfo.ChannelId);
 
+                        if (checkedLevel != contentInfo.CheckedLevel)
+                        {
+                            //关闭代办
+                            BackstageManager.CloseMessage(MessageType.任务, $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}");
+                        }
+
+                        var redirectUrl = ConfigurationManager.AppSettings["RootAddress"] + $"?siteId={contentInfo.SiteId}&frmMain=check";
+                        var key = $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}";
+
 
                         switch (DdlCheckType.SelectedItem.Text)
                         {
+                            case "支部书记审批":
+                                BackstageManager.SendMessage(MessageType.任务, 
+                                    new List<string>() { contentInfo.Lv1AdminSub },
+                                    "您有一条新闻审核任务待处理", redirectUrl, key);
+                                break;
                             case "公司领导审批":
-                                //关闭初审代办 todo
-                                //发送消息给其他初审员和发稿人
+                                BackstageManager.SendMessage(MessageType.任务, 
+                                    new List<string>() { contentInfo.Lv2AdminSub },
+                                    "您有一条新闻审核任务待处理", redirectUrl, key);
+                                break;
 
-                                var lv2SSOIds = DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(2);
-                                var addUserName = contentInfo.AddUserName;
-                                var author = DataProvider.AdministratorDao.GetByUserName(addUserName);
-                                lv2SSOIds.Add(author.SSOId);
-                                BackstageManager.SendMessage(MessageType.消息, new List<string>() { contentInfo.Lv2AdminSub, author.SSOId }, "公司领导审批");
-                                //发送代办给二审
-                                break;
                             case "支部书记审批退稿":
-                                //关闭初审代办
-                                //发送消息给其他初审员和发稿人
-                                //发送代办给发稿人
-                                break;
-                            case "政工部审批":
-                                //关闭二审代办
-                                //发送消息给其他二审员和发稿人
-                                //发送代办给终审员
+                                BackstageManager.SendMessage(MessageType.任务,
+                                    new List<string>() { DataProvider.AdministratorDao.GetByUserName(contentInfo.AddUserName).SSOId },
+                                    "您有一条支部书记审批退稿的新闻任务待处理", redirectUrl, key);
                                 break;
                             case "公司领导审批退稿":
-                                //关闭初审代办
-                                //发送消息给其他初审员
-                                //发送代办给发稿人
+                                BackstageManager.SendMessage(MessageType.任务, 
+                                    new List<string>() { DataProvider.AdministratorDao.GetByUserName(contentInfo.AddUserName).SSOId },
+                                    "您有一条公司领导审批退稿的新闻任务待处理", redirectUrl, key);
                                 break;
-                            case "审批完成":
-                                //关闭终审代办
-                                //发送消息给其他终审员和发稿人
+
+                            case "政工部审批":
+                                BackstageManager.SendMessage(MessageType.任务,
+                                    DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(3),
+                                    "您有一条新闻审核任务待处理", redirectUrl, key);
                                 break;
                             case "政工部审批退稿":
-                                //关闭初审代办
-                                //发送消息给其他初审员
-                                //发送代办给发稿人
+                                BackstageManager.SendMessage(MessageType.任务,
+                                    new List<string>() { DataProvider.AdministratorDao.GetByUserName(contentInfo.AddUserName).SSOId },
+                                    "您有一条政工部审批退稿的新闻任务待处理", redirectUrl, key);
+
+                                var SSOIds = DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(3);
+                                SSOIds.Remove(AuthRequest.AdminInfo.SSOId);
+                                BackstageManager.SendMessage(MessageType.消息,
+                                    SSOIds,
+                                    $"{AuthRequest.AdminInfo.DisplayName}处理了一条新闻审批任务", redirectUrl, key);
+                                break;
+
+                            case "审批完成":
+                                BackstageManager.SendMessage(MessageType.消息, 
+                                    new List<string>() { contentInfo.Lv2AdminSub },
+                                    "您有一条发起审批的新闻已完成审批",
+                                    redirectUrl, key);
                                 break;
                         }
                     }

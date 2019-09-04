@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Authentication;
 using System.Text;
 using System.Web;
 using System.Web.Http;
@@ -678,5 +679,81 @@ namespace SiteServer.API.Controllers
         }
 
         #endregion
+
+        public class ResponseData<T>
+        {
+            public string Code { get; set; }
+            public T Data { get; set; }
+            public string Messages { get; set; }
+
+        }
+
+        /// <summary>
+        /// 新增待办事项
+        /// </summary>
+        /// <param name="Key">任务所关联的主键记录唯一标识</param>
+        /// <param name="RedirectUrl">点击消息后的转向地址，需要绝对路径</param>
+        /// <param name="Name">任务标题</param>
+        /// <param name="Receivers">接收人ID，多个接收人的ID以半角逗号分隔</param>
+        /// <returns>Code: 200，表示保存成功 Data: 新增的待办事项ID Messages: 如果失败，此字段用于存储出错内容</returns>
+        public static ResponseData<string> CreateTasks(string Key,string RedirectUrl,string Name,string Receivers)
+        {
+            var CreateTasksApiUrl = ConfigurationManager.AppSettings["CreateTasksApiUrl"];
+            var data = $"Key={Key}&RedirectUrl={RedirectUrl}&Name={Name}&Receivers={Receivers}";
+
+            var re = post(CreateTasksApiUrl,data);
+            return (ResponseData<string>) re;
+        }
+
+        /// <summary>
+        /// 完成增待办事项
+        /// </summary>
+        /// <param name="Key">任务所关联的主键记录唯一标识</param>
+        /// <returns>Code: 200，表示保存成功 Data: 新增的待办事项ID Messages: 如果失败，此字段用于存储出错内容</returns>
+        public static ResponseData<string> CompleteTasks(string Key)
+        {
+            var CompleteTaskApiUrl = ConfigurationManager.AppSettings["CompleteTaskApiUrl"];
+            var data = $"Key={Key}";
+
+            var re = post(CompleteTaskApiUrl, data);
+            return (ResponseData<string>)re;
+        }
+
+
+
+        /// <summary>
+        /// 发送post请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="data">请求数据 格式 value=xxx</param>
+        /// <returns>dynamic json</returns>
+        public static dynamic post(string url,string data)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(data);
+
+            var request = new AuthenticatedRequest();
+            var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
+            if (accessToken == "")
+            {
+                throw new AuthenticationException("accessToken 为空");
+            }
+
+            using (var client = new WebClient())
+            {
+                client.Encoding = Encoding.UTF8;
+                client.Headers.Add("Authorization", $"Bearer {accessToken}");
+
+                var responseData = client.UploadData(url, "post", bytes);
+
+                Encoding enc = Encoding.GetEncoding("UTF-8");
+                string re = enc.GetString(responseData);
+
+                var json = JsonConvert.DeserializeObject<dynamic>(re);
+
+                return json;
+            }
+        }
+
+
     }
 }
