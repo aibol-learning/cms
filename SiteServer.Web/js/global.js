@@ -5,8 +5,7 @@ var global = {
     urls: {
         backstage: 'http://backstage.aibol.com.cn/',
         sso: 'https://pass.aibol.com/backstage/identity/',
-        backstageTasks: 'http://backstage.aibol.com.cn/tasks',  //待办任务查看更多点击跳转的页面url
-        backstageTask: 'http://backstage.aibol.com.cn/task/'         //待办任务点击跳转的页面url
+        backstageTasks: 'http://backstage.aibol.com.cn/tasks'  //待办任务查看更多点击跳转的页面url
     }, 
     // 单点登录配置
     clients: {
