@@ -79,9 +79,11 @@ var methods = {
       var $this = this;
       var frmMain = utils.getQueryString("frmMain");
 
+      var siteId = utils.getQueryString("siteId");
+
       if (frmMain == "check") {
-	      $("[href='cms/pageContentSearch.aspx?isCheckOnly=true&siteId=1']").parent().addClass("active");
-	      document.getElementById('frmMain').contentWindow.location.href = "cms/pageContentSearch.aspx?isCheckOnly=true&siteId=1";
+          $("[href='cms/pageContentSearch.aspx?isCheckOnly=true&siteId=" + siteId+"']").parent().addClass("active");
+          document.getElementById('frmMain').contentWindow.location.href = "cms/pageContentSearch.aspx?isCheckOnly=true&siteId=" + siteId;
       }
 
     window.onresize = $this.winResize;

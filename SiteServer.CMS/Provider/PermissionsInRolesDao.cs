@@ -191,7 +191,9 @@ namespace SiteServer.CMS.Provider
 
             using (var rdr = ExecuteReader(WebConfigUtils.ConnectionString,sql))
             {
-                if (rdr.Read())
+                
+
+                while(rdr.Read())
                 {
                     var i = 0;
                     var SSOId = GetString(rdr, i++);

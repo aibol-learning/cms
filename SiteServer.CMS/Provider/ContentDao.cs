@@ -2569,7 +2569,7 @@ group by tmp.source";
             //审核隔离
             if (!string.IsNullOrEmpty(adminSub))
             {
-                whereList.Add($"(Lv1AdminSub = '{adminSub}' or Lv2AdminSub = '{adminSub}')");
+                whereList.Add($"(Lv1AdminSub = '{adminSub}' or Lv2AdminSub = '{adminSub}' or CheckedLevel = 2)");
             }
 
             if (!isAdminLv3)

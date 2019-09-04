@@ -50,9 +50,9 @@ namespace SiteServer.BackgroundPages.Cms
             var contentInfo = ContentManager.GetContentInfo(SiteInfo, _channelId, _contentId);
             ContentInfo = contentInfo;
 
-            ContentInfo.Lv1AdminSub = contentInfo.Get("Lv1AdminSub").ToString();
-            ContentInfo.Lv2AdminSub = contentInfo.Get("Lv2AdminSub").ToString();
-            ContentInfo.Lv3AdminSub = contentInfo.Get("Lv3AdminSub").ToString();
+            ContentInfo.Lv1AdminSub = contentInfo.Get("Lv1AdminSub")?.ToString();
+            ContentInfo.Lv2AdminSub = contentInfo.Get("Lv2AdminSub")?.ToString();
+            ContentInfo.Lv3AdminSub = contentInfo.Get("Lv3AdminSub")?.ToString();
 
             int checkedLevel;
             var isChecked = CheckManager.GetUserCheckLevel(AuthRequest.AdminPermissionsImpl, SiteInfo, SiteId, out checkedLevel);

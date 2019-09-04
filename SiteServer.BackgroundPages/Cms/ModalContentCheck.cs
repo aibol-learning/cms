@@ -166,13 +166,14 @@ namespace SiteServer.BackgroundPages.Cms
                         //CreateManager.CreateContent(SiteId, contentInfo.ChannelId, contentId);
                         //CreateManager.TriggerContentChangedEvent(SiteId, contentInfo.ChannelId);
 
-                        if (checkedLevel != contentInfo.CheckedLevel)
+                        if (checkedLevel != contentInfo.CheckedLevel || !string.IsNullOrEmpty(checkSub))
                         {
                             //关闭代办
                             BackstageManager.CloseMessage(MessageType.任务, $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}");
                         }
 
-                        var redirectUrl = ConfigurationManager.AppSettings["RootAddress"] + $"?siteId={contentInfo.SiteId}&frmMain=check";
+                        var redirectUrl = System.Web.HttpUtility.UrlEncode(ConfigurationManager.AppSettings["RootAddress"] + $"/siteserver/main.cshtml?siteId={contentInfo.SiteId}&frmMain=check");
+
                         var key = $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}";
 
 
@@ -180,12 +181,12 @@ namespace SiteServer.BackgroundPages.Cms
                         {
                             case "支部书记审批":
                                 BackstageManager.SendMessage(MessageType.任务, 
-                                    new List<string>() { contentInfo.Lv1AdminSub },
+                                    new List<string>() { checkSub },
                                     "您有一条新闻审核任务待处理", redirectUrl, key);
                                 break;
                             case "公司领导审批":
                                 BackstageManager.SendMessage(MessageType.任务, 
-                                    new List<string>() { contentInfo.Lv2AdminSub },
+                                    new List<string>() { checkSub },
                                     "您有一条新闻审核任务待处理", redirectUrl, key);
                                 break;
 
