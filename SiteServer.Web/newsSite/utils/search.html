@@ -32,8 +32,6 @@
     <div class="search-history search-hot"> <span>热搜词</span>
       <ul>
       
-        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-263"><a href="/newsSite/utils/tags.html?tagName=游戏">游戏</a></li>
-      
         <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-263"><a href="/newsSite/utils/tags.html?tagName=乒乓球">乒乓球</a></li>
       
       </ul>
@@ -75,8 +73,8 @@
                 login: null
             },
             created: function () {
-                this.login = '/api/aibol/login?returnurl=' + escape(window.location);
-                this.logout = '/api/aibol/logout';
+                this.login = global.clients.getLoginUrl('news');
+                this.logout = global.clients.getLogoutUrl('news');
                 this.backstage = global.urls.backstage;
                 setInterval(function () {
                     if (global.loginInfo) {
@@ -87,7 +85,7 @@
         })
 
         //IE9 placeholder支持
-        $('input, textarea').placeholder();    
+        //$('input, textarea').placeholder();    
     });
 </script>
 
@@ -126,45 +124,29 @@
                             <select name="channelIds" id="channelIds">
                                 <option value="">全部</option>
                                 
-                                    <option value="37">头条聚焦(7)</option>
-                                
-                                    <option value="38">资讯动态(0)</option>
-                                
-                                    <option value="41">社会新闻(0)</option>
-                                
-                                    <option value="44">全球资讯(0)</option>
-                                
-                                    <option value="47">专题活动(0)</option>
-                                
-                                    <option value="50">相关推荐(6)</option>
-                                
-                                    <option value="51">友情链接(6)</option>
-                                
-                                    <option value="56">模板使用说明(1)</option>
+                                    <option value="145">首页宣传大图(3)</option>
                                 
                                     <option value="57">头条新闻(9)</option>
                                 
-                                    <option value="58">新思想(0)</option>
+                                    <option value="58">新思想(5)</option>
                                 
-                                    <option value="59">公司要闻(0)</option>
+                                    <option value="59">公司要闻(4)</option>
                                 
-                                    <option value="60">红色教育活动(0)</option>
+                                    <option value="37">生产一线(7)</option>
                                 
-                                    <option value="61">检修现场(0)</option>
+                                    <option value="38">班组安全建设(5)</option>
                                 
-                                    <option value="63">上级动态(0)</option>
+                                    <option value="61">检修现场(5)</option>
                                 
-                                    <option value="64">部门动态(0)</option>
+                                    <option value="65">效益攻坚(6)</option>
                                 
-                                    <option value="65">效益攻坚(0)</option>
+                                    <option value="41">主题教育(6)</option>
                                 
-                                    <option value="67">文学天地(0)</option>
+                                    <option value="44">通讯特稿(5)</option>
                                 
-                                    <option value="68">视频照片(0)</option>
+                                    <option value="67">文学天地(7)</option>
                                 
-                                    <option value="145">首页宣传大图(3)</option>
-                                
-                                    <option value="69">职工风采(0)</option>
+                                    <option value="68">视频新闻(4)</option>
                                 
                                     <option value="147">领导讲话(11)</option>
                                 
@@ -175,6 +157,8 @@
                                     <option value="66">通讯报道(9)</option>
                                 
                                     <option value="148">常用工具(12)</option>
+                                
+                                    <option value="69">职工风采(22)</option>
                                 
                             </select>
                             <button class="btn btn-info" type="submit">搜索</button>
@@ -198,7 +182,7 @@
                         </script>
                     </div>
                     
-<div id="ajaxElement_1_455">
+<div id="ajaxElement_1_311">
     <div class="stl_loading"><div class="alert alert-info m-t-20" role="alert">
                                 <strong>提示!</strong> 系统正在搜索中，请稍后...
                             </div></div>
@@ -229,7 +213,7 @@ jQuery(document).ready(function(){
     pagenum: 0,
     ishighlight: true,
     siteid: '36',
-    ajaxdivid: 'ajaxElement_1_455',
+    ajaxdivid: 'ajaxElement_1_311',
     template: 'J0slash04Dv3uWRzxpag5tmKgzdW3FHNdEioCnXEgS5R92W6L8n6l1qftWUXV52K9u0add04T7rIkUoBDYZqst8t1SK8wCzfjXHbmXLdnKMPljpxLG13pereHiMl7ZjEhLLcZ1MlUQTfo402VodtsOiVGoBxxm0MvGHFU5rKrEkD5T1279H7n0add0AurU1lCOK3Qr1nr7RIUB1ljdSLM0slash0lkGn7tjJq8Gv19Rdv8fONaKDfgHxSxFp2v5CMhnQLsNTdgCU1QuK3WmUE4zQWsJl6NO25UmlBs44AwJIE6vqoKt8xfYHDAJ5LAUwYECjYa0add0VHrFbTts97ULAunNhEuqV7IvgE4iDcmMwuUFHC9dpA38Qnd6lxutRN4xr83NrcXv0R9dBWOi6kKP1QB3mdXA58IWtEQTfxeSIReZG5mqjYNtAJ20slash0O6ugNTRZ20vqdoNXbR0slash00cEBImHAp6zZREoe1FVcJLEMGI6U9KIboQymYVbYWGCtmMMmC7jKtwjqFP10slash040ytCzO0add0oKp2D7q9b3BVzJUHSGNkas5fCysUrFm5X8AxgxtvigZvzqjmT6tgp7BK0slash039pT0slash03i0Y0add0TCbHiD0add0D8SJkoPe0slash0qP0slash0Oma0slash0iWbGhFUoQJlB8muPrtxDEqwJkTv0slash0R5OsIZVDLhy7BoyP9jTkAIeh0slash0e5fALTka0add0HmV0add0xLIpvlCzi7OrDn5b5CKpQuFtnffJ0add0v3neadnlU8H6SkKIMxF4Vm0slash0h9hyq4rBmQRj5E6VGXpi4WqC2B9RhWyR1re7iGYnc10add0HaxtTcwRGdd51mZUo7qzQSUQEjzVhyQDqGur6WySYu2UMva8TWLxq0slash03cNLol9lGsX0qL5gtkPefgkF2imtQgVkvLYg48x4iapR86PMN0b3EwIGI0R1GkNJPEFpj0f5UBJSJDNaUnaP6N0NP9a8kkUR8miaKAmdyyDXF2CNGoG7QfglhKaLsJQKcauB3t0add0LNTo3Q0add0DUDYScyBzzHdWNZYLLMPAVH1Gx0slash02bG7q5ukJ7LT0slash0q0nkKhLzBOfCID0y4MwuNQy2LwBRvdw6vUmQYcYFsNPwVnF8gn2xiQ8WSSDQRRbJjHmpjCUCAFzz7RlTUbLMD3g19O0add0l4otVP7fRA3hVhavrN17vtm4cJ0hr2n8E0l3VHSVJkpzWTup2Fuuvjjltp0quULMceq3UBuLgjm3OJLlxLTTXg2qj3nVyRDr6uB13dP7toGCihTf6wsbiSQpkx9a51Nf8ofCJbB721w0slash0eDjo5WIzcnLNJ0add0PN0add0fC3NbW0slash0IvEL7YT8xp0slash0urq49Gfgzhltsi5eQyqH0add0ih6Gjgn92C0slash01Vr90FLLniAkpBPMftMZcgWnirTo9SFtE0p5yl0slash0j4WCljU5gAduhxll0slash0OeAW0add0df4WBTCDH8KCOaMqzl9VKfJMzqk0add0jPmI9mB9elnvf0slash0Ktp0add0c4a93m9dPHaocFxCDr0slash0XN5Nh8eqDbwDCqYzk5MfixDzzqg9marPGy80add0pDG21mCKzzA1Me36UajqeBnD3Bqd7zTVJJLScsUg2oZ2YvOcD0slash0lXc3wgrwC81y79sM50Qr0add0R0add0QLClhsDtECMbiP0slash0AR1ZZy0slash0k5gEuaTwOzTb5PNksAAJgIan40slash0d7LcJwHWe7bkf2Ub2DTd9n3A0XErq3UGJeehv4mTMm6M6f0JTfOznSbxPptbjFlyvOCJEu246THqvblbV1RPsR7D70h0add0ODqNgUYI71U5jhok6PIVdghUFltmZuHA0slash0EgNrG5WZ0slash01ZDWSyjMvZEQKoCLsv78ZlOko0slash0cU6G4NfZQTvVLz0tM0slash0uOEPF0KU0slash0JJy0f41b02kSJQh50slash009quil4n0slash0TgNzRGeuFS0add00slash0ySoIuBm0add0GWQJAOLWrntMIB30W5uFX42anZbLZwLkFzhj3pYTerfDyzSHgcXfgZMi30add0xmsJ5WLaw6MXPaRnKfuNRc0slash04KLjRmxsWdspm9pAQbS0slash00slash0Ckc1LopeihlTnauzc69wAmts0add0Y0add0o8OjiXbzAY5vNLyk8DWz0slash0FI5XDOFb5iF1CJcitrjHTW30UhMQb7REIXdY8hgwn1q4Y5faaXo4p5K0slash0o4f4HEHzZtv5x01hiREiu2nEtAvwRtwrVPLpTMtjPjVthwz8xAHppkB4nK94BvdT9tJTBTl7qMggzOc50slash0g0slash0unkvK3KvDSD2NBI0add0VBNeo7PGmTKOW90slash0UbYBKEkQsi8nwYbqmlmNsYt0add0Cr0uzi8Reuyj1QtRWBX3WVLoya7YPgh0slash0KZ0slash0EARYc5IwUHCV0add0Wp10ayM0fnWYW1cdGcI35iYm72K70slash0i2EqiZFhLZdDOSk0slash0xLT6mn80Aij3mfGceeSSkLLqn5N9ohuxvALXkjlObVCE4RCtJZ5XpxKQD0slash0w5qLBN7N0add00add0JZ15q2maaKCYc4NodiL81tw2wiBn400slash0M3V7WksowENW0slash0YwyKK9y70slash040slash0uGEFzJfqONZv90FL8Gcz20slash0kiM6gl0add0i0slash00slash0HdFmCX20add0f0yNOcWZr0slash0LzlDjBVAeYDZPnZa8Lju0slash0pdBqnBowF2OG0add0SsjfezZHsbmUtWpzjlGfexYenCR1fUGUBO3hfSJFzcYnUmcTMxnC0NC3WypGxQJgEWtWlf0GtlnXBwp7WlAZgrqsEfgxJjzLP7X3y54Jsc0slash0jb0add0b16eDXUvDDgXUV5HPczHLyhM0yjVreSoqr6eEj1x4eFlmSfFelJpkCHifXTOte4icUULJ80slash03auRF5bGCs0slash0Vh0Srfh2FhtKZaWCASp0slash0HbwNLbmJe0slash0JQG30slash02rZJ9i1TgVSw2yYEwESWTqxTA0add0wtNezhTGueaxlecYdTmPwCGbeX0gB0873ik1Cf4S9BC0add0kWrerWyPkLBGJQE0pwdxakj3bABY12FPgpLD0wPj2OOeDVm7FP1azSgrA0add0Iyt0gba0slash0PgSLiGDrj0slash0DlmR2rQzs73mk8zNqiDaJF5CDXwmi0add04WxzDFHVG0slash0gsEPwZRj6wKljLJiqWAAln9gmXmIg3vlJ0TopCCzShWOa5BvT6eyKA9SlUhiWpEILrN0slash0wTIYB8Q5aR3z6pLLZ9RJ25VaNLFL5hx9tTNSgdhwZ9GCnBOxi9VtAQPzwSJGSAMzV2onWZjjgRJth0y5lZcrar4L0slash0iP8zLzAQsYnd32XbWex2uSu4Xy8237xItdfFgAU1S4bwFdfNJVis0Z9nX0slash0UhuQ8wvbtGluPGSvNmpiwQWgzvZL3mt9Iftaa5STQ20slash0FZyGMe6NbT0GW9yXi7HdOeMRN6c9Ktcth3zZyZW1XigtUaoZaeY0slash0gGHOaG7BRZ6xWSrO6IKG2ZsLkaDwgDxAPLnVUSq1dQmtEDeho5rWZ0add0K4xREfXTBY2W6UKAjAW7UmQcjnr8BtZdjy7vgwmVh9E0add0ntI2WoZs4IeCD87PEJjHmm65dG1KHGLTYzJV8Gk23SEC0add0I6GipgOaikhNNGtnIgdY6Xefzhg0add0xsLgoRu7Yc9nz9kkIUMIQU9MiDOvIXrTZY0MXD9QzbItbnqzgIN5kvIg6KWAQSHra6pE2aoPreDiwpt7vw8qVGJD1MN0slash08BSIcN0Q3ksCLZ6V3gv5T1zEA0slash02LECC5kint4MpgwIOF8F6gr0snHycE8I0add0Q5KeMLZZ8MApKuaScn2rNleWcOyLPCyySr50slash0JlC6IS8GJ6AIDTXLysc00slash0x0add0KkitrUBtOVUNFxn6X4Wi4ADNBi262fILahRccIvcRhtzRMVqjFO3SrBk50add0t5VL0add0B3eL1CHHxcCY4aB0Uyef6Ec201traPuuJZBeNuM32VflsBP4AsZlLjP0slash0ZgMrbGSC3JM3jvB6olqBnPItv5nA0add0xzR6JKr5qRzkiAXRghgiR8su2Hl6dpZNWKVxFFOrX0add03bvJ6UsuK2hb7SB9R4ezMN4v0slash0yWbrZVyldde800slash0yTTkiqXl6vtZ3NtEKYDWFqxWm6ykJ0add0pz0slash03W1JV13ZL5Ir0add0BZZjhb7NPGsb4jbIs8xn3RX74rNq0add0enhxJwjPiYTmrLwbP1tstH5t0add0gQ2RLIL58AGcQ1aDqP4yVif4qlwvLbGhYNoOTi0slash0UfxjLtrDNazRGzMyVmeEDEEI8PnGaMcS6mTVDEwt0add0fATVVC4odgAiaPcTBXEgkgj200slash0nk9Hlwj1kzDCLLZDe2M1Fe00add0Z3DydJx5jBrtqSm0add05DPG6LLm0PEipvsXDEu0f0GdVKSwfIoI1YbSsOj7ABzqdzSvyRL5oxDTAxeraOZdtAq6MLzBbg00DUwOCQ0slash0mPBlasNvrvtiSZx0h0add0GAwj6WFA0slash0mvJKrBRiZhJQqJP3fOyKaDRsDp7KrppB7jtJQjZy3VbLUOjxWYshanj8UlME46Fw337pEbVViDL90NsfmyGVEBUtrDsE54qSKYcV5TUrO63DlaJqyhBXhYdyE4PxrO6ClMYUQJqJvOSJyVt2pprSARL6iupDDsg7JCW8HogMTE3ENSpQVE9eFf1uJKZIEQLernXvVt8enoYhCSz8fkyO73MBh0add0JVRtxFhi91Gj1Y1KbmKHBwDVRifvVhs6eO2fyANHvr0slash0F4fOz2mhdXs6iQpAlHiN35oc19HDp0HJhYvA01iRFBnWNCu6HKCpQZcbTmBIVqXqenQZHWMoia6fHgvC0slash0LDRYOwVft0add00add0KFJkkL80add0Jv8Em14wIWB6FXgud3WZH6oEJE0slash0AAfTVa0thRFJPC0slash0KSsYFAbLXar0w0add0fQQHe0QDVI140slash0ny3qd5xz6D0add0HahtHn0uOnlZP6XqW8iA9ZrAFdGbgN20add0S4hB7Nkz4qwDhE7bYeKDYMafuRLC9quaUOyA9uLUddSzhC0i0slash0UvowzFgmPA37b0slash0j4m8UVHLDOV6EmHF0QGqM8cvz5zYSpXvNtr5qkqTedEaiTbYFP4ZcyhC9GsNpe1DBk9HckizGOyYrnUA8kRnRblZY84G4Ie0add0TkUahxciv22AfWbu1Jwwfa9sU0add0jht5otbFb88w9UbVsuG0slash0VZn6yyzou3tAm5H8E9eRnTyackSyYyY0slash0OMkJNrSypjJQOomqy83wAVZlZl6JA9gZqfoX0slash0fM0add0SgOHmrZqQWBFnVVj5jla0OJqwmu4FsmRGU0slash0zw6a9dGbXBX1B0slash0qgVfhSnxqcXO0tPmi6LzlKDBDnZWT70slash02KcqbTHbCkdSxXYzM29nC50add00slash0CxnWuYxQWBH3kgah539AX0add0lwxmwLCTs45TUGb2Jxld5WCorYTB4KHbjjv9QddVZYP0add0E4Ss0add00WGPcoy2iAaez0add0CdgNK5NiUks0asw0slash0kK53xAytNe0add0dTBx0add0XoE4vzZOaQ9C3UcLVqSI0add00add0ZJ4tSLs0EWLF0slash0ihe96mihLnQpTy8pll9nnlJwcXKnXZIJt4UI32NusfgE98744eTGT7Vke0add00RcmO0slash0ORCAl0add0JrQQgDXZxxf7wSs7tYHdok20slash0XlxKaZG0820slash0BRvwL9kL0zUOKat4UWpS6USH6wyer432cscDBRKG3NTHwYE0KfGE1cWuH3F2x92gV9AH8F3JXbGfjrvknEnhtFOgB23caBPPR9aZQmBWQI9r0hs6nGIKO9HWyanTJLWQEmVUB0slash0gAWMqcgL7OWKHautBggGXaqDhfhqZcTJ6OdaGzOo6hEoorxILn6udsVwqX60add0QZNhsxBxAuJBYWN4KdcvZu8ISE9oABB7Y8lXyMos19JrTffDrXEyT4ob1xDOSxrbhVBwud5BtDWDg4NSzUKTVRfJAOxMYhZxeMnGKcTWsEN3myRwgPk6FR84dK5YCI9Vq8uzqt7sHtPuZGhxw7WRZ38RxhtXzWoDcjpuCBzelkwC6rwgpyuOyJ0add07GXjA58tc0add0VPdOJWQMyZku1SdhdXhXq3MrZaqOUOoNhaDHqn4Mor3KieddtFH0add00slash0hM1yCgWjMSKt9pz0add06j78LaUZg3hcd2NAYuq0add0HwSygOzWNM1aiIZKCP3Q6sk2jt9arMADyi3zaudTlQdpZeGPXsxye7Zt55HJDnTV1qhod3SA8Oq7zU3VITuyBcNI0add0198iwVgwqLr1920yjYDGgjNBACUnJKfF2rHYkuI6JlatOqkV9Le7epxXdmJ8tC0add0U0e1VdwgUli8iueUDFHjrKACACzKTGIFRWMwGGH0slash04fJH1Hd0add0Ei0add0HtakxCN0add0wzx7VlzgnrV9yhoAGVEuS3g3ZjrNlwsKroSrFZuyOcpymWVo2xOSmwlV00equals00secret0',
 };
 
@@ -259,25 +243,25 @@ jQuery(document).ready(function(){
             data: JSON.stringify(parameters),
             dataType: 'json',
             success: function(res) {
-                jQuery("#ajaxElement_1_455 .stl_loading").hide();
-                jQuery("#ajaxElement_1_455 .stl_yes").show();
-                jQuery("#ajaxElement_1_455 .stl_no").hide();
-                jQuery("#ajaxElement_1_455 .stl_yes").html(res);
+                jQuery("#ajaxElement_1_311 .stl_loading").hide();
+                jQuery("#ajaxElement_1_311 .stl_yes").show();
+                jQuery("#ajaxElement_1_311 .stl_no").hide();
+                jQuery("#ajaxElement_1_311 .stl_yes").html(res);
             },
             error: function(e) {
-                jQuery("#ajaxElement_1_455 .stl_loading").hide();
-                jQuery("#ajaxElement_1_455 .stl_yes").hide();
-                jQuery("#ajaxElement_1_455 .stl_no").show();
+                jQuery("#ajaxElement_1_311 .stl_loading").hide();
+                jQuery("#ajaxElement_1_311 .stl_yes").hide();
+                jQuery("#ajaxElement_1_311 .stl_no").show();
             }
         });
     } else {
-        jQuery("#ajaxElement_1_455 .stl_loading").hide();
-        jQuery("#ajaxElement_1_455 .stl_yes").hide();
-        jQuery("#ajaxElement_1_455 .stl_no").hide();
+        jQuery("#ajaxElement_1_311 .stl_loading").hide();
+        jQuery("#ajaxElement_1_311 .stl_yes").hide();
+        jQuery("#ajaxElement_1_311 .stl_no").hide();
     }
 });
 
-function stlRedirectajaxElement_1_455(page)
+function stlRedirectajaxElement_1_311(page)
 {
     var queryString = document.location.search;
     if (queryString && queryString.length > 1) {
@@ -298,9 +282,9 @@ function stlRedirectajaxElement_1_455(page)
     }
 }
 
-function stlJumpajaxElement_1_455(selObj)
+function stlJumpajaxElement_1_311(selObj)
 {
-    stlRedirectajaxElement_1_455(selObj.options[selObj.selectedIndex].value);
+    stlRedirectajaxElement_1_311(selObj.options[selObj.selectedIndex].value);
 }
 </script>
 
@@ -315,6 +299,26 @@ function stlJumpajaxElement_1_455(selObj)
                             <span class="span-mark"></span>
                             <ul class="hots-post-widget">
                                 
+                                    <li>
+                                        <!--<div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/59/2129.html"> <img class="xyscale" src="/newsSite/upload/images/2019/8/7a24687056caae28.jpg" alt="多亏了这几位妹纸，阿里巴巴才取得今日成就！"> </a> </div>-->
+                                        <a class="transition" target="_blank" href="/newsSite/contents/59/2129.html">多亏了这几位妹纸，阿里巴巴才取得今日...</a>
+                                    </li>
+                                
+                                    <li>
+                                        <!--<div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/59/2128.html"> <img class="xyscale" src="/newsSite/upload/images/2019/8/6e8b442b24726465.jpg" alt="煤油再等等！快了，Flyme 8会有专场发布会"> </a> </div>-->
+                                        <a class="transition" target="_blank" href="/newsSite/contents/59/2128.html">煤油再等等！快了，Flyme 8会有专场发...</a>
+                                    </li>
+                                
+                                    <li>
+                                        <!--<div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/59/2127.html"> <img class="xyscale" src="/newsSite/upload/images/2019/8/44f1a056abef1ff1.jpg" alt="国内已发布5G手机价格汇总，静候小米“入坑”5G"> </a> </div>-->
+                                        <a class="transition" target="_blank" href="/newsSite/contents/59/2127.html">国内已发布5G手机价格汇总，静候小米“...</a>
+                                    </li>
+                                
+                                    <li>
+                                        <!--<div class="hot-article-img"> <a target="_blank" href="/newsSite/contents/59/2126.html"> <img class="xyscale" src="/newsSite/upload/images/2019/8/1b13aee3ce868ffb.jpg" alt="时隔半年大检测，市售智能门锁依然“家门大开”"> </a> </div>-->
+                                        <a class="transition" target="_blank" href="/newsSite/contents/59/2126.html">时隔半年大检测，市售智能门锁依然“家...</a>
+                                    </li>
+                                
                             </ul>
                         </div>
                         <div class="placeholder"></div>
@@ -328,18 +332,8 @@ function stlJumpajaxElement_1_455(selObj)
                             <ul class="hots-post-widget">
                                 
                                     <li>
-                                        <div class="mod-thumb"> <a target="_blank" href="小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985515978.jpg" alt="小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;"> </a> </div>
-                                        <div class="project-content"> <a target="_blank" href="/newsSite/contents/39/9.html">小米发布了万元的激光投影仪，我觉得首先&#8230;我要&#8230;</a> </div>
-                                    </li>
-                                
-                                    <li>
-                                        <div class="mod-thumb"> <a target="_blank" href="被誉为下一个BAT级别巨头的蚂蚁金服，是如何进行投资布局的？"> <img class="xyscale" src="/newsSite/upload/images/2017/6/28131657850.png" alt="被誉为下一个BAT级别巨头的蚂蚁金服，是如何进行投资布局的？"> </a> </div>
-                                        <div class="project-content"> <a target="_blank" href="/newsSite/contents/39/14.html">被誉为下一个BAT级别巨头的蚂蚁金服，是如何进行投资布局的？</a> </div>
-                                    </li>
-                                
-                                    <li>
-                                        <div class="mod-thumb"> <a target="_blank" href="预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2985515272.jpg" alt="预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房"> </a> </div>
-                                        <div class="project-content"> <a target="_blank" href="/newsSite/contents/39/11.html">预算1.8亿美元的《星际特工》有吴亦凡？吕克&#183;贝松：还不是为了中国票房</a> </div>
+                                        <div class="mod-thumb"> <a target="_blank" href="第五条头条新闻标题标标标题第五条头条新闻的标题放在这里，标题要足够长哦再长一点 "> <img class="xyscale" src="/newsSite/upload/images/2019/8/fcb2076ff0ee387a.jpg" alt="第五条头条新闻标题标标标题第五条头条新闻的标题放在这里，标题要足够长哦再长一点 "> </a> </div>
+                                        <div class="project-content"> <a target="_blank" href="/newsSite/contents/57/76.html">第五条头条新闻标题标标标题第五条头条新闻的标题放在这里，标题要足够长哦再长一点 </a> </div>
                                     </li>
                                 
                                     <li>
@@ -358,13 +352,23 @@ function stlJumpajaxElement_1_455(selObj)
                                     </li>
                                 
                                     <li>
-                                        <div class="mod-thumb"> <a target="_blank" href="ROOBO雷宇——拿到1亿美金融资之后，想让机器人帮你约滴滴，订外卖"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2622224292.png" alt="ROOBO雷宇——拿到1亿美金融资之后，想让机器人帮你约滴滴，订外卖"> </a> </div>
-                                        <div class="project-content"> <a target="_blank" href="/newsSite/contents/42/25.html">ROOBO雷宇——拿到1亿美金融资之后，想让机器人帮你约滴滴，订外卖</a> </div>
+                                        <div class="mod-thumb"> <a target="_blank" href="苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017254920.jpg" alt="苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？"> </a> </div>
+                                        <div class="project-content"> <a target="_blank" href="/newsSite/contents/68/2160.html">苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？</a> </div>
                                     </li>
                                 
                                     <li>
-                                        <div class="mod-thumb"> <a target="_blank" href="苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017254920.jpg" alt="苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？"> </a> </div>
-                                        <div class="project-content"> <a target="_blank" href="/newsSite/contents/49/56.html">苹果计划收购超跑品牌迈凯伦，也许苹果汽车更值得期待了？</a> </div>
+                                        <div class="mod-thumb"> <a target="_blank" href="首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故"> <img class="xyscale" src="/newsSite/upload/images/2017/6/2017250358.jpg" alt="首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故"> </a> </div>
+                                        <div class="project-content"> <a target="_blank" href="/newsSite/contents/68/2159.html">首例特斯拉Autopilot死亡事故发生在美国？央视称今年1月中国已发生致死事故</a> </div>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="mod-thumb"> <a target="_blank" href="硬件与软件的辩证关系：硬件创建新世界，软件拿走利润"> <img class="xyscale" src="/newsSite/upload/images/2017/6/28132916594.png" alt="硬件与软件的辩证关系：硬件创建新世界，软件拿走利润"> </a> </div>
+                                        <div class="project-content"> <a target="_blank" href="/newsSite/contents/68/2161.html">硬件与软件的辩证关系：硬件创建新世界，软件拿走利润</a> </div>
+                                    </li>
+                                
+                                    <li>
+                                        <div class="mod-thumb"> <a target="_blank" href="孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？"> <img class="xyscale" src="/newsSite/upload/images/2017/6/29929562.png" alt="孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？"> </a> </div>
+                                        <div class="project-content"> <a target="_blank" href="/newsSite/contents/37/5.html">孔令辉刘国梁相继被“废”，苟局长对国乒动刀到底想干啥？</a> </div>
                                     </li>
                                 
                             </ul>

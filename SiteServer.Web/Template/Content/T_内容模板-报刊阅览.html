@@ -215,7 +215,6 @@
                 //点击小图切换大图
                 $("#thumbnail li a").click(function () {
                     currentIndex = $("#thumbnail li a").index($(this));
-                    //console.log('currentIndex', currentIndex);
                     $(".zoompic img").hide().attr({
                         "src": $(this).attr("href")
                     });
