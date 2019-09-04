@@ -136,7 +136,7 @@
                 <div class="marquee_title">通知公告：</div>
                 <marquee onmouseout="this.start()" onmouseover="this.stop()">
                     <stl:contents channelIndex="通知公告" totalNum="8">
-                        <stl:a><stl:content type="title"></stl:content> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></stl:a>
+                        <stl:a><stl:content type="title"></stl:content> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content> <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if></stl:a>
                     </stl:contents>
                 </marquee>
                 <stl:a channelIndex="通知公告" class="more">查看更多&gt;&gt;</stl:a>
@@ -163,7 +163,8 @@
                     <div class="col-md-4">
                         <div class="head_list">
                             <stl:contents channelIndex="头条新闻" totalNum="5">
-                                <stl:a class="head_list_title"><stl:content wordNum="19" ellipsis="..."></stl:content></stl:a>
+                                <stl:a class="head_list_title"><stl:content wordNum="15" ellipsis="..."></stl:content></stl:a>
+                                <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                 <div class="head_list_info">
                                     <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
                                     <stl:if type="source" op="NotEmpty">
@@ -206,6 +207,7 @@
                                         <div class="image_wrap"><img src="{Content.imageUrl}" /></div>
                                         <div class="content_wrap" style="right:initial">
                                             <stl:a class="news_list_title"><stl:content wordNum="20" ellipsis="..."></stl:content></stl:a>
+                                            <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                             <div class="news_list_info">
                                                 <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
                                                 <stl:if type="source" op="NotEmpty">
@@ -235,6 +237,7 @@
                                         <div class="image_wrap"><img src="{Content.imageUrl}" /></div>
                                         <div class="content_wrap" style="right:initial">
                                             <stl:a class="news_list_title"><stl:content wordNum="20" ellipsis="..."></stl:content></stl:a>
+                                            <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                             <div class="news_list_info">
                                                 <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
                                                 <stl:if type="source" op="NotEmpty">
@@ -269,7 +272,8 @@
                                 <div class="news_content" :class="{active: cc.active}" v-for="(cc,idx) in ccc">
                                     <div class="news_list2">
                                         <div v-for="c in cc.contents">
-                                            <a :href="c.navigationUrl" class="list_title" :title="c.title">{{c.title}}</a>
+                                            <a :href="c.navigationUrl" class="list_title" :title="c.title">{{c.title}}</a>&nbsp;
+                                            <i class="fa fa-fire" v-if="c.isHot"></i>
                                             <div class="list_info">
                                                 <i class="fa fa-calendar"></i> {{c.addDate}}&emsp;&emsp;
                                                 <span v-if="c.source"><i class="fa fa-group"></i> {{c.source}}&emsp;&emsp;</span>
@@ -291,7 +295,10 @@
                             <div class="sidebar_title"><stl:channel></stl:channel></div>
                             <div class="sidebar_list">
                                 <stl:contents channelIndex="{Channel.title}" isRecommend="true">
-                                    <stl:a title="{Content.title}"><stl:content type="title" wordNum="20" ellipsis="..."></stl:content></stl:a>
+                                    <div class="sidebar_list_title">
+                                        <stl:a title="{Content.title}"><stl:content type="title" wordNum="18" ellipsis="..."></stl:content></stl:a>
+                                        <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
+                                    </div>
                                 </stl:contents>
                             </div>
                             <stl:a channelIndex="{Channel.title}" class="sidebar_list_more">更多……</stl:a>
@@ -434,6 +441,9 @@
                                     for (var j = 0; j < self.leftChannels[i].length; j++) {
                                         if (self.leftChannels[i][j].id == channelId) {
                                             self.leftChannels[i][j].contents = response.value;
+                                            self.leftChannels[i][j].contents.forEach(function (node, index) {
+                                                node.title = node.title.substring(0, 35);
+                                            })
                                         }
                                     }
                                 }
@@ -519,14 +529,12 @@
             }
 
             $(".light_box_images").each(function () {
-                console.log(1)
                 var oldhref = $(this).attr("href");
                 var obj = oldhref.lastIndexOf("/");
                 var path = oldhref.substr(0, obj);
                 var t_name = oldhref.substr(obj + 1);
                 var name = t_name.substr(2, t_name.length - 2);
                 $(this).attr("href", path + "/" + name);
-                console.log(2)
             });
             lightbox.option({
                 'resizeDuration': 200,

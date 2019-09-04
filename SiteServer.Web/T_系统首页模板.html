@@ -136,7 +136,10 @@
                         <ul>
                             <stl:contents channelIndex="公司公告" scope="all" totalNum="5">
                                 <li>
-                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
+                                    <div class="title">
+                                        <stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a>
+                                        <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
+                                    </div>
                                     <div class="info">
                                         <icon class="fa fa-calendar"></icon> <stl:content type="addDate"></stl:content>&emsp;
                                         <stl:if type="author" op="NotEmpty">
@@ -159,7 +162,10 @@
                         <ul>
                             <stl:contents channelIndex="公司公告" scope="all" startNum="6" totalNum="5">
                                 <li>
-                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
+                                    <div class="title">
+                                        <stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a>
+                                        <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
+                                    </div>
                                     <div class="info">
                                         <icon class="fa fa-calendar"></icon> <stl:content type="addDate"></stl:content>&emsp;
                                         <stl:if type="author" op="NotEmpty">
