@@ -33,8 +33,8 @@
                 login: null
             },
             created: function () {
-                this.login = global.clients.getLoginUrl('news');
-                this.logout = global.clients.getLogoutUrl('news');
+                this.login = '/api/aibol/login?returnurl=' + escape(window.location);
+                this.logout = '/api/aibol/logout';
                 this.backstage = global.urls.backstage;
                 setInterval(function () {
                     if (global.loginInfo) {

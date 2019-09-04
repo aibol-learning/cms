@@ -468,18 +468,22 @@ namespace SiteServer.Utils
 
         public string ClientId { get; set; }
 
-        public string AuthorizeEndPoint()
+        public string AuthorizeEndPoint(string returnUrl = "/")
         {
-            var id = Guid.NewGuid().ToString("N");
-            var bytes = Encoding.Default.GetBytes(id);
-            var nonce = Convert.ToBase64String(bytes).Replace("=", string.Empty);
+            // hardcode:
+            //   确保后台只进入/siteserver
+            if (returnUrl.Contains("api/pages")) returnUrl = "/siteserver";
+
+            var bytes = Encoding.Default.GetBytes(returnUrl ?? "/");
+            var state = Convert.ToBase64String(bytes).Replace('=','.');
+            var nonce = Guid.NewGuid().ToString("N");
 
             return $"{Authority}/authorize?client_id={ClientId}" +
                    "&scope=openid%20profile" +
                    "&response_mode=form_post" +
                    "&response_type=id_token%20token" +
                    $"&redirect_uri={HttpUtility.UrlEncode(RedirectUri)}" +
-                   $"&state={id}&nonce={nonce}";
+                   $"&state={state}&nonce={nonce}";
         }
 
         public string UserInfoEndPoint()

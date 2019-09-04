@@ -532,8 +532,7 @@ namespace SiteServer.CMS.Core
             else if (checkLogin && (!IsAdminLoggin || AdminInfo == null || AdminInfo.IsLockedOut))
             {
                 redirect = true;
-                //redirectUrl = PageUtils.GetAdminUrl("pageLogin.cshtml");
-                redirectUrl = WebConfigUtils.SSOService.AuthorizeEndPoint();
+                redirectUrl = WebConfigUtils.SSOService.AuthorizeEndPoint(HttpRequest.Url.ToString());
             }
 
             if (redirect)

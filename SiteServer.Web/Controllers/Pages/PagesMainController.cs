@@ -24,7 +24,6 @@ namespace SiteServer.API.Controllers.Pages
         private const string Route = "";
         private const string RouteActionsCreate = "actions/create";
         private const string RouteActionsDownload = "actions/download";
-        private const string RouteIdentityServerLogon = "actions/idlogon";
 
         [HttpGet]
         [Route(Route)]
@@ -136,41 +135,6 @@ namespace SiteServer.API.Controllers.Pages
             {
                 return InternalServerError(ex);
             }
-        }
-
-        [Route(RouteIdentityServerLogon)]
-        public IHttpActionResult IdentityServerLogon()
-        {
-            var request = new AuthenticatedRequest();
-
-            var accessToken = request.HttpRequest.Form["access_token"];
-            if (string.IsNullOrEmpty(accessToken))
-            {
-                var redirect = request.AdminRedirectCheck(true, true, true);
-                if (redirect != null) return Redirect(redirect.RedirectUrl);
-            }
-
-            var parsed2 = AuthenticatedRequest.ParseAccessToken(accessToken, false);
-            var adminInfo = AdminManager.GetAdminInfoByUserSub(parsed2.sub);
-
-            // 新用户自动登录
-            if (adminInfo == null)
-            {
-                adminInfo = AdminManager.UpdateNewUserFromIdentityServer(accessToken);
-            }
-
-            // 记录最后登录时间、失败次数清零
-            DataProvider.AdministratorDao.UpdateLastActivityDateAndCountOfLogin(adminInfo);
-            request.AdminLogin(adminInfo.UserName, false);
-            // add idserver cookie
-            CookieUtils.SetCookie(Constants.AuthKeyIdentityServer, accessToken);
-            var idToken = request.HttpRequest.Form["id_token"];
-            CookieUtils.SetCookie(Constants.AuthKeyIdentityServerIdToken, idToken);
-
-            var mainUrl = PageUtils.GetMainUrl(adminInfo.SiteId);
-            var requestUrl = request.HttpRequest.Url;
-
-            return Redirect($"{requestUrl.Scheme}://{requestUrl.Authority}{mainUrl}");
         }
 
         private static List<Tab> GetTopMenus(SiteInfo siteInfo, bool isSuperAdmin, List<int> siteIdListLatestAccessed,
