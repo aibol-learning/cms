@@ -157,9 +157,47 @@
                 filter: alpha(opacity=50);
                 opacity: 0.5;
             }
+
+    .bread {
+        padding: 15px;
+    }
+
+    @media (max-width: 1024px) {
+        .sliderbox .slider{
+            width: 819px;
+            margin: 0px 0 0 25px;
+        }
+        #btn_prev {
+            left: 0;
+            margin-left: 0;
+        }
+
+        #btn_next {
+            right: 0;
+            margin-right: 0;
+        }
+    }
+    @media (max-width: 800px) {
+        .sliderbox .slider {
+            width: 585px;
+            margin: 0px 0 0 33px;
+        }
+
+        #btn_prev {
+            left: 0;
+            margin-left: 0;
+        }
+
+        #btn_next {
+            right: 0;
+            margin-right: 0;
+        }
+    }
+
 </style>
 
 <body style="margin-top:0;">
+    <stl:include file="/include/location.html"></stl:include>
     <h1 id="noData">暂无内容</h1>
     <div id="previewWrap">
         <div class="container">
@@ -241,13 +279,20 @@
 
                 //小图片左右滚动
                 var $slider = $('.slider ul');
+                var sliderSize = 9;
+                if ($(window).width() <= 800) {
+                    sliderSize = 5;
+                }
+                if ($(window).width() > 800 & $(window).width() <= 1024) {
+                    sliderSize = 7;
+                }
                 var $slider_child_l = $('.slider ul li').length;
                 var $slider_width = $('.slider ul li').width() + 5;
                 $slider.width($slider_child_l * $slider_width);
 
                 var slider_count = 0;
 
-                if ($slider_child_l < 9) {
+                if ($slider_child_l < sliderSize) {
                     $('#btn-right').css({
                         cursor: 'auto'
                     });
@@ -255,7 +300,7 @@
                 }
 
                 $('#btn-right').click(function () {
-                    if ($slider_child_l < 9 || slider_count >= $slider_child_l - 9) {
+                    if ($slider_child_l < sliderSize || slider_count >= $slider_child_l - sliderSize) {
                         return false;
                     }
 
@@ -287,12 +332,12 @@
                 });
 
                 function slider_pic() {
-                    if (slider_count >= $slider_child_l - 9) {
+                    if (slider_count >= $slider_child_l - sliderSize) {
                         $('#btn-right').css({
                             cursor: 'auto'
                         });
                         $('#btn-right').addClass("dasabled");
-                    } else if (slider_count > 0 && slider_count <= $slider_child_l - 9) {
+                    } else if (slider_count > 0 && slider_count <= $slider_child_l - sliderSize) {
                         $('#btn-left').css({
                             cursor: 'pointer'
                         });

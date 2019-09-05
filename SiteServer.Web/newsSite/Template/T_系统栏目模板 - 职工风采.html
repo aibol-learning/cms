@@ -54,6 +54,17 @@
             width: 100%;
             height: 100%;
         }
+
+        @media (max-width: 1024px) {
+            ul.gallery_list li {
+                width: 296px;
+                height: 196px;
+            }
+            .light_box_item {
+                width: 296px;
+                height: 196px;
+            }
+        }
     </style>
     <script type="text/javascript" src="{Stl.SiteUrl}/js/jquery.min.js"></script>
     <script type="text/javascript" src="{Stl.SiteUrl}/js/swiper.min.js"></script>
@@ -74,7 +85,7 @@
                     <div class="listcon">
                         <stl:include file="/include/location.html"></stl:include>
                         <ul class="gallery_list">
-                            <stl:pageContents pageNum="21" order="AddDate">
+                            <stl:pageContents pageNum="18" order="AddDate">
                                 <li>
                                     <a class="light_box_images" href="{Content.imageUrl}" data-lightbox="image-1" data-title="{Content.title}">
                                         <span style="background-image:url('{Content.imageUrl}')" class="light_box_item">

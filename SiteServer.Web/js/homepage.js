@@ -349,7 +349,13 @@ $(function () {
     })
 
     //报刊阅览 - 图片左右滚动
-    var sliderSize2 = 1;
+    var sliderSize2 = 4;
+    if ($(window).width() <= 800) {
+        sliderSize2 = 2;
+    }
+    if ($(window).width() > 800 & $(window).width() <= 1024) {
+        sliderSize2 = 3;
+    }
 
     var $slider2 = $('.slider2 ul');
     var $slider_child_l2 = $('.slider2 ul li').length;

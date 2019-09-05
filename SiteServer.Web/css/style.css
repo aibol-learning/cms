@@ -107,7 +107,11 @@ a:hover {
     width: 15%;
 }
 
-    .footer_other.wide {
+    .footer_other.wider {
+        float: left;
+        width: 15%;
+    }
+    .footer_other.widest {
         float: left;
         width: 25%;
     }
@@ -994,6 +998,7 @@ a:hover {
 .pagetit {
     font-size: 24px;
     margin-bottom: 20px;
+    line-height:160%;
 }
 .pageSubtit {
     font-size: 20px;
@@ -1834,7 +1839,35 @@ a:hover {
         padding-left: 6px;
         padding-right: 6px;
     }
-    
+    .sliderbox2 .slider2 {
+        width: 803px;
+        margin: 0 0 0 10px;
+    }
+    .sliderbox2 #btn-left2 {
+        margin-left: 40px;
+    }
+    .sliderbox2 #btn-right2 {
+        float: left;
+        margin-right: 40px;
+    }
+    .footernav {
+        float: left;
+        width: 26%;
+    }
+    .footer_other {
+        float: left;
+        width: 13%;
+    }
+
+        .footer_other.wider {
+            float: left;
+            width: 16%;
+        }
+
+        .footer_other.widest {
+            float: left;
+            width: 31%;
+        }
 }
 
 @media (max-width: 800px) {
@@ -1895,6 +1928,33 @@ a:hover {
     .slideBox1 .bd ul table td {
         padding: 12px 6px;
     }
+    .sliderbox2 .slider2 {
+        width: 535px;
+        margin: 0 0 0 30px;
+    }
+    .sliderbox2 #btn-right2 {
+        float: left;
+        margin-right: 0px;
+        margin-left: 15px;
+    }
+
+    .footernav {
+        float: left;
+        width: 36%;
+    }
+    .footer_other {
+        float: left;
+        width: 18%;
+    }
+
+        .footer_other.wider {
+            float: left;
+            width: 27%;
+        }
+
+        .footer_other.widest {
+            display:none;
+        }
 }
 
 @media (max-width: 768px) {
