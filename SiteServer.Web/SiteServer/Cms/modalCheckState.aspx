@@ -133,7 +133,7 @@
                         <div id="diagramContainer">
 
                             <div id="start" class="start" style="top: 22px;">开始</div>
-                            <div id="step1" class="rectangle-size" style="top: 20px; left: 160px;">草稿</div>
+                            <div id="step1" class="rectangle-size" style="top: 20px; left: 160px;">新建</div>
                             <div id="step2" class="rectangle-size" style="top: 20px; left: 300px;">支部书记审批</div>
                             <div id="step3" class="rectangle-size" style="top: 120px; left: 300px;">公司领导审批</div>
                             <div id="step4" class="rectangle-size" style="top: 220px; left: 300px;">政工部审批</div>

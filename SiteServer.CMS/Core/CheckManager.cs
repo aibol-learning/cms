@@ -33,7 +33,7 @@ namespace SiteServer.CMS.Core
 	    public static class Level
 	    {
 	        public const string All = "全部";//全部
-            public const string CaoGao = "草稿";//草稿
+            public const string CaoGao = "新建";//草稿
 	        public const string DaiShen = "支部书记审批";//待审
 	        public const string YiShenHe = "审批完成";//已审核
 
@@ -611,7 +611,12 @@ namespace SiteServer.CMS.Core
 	        }
 
 	        var listItem = new ListItem(Level.CaoGao, LevelInt.CaoGao.ToString());
-	        listControl.Items.Add(listItem);
+
+            //按要求 2个审核的时候 移除草稿新增
+            if (checkedLevel != 1 && checkedLevel != 2 && checkedLevel != 3)
+            {
+                listControl.Items.Add(listItem);
+            }
 
 	        listItem = new ListItem(Level.DaiShen, LevelInt.DaiShen.ToString());
 	        listControl.Items.Add(listItem);
@@ -623,7 +628,7 @@ namespace SiteServer.CMS.Core
 	                Enabled = isChecked
 	            };
 	            listControl.Items.Add(listItem);
-	        }
+            }
 	        else if (checkContentLevel == 2)
 	        {
 	            listItem = new ListItem(Level2.Fail1, LevelInt.Fail1.ToString())
