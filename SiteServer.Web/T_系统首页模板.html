@@ -61,15 +61,15 @@
             </div>
         </div>
 
-        <!--公司介绍-->
+        <!--企业介绍-->
         <div class="contentpart" style="background:#d8d8d8 url({stl.siteurl}/images/bg.jpg) no-repeat center center fixed !important;">
             <div class="container">
                 <div class="indexabout text-center">
-                    <stl:channels channelIndex="公司文化">
+                    <stl:channels channelIndex="企业文化">
                         <stl:if type="channelIndex" op="Equals" value="和文化">
                             <stl:yes>
                                 <stl:contents channelIndex="和文化" totalNum="1">
-                                    <h4>公司文化</h4>
+                                    <h4><stl:channel channelIndex="企业文化"></stl:channel></h4>
                                     <h2><stl:content type="SubTitle"></stl:content></h2>
                                     <p><stl:content type="Summary" wordNum="100"></stl:content></p>
                                 </stl:contents>
@@ -78,12 +78,12 @@
                     </stl:channels>
                 </div>
                 <div class="indexaboutLinks btns">
-                    <stl:channels channelIndex="公司文化" groupChannel="公司文化模块" totalNum="5">
+                    <stl:channels channelIndex="企业文化" groupChannel="企业文化模块" totalNum="5">
                         <stl:a><stl:channel></stl:channel></stl:a>
                     </stl:channels>
                 </div>
                 <div class="indexaboutLinks">
-                    <div class="text-right"><stl:a channelIndex="公司文化" style="margin-right:20px">查看更多</stl:a></div>
+                    <div class="text-right"><stl:a channelIndex="企业文化" style="margin-right:20px">查看更多</stl:a></div>
                 </div>
             </div>
         </div>
@@ -136,7 +136,10 @@
                         <ul>
                             <stl:contents channelIndex="公司公告" scope="all" totalNum="5">
                                 <li>
-                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
+                                    <div class="title">
+                                        <stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a>
+                                        <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
+                                    </div>
                                     <div class="info">
                                         <icon class="fa fa-calendar"></icon> <stl:content type="addDate"></stl:content>&emsp;
                                         <stl:if type="author" op="NotEmpty">
@@ -159,7 +162,10 @@
                         <ul>
                             <stl:contents channelIndex="公司公告" scope="all" startNum="6" totalNum="5">
                                 <li>
-                                    <div class="title"><stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a></div>
+                                    <div class="title">
+                                        <stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a>
+                                        <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
+                                    </div>
                                     <div class="info">
                                         <icon class="fa fa-calendar"></icon> <stl:content type="addDate"></stl:content>&emsp;
                                         <stl:if type="author" op="NotEmpty">
