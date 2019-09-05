@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <stl:include file="/include/head.html"></stl:include>
+<stl:include file="/include/head.html"></stl:include>
+
+<link href="../SiteServer/assets/datePicker/skin/WdatePicker.css" rel="stylesheet" />
+<script src="../SiteServer/assets/datePicker/WdatePicker.js"></script>
   <body>
     <stl:include file="/include/header.html"></stl:include>
     <div class="clearfix"></div>
@@ -10,93 +13,164 @@
           <div class="col-md-3">
             <div class="sidbar">
               <div class="sidbarnav">
-                <div class="tzggtit"> <span> {Channel.top1.Title} </span> </div>
                 <ul class="ymtitle">
-                  <stl:channels topLevel="1" groupChannel="nav">
-                    <stl:if testType="UpChannelOrSelf">
-                      <stl:yes>
-                        <li class="cat-item current-cat"><stl:a>{Channel.Title}</stl:a> </li>
-                      </stl:yes>
-                      <stl:no>
-                        <li class="cat-item"><stl:a>{Channel.Title}</stl:a> </li>
-                      </stl:no>
-                    </stl:if>
+                  <stl:channels topLevel="1" channelIndex="报刊阅览">
+                      <li class="cat-item" id="cid_<stl:channel type='id'></stl:channel>"><stl:a>{Channel.Title}</stl:a> </li>
                   </stl:channels>
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-md-9">
-            <div class="listcon">
-              <div class="bread">
-                <div itemscope class="breadcrumbs"> 
-                  搜索结果页
-                </div>
+              <div id="serach_div">
+                  <style>
+                      #serach_div {
+                          margin-top: 20px;    
+                          margin-bottom: 20px;
+                      }
+
+                      form > input, form > select {
+                          height: 40px;
+                          padding-left: 5px;
+                      }
+
+                      form > select {
+                          position: relative;
+                          top: 1px;
+                      }
+
+                      form > button {
+                          height: 40px;
+                          border-radius: 0;
+                          width: 100px;
+                      }
+                  </style>
+                  <form id="searchForm" action="{Stl.SiteUrl}/utils/search.html">
+                      <input placeholder="请输入关键字，按回车键搜索" name="word" id="word" style="width: 240px">
+                      <input placeholder="开始时间" name="dateFrom" id="dateFrom" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'});">-
+                      <input placeholder="结束时间" name="dateTo" id="dateTo" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'});">
+                      <input id="channelIds" type="hidden" name="channelIds"/>
+                      <button class="btn btn-info" type="submit">搜索</button>
+                  </form>
+                  <script>
+                      function getQueryVariable(variable) {
+                          var query = window.location.search.substring(1);
+                          var vars = query.split("&");
+                          for (var i = 0; i < vars.length; i++) {
+                              var pair = vars[i].split("=");
+                              if (pair[0] == variable) { return pair[1]; }
+                          }
+                          return (false);
+                      }
+                      $(function () {
+                          $("#word").val(decodeURIComponent(getQueryVariable("word")));
+                          $("#dateFrom").val(getQueryVariable("dateFrom") || "");
+                          $("#dateTo").val(getQueryVariable("dateTo") || "");
+                          $("#channelIds").val(getQueryVariable("channelIds"));
+
+                          $("#cid_" + getQueryVariable("channelIds")).addClass('current-cat');
+
+                          $(".cat-item").each(function(index, val) {
+                              $(this).find("a").attr("href", "javascript:void(0);");
+                          });
+                          $(".cat-item").click(function() {
+                              $(this).siblings().removeClass('current-cat');
+                              $(this).addClass('current-cat');
+
+                              $("#channelIds").val($(this).attr("id").replace("cid_",""));
+
+                              $("#searchForm").submit();
+                          });
+                      })
+                  </script>
               </div>
-              <stl:search type="title,content" isHighlight="true">
-                <stl:yes>
-                  <div class="newsneilist">  
-                    <stl:pageContents topLevel="0" scope="All" pageNum="10" order="AddDate" isNoDup="true" groupChannelNot="not">
-                      <div class="newslistpart">
-                        <h1>
-                          <stl:a>
-                            <stl:content type="Title" wordNum="30" ellipsis="..."></stl:content>
-                          </stl:a>
-                        </h1>
-                        <div class="newstag">
-                          <span>发布时间：<stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span>
-                        </div>
-                        <p class="newszy"><stl:content type="Summary" wordNum="90" ellipsis="..."></stl:content></p>
+              <div class="listcon">
+                  <div class="bread">
+                      <div itemscope class="breadcrumbs">
+                          搜索结果页
                       </div>
-                    </stl:pageContents>
                   </div>
-                  <div class="page_navi text-center">
-                    <stl:pageItems autoHide="true">
-                      <stl:pageItem type="PreviousPage">
-                        <stl:yes>
-                          <a href="{Current.Url}" class="prev">« 上一页</a>
-                        </stl:yes>
-                        <stl:no>
-                          <a href="javascript:;" class="prev">« 上一页</a>
-                        </stl:no>
-                      </stl:pageItem>
-                      
-                      <stl:pageItem type="PageNavigation" listNum="5">
-                        <stl:yes>
-                          <a href="{Current.Url}">{Current.Num}</a>
-                        </stl:yes>
-                        <stl:no>
-                          <a href="javascript:;" class="current">{Current.Num}</a>
-                        </stl:no>
-                      </stl:pageItem>
-                      
-                      <stl:pageItem type="NextPage">
-                        <stl:yes>
-                          <a href="{Current.Url}" class="next">下一页 »</a>
-                        </stl:yes>
-                        <stl:no>
-                          <a href="javascript:;" class="next">下一页 »</a>
-                        </stl:no>
-                      </stl:pageItem>
-                    </stl:pageItems>
-                  </div>
-                </stl:yes>
-                <stl:no>
-                  <div class="alert alert-danger" role="alert">
-                    <strong>抱歉!</strong> 找不到和您的查询相符的项目
-                  </div>
-                </stl:no>
-                <stl:loading>
-                  <div class="alert alert-info" role="alert">
-                    <strong>提示!</strong> 系统正在搜索中，请稍后...
-                  </div>
-                </stl:loading>
-              </stl:search>
-            </div>
+                  <stl:search type="title,content" isHighlight="true">
+                      <stl:yes>
+                          <div class="newsneilist">
+                              <stl:pageContents topLevel="0" scope="All" pageNum="10" order="AddDate" isNoDup="true" groupChannelNot="not">
+                                  <div class="newslistpart">
+                                      <h1>
+                                          <stl:a>
+                                              <stl:content type="Title" wordNum="30" ellipsis="..."></stl:content>
+                                          </stl:a>
+                                      </h1>
+                                      <div class="newstag">
+                                          <span>发布时间：<stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span>
+                                      </div>
+                                      <p class="newszy"><stl:content type="Summary" wordNum="90" ellipsis="..."></stl:content></p>
+                                  </div>
+                              </stl:pageContents>
+                          </div>
+                          <div class="page_navi text-center">
+                              <stl:pageItems autoHide="true">
+                                  <stl:pageItem type="PreviousPage">
+                                      <stl:yes>
+                                          <a href="{Current.Url}" class="prev">« 上一页</a>
+                                      </stl:yes>
+                                      <stl:no>
+                                          <a href="javascript:;" class="prev">« 上一页</a>
+                                      </stl:no>
+                                  </stl:pageItem>
+
+                                  <stl:pageItem type="PageNavigation" listNum="5">
+                                      <stl:yes>
+                                          <a href="{Current.Url}">{Current.Num}</a>
+                                      </stl:yes>
+                                      <stl:no>
+                                          <a href="javascript:;" class="current">{Current.Num}</a>
+                                      </stl:no>
+                                  </stl:pageItem>
+
+                                  <stl:pageItem type="NextPage">
+                                      <stl:yes>
+                                          <a href="{Current.Url}" class="next">下一页 »</a>
+                                      </stl:yes>
+                                      <stl:no>
+                                          <a href="javascript:;" class="next">下一页 »</a>
+                                      </stl:no>
+                                  </stl:pageItem>
+                              </stl:pageItems>
+                          </div>
+                      </stl:yes>
+                      <stl:no>
+                          <div class="alert alert-danger" role="alert">
+                              <strong>抱歉!</strong> 找不到和您的查询相符的项目
+                          </div>
+                      </stl:no>
+                      <stl:loading>
+                          <div class="alert alert-info" role="alert">
+                              <strong>提示!</strong> 系统正在搜索中，请稍后...
+                          </div>
+                      </stl:loading>
+                  </stl:search>
+              </div>
           </div>
         </div>
       </div>
     </div>  
-    <stl:include file="/include/footer_black.html"></stl:include>
+  <stl:include file="/include/footer_black.html"></stl:include>
+  
+
+  <script type="text/javascript">
+      $('.weixin').mouseover(function () {
+          $('.weixin-Qr-code').css({ "opacity": "1", "margin-left": "70px", "display": "block" }),
+              $('.weixin').addClass('disabled')
+          // alert('fdafdsa');
+      });
+      $('.weixin').mouseout(function () {
+          $('.weixin-Qr-code').css({ "opacity": "1", "margin-left": "70px", "display": "none" }),
+              $('.weixin').removeClass('disabled')
+          // alert('fdafdsa');
+      });
+  </script>
+  
+  
+
   </body>
 </html>
