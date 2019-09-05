@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Datory;
 using SiteServer.CMS.Core;
 using SiteServer.CMS.Data;
@@ -208,7 +209,7 @@ namespace SiteServer.CMS.Provider
                 rdr.Close();
             }
 
-            return list;
+            return list.Distinct().ToList();
         }
 	}
 }
