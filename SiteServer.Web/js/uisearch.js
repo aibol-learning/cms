@@ -82,14 +82,14 @@
 					// trim its value
 					self.inputEl.value = self.inputEl.value.trim();
 					
-					if( !classie.has( self.el, 'sb-search-open' ) ) { // open it
-						ev.preventDefault();
-						self.open();
-					}
-					else if( classie.has( self.el, 'sb-search-open' ) && /^\s*$/.test( self.inputEl.value ) ) { // close it
-						ev.preventDefault();
-						self.close();
-					}
+					//if( !classie.has( self.el, 'sb-search-open' ) ) { // open it
+					//	ev.preventDefault();
+					//	self.open();
+					//}
+					//else if( classie.has( self.el, 'sb-search-open' ) && /^\s*$/.test( self.inputEl.value ) ) { // close it
+					//	ev.preventDefault();
+					//	self.close();
+					//}
 				}
 
 			this.el.addEventListener( 'click', initSearchFn );
@@ -99,7 +99,7 @@
 		},
 		open : function() {
 			var self = this;
-			classie.add( this.el, 'sb-search-open' );
+			//classie.add( this.el, 'sb-search-open' );
 			// focus the input
 			if( !mobilecheck() ) {
 				this.inputEl.focus();
@@ -115,7 +115,7 @@
 		},
 		close : function() {
 			this.inputEl.blur();
-			classie.remove( this.el, 'sb-search-open' );
+			//classie.remove( this.el, 'sb-search-open' );
 		}
 	}
 

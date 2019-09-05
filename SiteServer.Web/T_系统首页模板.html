@@ -99,14 +99,14 @@
                         <div class="tab-pane fade active in">
                             <div class="row">
                                 <div class="col-md-3 col-xs-6" v-for="(news,index) in headlineNews_focus" v-if="index<4">
-                                    <div class="propart">
+                                    <!--<div class="propart">-->
                                         <div class="proimg">
                                             <a :href="news.navigationUrl" target="_blank">
                                                 <img width="260" height="160" :src="news.imageUrl ? news.imageUrl : '/images/thumbnail.png'" class="attachment-product-thumb size-product-thumb wp-post-image" :alt="news.title" />
                                             </a>
                                         </div>
                                         <a :href="news.navigationUrl" class="indexprotit" target="_blank">{{news.title}}</a>
-                                    </div>
+                                    <!--</div>-->
                                 </div>
                             </div>
                             <div class="row m-t-20" v-if="headlineNews_focus && headlineNews_focus.length>=8">
@@ -132,12 +132,12 @@
             <div class="container">
                 <h3>公司公告</h3>
                 <div class="row">
-                    <div class="col-md-6" style="padding-right:35px;">
+                    <div class="col-md-6 announcement_p_r">
                         <ul>
                             <stl:contents channelIndex="公司公告" scope="all" totalNum="5">
                                 <li>
                                     <div class="title">
-                                        <stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a>
+                                        <stl:a title="{Content.title}"><stl:content type="title" wordNum="28" ellipsis="..."></stl:content></stl:a>
                                         <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                     </div>
                                     <div class="info">
@@ -158,12 +158,12 @@
                             </stl:contents>
                         </ul>
                     </div>
-                    <div class="col-md-6" style="padding-left:35px;">
+                    <div class="col-md-6 announcement_p_l">
                         <ul>
                             <stl:contents channelIndex="公司公告" scope="all" startNum="6" totalNum="5">
                                 <li>
                                     <div class="title">
-                                        <stl:a title="{Content.title}"><stl:content type="title"></stl:content></stl:a>
+                                        <stl:a title="{Content.title}"><stl:content type="title" wordNum="28" ellipsis="..."></stl:content></stl:a>
                                         <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                     </div>
                                     <div class="info">
@@ -198,11 +198,11 @@
                     <div class="bd">
                         <ul>
                             <li>
-                                <h2>发电机组实时运行功率</h2>
+                                <h2>发电机组实时运行功率(MW)</h2>
                                 <div class="chart" id="chart1">
                                 </div>
                             </li>
-                            <li style="padding:65px 80px">
+                            <li class="tableWrapPadding">
                                 <div class="portlet box red">
                                     <div class="portlet-title">
                                         <div class="caption"><i class="fa fa-cogs"></i>发电机组发电量统计</div>
@@ -244,7 +244,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li style="padding:65px 80px">
+                            <li class="tableWrapPadding">
                                 <div class="portlet box purple">
                                     <div class="portlet-title">
                                         <div class="caption"><i class="fa fa-cogs"></i>发电机组发电量汇总</div>
@@ -284,7 +284,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li style="padding:65px 80px">
+                            <li class="tableWrapPadding">
                                 <div class="portlet box yellow">
                                     <div class="portlet-title">
                                         <div class="caption"><i class="fa fa-cogs"></i>发电机组环保数据</div>
@@ -322,7 +322,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li style="padding:65px 80px">
+                            <li class="tableWrapPadding">
                                 <div class="portlet box blue">
                                     <div class="portlet-title">
                                         <div class="caption"><i class="fa fa-cogs"></i>光伏发电生产信息</div>
@@ -384,7 +384,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li style="padding:65px 80px">
+                            <li class="tableWrapPadding">
                                 <div class="portlet box green">
                                     <div class="portlet-title">
                                         <div class="caption"><i class="fa fa-cogs"></i>焦岗湖光伏发电生产信息</div>
@@ -446,7 +446,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li style="padding:65px 80px">
+                            <li class="tableWrapPadding">
                                 <div class="portlet box red">
                                     <div class="portlet-title">
                                         <div class="caption"><i class="fa fa-cogs"></i>施家湖光伏发电生产信息</div>

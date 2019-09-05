@@ -128,7 +128,7 @@ $(function () {
                     },
                     yAxis: {
                         axisLabel: {
-                            formatter: '{value}(MW)'
+                            formatter: '{value}'
                         }
                     },
                     series: [{
@@ -349,7 +349,7 @@ $(function () {
     })
 
     //报刊阅览 - 图片左右滚动
-    var sliderSize2 = 3;
+    var sliderSize2 = 1;
 
     var $slider2 = $('.slider2 ul');
     var $slider_child_l2 = $('.slider2 ul li').length;
