@@ -746,6 +746,7 @@ a:hover {
     height: 160px;
     padding-left: 10px;
     padding-right: 10px;
+    margin-left: -10px;
 }
 
     #myTabContent .proimg img {
@@ -763,7 +764,7 @@ a:hover {
     text-align: center;
     color: #222;
     display: block;
-    padding: 10px 0 30px 0;
+    padding: 10px 8px 30px 0;
     height: 48px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1452,229 +1453,6 @@ a:hover {
     display: none !important;
 }
 
-@media (max-width: 768px) {
-    .productpart #myTab li {
-        width: 33.333%;
-        float: left;
-    }
-
-    .productpart #myTabContent {
-        margin-left: 0 !important;
-        float: none;
-    }
-
-    .productpart #myTab {
-        width: 100%;
-        float: none;
-    }
-
-    .pcxc {
-        display: none;
-    }
-
-    .sjxc {
-        display: block;
-        margin-bottom: 30px;
-    }
-
-    .yb_conct {
-        display: none;
-    }
-
-    .youshipart {
-        margin-bottom: 30px;
-    }
-
-    .thememenu {
-        display: none;
-    }
-
-    .slideBox1 .newstext {
-        width: 100%
-    }
-
-    .slideBox1 .newsimg {
-        width: 100%;
-    }
-
-    .indexnews {
-        padding: 0;
-    }
-
-    .slideBox1 .prev,
-    .slideBox1 .next {
-        display: none;
-    }
-
-    .slideBox1 .prev,
-    .slideBox1 .next {
-        background-color: #009d8e;
-    }
-
-    .slideBox .hd ul .on {
-        background-color: #009d8e;
-    }
-
-    .footer {
-        padding: 20px 0 15px 0;
-    }
-
-    .footer_top {
-        display: none;
-    }
-
-    .search {
-        display: none;
-    }
-
-    .themenav {
-        height: 56px;
-        line-height: 56px;
-    }
-
-    .logo img {
-        max-height: 28px;
-        width: auto;
-    }
-
-    #sideMenu {
-        display: block;
-    }
-
-    .slideBox {
-        display: none;
-    }
-
-    .divContent {
-        height: 300px;
-    }
-
-    .logo {
-        height: 56px;
-    }
-
-    .underslideBox {
-        display: block !important;
-    }
-
-
-    .bdsharebuttonbox {
-        float: left;
-        margin-bottom: 10px;
-        margin-top: 5px;
-    }
-
-    .lefttime {
-        display: none;
-    }
-
-    .sidbarcontact {
-        display: none;
-    }
-
-    .ymtitle {
-        height: 0;
-        overflow: hidden;
-        transition: height 2s;
-        -moz-transition: height 2s;
-        -webkit-transition: height 2s;
-        -o-transition: height 2s;
-    }
-
-    .sidbarnav:hover .ymtitle {
-        height: 100%;
-    }
-
-    .links {
-        margin-bottom: -30px;
-    }
-
-    .linkpart {
-        margin-bottom: 30px;
-    }
-
-    .indexabout_text {
-        width: 100%;
-    }
-
-    .indexabout_img {
-        width: 100%;
-    }
-
-    .indexcasepart {
-        width: 100%;
-    }
-
-    .indexcasepart {
-        margin-bottom: 15px;
-    }
-
-    .indexcase_text h3 {
-        margin-top: 0;
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
-
-    .indexcase_text p {
-        line-height: 20px;
-        margin-bottom: 5px;
-        font-size: 12px;
-    }
-
-    .indexcase_text {
-        padding: 20px;
-    }
-
-    .indexnewspart_img {
-        width: 100%;
-    }
-
-    .indexnewspart_text {
-        width: 100%;
-    }
-
-    .header_center {
-        display: none;
-    }
-
-    .header_top {
-        display: none;
-    }
-
-    .header_bottom {
-        background: none !important;
-    }
-
-    .navbar-brand {
-        display: block;
-        padding: 10px 0 !important;
-    }
-
-        .navbar-brand img {
-            height: 35px;
-            width: auto;
-        }
-
-    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-        background: none !important;
-    }
-
-    .header_bottom .navbar-default .navbar-nav > li > a {
-        margin-right: 0;
-        margin-bottom: 3px;
-        padding-left: 30px;
-    }
-
-    .dropdown-menu li a {
-        color: #fff !important;
-        padding-left: 45px !important;
-        line-height: 30px !important;
-    }
-
-    .navbar-toggle {
-        margin-right: 0 !important;
-    }
-}
 
 /**** 首頁 - 公司公告 和 安全生产管理巡视 ***/
 .announcement {
@@ -1991,6 +1769,7 @@ a:hover {
 
     .slideBox1 .bd ul table th {
         background-color: #f0f0f0;
+        text-align:center;
     }
 
 .portlet .table-striped tr:nth-child(even) td {
@@ -2004,4 +1783,340 @@ a:hover {
 
 .placeholder {
     color: #999;
+}
+
+.announcement_p_r {
+    padding-right: 35px;
+}
+.announcement_p_l {
+    padding-left: 35px;
+}
+.tableWrapPadding {
+    padding: 65px 80px
+}
+
+@media (max-width: 1024px) {
+    .headerNav .navItem {
+        width: 900px;
+    }
+    .youshipart {
+        min-height: 360px;
+        height: 360px;
+        max-height: 360px;
+    }
+        .youshipart img {
+            height: 142px;
+        }
+    .indexaboutLinks.btns a {
+        width: 120px;
+        margin: 0 14px;
+    }
+    #myTabContent .proimg {
+        width: 210px;
+        height: 140px;
+        margin-left: -15px;
+    }
+        #myTabContent .proimg img {
+            width: 210px;
+            height: 140px;
+        }
+    #myTabContent .indexprotit {
+        padding: 10px 8px 30px 0;
+        margin: 0 -15px 0 -8px;
+    }
+    .tableWrapPadding {
+        padding: 65px 20px
+    }
+    .slideBox1 .bd ul table {
+        font-size: 14px;
+    }
+    .slideBox1 table td {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+    
+}
+
+@media (max-width: 800px) {
+    .sb-search.sb-search-open,
+    .no-js .sb-search {
+        width: 170px;
+    }
+
+    .sb-search-input {
+        padding: 20px 31px 20px 10px;
+    }
+
+    .headerNav .navItem {
+        width: 680px;
+    }
+
+    .youshipart img {
+        width: auto;
+    }
+
+    .indexaboutLinks.btns a {
+        width: 101px;
+        margin: 0 6px;
+    }
+    #myTabContent .proimg {
+        width: 325px;
+        height: 215px;
+        margin-left: -15px;
+    }
+        #myTabContent .proimg img {
+            width: 325px;
+            height: 215px;
+        }
+    #myTabContent .indexprotit {
+        padding: 10px 8px 50px 0;
+        margin: 0;
+    }
+    .announcement_p_r {
+        padding-right: 15px;
+    }
+
+    .announcement_p_l {
+        padding-left: 15px;
+    }
+    .tableWrapPadding {
+        padding: 65px 10px
+    }
+    .slideBox1 .bd ul div.chart {
+        width: 100%;
+        font-size: 16px;
+        margin: 30px 0px;
+        height: 280px;
+    }
+    .slideBox1 .bd ul table {
+        font-size: 12px;
+    }
+    .slideBox1 .bd ul table th, 
+    .slideBox1 .bd ul table td {
+        padding: 12px 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .productpart #myTab li {
+        width: 33.333%;
+        float: left;
+    }
+
+    .productpart #myTabContent {
+        margin-left: 0 !important;
+        float: none;
+    }
+
+    .productpart #myTab {
+        width: 100%;
+        float: none;
+    }
+
+    .pcxc {
+        display: none;
+    }
+
+    .sjxc {
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    .yb_conct {
+        display: none;
+    }
+
+    .youshipart {
+        margin-bottom: 30px;
+    }
+
+    .thememenu {
+        display: none;
+    }
+
+    .slideBox1 .newstext {
+        width: 100%
+    }
+
+    .slideBox1 .newsimg {
+        width: 100%;
+    }
+
+    .indexnews {
+        padding: 0;
+    }
+
+    .slideBox1 .prev,
+    .slideBox1 .next {
+        display: none;
+    }
+
+    .slideBox1 .prev,
+    .slideBox1 .next {
+        background-color: #009d8e;
+    }
+
+    .slideBox .hd ul .on {
+        background-color: #009d8e;
+    }
+
+    .footer {
+        padding: 20px 0 15px 0;
+    }
+
+    .footer_top {
+        display: none;
+    }
+
+    .search {
+        display: none;
+    }
+
+    .themenav {
+        height: 56px;
+        line-height: 56px;
+    }
+
+    .logo img {
+        max-height: 28px;
+        width: auto;
+    }
+
+    #sideMenu {
+        display: block;
+    }
+
+    .slideBox {
+        display: none;
+    }
+
+    .divContent {
+        height: 300px;
+    }
+
+    .logo {
+        height: 56px;
+    }
+
+    .underslideBox {
+        display: block !important;
+    }
+
+
+    .bdsharebuttonbox {
+        float: left;
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+
+    .lefttime {
+        display: none;
+    }
+
+    .sidbarcontact {
+        display: none;
+    }
+
+    .ymtitle {
+        height: 0;
+        overflow: hidden;
+        transition: height 2s;
+        -moz-transition: height 2s;
+        -webkit-transition: height 2s;
+        -o-transition: height 2s;
+    }
+
+    .sidbarnav:hover .ymtitle {
+        height: 100%;
+    }
+
+    .links {
+        margin-bottom: -30px;
+    }
+
+    .linkpart {
+        margin-bottom: 30px;
+    }
+
+    .indexabout_text {
+        width: 100%;
+    }
+
+    .indexabout_img {
+        width: 100%;
+    }
+
+    .indexcasepart {
+        width: 100%;
+    }
+
+    .indexcasepart {
+        margin-bottom: 15px;
+    }
+
+    .indexcase_text h3 {
+        margin-top: 0;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .indexcase_text p {
+        line-height: 20px;
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    .indexcase_text {
+        padding: 20px;
+    }
+
+    .indexnewspart_img {
+        width: 100%;
+    }
+
+    .indexnewspart_text {
+        width: 100%;
+    }
+
+    .header_center {
+        display: none;
+    }
+
+    .header_top {
+        display: none;
+    }
+
+    .header_bottom {
+        background: none !important;
+    }
+
+    .navbar-brand {
+        display: block;
+        padding: 10px 0 !important;
+    }
+
+        .navbar-brand img {
+            height: 35px;
+            width: auto;
+        }
+
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+        background: none !important;
+    }
+
+    .header_bottom .navbar-default .navbar-nav > li > a {
+        margin-right: 0;
+        margin-bottom: 3px;
+        padding-left: 30px;
+    }
+
+    .dropdown-menu li a {
+        color: #fff !important;
+        padding-left: 45px !important;
+        line-height: 30px !important;
+    }
+
+    .navbar-toggle {
+        margin-right: 0 !important;
+    }
 }
