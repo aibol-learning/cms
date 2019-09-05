@@ -333,7 +333,7 @@ namespace SiteServer.BackgroundPages.Cms
                     {
                         //发送初审代办
                         var RootAddress = ConfigurationManager.AppSettings["RootAddress"];
-                        BackstageManager.SendMessage(MessageType.任务, new List<string>() { contentInfo.GetString("Lv1AdminSub") }, "您有一条新闻审核任务待处理", System.Web.HttpUtility.UrlEncode(RootAddress + $"/siteserver/main.cshtml?siteId={contentInfo.SiteId}&frmMain=check"), $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}");
+                        BackstageManager.SendMessage(MessageType.任务, new List<string>() { contentInfo.GetString("Lv1AdminSub") }, "您有一条新闻审核任务待处理", System.Web.HttpUtility.UrlEncode(RootAddress + $"/siteserver/main.cshtml?siteId={contentInfo.SiteId}&state={contentInfo.CheckedLevel}&frmMain=check"), $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}");
 
                     }
                 }
@@ -379,6 +379,14 @@ namespace SiteServer.BackgroundPages.Cms
                         {
                             //关闭代办
                             BackstageManager.CloseMessage(MessageType.任务, $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}");
+                        }
+
+                        if (checkedLevel == 0)
+                        {
+                            //发送初审代办
+                            var RootAddress = ConfigurationManager.AppSettings["RootAddress"];
+                            BackstageManager.SendMessage(MessageType.任务, new List<string>() { contentInfo.GetString("Lv1AdminSub") }, "您有一条新闻审核任务待处理", System.Web.HttpUtility.UrlEncode(RootAddress + $"/siteserver/main.cshtml?siteId={contentInfo.SiteId}&state={contentInfo.CheckedLevel}&frmMain=check"), $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}");
+
                         }
 
                         contentInfo.IsChecked = checkedLevel >= SiteInfo.Additional.CheckContentLevel;

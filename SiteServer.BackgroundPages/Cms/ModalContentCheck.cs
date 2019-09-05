@@ -172,7 +172,7 @@ namespace SiteServer.BackgroundPages.Cms
                             BackstageManager.CloseMessage(MessageType.任务, $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}");
                         }
 
-                        var redirectUrl = System.Web.HttpUtility.UrlEncode(ConfigurationManager.AppSettings["RootAddress"] + $"/siteserver/main.cshtml?siteId={contentInfo.SiteId}&frmMain=check");
+                        var redirectUrl = System.Web.HttpUtility.UrlEncode(ConfigurationManager.AppSettings["RootAddress"] + $"/siteserver/main.cshtml?siteId={contentInfo.SiteId}&state={checkedLevel}&frmMain=check");
 
                         var key = $"SiteserverCheck_{contentInfo.SiteId}_{contentInfo.ChannelId}_{contentInfo.Id}";
 
