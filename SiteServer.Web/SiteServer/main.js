@@ -80,10 +80,11 @@ var methods = {
       var frmMain = utils.getQueryString("frmMain");
 
       var siteId = utils.getQueryString("siteId");
+      var state = utils.getQueryString("state");
 
       if (frmMain == "check") {
-          $("[href='cms/pageContentSearch.aspx?isCheckOnly=true&siteId=" + siteId+"']").parent().addClass("active");
-          document.getElementById('frmMain').contentWindow.location.href = "cms/pageContentSearch.aspx?isCheckOnly=true&siteId=" + siteId;
+          $("[href='cms/pageContentSearch.aspx?siteId=" + siteId+"']").parent().addClass("active");
+          document.getElementById('frmMain').contentWindow.location.href = "cms/pageContentSearch.aspx?siteId=" + siteId+"&state="+state;
       }
 
     window.onresize = $this.winResize;

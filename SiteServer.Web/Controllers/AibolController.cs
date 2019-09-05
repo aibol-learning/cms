@@ -610,6 +610,30 @@ namespace SiteServer.API.Controllers
         }
 
         /// <summary>
+        /// 用户角色信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost, Route("CurrentUserRoles")]
+        public IHttpActionResult CurrentUserRoles()
+        {
+            var request = new AuthenticatedRequest();
+            var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
+
+            var at = AuthenticatedRequest.ParseAccessToken(accessToken, false);
+            if (string.IsNullOrEmpty(at.sub))
+                return Ok();
+
+            var user = AdminManager.GetAdminInfoByUserSub(at.sub);
+
+            var roles = db.siteserver_AdministratorsInRoles.Where(o => o.UserName == user.UserName).ToList();
+
+            return Ok(new
+            {
+                roles
+            });
+        }
+
+        /// <summary>
         /// 用户退出
         /// </summary>
         /// <returns></returns>

@@ -109,6 +109,7 @@ namespace SiteServer.BackgroundPages.Cms
                 }
             }
 
+            checkedLevel = 5;
             RptContents.ItemDataBound += RptContents_ItemDataBound;
 
             var allAttributeNameList = TableColumnManager.GetTableColumnNameList(tableName, DataType.Text);
@@ -123,7 +124,7 @@ namespace SiteServer.BackgroundPages.Cms
                 searchType, keyword,
                 dateFrom, dateTo, state, _isCheckOnly, false, _isTrashOnly, _isWritingOnly, onlyAdminId,
                 AuthRequest.AdminPermissionsImpl,
-                allAttributeNameList, !isChecked ? Guid.Parse(adminInfo.SSOId).ToString() : "", SSOIds.Contains(adminInfo.SSOId));
+                allAttributeNameList, !isChecked ? Guid.Parse(adminInfo.SSOId).ToString() : "", SSOIds.Contains(adminInfo.SSOId),adminInfo.UserName);
 
             PgContents.Param = new PagerParam
             {
@@ -194,13 +195,13 @@ namespace SiteServer.BackgroundPages.Cms
                 DdlSearchType.Items.Add(listitem);
             }
 
-            //ETriStateUtils.AddListItems(DdlState, "全部", "已审核", "待审核");
+            ETriStateUtils.AddListItems(DdlState, "全部", "已审核", "待审核");
 
             if (SiteId != _channelId)
             {
                 ControlUtils.SelectSingleItem(DdlChannelId, _channelId.ToString());
             }
-            //ControlUtils.SelectSingleItem(DdlState, AuthRequest.GetQueryString("State"));
+            ControlUtils.SelectSingleItem(DdlState, AuthRequest.GetQueryString("State"));
             ControlUtils.SelectSingleItem(DdlSearchType, searchType);
             TbKeyword.Text = keyword;
             TbDateFrom.Text = dateFrom;
@@ -212,6 +213,19 @@ namespace SiteServer.BackgroundPages.Cms
 
 
             BtnSelect.Attributes.Add("onclick", ModalSelectColumns.GetOpenWindowString(SiteId, _channelId));
+
+            DdlState.Items.Clear();
+            DdlState.Items.Add(new ListItem("全部","-200"));
+            DdlState.Items.Add(new ListItem("新建", "-99"));
+            DdlState.Items.Add(new ListItem("支部书记审批", "0",true));
+            DdlState.Items.Add(new ListItem("支部书记审批退稿", "-1"));
+            DdlState.Items.Add(new ListItem("公司领导审批", "1"));
+            DdlState.Items.Add(new ListItem("公司领导审批退稿", "-2"));
+            DdlState.Items.Add(new ListItem("政工部审批", "2"));
+            DdlState.Items.Add(new ListItem("政工部审批退稿", "-3"));
+
+            DdlState.SelectedValue = state.ToString();
+
 
             if (_isTrashOnly)
             {

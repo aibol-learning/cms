@@ -612,11 +612,13 @@ namespace SiteServer.CMS.Core
 
 	        var listItem = new ListItem(Level.CaoGao, LevelInt.CaoGao.ToString());
 
-            //按要求 2个审核的时候 移除草稿新增
+            //按要求 3个审核的时候 移除草稿新增
             if (checkedLevel != 1 && checkedLevel != 2 && checkedLevel != 3)
             {
                 listControl.Items.Add(listItem);
             }
+
+            
 
 	        listItem = new ListItem(Level.DaiShen, LevelInt.DaiShen.ToString());
 	        listControl.Items.Add(listItem);
@@ -628,6 +630,7 @@ namespace SiteServer.CMS.Core
 	                Enabled = isChecked
 	            };
 	            listControl.Items.Add(listItem);
+
             }
 	        else if (checkContentLevel == 2)
 	        {
@@ -814,6 +817,16 @@ namespace SiteServer.CMS.Core
 	            listControl.Items.Add(listItem);
 	        }
 
+            //按要求 1审 需要可以直接跳到3审
+            if (checkedLevel == 1)
+            {
+                listItem = new ListItem(Level3.Pass2, LevelInt.Pass2.ToString())
+                {
+                    Enabled = true
+                };
+                listControl.Items.Add(listItem);
+            }
+
 	        ControlUtils.SelectSingleItem(listControl, checkedLevel.ToString());
 	    }
 
@@ -984,6 +997,11 @@ namespace SiteServer.CMS.Core
 	        {
 	            return true;
 	        }
+
+            if (contentCheckLevel < 0 && checkedLevel == 0)
+            {
+                return true;
+            }
 	        if (contentIsChecked)
 	        {
 	            return false;
