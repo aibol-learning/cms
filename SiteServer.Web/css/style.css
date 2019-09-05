@@ -327,6 +327,7 @@ a:hover {
 
 .loginInfo {
     position: absolute;
+    top : 0;
     right: 20px;
     line-height: 65px;
     color: #333;

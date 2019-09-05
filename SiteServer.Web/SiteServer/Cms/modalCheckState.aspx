@@ -133,7 +133,7 @@
                         <div id="diagramContainer">
 
                             <div id="start" class="start" style="top: 22px;">开始</div>
-                            <div id="step1" class="rectangle-size" style="top: 20px; left: 160px;">草稿</div>
+                            <div id="step1" class="rectangle-size" style="top: 20px; left: 160px;">新建</div>
                             <div id="step2" class="rectangle-size" style="top: 20px; left: 300px;">支部书记审批</div>
                             <div id="step3" class="rectangle-size" style="top: 120px; left: 300px;">公司领导审批</div>
                             <div id="step4" class="rectangle-size" style="top: 220px; left: 300px;">政工部审批</div>
@@ -267,14 +267,14 @@
                                         var step4 = jsPlumb.addEndpoint('step4', { uuid: 'step4', anchor: 'Top' }, makeStyle(4));
                                         jsPlumb.connect({ uuids: ['step3', 'step4'] });
                                         
-                                        if (currentLv >= 4) {
-                                            step4.addOverlay(['Custom', {
-                                                create: function (component) {
-                                                    return $('<p id="lv3" style="color: white; background-color: #00b19d; padding: 2px; border-radius: 5px;margin-left: 49px; margin-top: 40px; font-size: xx-small;">未指派</p>');
-                                                },
-                                                location: 0.5
-                                            }]);
-                                        }
+                                        //if (currentLv >= 4) {
+                                        //    step4.addOverlay(['Custom', {
+                                        //        create: function (component) {
+                                        //            return $('<p id="lv3" style="color: white; background-color: #00b19d; padding: 2px; border-radius: 5px;margin-left: 49px; margin-top: 40px; font-size: xx-small;">未指派</p>');
+                                        //        },
+                                        //        location: 0.5
+                                        //    }]);
+                                        //}
 
                                         jsPlumb.addEndpoint('step4', { uuid: 'step4', anchor: 'Left' }, makeStyle(4));
                                         jsPlumb.addEndpoint('step5', { uuid: 'step5', anchor: 'Right' }, makeStyle(5));
