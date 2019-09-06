@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Web.Http;
 using SiteServer.CMS.Core;
 using SiteServer.CMS.Core.Create;
@@ -77,6 +78,7 @@ namespace SiteServer.API.Controllers.Pages.Cms
             public bool IsChannelPage { get; set; }
             public bool IsContentPage { get; set; }
             public string Scope { get; set; }
+            public string SecretKey { get; set; }
         }
 
         [HttpPost, Route(Route)]
@@ -193,7 +195,11 @@ namespace SiteServer.API.Controllers.Pages.Cms
             try
             {
                 var request = new AuthenticatedRequest();
-                if (!request.IsAdminLoggin ||
+                if (parameter.SecretKey == ConfigurationManager.AppSettings["SecretKey"].ToString())
+                {
+
+                }
+                else if (!request.IsAdminLoggin ||
                     !request.AdminPermissionsImpl.HasSitePermissions(parameter.SiteId, ConfigManager.WebSitePermissions.Create))
                 {
                     return Unauthorized();
