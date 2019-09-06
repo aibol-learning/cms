@@ -1643,9 +1643,13 @@ h5 {
     width: 15%;
 }
 
-    .footer_other.wide {
+    .footer_other.wider {
         float: left;
-        width: 70%;
+        width: 18%;
+    }
+    .footer_other.widest {
+        float: left;
+        width: 65%;
     }
 
     .footer_other .footer_other_title {
@@ -3190,4 +3194,21 @@ h5 {
 
 .placeholder {
     color: #999;
+}
+
+@media (max-width: 1024px) {
+    .footer_other {
+        float: left;
+        width: 18%;
+    }
+
+        .footer_other.wider {
+            float: left;
+            width: 22%;
+        }
+
+        .footer_other.widest {
+            float: left;
+            width: 58%;
+        }
 }

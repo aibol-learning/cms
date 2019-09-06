@@ -476,6 +476,7 @@ a:hover {
     line-height: 65px;
     color: #333;
     text-align: right;
+    top:0;
 }
 
     .loginInfo a {
