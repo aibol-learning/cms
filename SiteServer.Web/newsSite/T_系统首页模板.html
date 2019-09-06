@@ -63,15 +63,15 @@
                         <stl:yes>
                             <stl:if type="content" op="Empty">
                                 <stl:yes>
-                                    <a href="javascript:;"><img src="{Content.ImageUrl}" width="1170"></a>
+                                    <a href="javascript:;"><img src="{Content.ImageUrl}" class="headImage"></a>
                                 </stl:yes>
                                 <stl:no>
-                                    <stl:a><img src="{Content.ImageUrl}" width="1170"></stl:a>
+                                    <stl:a><img src="{Content.ImageUrl}" class="headImage"></stl:a>
                                 </stl:no>
                             </stl:if>
                         </stl:yes>
                         <stl:no>
-                            <stl:a target="_blank"><img src="{Content.ImageUrl}" width="1170"></stl:a>
+                            <stl:a target="_blank"><img src="{Content.ImageUrl}" class="headImage"></stl:a>
                         </stl:no>
                     </stl:if>
                 </stl:contents>
@@ -81,8 +81,8 @@
             <div class="row" style="padding-top: 20px;margin-bottom: -20px;">
                 <div class="col-sm-12 col-md-6 col-lg-6 pic-left">
                     <stl:contents channelIndex="头条新闻" isRecommend="true" totalNum="1">
-                        <img src="{Content.ImageUrl}" width="575" height="383" onClick="window.location.href='{Content.NavigationUrl}'" alt="{Content.Title}" />
-                        <div class="pic-left_title"><stl:content type="title" wordNum="28" ellipsis="..."></stl:content></div>
+                        <img src="{Content.ImageUrl}" onClick="window.location.href='{Content.NavigationUrl}'" alt="{Content.Title}" />
+                        <div class="pic-left_title"><stl:content type="title" wordNum="24" ellipsis="..."></stl:content></div>
                     </stl:contents>
                 </div>
 
@@ -100,7 +100,7 @@
                                         </stl:no>
                                     </stl:if>
                                     <div class="pic-title2">
-                                        <stl:content type="Title" wordNum="16" ellipsis="..."></stl:content>
+                                        <stl:content type="Title" wordNum="13" ellipsis="..."></stl:content>
                                     </div>
                                 </stl:a>
                             </li>
@@ -122,7 +122,7 @@
                                         </stl:no>
                                     </stl:if>
                                     <div class="pic-title2">
-                                        <stl:content type="Title" wordNum="16" ellipsis="..."></stl:content>
+                                        <stl:content type="Title" wordNum="13" ellipsis="..."></stl:content>
                                     </div>
                                 </stl:a>
                             </li>
@@ -155,7 +155,7 @@
                     </div>
                     <div class="col-md-3">
                         <stl:contents channelIndex="头条新闻" isTop="true" totalNum="1">
-                            <stl:a class="head_title"><stl:content wordNum="20" ellipsis="..."></stl:content></stl:a>
+                            <stl:a class="head_title"><stl:content wordNum="17" ellipsis="..."></stl:content></stl:a>
                             <div class="head_summary"><stl:content type="summary" wordNum="130" ellipsis="..."></stl:content></div>
                         </stl:contents>
                     </div>
@@ -163,7 +163,7 @@
                     <div class="col-md-4">
                         <div class="head_list">
                             <stl:contents channelIndex="头条新闻" totalNum="5">
-                                <stl:a class="head_list_title"><stl:content wordNum="15" ellipsis="..."></stl:content></stl:a>
+                                <stl:a class="head_list_title"><stl:content wordNum="13" ellipsis="..."></stl:content></stl:a>
                                 <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                 <div class="head_list_info">
                                     <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
@@ -205,8 +205,8 @@
                                 <stl:contents channelIndex="新思想" totalNum="3">
                                     <li>
                                         <div class="image_wrap"><img src="{Content.imageUrl}" /></div>
-                                        <div class="content_wrap" style="right:initial">
-                                            <stl:a class="news_list_title"><stl:content wordNum="20" ellipsis="..."></stl:content></stl:a>
+                                        <div class="content_wrap" style="right:inherit">
+                                            <stl:a class="news_list_title"><stl:content wordNum="17" ellipsis="..."></stl:content></stl:a>
                                             <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                             <div class="news_list_info">
                                                 <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
@@ -222,7 +222,7 @@
                                                 </stl:if>
                                             </div>
                                             <div class="news_list_summary">
-                                                <stl:content type="summary" wordNum="130" ellipsis="..."></stl:content>
+                                                <stl:content type="summary" wordNum="99" ellipsis="..."></stl:content>
                                             </div>
                                         </div>
                                     </li>
@@ -235,8 +235,8 @@
                                 <stl:contents channelIndex="公司要闻" totalNum="3">
                                     <li>
                                         <div class="image_wrap"><img src="{Content.imageUrl}" /></div>
-                                        <div class="content_wrap" style="right:initial">
-                                            <stl:a class="news_list_title"><stl:content wordNum="20" ellipsis="..."></stl:content></stl:a>
+                                        <div class="content_wrap" style="right:inherit">
+                                            <stl:a class="news_list_title"><stl:content wordNum="17" ellipsis="..."></stl:content></stl:a>
                                             <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                             <div class="news_list_info">
                                                 <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
@@ -252,7 +252,7 @@
                                                 </stl:if>
                                             </div>
                                             <div class="news_list_summary">
-                                                <stl:content type="summary" wordNum="130" ellipsis="..."></stl:content>
+                                                <stl:content type="summary" wordNum="99" ellipsis="..."></stl:content>
                                             </div>
                                         </div>
                                     </li>
@@ -289,14 +289,14 @@
                 </div>
 
                 <!--右侧边栏-->
-                <div class="wrap-right pull-right" style="width:30%; padding-top:30px;">
+                <div class="wrap-right pull-right" style="margin-top:30px">
                     <stl:channels groupChannel="右侧边栏">
                         <div class="sidebar">
                             <div class="sidebar_title"><stl:channel></stl:channel></div>
                             <div class="sidebar_list">
                                 <stl:contents channelIndex="{Channel.title}" isRecommend="true">
                                     <div class="sidebar_list_title">
-                                        <stl:a title="{Content.title}"><stl:content type="title" wordNum="18" ellipsis="..."></stl:content></stl:a>
+                                        <stl:a title="{Content.title}"><stl:content type="title" wordNum="15" ellipsis="..."></stl:content></stl:a>
                                         <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                     </div>
                                 </stl:contents>
@@ -442,7 +442,7 @@
                                         if (self.leftChannels[i][j].id == channelId) {
                                             self.leftChannels[i][j].contents = response.value;
                                             self.leftChannels[i][j].contents.forEach(function (node, index) {
-                                                node.title = node.title.substring(0, 35);
+                                                node.title = node.title.substring(0, 32);
                                             })
                                         }
                                     }
@@ -467,6 +467,12 @@
 
             //职工风采
             var sliderSize2 = 4;
+            if ($(window).width() <= 800) {
+                sliderSize2 = 2;
+            }
+            if ($(window).width() > 800 & $(window).width() <= 1024) {
+                sliderSize2 = 3;
+            }
 
             var $slider2 = $('.slider2 ul');
             var $slider_child_l2 = $('.slider2 ul li').length;

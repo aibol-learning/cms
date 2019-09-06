@@ -2056,8 +2056,18 @@ a:hover {
     color: #999;
 }
 
+.headImage {
+    width:1170px;
+}
 
 @media (max-width: 1024px) {
+    .headImage {
+        width: 970px;
+    }
+    .sliderbox2 .slider2 {
+        width: 807px;
+        margin: 0 0 0 51px;
+    }
 }
 
 @media (max-width: 800px) {
@@ -2068,6 +2078,13 @@ a:hover {
 
     .sb-search-input {
         padding: 20px 31px 20px 10px;
+    }
+    .headImage {
+        width: 750px;
+    }
+    .sliderbox2 .slider2 {
+        width: 539px;
+        margin: 0 0 0 75px;
     }
 }
 
