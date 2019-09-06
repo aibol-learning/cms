@@ -2569,16 +2569,18 @@ group by tmp.source";
             //审核隔离
             if (!string.IsNullOrEmpty(adminSub))
             {
-                
-                whereList.Add($@"(Lv1AdminSub = '{adminSub}' or Lv2AdminSub = '{adminSub}' 
-                    or CheckedLevel = 2 
+                //(Lv1AdminSub = '{adminSub}' and CheckedLevel = 0)
+                //or(Lv2AdminSub = '{adminSub}' and CheckedLevel = 1)
+                whereList.Add($@"(
+                    Lv1AdminSub = '{adminSub}' 
+                    or Lv2AdminSub = '{adminSub}'
                     or (CheckedLevel<0 and AddUserName = '{addUserName}')
                     )");
             }
 
-            if (!isAdminLv3)
+            if (isAdminLv3)
             {
-                whereList.Add($" CheckedLevel != 3");
+                whereList.Add($" CheckedLevel != 2");
             }
 
 
