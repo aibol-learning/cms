@@ -2569,11 +2569,10 @@ group by tmp.source";
             //审核隔离
             if (!string.IsNullOrEmpty(adminSub))
             {
-                //(Lv1AdminSub = '{adminSub}' and CheckedLevel = 0)
-                //or(Lv2AdminSub = '{adminSub}' and CheckedLevel = 1)
+                
                 whereList.Add($@"(
-                    Lv1AdminSub = '{adminSub}' 
-                    or Lv2AdminSub = '{adminSub}'
+                (Lv1AdminSub = '{adminSub}' and (CheckedLevel = 0 or CheckedLevel = -1))
+                or(Lv2AdminSub = '{adminSub}' and (CheckedLevel = 1 or CheckedLevel = -2))
                     or (CheckedLevel<0 and AddUserName = '{addUserName}')
                     )");
             }
