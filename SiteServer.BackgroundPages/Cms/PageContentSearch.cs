@@ -124,7 +124,7 @@ namespace SiteServer.BackgroundPages.Cms
                 searchType, keyword,
                 dateFrom, dateTo, state, _isCheckOnly, false, _isTrashOnly, _isWritingOnly, onlyAdminId,
                 AuthRequest.AdminPermissionsImpl,
-                allAttributeNameList, !isChecked ? Guid.Parse(adminInfo.SSOId).ToString() : "", SSOIds.Contains(adminInfo.SSOId),adminInfo.UserName);
+                allAttributeNameList, !isChecked ? Guid.Parse(adminInfo.SSOId).ToString() : "", SSOIds.Contains(Guid.Parse(adminInfo.SSOId).ToString()),adminInfo.UserName);
 
             PgContents.Param = new PagerParam
             {
