@@ -116,12 +116,12 @@ h5 {
 
 .mnav {
     display: none
-}
+}*/
 
 .pull-right {
     float: right;
     width: 30%
-}*/
+}
 
 /*.logo {
     display: block;
@@ -2886,7 +2886,7 @@ h5 {
 
     .headline_warp .head_img {
         width: 483px;
-        height: 338px;
+        height: 322px;
     }
 
     .headline_warp a.head_title {
@@ -2926,14 +2926,14 @@ h5 {
     .head_list .fa-fire {
         font-size: 16px;
         color: #fa0;
-        margin-left: 10px;
+        margin-left: 5px;
     }
 
 
     .head_list .head_list_info {
         font-size: 14px;
         color: #999;
-        margin: 3px 0 5px 0;
+        margin: 3px 0 7px 0;
     }
 
     .head_list .head_list_more {
@@ -2974,7 +2974,7 @@ h5 {
             .sidebar .sidebar_list .sidebar_list_title .fa-fire {
                 font-size: 12px;
                 color: #fa0;
-                margin-left: 10px;
+                margin-left: 5px;
             }
 
         .sidebar .sidebar_list a {
@@ -3089,7 +3089,7 @@ h5 {
     .news_contents .news_list li .content_wrap .fa-fire {
         font-size: 14px;
         color: #fa0;
-        margin-left: 10px;
+        margin-left: 5px;
     }
 
 .news_content .news_list a.news_list_title {
@@ -3115,6 +3115,7 @@ h5 {
     color: #343434;
     margin: 8px 0 5px 0;
     line-height: 170%;
+    text-align:justify;
 }
 
 .news_content .news_list_more {
@@ -3141,7 +3142,7 @@ h5 {
     .news_list2 .fa-fire {
         font-size: 14px;
         color: #fa0;
-        margin-left: 10px;
+        margin-left: 5px;
     }
 
     .news_list2 a.list_title {
@@ -3197,6 +3198,21 @@ h5 {
 }
 
 @media (max-width: 1024px) {
+    .pic-left img {
+        height: 356px
+    }
+    .headline_warp .head_img {
+        width: 404px;
+        height: 270px;
+    }
+    .headline_warp .head_summary {
+        height: 182px;
+        max-height: 182px;
+        overflow-y: hidden;
+    }
+    .head_list .head_list_info {
+        margin: 1px 0 4px 0;
+    }
     .footer_other {
         float: left;
         width: 18%;
@@ -3211,4 +3227,24 @@ h5 {
             float: left;
             width: 58%;
         }
+}
+@media (max-width: 800px) {
+    
+    .headline_warp .head_img {
+        width: 100%;
+        height: auto;
+    }
+
+    .headline_warp .head_summary {
+        height: 75px;
+        max-height: 75px;
+        margin-bottom:20px;
+    }
+
+    .head_list .head_list_info {
+        margin: 3px 0 7px 0;
+    }
+    .pull-right {
+        width: 100%
+    }
 }

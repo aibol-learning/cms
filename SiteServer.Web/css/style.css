@@ -697,7 +697,7 @@ a:hover {
 
     .indexaboutLinks.btns a{
         background: #b28500;
-        width: 144px;
+        width: 143px;
         height: 37px;
         line-height: 37px;
         color: #fff;
@@ -1799,6 +1799,7 @@ a:hover {
 .tableWrapPadding {
     padding: 65px 80px
 }
+
 
 @media (max-width: 1024px) {
     .headerNav .navItem {
