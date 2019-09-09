@@ -38,11 +38,26 @@
                         </style>
                         <form id="searchForm" action="{Stl.SiteUrl}/utils/search.html">
                             <input placeholder="请输入关键字，按回车键搜索" name="word" id="word" style="width: 240px">
-                            <input placeholder="开始时间" name="dateFrom" id="dateFrom" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'});">-
-                            <input placeholder="结束时间" name="dateTo" id="dateTo" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'});">
+                            <input placeholder="开始时间" name="dateFrom" id="dateFrom" onfocus="var date=yearBefore();WdatePicker({minDate:date,isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'});">-
+                            <input placeholder="结束时间" name="dateTo" id="dateTo" onfocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'});">
                             <input id="channelIds" type="hidden" name="channelIds" />
                             <button class="btn btn-info" type="submit">搜索</button>
                         </form>
+                        <script>
+                            function yearBefore() {
+                                var pre = new Date();
+                                pre.setFullYear(pre.getFullYear() - 1);
+
+                                var Y = pre.getFullYear();
+                                var M = pre.getMonth() + 1;
+                                var D = pre.getDay() + 1;
+                                return Y + '-' + M + '-' + D;
+                            }
+                            $(function () {
+                                var re = yearBefore();
+                                $("#dateFrom").val(re);
+                            })
+                        </script>
                     </div>
                     <div class="listcon">
                         <stl:include file="/include/location.html"></stl:include>
