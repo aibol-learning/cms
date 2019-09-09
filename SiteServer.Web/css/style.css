@@ -1621,10 +1621,6 @@ a:hover {
     color: #009d8e;
 }*/
 
-
-
-
-
 #sideMenu {
     color: #009d8e;
 }
@@ -1799,62 +1795,106 @@ a:hover {
 .tableWrapPadding {
     padding: 65px 80px
 }
-
-
-@media (max-width: 1024px) {
+.flash-1280above {
+    display:block;
+    text-align:center;
+}
+.flash-1152 {
+    display: none;
+    text-align: center;
+}
+.flash-1024 {
+    display: none;
+    text-align: center;
+}
+.flash-800 {
+    display: none;
+    text-align: center;
+}
+@media (max-width: 1152px) {
     .headerNav .navItem {
         width: 900px;
     }
+
+    .flash-1280above {
+        display: none;
+    }
+
+    .flash-1152 {
+        display: block;
+    }
+
+    .flash-1024 {
+        display: none;
+    }
+
+    .flash-800 {
+        display: none;
+    }
+
     .youshipart {
         min-height: 360px;
         height: 360px;
         max-height: 360px;
     }
+
         .youshipart img {
             height: 142px;
         }
+
     .indexaboutLinks.btns a {
         width: 120px;
         margin: 0 14px;
     }
+
     #myTabContent .proimg {
         width: 210px;
         height: 140px;
         margin-left: -15px;
     }
+
         #myTabContent .proimg img {
             width: 210px;
             height: 140px;
         }
+
     #myTabContent .indexprotit {
         padding: 10px 8px 30px 0;
         margin: 0 -15px 0 -8px;
     }
+
     .tableWrapPadding {
         padding: 65px 20px
     }
+
     .slideBox1 .bd ul table {
         font-size: 14px;
     }
+
     .slideBox1 table td {
         padding-left: 6px;
         padding-right: 6px;
     }
+
     .sliderbox2 .slider2 {
         width: 803px;
         margin: 0 0 0 10px;
     }
+
     .sliderbox2 #btn-left2 {
         margin-left: 40px;
     }
+
     .sliderbox2 #btn-right2 {
         float: left;
         margin-right: 40px;
     }
+
     .footernav {
         float: left;
         width: 26%;
     }
+
     .footer_other {
         float: left;
         width: 13%;
@@ -1870,6 +1910,22 @@ a:hover {
             width: 31%;
         }
 }
+@media (max-width: 1024px) {
+    .flash-1280above {
+        display: none;
+    }
+    .flash-1152 {
+        display: none;
+    }
+
+    .flash-1024 {
+        display: block;
+    }
+
+    .flash-800 {
+        display: none;
+    }
+}
 
 @media (max-width: 800px) {
     .sb-search.sb-search-open,
@@ -1883,6 +1939,20 @@ a:hover {
 
     .headerNav .navItem {
         width: 680px;
+    }
+    .flash-1280above {
+        display: none;
+    }
+    .flash-1152 {
+        display: none;
+    }
+
+    .flash-1024 {
+        display: none;
+    }
+
+    .flash-800 {
+        display: block;
     }
 
     .youshipart img {
@@ -1919,7 +1989,7 @@ a:hover {
     .slideBox1 .bd ul div.chart {
         width: 100%;
         font-size: 16px;
-        margin: 30px 0px;
+        margin: 0px;
         height: 280px;
     }
     .slideBox1 .bd ul table {
