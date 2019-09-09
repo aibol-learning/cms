@@ -76,7 +76,7 @@ namespace SiteServer.CMS.DataCache.Stl
                         retval = tuple.Item2;
                         StlCacheManager.Set(cacheKey, retval);
                     }
-                }                
+                }
             }
 
             return retval;
@@ -183,7 +183,7 @@ namespace SiteServer.CMS.DataCache.Stl
             }
 
             return retval;
-        }        
+        }
 
         public static int GetChannelId(string tableName, int contentId)
         {
@@ -207,6 +207,10 @@ namespace SiteServer.CMS.DataCache.Stl
 
         public static string GetStlWhereString(int siteId, string group, string groupNot, string tags, bool isImageExists, bool isImage, bool isVideoExists, bool isVideo, bool isFileExists, bool isFile, bool isTopExists, bool isTop, bool isRecommendExists, bool isRecommend, bool isHotExists, bool isHot, bool isColorExists, bool isColor, string where)
         {
+            if (!string.IsNullOrEmpty(where))
+            {
+                where += " and ";
+            }
             where += "ShowTime < getdate() ";
             var cacheKey = StlCacheManager.GetCacheKey(nameof(StlContentCache), nameof(GetStlWhereString),
                     siteId.ToString(), group, groupNot,
