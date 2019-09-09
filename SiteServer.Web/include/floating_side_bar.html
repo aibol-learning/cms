@@ -12,10 +12,12 @@
         background: #ffb559;
         padding: 0 6px 10px 6px;
     }
+
         .lf_container .operation {
-            height:30px;
-            text-align:right;
+            height: 30px;
+            text-align: right;
         }
+
             .lf_container .operation i {
                 width: 24px;
                 height: 24px;
@@ -31,9 +33,9 @@
             display: block;
         }
 
-        .lf_container a.imgWrap:last-of-type {
-            margin-bottom: 0;
-        }
+            .lf_container a.imgWrap:last-of-type {
+                margin-bottom: 0;
+            }
 
             .lf_container a.imgWrap img {
                 width: 140px;
@@ -102,7 +104,7 @@
                 width: 279px;
                 line-height: 150%;
                 border-radius: 0 0 3px 3px;
-                border-left:1px solid #eee;
+                border-left: 1px solid #eee;
                 box-shadow: 1px 2px 2px rgba(33,33,33,.4)
             }
 
@@ -120,12 +122,14 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
-        .task_list li .task_item_title a{
-            color:#222;
-        }
-            .task_list li .task_item_title a:hover {
-                color: #009d8e;
+
+            .task_list li .task_item_title a {
+                color: #222;
             }
+
+                .task_list li .task_item_title a:hover {
+                    color: #009d8e;
+                }
 
         .task_list li .task_item_time {
             padding: 0 15px;
@@ -136,10 +140,10 @@
             color: #999;
             text-align: center;
             line-height: 65px;
-            font-size:16px;
+            font-size: 16px;
         }
 
-    .task_list_more{
+    .task_list_more {
         text-align: center;
         font-size: 16px;
         font-weight: bold;
@@ -148,6 +152,7 @@
         height: 36px;
         line-height: 36px;
     }
+
         .task_list_more:hover {
             color: #009d8e;
         }
@@ -184,6 +189,14 @@
             line-height: 200%;
             text-indent: 0;
             margin-top: 6px;
+        }
+        .rf_container.rf_qrcode.rf_qrcode2 {
+            top: 374px;
+            right: -144px;
+        }
+        .rf_container.rf_qrcode.rf_qrcode1 {
+            width: 233px;
+            right: -180px;
         }
 </style>
 
@@ -239,10 +252,15 @@
 </div>
 <div class="rf_container rf_top" id="rf_top">返回顶部</div>
 <div class="rf_container rf_phone">{stl:value type="phoneNumber"}</div>
-<div class="rf_container rf_qrcode">
+<div class="rf_container rf_qrcode rf_qrcode1">
     移动端APP<br />
     {stl:value type="app_qrcode" class="rf_qrcode_qr" width="150" alt="移动端APP"}<br />
     <p class="rf_qrcode_text">扫描二维码下载</p>
+</div>
+<div class="rf_container rf_qrcode rf_qrcode2">
+    公众号二维码<br />
+    {stl:value type="wx_qrcode" class="rf_qrcode_qr" width="150" alt="公众号二维码"}<br />
+    <p class="rf_qrcode_text">扫码关注公众号</p>
 </div>
 
 <script>
@@ -277,12 +295,20 @@
             $(".rf_task").css('height', '53px');
         });
         //APP下载
-        $(".rf_qrcode").hover(function () {
-            $(".rf_qrcode").css("right", "5px");
-            $(".rf_qrcode").css('height', '250px');
+        $(".rf_qrcode1").hover(function () {
+            $(".rf_qrcode1").css("right", "5px");
+            $(".rf_qrcode1").css('height', '250px');
         }, function () {
-            $(".rf_qrcode").css("right", "-144px");
-            $(".rf_qrcode").css('height', '53px');
+            $(".rf_qrcode1").css("right", "-180px");
+            $(".rf_qrcode1").css('height', '53px');
+        });
+        //微信公众号
+        $(".rf_qrcode2").hover(function () {
+            $(".rf_qrcode2").css("right", "5px");
+            $(".rf_qrcode2").css('height', '250px');
+        }, function () {
+            $(".rf_qrcode2").css("right", "-144px");
+            $(".rf_qrcode2").css('height', '53px');
         });
 
         // 返回顶部

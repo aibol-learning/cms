@@ -3196,23 +3196,26 @@ h5 {
 .placeholder {
     color: #999;
 }
-
-@media (max-width: 1024px) {
+@media (max-width: 1152px) {
     .pic-left img {
         height: 356px
     }
+
     .headline_warp .head_img {
         width: 404px;
         height: 270px;
     }
+
     .headline_warp .head_summary {
         height: 182px;
         max-height: 182px;
         overflow-y: hidden;
     }
+
     .head_list .head_list_info {
         margin: 1px 0 4px 0;
     }
+
     .footer_other {
         float: left;
         width: 18%;

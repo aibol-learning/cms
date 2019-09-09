@@ -6,41 +6,74 @@
     <stl:include file="/include/header.html"></stl:include>
     <div class="clearfix"></div>
 
-    <!--轮播图-->
-    <div id="slideBox" class="slideBox underslideBox">
-        <div class="hd">
-            <ul>
-                <stl:contents channelIndex="首页轮播图" totalNum="10" isRecommend="true">
-                    <li></li>
-                </stl:contents>
-            </ul>
-        </div>
-        <div class="bd underhd">
-            <ul>
-                <stl:contents channelIndex="首页轮播图" totalNum="10" isRecommend="true">
-                    <li>
-                        <stl:if type="linkUrl" op="Empty">
-                            <stl:yes>
-                                <stl:if type="content" op="Empty">
-                                    <stl:yes>
-                                        <a href="javascript:;"><img src="{Content.ImageUrl}"></a>
-                                    </stl:yes>
-                                    <stl:no>
-                                        <stl:a><img src="{Content.ImageUrl}"></stl:a>
-                                    </stl:no>
-                                </stl:if>
-                            </stl:yes>
-                            <stl:no>
-                                <stl:a target="_blank"><img src="{Content.ImageUrl}"></stl:a>
-                            </stl:no>
-                        </stl:if>
-                    </li>
-                </stl:contents>
-            </ul>
-        </div>
-        <a class="prev" href="javascript:void(0)"></a>
-        <a class="next" href="javascript:void(0)"></a>
-    </div>
+    <stl:contents channelIndex="首页轮播图" totalNum="1" isRecommend="true">
+        <stl:if type="imageUrl" op="notEmpty">
+            <stl:yes>
+                <!--轮播图-->
+                <div id="slideBox" class="slideBox underslideBox">
+                    <div class="hd">
+                        <ul>
+                            <stl:contents channelIndex="首页轮播图" totalNum="10" isImage="true" isRecommend="true">
+                                <li></li>
+                            </stl:contents>
+                        </ul>
+                    </div>
+                    <div class="bd underhd">
+                        <ul>
+                            <stl:contents channelIndex="首页轮播图" totalNum="10" isImage="true" isRecommend="true">
+                                <li>
+                                    <stl:if type="linkUrl" op="Empty">
+                                        <stl:yes>
+                                            <stl:if type="content" op="Empty">
+                                                <stl:yes>
+                                                    <a href="javascript:;"><img src="{Content.ImageUrl}"></a>
+                                                </stl:yes>
+                                                <stl:no>
+                                                    <stl:a><img src="{Content.ImageUrl}"></stl:a>
+                                                </stl:no>
+                                            </stl:if>
+                                        </stl:yes>
+                                        <stl:no>
+                                            <stl:a target="_blank"><img src="{Content.ImageUrl}"></stl:a>
+                                        </stl:no>
+                                    </stl:if>
+                                </li>
+                            </stl:contents>
+                        </ul>
+                    </div>
+                    <a class="prev" href="javascript:void(0)"></a>
+                    <a class="next" href="javascript:void(0)"></a>
+                </div>
+            </stl:yes>
+            <stl:no>
+                <stl:if type="fileUrl" op="notEmpty">
+                    <stl:yes>
+                        <!--Flash-->
+                        <div class="flash-1280above">
+                            <stl:contents channelIndex="首页轮播图" totalNum="1" isFile="true">
+                                <stl:flash width="1170" height="385" type="fileUrl"></stl:flash>
+                            </stl:contents>
+                        </div>
+                        <div class="flash-1152">
+                            <stl:contents channelIndex="首页轮播图" totalNum="1" isFile="true">
+                                <stl:flash width="1134" height="372" type="fileUrl"></stl:flash>
+                            </stl:contents>
+                        </div>
+                        <div class="flash-1024">
+                            <stl:contents channelIndex="首页轮播图" isFile="true" totalNum="1">
+                                <stl:flash width="1007" height="322" type="fileUrl"></stl:flash>
+                            </stl:contents>
+                        </div>
+                        <div class="flash-800">
+                            <stl:contents channelIndex="首页轮播图" isFile="true" totalNum="1">
+                                <stl:flash width="783" height="256" type="fileUrl"></stl:flash>
+                            </stl:contents>
+                        </div>
+                    </stl:yes>
+                </stl:if>
+            </stl:no>
+        </stl:if>
+    </stl:contents>
 
     <div id="vm" v-cloak>
         <!--头条新闻-->
@@ -100,12 +133,12 @@
                             <div class="row">
                                 <div class="col-md-3 col-xs-6" v-for="(news,index) in headlineNews_focus" v-if="index<4">
                                     <!--<div class="propart">-->
-                                        <div class="proimg">
-                                            <a :href="news.navigationUrl" target="_blank">
-                                                <img width="260" height="160" :src="news.imageUrl ? news.imageUrl : '/images/thumbnail.png'" class="attachment-product-thumb size-product-thumb wp-post-image" :alt="news.title" />
-                                            </a>
-                                        </div>
-                                        <a :href="news.navigationUrl" class="indexprotit" target="_blank">{{news.title}}</a>
+                                    <div class="proimg">
+                                        <a :href="news.navigationUrl" target="_blank">
+                                            <img width="260" height="160" :src="news.imageUrl ? news.imageUrl : '/images/thumbnail.png'" class="attachment-product-thumb size-product-thumb wp-post-image" :alt="news.title" />
+                                        </a>
+                                    </div>
+                                    <a :href="news.navigationUrl" class="indexprotit" target="_blank">{{news.title}}</a>
                                     <!--</div>-->
                                 </div>
                             </div>
@@ -190,9 +223,12 @@
         </div>
     </div>
 
-    <!--大屏幕实时数据-->
+    <!--大屏幕实时数据(机组发电数据)-->
     <div id="charts" class="contentpart" style="visibility:hidden" v-cloak>
         <div class="container">
+            <div class="parttitle text-center">
+                <h2>机组发电数据</h2>
+            </div>
             <div class="indexnews">
                 <div id="slideBox1" class="slideBox1">
                     <div class="bd">
