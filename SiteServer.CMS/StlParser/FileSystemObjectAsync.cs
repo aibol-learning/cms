@@ -217,7 +217,7 @@ namespace SiteServer.CMS.StlParser
         {
             var contentInfo = ContentManager.GetContentInfo(siteInfo, channelInfo, contentId);
 
-            if (contentInfo == null)
+            if (contentInfo == null || contentInfo.ShowTime > DateTime.Now)
             {
                 return;
             }
