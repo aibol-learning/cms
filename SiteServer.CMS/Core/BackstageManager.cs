@@ -33,8 +33,7 @@ namespace SiteServer.CMS.Core
                 }
                 else
                 {
-                    //todo 等待消息接口
-                    throw new NotImplementedException();
+                    return CreateMessages(key, redirectUrl, content, string.Join(",", receiverIds));
                 }
             }
             catch (Exception e)
@@ -56,7 +55,7 @@ namespace SiteServer.CMS.Core
                 }
                 else
                 {
-                    //todo 等待消息接口
+                    //消息不需要关闭
                     throw new NotImplementedException();
                 }
             }
@@ -88,6 +87,15 @@ namespace SiteServer.CMS.Core
         public static ResponseData<string> CreateTasks(string Key, string RedirectUrl, string Name, string Receivers)
         {
             var CreateTaskApiUrl = ConfigurationManager.AppSettings["CreateTaskApiUrl"];
+            var data = $"Key={Key}&RedirectUrl={RedirectUrl}&Name={Name}&Receivers={Receivers}";
+
+            var re = post<ResponseData<string>>(CreateTaskApiUrl, data);
+            return re;
+        }
+
+        public static ResponseData<string> CreateMessages(string Key, string RedirectUrl, string Name, string Receivers)
+        {
+            var CreateTaskApiUrl = ConfigurationManager.AppSettings["CreateMessageApiUrl"];
             var data = $"Key={Key}&RedirectUrl={RedirectUrl}&Name={Name}&Receivers={Receivers}";
 
             var re = post<ResponseData<string>>(CreateTaskApiUrl, data);
