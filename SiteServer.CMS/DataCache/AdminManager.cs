@@ -457,6 +457,8 @@ namespace SiteServer.CMS.DataCache
         {
             using (var client = new WebClient())
             {
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
                 client.Encoding = Encoding.UTF8;
                 client.Headers.Add("Authorization", $"Bearer {accessToken}");
 
