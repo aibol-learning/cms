@@ -498,6 +498,8 @@ namespace SiteServer.API.Controllers
 
             var query = db.Database.SqlQuery<ExportContent>($"select * from [siteserver_Content_{siteId}]").AsQueryable();
 
+            query = query.Where(o => o.ChannelId > 0);//siteserver用负数标识删除。
+
             if (DateTime.TryParse(startTime, out var start))
             {
                 query = query.Where(o => o.AddDate >= start);
