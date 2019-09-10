@@ -185,7 +185,7 @@
                                                 <icon class="fa fa-group"></icon> <stl:content type="source"></stl:content>&emsp;
                                             </stl:yes>
                                         </stl:if>
-                                        <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits"></stl:content>
+                                        <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits" isDynamic="true"></stl:content>
                                     </div>
                                 </li>
                             </stl:contents>
@@ -211,7 +211,7 @@
                                                 <icon class="fa fa-group"></icon> <stl:content type="source"></stl:content>&emsp;
                                             </stl:yes>
                                         </stl:if>
-                                        <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits"></stl:content>
+                                        <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits" isDynamic="true"></stl:content>
                                     </div>
                                 </li>
                             </stl:contents>
@@ -341,11 +341,11 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>So2浓度</td>
+                                                        <td>SO<sub>2</sub>浓度</td>
                                                         <td v-for="item in chart4.So2">{{item}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Nox浓度</td>
+                                                        <td>NO<sub>x</sub>浓度</td>
                                                         <td v-for="item in chart4.Nox">{{item}}</td>
                                                     </tr>
                                                     <tr>

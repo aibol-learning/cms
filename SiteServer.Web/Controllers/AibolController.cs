@@ -671,12 +671,19 @@ namespace SiteServer.API.Controllers
                 client.Headers.Add("Authorization", $"Bearer {accessToken}");
 
                 var TasksApiUrl = ConfigurationManager.AppSettings["TasksApiUrl"];
+                try
+                {
+                    var re = client.DownloadString(TasksApiUrl);
 
-                var re = client.DownloadString(TasksApiUrl);
+                    var json = JsonConvert.DeserializeObject<dynamic>(re);
 
-                var json = JsonConvert.DeserializeObject<dynamic>(re);
+                    return Ok(json);
+                }
+                catch (Exception)
+                {
+                    return Ok(new { code = 401 });
+                }
 
-                return Ok(json);
             }
 
         }

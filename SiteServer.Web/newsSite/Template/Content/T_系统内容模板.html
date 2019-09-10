@@ -16,7 +16,6 @@
     <script type="text/javascript" src="{Stl.SiteUrl}/js/jquery.min.js"></script>
     <script type="text/javascript" src="{Stl.SiteUrl}/js/swiper.min.js"></script>
     <script type="text/javascript" src="{Stl.SiteUrl}/js/js.js"></script>
-    <!--<script src="/js/jquery.placeholder.js"></script>-->
 </head>
 <body class="home blog">
     <!--Logo+导航+搜索-->
@@ -39,7 +38,7 @@
                                 作者: <stl:content type="author"></stl:content>&emsp;&emsp;
                                 来源: <stl:content type="source"></stl:content>&emsp;&emsp;
                                 发布时间: <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
-                                阅读次数: <stl:content type="hits"></stl:content>
+                                阅读次数: <stl:content type="hits" isDynamic="true"></stl:content>
                             </div>
                             <div class="pagecontent m-t-20">
                                 <stl:content type="Content"></stl:content>

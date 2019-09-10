@@ -130,6 +130,7 @@ namespace SiteServer.CMS.StlParser
                 var pageCount = pageContentsElementParser.GetPageCount(out var totalNum);
 
                 pageInfo.AddPageBodyCodeIfNotExists(PageInfo.Const.Jquery);
+                pageInfo.AddPageBodyCodeIfNotExists(PageInfo.Const.StlClient);
                 Parser.Parse(pageInfo, contextInfo, contentBuilder, filePath, false);
 
                 for (var currentPageIndex = 0; currentPageIndex < pageCount; currentPageIndex++)
