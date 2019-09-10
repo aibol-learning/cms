@@ -136,7 +136,7 @@ namespace SiteServer.BackgroundPages.Cms
 
 
             var isChecked = checkedLevel >= SiteInfo.Additional.CheckContentLevel;
-            
+
 
 
             var contentInfoListToCheck = new List<ContentInfo>();
@@ -180,12 +180,12 @@ namespace SiteServer.BackgroundPages.Cms
                         switch (DdlCheckType.SelectedItem.Text)
                         {
                             case "支部书记审批":
-                                BackstageManager.SendMessage(MessageType.任务, 
+                                BackstageManager.SendMessage(MessageType.任务,
                                     new List<string>() { checkSub },
                                     "您有一条新闻审核任务待处理", redirectUrl, key);
                                 break;
                             case "公司领导审批":
-                                BackstageManager.SendMessage(MessageType.任务, 
+                                BackstageManager.SendMessage(MessageType.任务,
                                     new List<string>() { checkSub },
                                     "您有一条新闻审核任务待处理", redirectUrl, key);
                                 break;
@@ -196,7 +196,7 @@ namespace SiteServer.BackgroundPages.Cms
                                     "您有一条支部书记审批退稿的新闻任务待处理", redirectUrl, key);
                                 break;
                             case "公司领导审批退稿":
-                                BackstageManager.SendMessage(MessageType.任务, 
+                                BackstageManager.SendMessage(MessageType.任务,
                                     new List<string>() { DataProvider.AdministratorDao.GetByUserName(contentInfo.AddUserName).SSOId },
                                     "您有一条公司领导审批退稿的新闻任务待处理", redirectUrl, key);
                                 break;
@@ -217,10 +217,9 @@ namespace SiteServer.BackgroundPages.Cms
                                     SSOIds,
                                     $"{AuthRequest.AdminInfo.DisplayName}处理了一条新闻审批任务", redirectUrl, key);
                                 break;
-
                             case "审批完成":
-                                BackstageManager.SendMessage(MessageType.消息, 
-                                    new List<string>() { contentInfo.Lv2AdminSub },
+                                BackstageManager.SendMessage(MessageType.消息,
+                                    new List<string>() { DataProvider.AdministratorDao.GetByUserName(contentInfo.AddUserName).SSOId },
                                     "您有一条发起审批的新闻已完成审批",
                                     redirectUrl, key);
                                 break;
