@@ -545,7 +545,8 @@
             lightbox.option({
                 'resizeDuration': 200,
                 'wrapAround': true,
-                'albumLabel': '%1 / %2'
+                'albumLabel': '%1 / %2',
+                disableScrolling: false
             })
 
             //信息员天地数据请求
@@ -598,6 +599,7 @@
                                                 }
                                             },
                                             yAxis: {
+                                                minInterval: 1
                                             },
                                             series: [{
                                                 name: '发稿量',
@@ -651,7 +653,9 @@
                                                     rotate: 45
                                                 }
                                             },
-                                            yAxis: {},
+                                            yAxis: {
+                                                minInterval: 1
+                                            },
                                             series: [{
                                                 name: '发稿量',
                                                 type: 'bar',

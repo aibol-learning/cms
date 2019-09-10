@@ -1,5 +1,5 @@
 var global = {
-    apikey: "38bfc679-ec19-488d-9877-c66016bbe2d5", //apikey
+    apikey: "9de9f3c8-bb9f-44a1-bd9d-b149d1dadc6d", //apikey
     newsSiteId: 36, //新闻中心网站id
     loginInfo: null, //当前登录信息
     urls: {
