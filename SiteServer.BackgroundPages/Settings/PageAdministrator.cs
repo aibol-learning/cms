@@ -27,7 +27,7 @@ namespace SiteServer.BackgroundPages.Settings
 
         public Repeater RptContents;
         public Pager PgContents;
-        
+
         public Button BtnLock;
         public Button BtnUnLock;
         public Button BtnDelete;
@@ -317,7 +317,7 @@ namespace SiteServer.BackgroundPages.Settings
 
             var url = ConfigurationManager.AppSettings["UsersApiUrl"];
 
-            if(WebClientUtils.Get(url+ "?LastRetrieveDate=2000-01-01&PageSize=30000", out re))
+            if (WebClientUtils.Get(url + "?LastRetrieveDate=2000-01-01&PageSize=30000", out re))
             {
                 JObject result = JObject.Parse(re);
                 var admins = DataProvider.AdministratorDao.ApiGetAdministrators(0, Int32.MaxValue);
@@ -328,8 +328,8 @@ namespace SiteServer.BackgroundPages.Settings
                     var name = record["name"].ToString();
                     var code = record["code"].ToString();
 
-                    var adminInfo = admins.FirstOrDefault(o=>o.SSOId == id);
-                    if (adminInfo == null )
+                    var adminInfo = admins.FirstOrDefault(o => o.SSOId == id);
+                    if (adminInfo == null)
                     {
                         adminInfo = new AdministratorInfo()
                         {
@@ -340,7 +340,7 @@ namespace SiteServer.BackgroundPages.Settings
                         };
                         if (!DataProvider.AdministratorDao.Insert(adminInfo, out var errorMessage))
                         {
-                            LogUtils.AddAdminLog("admin","导入用户", "导入失败:"+ errorMessage);
+                            LogUtils.AddAdminLog("admin", "导入用户", "导入失败:" + errorMessage);
                         }
                         else
                         {
@@ -361,10 +361,10 @@ namespace SiteServer.BackgroundPages.Settings
             }
             else
             {
-                FailMessage(null, "获取失败");
+                FailMessage(null, $"获取失败:{re}");
             }
 
-            
+
         }
 
         private string _pageUrl;
