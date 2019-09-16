@@ -703,6 +703,14 @@ namespace SiteServer.API.Controllers
 
                 var json = JsonConvert.DeserializeObject<dynamic>(re);
 
+
+                var GetStopDaysApiUrl = ConfigurationManager.AppSettings["GetStopDaysApiUrl"];
+
+                var GetStopDaysApiUrlRe = client.DownloadString(GetStopDaysApiUrl);
+
+                json.Stopdays = JsonConvert.DeserializeObject<dynamic>(GetStopDaysApiUrlRe);
+
+
                 return Ok(json);
             }
 
