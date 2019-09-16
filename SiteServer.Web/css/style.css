@@ -1741,14 +1741,17 @@ a:hover {
 
 /*大屏幕实时数据*/
 .slideBox1 .bd ul {
-    height: 440px;
+    height: 400px;
     text-align: center;
 }
 
     .slideBox1 .bd ul li {
-        padding-top: 35px;
-        height: 440px
+        padding-top: 60px;
+        height: 400px
     }
+        .slideBox1 .bd ul li .portlet-clear {
+            margin: 0 80px;
+        }
 
     .slideBox1 .bd ul table {
         width: 90%;
@@ -1759,8 +1762,8 @@ a:hover {
     .slideBox1 .bd ul div.chart {
         width: 90%;
         font-size: 16px;
-        margin: 40px auto;
-        height: 300px
+        margin: 0 auto;
+        height: 256px
     }
 
     .slideBox1 .bd ul table th,
@@ -1780,7 +1783,12 @@ a:hover {
 .portlet .table-striped tr:nth-child(odd) td {
     background-color: #fff;
 }
-
+.tableGrowHigh th{
+    height:60px;
+}
+.tableGrowHigh td {
+    height: 58px;
+}
 
 .placeholder {
     color: #999;
@@ -1794,6 +1802,9 @@ a:hover {
 }
 .tableWrapPadding {
     padding: 65px 80px
+}
+.slideBox1 .bd ul li .portlet-clear {
+    margin: 0 80px;
 }
 .flash-1280above {
     display:block;
@@ -1862,18 +1873,25 @@ a:hover {
         padding: 10px 8px 30px 0;
         margin: 0 -15px 0 -8px;
     }
-
+    
     .tableWrapPadding {
         padding: 65px 20px
     }
 
+    .slideBox1 .bd ul li .portlet-clear {
+        margin: 0 20px;
+    }
     .slideBox1 .bd ul table {
         font-size: 14px;
     }
+    .slideBox1 .bd ul div.chart {
+        height: 246px
+    }
 
-    .slideBox1 table td {
-        padding-left: 6px;
-        padding-right: 6px;
+    .tableGrowHigh th,
+    .tableGrowHigh td {
+        height: 56px;
+        padding: 17px 6px !important;
     }
 
     .sliderbox2 .slider2 {
@@ -1984,13 +2002,16 @@ a:hover {
         padding-left: 15px;
     }
     .tableWrapPadding {
-        padding: 65px 10px
+        padding: 25px 10px !important;
+    }
+    .slideBox1 .bd ul li .portlet-clear {
+        margin: -35px 10px 0;
     }
     .slideBox1 .bd ul div.chart {
         width: 100%;
         font-size: 16px;
         margin: 0px;
-        height: 280px;
+        height: 231px;
     }
     .slideBox1 .bd ul table {
         font-size: 12px;
@@ -1998,6 +2019,11 @@ a:hover {
     .slideBox1 .bd ul table th, 
     .slideBox1 .bd ul table td {
         padding: 12px 6px;
+    }
+    .tableGrowHigh th,
+    .tableGrowHigh td {
+        height: 52px;
+        padding: 17px 6px !important;
     }
     .sliderbox2 .slider2 {
         width: 535px;

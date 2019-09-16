@@ -66,7 +66,13 @@ $(function () {
                 this.chart7 = data.Solars[2];
                 this.set8(data);
                     
-                jQuery(".slideBox1").slide({ mainCell: ".bd ul", effect: "left", autoPlay: true, delayTime: 1000 });
+                jQuery(".slideBox1").slide({
+                    mainCell: ".bd ul",
+                    effect: "left",
+                    autoPlay: true,
+                    delayTime: 1000,
+                    interTime: 15000
+                });
                 setTimeout(function () {
                     $("#charts").css("visibility", "visible");
                 },100)
