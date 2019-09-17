@@ -551,23 +551,63 @@
                                 </div>
                             </li>
                             <li class="tableWrapPadding">
-                                <div class="portlet box yellow">
+                                <div class="portlet box blue">
                                     <div class="portlet-title">
                                         <div class="caption"><i class="fa fa-cogs"></i>发电机组可靠性</div>
                                     </div>
                                     <div class="portlet-body">
-                                        <div class="chart" id="chart8">
+                                        <div class="table-scrollable">
+                                            <table class="table table-bordered table-hover tableShrink">
+                                                <thead>
+                                                    <tr>
+                                                        <th>机组名称</th>
+                                                        <th>当前连续运行天数</th>
+                                                        <th>连续运行历史记录</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="item in chart8">
+                                                        <td>{{item.groupName}}</td>
+                                                        <td>{{item.RunningDays}}</td>
+                                                        <td>{{item.LongestDays}}</td>
+                                                        <td width="30%">
+                                                            <div class="progress" v-html="item.percentBarHtml"></div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             <li>
-                                <div class="portlet box blue portlet-clear">
+                                <div class="portlet box green portlet-clear">
                                     <div class="portlet-title">
-                                        <div class="caption"><i class="fa fa-cogs"></i>发电机组可靠性222222</div>
+                                        <div class="caption"><i class="fa fa-cogs"></i>发电机组可靠性</div>
                                     </div>
                                     <div class="portlet-body">
-                                        <div class="chart" id="chart9">
+                                        <div class="table-scrollable">
+                                            <table class="table table-bordered table-hover tableShrink">
+                                                <thead>
+                                                    <tr>
+                                                        <th>机组名称</th>
+                                                        <th>当前无非停运行天数</th>
+                                                        <th>无非停运行历史记录</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="item in chart9">
+                                                        <td>{{item.groupName}}</td>
+                                                        <td>{{item.StopRunningDays}}</td>
+                                                        <td>{{item.StopRunningHistory}}</td>
+                                                        <td width="30%">
+                                                            <div class="progress" v-html="item.percentBarHtml"></div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

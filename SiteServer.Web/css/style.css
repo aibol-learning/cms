@@ -1789,6 +1789,15 @@ a:hover {
 .tableGrowHigh td {
     height: 58px;
 }
+.tableShrink th {
+    padding: 7px 12px !important;
+}
+.tableShrink td {
+    padding: 5px 12px !important;
+}
+.tableShrink .progress {
+    margin-bottom: 0 !important;
+}
 
 .placeholder {
     color: #999;
@@ -1892,6 +1901,13 @@ a:hover {
     .tableGrowHigh td {
         height: 56px;
         padding: 17px 6px !important;
+    }
+    .tableShrink th {
+        padding: 6px 12px !important;
+    }
+
+    .tableShrink td {
+        padding: 5px 12px 6px 12px !important;
     }
 
     .sliderbox2 .slider2 {
@@ -2024,6 +2040,13 @@ a:hover {
     .tableGrowHigh td {
         height: 52px;
         padding: 17px 6px !important;
+    }
+    .tableShrink th {
+        padding: 6px 12px !important;
+    }
+
+    .tableShrink td {
+        padding: 5px 12px 4px 12px !important;
     }
     .sliderbox2 .slider2 {
         width: 535px;

@@ -54,6 +54,8 @@ $(function () {
                 Monthly: {},
                 Annual: {},
             },
+            chart8: [],
+            chart9: []
         },
         methods: {
             setData: function (data) {
@@ -65,6 +67,7 @@ $(function () {
                 this.chart6 = data.Solars[1];
                 this.chart7 = data.Solars[2];
                 this.set8(data);
+                this.set9(data);
                     
                 jQuery(".slideBox1").slide({
                     mainCell: ".bd ul",
@@ -232,47 +235,34 @@ $(function () {
                     this.chart4.Dust.push(data.GeneratorSets[i].Dust);
                 }
             },
-            set8: function (res) {
-                //大屏幕8 - 柱状图
-                var getData = function() {
-                    var data = [];
-                    for (var i = 0; i < 6; i++) {
-                        data.push(res.GeneratorSets[i].RunningDays);
+            set8: function (data) {
+                var self = this;
+                var groupName = ['一号机组', '二号机组', '三号机组', '四号机组', '五号机组', '六号机组'];
+                data.GeneratorSets.forEach(function (node, index) {
+                    if (index < 6) {
+                        var percent = Math.round(node.RunningDays / node.LongestDays * 100);
+                        self.chart8.push({
+                            groupName: groupName[index],
+                            RunningDays: node.RunningDays,
+                            LongestDays: node.LongestDays,
+                            percentBarHtml: '<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + percent + '" style="width: ' + percent + '%"></div>'
+                        })
                     }
-                    return data;
-                }
+                });
+            },
+            set9: function (data) {
+                var self = this;
+                var groupName = ['一号机组', '二号机组', '三号机组', '四号机组', '五号机组', '六号机组'];
+                data.Stopdays.StopRunningDays.forEach(function (node, index) {
+                    var percent = Math.round(node / data.Stopdays.StopRunningHistory[index] * 100);
                         
-                //图表初始化
-                var myChart8 = echarts.init(document.getElementById('chart8'));
-
-                // 指定图表的配置项和数据
-                var option8 = {
-                    color: ['#3bafda'],
-                    //title: {
-                    //    text: ''
-                    //},
-                    tooltip: {},
-                    //legend: {
-                    //    data: ['连续运行时间']
-                    //},
-                    xAxis: {
-                        data: ['一号机组', '二号机组', '三号机组', '四号机组', '五号机组', '六号机组'],
-                        axisLabel: {
-                            interval: 0,
-                            //rotate: 45
-                        }
-                    },
-                    yAxis: {
-                    },
-                    series: [{
-                        name: '连续运行时间',
-                        type: 'bar',
-                        barCategoryGap: '50%',
-                        data: getData()
-                    }]
-                };
-                //使用配置项和数据显示图表。
-                myChart8.setOption(option8);
+                    self.chart9.push({
+                        groupName: groupName[index],
+                        StopRunningDays: node,
+                        StopRunningHistory: data.Stopdays.StopRunningHistory[index],
+                        percentBarHtml: '<div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + percent +'" style="width: '+percent+'%"></div>'
+                    })
+                });
             }
         }
     });
