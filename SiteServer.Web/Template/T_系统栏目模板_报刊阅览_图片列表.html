@@ -11,36 +11,47 @@
         }
 
             ul.gallery_list li {
-                width: 124px;
-                height: 171px;
-                overflow: hidden;
-                position: relative;
+                width: 91px;
+                height: 180px;
                 float: left;
-                margin: 12px 4px 24px 4px;
-                border: 2px solid #009d8e;
+                margin: 12px 4px 10px 4px;
             }
 
-                ul.gallery_list li .imageTitle {
-                    position: absolute;
-                    left: 0;
-                    bottom: 0;
-                    right: 0;
-                    height: 28px;
-                    line-height: 28px;
-                    background: rgba(0,0,0,.55);
-                    color: #f5f5f5;
-                    font-size: 14px;
-                    padding: 0 8px;
-                    display: inline-block;
+                ul.gallery_list li .thumb {
+                    width: 91px;
+                    height: 128px;
                     overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
+                    position: relative;
+                    border: 2px solid #009d8e;
                 }
+                ul.gallery_list li .info {
+                    font-size:12px;
+                    color:#666;
+                    line-height:120%;
+                    margin:5px 0 0 5px;
+                }
+
+                    ul.gallery_list li .thumb .imageTitle {
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        height: 28px;
+                        line-height: 28px;
+                        background: rgba(0,0,0,.55);
+                        color: #f5f5f5;
+                        font-size: 12px;
+                        padding: 0 5px;
+                        display: inline-block;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
 
         .gallery_item {
             display: inline-block;
-            height: 171px;
-            width: 124px;
+            height: 128px;
+            width: 91px;
             overflow: hidden;
             background-repeat: no-repeat;
             background-size: cover;
@@ -57,28 +68,31 @@
             width: 100%;
             height: 100%;
         }
-        
+
         .gallery_download {
-            width: 20px;
-            height: 20px;
-            color: #F60;
-            font-size: 18px;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            font-size: 12px;
             position: absolute;
-            right: 5px;
-            top: 5px;
+            right: 0;
+            top: 0;
             z-index: 2;
+            color: #fff;
+            text-align: center;
+            background: #009d8e;
+            padding-left:2px;
         }
 
             .gallery_download:hover {
-                color: #F60;
-                text-shadow: 1px 1px 1px #F90;
+                color: #fff;
             }
 
         .label_new {
-            width: 55px;
-            height: 50px;
+            width: 35px;
+            height: 35px;
             background: url(/images/new.png) no-repeat left top;
-            background-size: 50px 50px;
+            background-size: 35px 35px;
             position: absolute;
             top: 0;
             left: 0;
@@ -90,17 +104,40 @@
             color: #FA0;
             margin-left: 5px;
         }
-
-        @media (max-width: 1024px) {
-            ul .gallery_list li {
-                width: 178px;
-                height: 232px;
-                margin: 12px 17px 24px 17px;
+        @media (max-width: 1152px) {
+            ul.gallery_list li {
+                width: 95px;
+                height: 180px;
+                float: left;
+                margin: 12px 6px 10px 6px;
             }
 
+                ul.gallery_list li .thumb {
+                    width: 95px;
+                    height: 128px;
+                    overflow: hidden;
+                    position: relative;
+                    border: 2px solid #009d8e;
+                }
+
             .gallery_item {
-                width: 180px;
-                height: 234px;
+                width: 95px;
+                height: 128px;
+            }
+        }
+        @media (max-width: 800px) {
+            ul.gallery_list li {
+                width: 99px;
+                
+            }
+
+                ul.gallery_list li .thumb {
+                    width: 99px;
+                    
+                }
+
+            .gallery_item {
+                width: 99px;
             }
         }
     </style>
@@ -161,16 +198,23 @@
                     <div class="listcon">
                         <stl:include file="/include/location.html"></stl:include>
                         <ul class="gallery_list">
-                            <stl:pageContents pageNum="12" order="AddDate" where="addDate > dateadd(year, -1, getdate())">
+                            <stl:pageContents pageNum="24" order="AddDate" where="addDate > dateadd(year, -1, getdate())">
                                 <li fileurl="{Content.fileUrl}">
-                                    <stl:a class="gallery_images">
-                                        <span class="gallery_item">
-                                        </span>
-                                    </stl:a>
-                                    <a class="gallery_download" href="{Content.fileUrl}" download="{Content.fileUrl}"><icon class="fa fa-download"></icon></a>
-                                    <span class="js_addDate" style="display:none;"><stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span>
-                                    <span class="label_new"></span>
-                                    <span class="imageTitle" title="{Content.title}"><stl:content type="title"></stl:content><stl:if type="IsHot" op="Equals" value="true"><i class="fa fa-fire"></i></stl:if></span>
+                                    <div class="thumb">
+                                        <stl:a class="gallery_images">
+                                            <span class="gallery_item">
+                                            </span>
+                                        </stl:a>
+                                        <a class="gallery_download" href="{Content.fileUrl}" download="{Content.fileUrl}"><icon class="fa fa-download"></icon></a>
+                                        <!--<span class="js_addDate" style="display:none;"><stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span>-->
+                                        <span class="label_new"></span>
+                                        <span class="imageTitle" title="{Content.title}"><stl:content type="title"></span>
+                                    </div>
+                                    <div class="info">
+                                        <icon class="fa fa-calendar"></icon> <span class="js_addDate"><stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span><br />
+                                        <icon class="fa fa-edit"></icon> <span class="js_author"><stl:content type="author"></stl:content></span><br />
+                                        <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits" isDynamic="true"></stl:content>
+                                    </div>
                                 </li>
                             </stl:pageContents>
                         </ul>
@@ -235,6 +279,10 @@
                     $(this).find("span.gallery_item").addClass("noImage");
                     $(this).find(".gallery_download").css("display", "none");
                 }
+
+                var author = $(this).find(".js_author").text();
+                var start1 = author.lastIndexOf("(");
+                $(this).find(".js_author").text(author.substring(0, start1));
             })
 
             //判断是否为当日新添加的文章, 打上new标记
@@ -248,6 +296,7 @@
 
             $(".js_addDate").each(function () {
                 if ($(this).text() == today) {
+                    $(this).parents("li").eq(0).find(".label_new")
                     $(this).parents("li").eq(0).find(".label_new").css("display", "inline-block");
                 }
             });
