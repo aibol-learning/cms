@@ -36,9 +36,21 @@
         <hr />
 
         <div class="text-right mr-1">
-          <asp:Button class="btn btn-primary m-l-5" text="确 定" runat="server" onClick="Submit_OnClick" />
+            <label id="uploading_tip" style="display: none">提示：文件较大，正在上传中，请等待</label>
+          <asp:Button ID="sub" class="btn btn-primary m-l-5" text="确 定" runat="server" onClick="Submit_OnClick" />
           <button type="button" class="btn btn-default m-l-5" onclick="window.parent.layer.closeAll()">取 消</button>
         </div>
+          <script>
+              $(function() {
+                  $("#sub").click(function() {
+                      $("#uploading_tip").show();
+                      setTimeout(function() {
+                          $('#sub').attr("disabled", true);
+                          $('#sub').val("上传中...");
+                      },300)
+                  });
+              })
+          </script>
 
       </form>
     </body>

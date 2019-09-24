@@ -20,9 +20,12 @@ namespace SiteServer.BackgroundPages.Cms
         public DropDownList DdlIsFileUploadChangeFileName;
         public Literal LtlScript;
 
+
         private EUploadType _uploadType;
         private string _realtedPath;
         private string _textBoxClientId;
+
+
 
         public static string GetOpenWindowStringToTextBox(int siteId, EUploadType uploadType, string textBoxClientId)
         {
@@ -60,6 +63,7 @@ namespace SiteServer.BackgroundPages.Cms
         public override void Submit_OnClick(object sender, EventArgs e)
         {
             if (HifUpload.PostedFile == null || "" == HifUpload.PostedFile.FileName) return;
+
 
             var filePath = HifUpload.PostedFile.FileName;
                 
