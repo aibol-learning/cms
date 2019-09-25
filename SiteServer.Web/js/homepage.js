@@ -101,7 +101,12 @@ $(function () {
                                 return colorList[params.dataIndex];
                             }
                         },
-                        //label : {show: true, position: 'top'}
+                        label: {
+                            show: true,
+                            position: 'top',
+                            formatter: '{c}VM',
+                            distance: 0
+                        }
                     }
                 };
 
@@ -129,9 +134,9 @@ $(function () {
                     //text: 'ECharts 入门示例'
                     //},
                     tooltip: {},
-                    legend: {
-                        data: ['发电量', '剩余']
-                    },
+                    //legend: {
+                    //    data: ['发电量', '剩余']
+                    //},
                     xAxis: {
                         data: ["一号机组", "二号机组", "三号机组", "四号机组", "五号机组", "六号机组", "光伏"]
                     },
@@ -282,7 +287,9 @@ $(function () {
         el: "#vm",
         data: {
             headlineNews_focus: [],     //头条聚集
-            headlineNews: []            //头条新闻
+            headlineNews: [],           //头条新闻
+            primaryNews: [],            //重要新闻 
+            secondaryNews: [],          //次要新闻 
         },
         methods: {
             //获取新闻中心网站所有一级栏目
@@ -327,6 +334,126 @@ $(function () {
                         }
                     })
                 }
+            },
+
+            //获取新闻中心配置为“门户主要新闻”的栏目前4个
+            getPrimaryNewsChannelsByGroup: function () {
+                var self = this;
+                $.ajax({
+                    url: encodeURI('/api/v1/stl/channels?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&groupChannel=门户主要新闻&totalNum=4'),
+                    type: 'get',
+                    success: function (response) {
+                        for (var i = 0; i < response.value.length; i++) {
+                            var tempObj = {
+                                id: response.value[i].id,
+                                channelName: response.value[i].channelName,
+                                navigationUrl: response.value[i].navigationUrl,
+                                contents: [],
+                                active: true
+                            }
+                            self.primaryNews.push(tempObj);
+                            self.getPrimaryNewsContents(tempObj.id);
+                        }
+                    }
+                })
+            },
+
+            //获取新闻中心配置为“门户主要新闻”的栏目内容 推荐+前2条
+            getPrimaryNewsContents: function (channelId) {
+                var self = this;
+                $.ajax({
+                    url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelId=' + channelId + "&totalNum=2&isRecommend=true",
+                    type: 'get',
+                    success: function (response) {
+                        for (var i = 0; i < self.primaryNews.length; i++) {
+                            if (self.primaryNews[i].id == channelId) {
+                                self.primaryNews[i].contents = response.value;
+                                self.primaryNews[i].contents.forEach(function (node, index) {
+                                    if (node.title.length > 25) {
+                                        node.titleShort = node.title.substring(0, 25) + "…";
+                                    }
+                                    else {
+                                        node.titleShort = node.title;
+                                    }
+                                    if (node.summary.length > 55) {
+                                        node.summary = node.summary.substring(0, 55) + "…";
+                                    }
+                                })
+                            }
+                        }
+                    }
+                })
+            },
+
+            //获取新闻中心配置为“门户次要新闻”的栏目前8个
+            getSecondaryNewsChannelsByGroup: function () {
+                var self = this;
+                $.ajax({
+                    url: encodeURI('/api/v1/stl/channels?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&groupChannel=门户次要新闻&totalNum=8'),
+                    type: 'get',
+                    success: function (response) {
+                        var grounpCount = Math.ceil(response.value.length / 4);
+                        var tempArray = [];
+                        for (var i = 0; i < grounpCount; i++) {
+                            var tempArray = [];
+                            for (var j = 0; j < 4; j++) {
+                                var c = i * 4 + j;
+                                if (c < response.value.length) {
+                                    var tempObj = {
+                                        id: response.value[c].id,
+                                        channelName: response.value[c].channelName,
+                                        navigationUrl: response.value[c].navigationUrl,
+                                        contents: []
+                                    }
+                                    if (j == 0) {
+                                        tempObj.active = true;
+                                    }
+                                    else {
+                                        tempObj.active = false;
+                                    }
+                                    tempArray.push(tempObj);
+
+                                    self.getSecondaryNewsContents(tempObj.id);
+                                }
+                            }
+                            self.secondaryNews.push(tempArray);
+                        }
+                    }
+                })
+            },
+
+            //获取新闻中心配置为“门户次要新闻”的栏目内容 推荐+前5条
+            getSecondaryNewsContents: function (channelId) {
+                var self = this;
+                $.ajax({
+                    url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelId=' + channelId + "&totalNum=5&isRecommend=true",
+                    type: 'get',
+                    success: function (response) {
+                        for (var i = 0; i < self.secondaryNews.length; i++) {
+                            for (var j = 0; j < self.secondaryNews[i].length; j++) {
+                                if (self.secondaryNews[i][j].id == channelId) {
+                                    self.secondaryNews[i][j].contents = response.value;
+                                    self.secondaryNews[i][j].contents.forEach(function (node, index) {
+                                        if (node.title.length > 25) {
+                                            node.titleShort = node.title.substring(0, 25) + "…";
+                                        }
+                                        else {
+                                            node.titleShort = node.title;
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                    }
+                })
+            },
+
+            //tab切换
+            changeTab4SecondaryNews: function (bundleIndex, tabIndex) {
+                this.secondaryNews[bundleIndex].forEach(function (node, index) {
+                    node.active = false;
+                });
+                this.secondaryNews[bundleIndex][tabIndex].active = true;
             }
         },
         created: function () {
@@ -341,6 +468,11 @@ $(function () {
             }).fail(function (data) {
                 console.log("reject");
             });
+
+            //获取新闻中心配置为“门户主要新闻”的栏目及内容
+            this.getPrimaryNewsChannelsByGroup();
+            //获取新闻中心配置为“门户次要新闻”的栏目及内容
+            this.getSecondaryNewsChannelsByGroup();
         }
     })
 
