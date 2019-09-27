@@ -264,9 +264,11 @@ a:hover {
     line-height: 40px;
     margin: 0;
     z-index: 10;
-    padding: 20px 65px 20px 20px;
+    padding-left: 15px;
     font-family: inherit;
     font-size: 16px;
+    color: #009d8e;
+    padding-right: 30px;
 }
 
     .sb-search-input::-webkit-input-placeholder {
@@ -332,7 +334,7 @@ a:hover {
 .loginInfo {
     position: absolute;
     top : 0;
-    right: 20px;
+    right: 10px;
     line-height: 65px;
     color: #333;
     text-align: right;
@@ -1675,16 +1677,8 @@ a:hover {
     border: 1px solid #009d8e;
 }
 
-.sb-search-input {
-    color: #009d8e !important;
-}
-
 #showsum1 span.sel {
     border: 1px solid #009d8e;
-}
-
-.sb-search-input {
-    color: #009d8e !important;
 }
 
 .xgpro {
@@ -1978,7 +1972,6 @@ a:hover {
     text-align: justify;
 }
 
-
 @media (max-width: 1152px) {
     .headerNav .navItem {
         width: 900px;
@@ -2115,9 +2108,9 @@ a:hover {
         width: 170px;
     }
 
-    .sb-search-input {
+    /*.sb-search-input {
         padding: 20px 31px 20px 10px;
-    }
+    }*/
 
     .headerNav .navItem {
         width: 680px;
@@ -2296,9 +2289,9 @@ a:hover {
         display: none;
     }
 
-    .search {
+    /*.search {
         display: none;
-    }
+    }*/
 
     .themenav {
         height: 56px;

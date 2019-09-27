@@ -76,4 +76,9 @@ $(function () {
             this.setPV();
         }
     })
+
+    //IE9º∞“‘œ¬placeholder
+    if (navigator.appName == "Microsoft Internet Explorer" && parseInt(navigator.appVersion.split(";")[1].replace(/[ ]/g, "").replace("MSIE", "")) <= 9) {
+        $('input').placeholder();
+    }
 });

@@ -19,7 +19,7 @@
         <div class="loginInfo" v-cloak id="loginInfoVM">
             <a v-if="!isLogin" v-bind:href="login">登录我的工作区</a>
             <a v-if="isLogin" v-bind:href="logout">退出</a>
-            <a v-if="isLogin" target="_blank" v-bind:href="backstage">进入工作区</a>
+            <a v-if="isLogin" target="_blank" v-bind:href="backstage" style="margin-left:10px">进入工作区</a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -132,9 +132,6 @@
                     $("#navHandleMore span").text("更多");
                 }
             })
-
-            //IE9 placeholder支持
-            //$('input, textarea').placeholder();
         });
     </script>
 </div>

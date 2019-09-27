@@ -371,120 +371,6 @@ a:hover {
     display: none;
 }
 
-.search {
-    position: absolute;
-    right: 120px;
-    top: 4px;
-}
-
-.sb-search {
-    margin-right: 15px;
-    position: relative;
-    margin-top: 10px;
-    width: 0%;
-    min-width: 30px;
-    height: 40px;
-    float: right;
-    overflow: hidden;
-    -webkit-transition: width 0.3s;
-    -moz-transition: width 0.3s;
-    transition: width 0.3s;
-    -webkit-backface-visibility: hidden;
-    z-index: 999;
-}
-
-.sb-search-input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    outline: none;
-    background: #fff;
-    width: 100%;
-    height: 40px;
-    margin: 0;
-    z-index: 10;
-    padding: 20px 65px 20px 20px;
-    font-family: inherit;
-    font-size: 20px;
-    font-size: 16px;
-}
-
-    .sb-search-input::-webkit-input-placeholder {
-        color: #999;
-    }
-
-    .sb-search-input:-moz-placeholder {
-        color: #999;
-    }
-
-    .sb-search-input::-moz-placeholder {
-        color: #999;
-    }
-
-    .sb-search-input:-ms-input-placeholder {
-        color: #999;
-    }
-
-.glyphicon-search,
-.sb-search-submit {
-    width: 30px;
-    height: 40px;
-    display: block;
-    position: absolute !important;
-    right: 0;
-    top: 0 !important;
-    padding: 0;
-    margin: 0;
-    line-height: 40px !important;
-    text-align: center;
-    cursor: pointer;
-}
-
-.sb-search-submit {
-    background: #fff; /* IE needs this */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
-    filter: alpha(opacity=0); /* IE 5-7 */
-    opacity: 0;
-    color: transparent;
-    border: none;
-    outline: none;
-    z-index: -1;
-}
-
-/* Open state */
-.sb-search.sb-search-open,
-.no-js .sb-search {
-    width: 350px;
-    border: 1px solid #e5e5e5;
-}
-
-    .sb-search.sb-search-open .glyphicon-search,
-    .no-js .sb-search .glyphicon-search {
-        color: #222;
-        z-index: 11;
-    }
-
-    .sb-search.sb-search-open .sb-search-submit,
-    .no-js .sb-search .sb-search-submit {
-        z-index: 90;
-    }
-
-.loginInfo {
-    position: absolute;
-    right: 20px;
-    line-height: 65px;
-    color: #333;
-    text-align: right;
-    top:0;
-}
-
-    .loginInfo a {
-        color: #666;
-    }
-
-
-
 #sideMenu {
     font-size: 22px;
     color: #222;
@@ -1992,16 +1878,8 @@ a:hover {
     border: 1px solid #009d8e;
 }
 
-.sb-search-input {
-    color: #009d8e !important;
-}
-
 #showsum1 span.sel {
     border: 1px solid #009d8e;
-}
-
-.sb-search-input {
-    color: #009d8e !important;
 }
 
 .xgpro {
@@ -2077,9 +1955,9 @@ a:hover {
         width: 170px;
     }
 
-    .sb-search-input {
+    /*.sb-search-input {
         padding: 20px 31px 20px 10px;
-    }
+    }*/
     .headImage {
         width: 750px;
     }

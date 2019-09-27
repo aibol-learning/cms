@@ -34,10 +34,14 @@
     </div>
 </div>
 
+<script src="/js/enplaceholder.js"></script>
 <script src="/js/global.js" type="text/javascript"></script>
 <script src="/js/vue2.5.15.min.js"></script>
 <script>
     $(function () {
+        //IE9及以下placeholder
+        $('input').placeholder();
+
         //Footer - 站点访问量数据收集、获取
         vm = new Vue({
             el: "#vm_footer",

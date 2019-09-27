@@ -166,11 +166,17 @@
 
     .rf_container.rf_phone {
         top: 262px;
-        right: -135px;
-        width: 188px;
+        right: -146px;
+        width: 199px;
+        line-height: 140%;
+        padding-top: 5px;
         background: #009d8e url(../images/fixCont.png) no-repeat 0 -57px;
     }
-
+        .rf_container.rf_phone .title,
+        .rf_container.rf_phone .phone_number {
+            text-align:center;
+            padding-right:10px;
+        }
     .rf_container.rf_qrcode {
         top: 318px;
         right: -144px;
@@ -192,12 +198,31 @@
         }
         .rf_container.rf_qrcode.rf_qrcode2 {
             top: 374px;
-            right: -144px;
+            right: -307px;
+            width: 360px;
         }
-        .rf_container.rf_qrcode.rf_qrcode1 {
-            width: 233px;
-            right: -180px;
-        }
+            .rf_container.rf_qrcode.rf_qrcode2 .rf_qrcode_qr {
+                margin-left: -38px;
+            }
+            .rf_container.rf_qrcode.rf_qrcode2 .content {
+                position: relative
+            }
+            .rf_container.rf_qrcode.rf_qrcode2 .info {
+                position: absolute;
+                left: 150px;
+                top: 0;
+                line-height: 200%;
+                padding-left: 0;
+                text-indent: 0
+            }
+                .rf_container.rf_qrcode.rf_qrcode2 .info .summary {
+                    line-height:130%;
+                    padding-right:15px;
+                }
+    .rf_container.rf_qrcode.rf_qrcode1 {
+        width: 233px;
+        right: -180px;
+    }
 </style>
 
 <!--左侧悬浮窗-->
@@ -251,110 +276,118 @@
     </div>
 </div>
 <div class="rf_container rf_top" id="rf_top">返回顶部</div>
-<div class="rf_container rf_phone">{stl:value type="phoneNumber"}</div>
+<div class="rf_container rf_phone">
+    <div class="title">网站技术支持电话</div>
+    <div class="phone_number">{stl:value type="phoneNumber"}</div>
+</div>
 <div class="rf_container rf_qrcode rf_qrcode1">
     平圩发电移动应用平台<br />
     {stl:value type="app_qrcode" class="rf_qrcode_qr" width="150" alt="平圩发电移动应用平台"}<br />
     <p class="rf_qrcode_text">扫描二维码下载</p>
 </div>
 <div class="rf_container rf_qrcode rf_qrcode2">
-    公众号二维码<br />
-    {stl:value type="wx_qrcode" class="rf_qrcode_qr" width="150" alt="公众号二维码"}<br />
-    <p class="rf_qrcode_text">扫码关注公众号</p>
+    <p style="margin-bottom:0">{stl:value type="wx_name"}</p>
+    <div class="content">
+        {stl:value type="wx_qrcode" class="rf_qrcode_qr" width="120" alt="公众号二维码"}
+        <div class="info">
+            <p>扫码关注公众号</p>
+            <p class="summary">{stl:value type="wx_summary"}</p>
+        </div>
+    </div>
 </div>
 
-<script>
-    $(function () {
-        // 左侧悬浮窗口hover事件
-        if ($(".lf_container img").length > 0) {
-            $(".lf_container").show();
-            $(".lf_container .operation i").click(function () {
-                $(".lf_container").css("left", "-999px");
-            })
-        }
-
-        // 右侧悬浮窗口hover事件
-        //返回顶部
-        $(".rf_top").hover(function () {
-            $(".rf_top").css("right", "5px");
-        }, function () {
-            $(".rf_top").css("right", "-87px");
-        });
-        //电话号码
-        $(".rf_phone").hover(function () {
-            $(".rf_phone").css("right", "5px");
-        }, function () {
-            $(".rf_phone").css("right", "-135px");
-        });
-        //待办任务
-        $(".rf_task").hover(function () {
-            $(".rf_task").css("right", "5px");
-            $(".rf_task").css('height', '460px');
-        }, function () {
-            $(".rf_task").css("right", "-277px");
-            $(".rf_task").css('height', '53px');
-        });
-        //APP下载
-        $(".rf_qrcode1").hover(function () {
-            $(".rf_qrcode1").css("right", "5px");
-            $(".rf_qrcode1").css('height', '250px');
-        }, function () {
-            $(".rf_qrcode1").css("right", "-180px");
-            $(".rf_qrcode1").css('height', '53px');
-        });
-        //微信公众号
-        $(".rf_qrcode2").hover(function () {
-            $(".rf_qrcode2").css("right", "5px");
-            $(".rf_qrcode2").css('height', '250px');
-        }, function () {
-            $(".rf_qrcode2").css("right", "-144px");
-            $(".rf_qrcode2").css('height', '53px');
-        });
-
-        // 返回顶部
-        $("#rf_top").click(function () {
-            $("html,body").animate({
-                'scrollTop': '0px'
-            }, 300)
-        });
-
-        //待办任务
-        vm = new Vue({
-            el: "#vm_backstageTasks",
-            data: {
-                tasksUrl: global.urls.backstageTasks,
-                islogin: false,
-                taskCount: null,
-                backstageTasks: [],         //待办任务
-            },
-            methods: {
-                //待办任务
-                getBackstageTasks: function () {
-                    var self = this;
-                    $.get('/api/aibol/tasks', {}, function (response) {
-                        if (response.code && response.code == 401) {//用户未登录工作区
-                            self.islogin = false;
-                        }
-                        if (response.Records) {//用户已登录工作区
-                            self.islogin = true;
-                            response.Records.forEach(function (node, index) {
-                                if (node.CreatedWhen) {
-                                    node.CreatedWhen = node.CreatedWhen.replace("T", " ");
-                                    node.url = node.RedirectUrl;
-                                }
-                            });
-                            self.backstageTasks = response.Records;
-                        }
-                        if (response && response.TotalItemCount) {//待办任务总数
-                            self.taskCount = response.TotalItemCount;
-                        }
-                    });
-                }
-            },
-            created: function () {
-                //待办任务
-                this.getBackstageTasks();
+    <script>
+        $(function () {
+            // 左侧悬浮窗口hover事件
+            if ($(".lf_container img").length > 0) {
+                $(".lf_container").show();
+                $(".lf_container .operation i").click(function () {
+                    $(".lf_container").css("left", "-999px");
+                })
             }
-        })
-    });
-</script>
+
+            // 右侧悬浮窗口hover事件
+            //返回顶部
+            $(".rf_top").hover(function () {
+                $(".rf_top").css("right", "5px");
+            }, function () {
+                $(".rf_top").css("right", "-87px");
+            });
+            //电话号码
+            $(".rf_phone").hover(function () {
+                $(".rf_phone").css("right", "5px");
+            }, function () {
+                $(".rf_phone").css("right", "-146px");
+            });
+            //待办任务
+            $(".rf_task").hover(function () {
+                $(".rf_task").css("right", "5px");
+                $(".rf_task").css('height', '460px');
+            }, function () {
+                $(".rf_task").css("right", "-277px");
+                $(".rf_task").css('height', '53px');
+            });
+            //APP下载
+            $(".rf_qrcode1").hover(function () {
+                $(".rf_qrcode1").css("right", "5px");
+                $(".rf_qrcode1").css('height', '250px');
+            }, function () {
+                $(".rf_qrcode1").css("right", "-180px");
+                $(".rf_qrcode1").css('height', '53px');
+            });
+            //微信公众号
+            $(".rf_qrcode2").hover(function () {
+                $(".rf_qrcode2").css("right", "5px");
+                $(".rf_qrcode2").css('height', '190px');
+            }, function () {
+                $(".rf_qrcode2").css("right", "-307px");
+                $(".rf_qrcode2").css('height', '53px');
+            });
+
+            // 返回顶部
+            $("#rf_top").click(function () {
+                $("html,body").animate({
+                    'scrollTop': '0px'
+                }, 300)
+            });
+
+            //待办任务
+            vm = new Vue({
+                el: "#vm_backstageTasks",
+                data: {
+                    tasksUrl: global.urls.backstageTasks,
+                    islogin: false,
+                    taskCount: null,
+                    backstageTasks: [],         //待办任务
+                },
+                methods: {
+                    //待办任务
+                    getBackstageTasks: function () {
+                        var self = this;
+                        $.get('/api/aibol/tasks', {}, function (response) {
+                            if (response.code && response.code == 401) {//用户未登录工作区
+                                self.islogin = false;
+                            }
+                            if (response.Records) {//用户已登录工作区
+                                self.islogin = true;
+                                response.Records.forEach(function (node, index) {
+                                    if (node.CreatedWhen) {
+                                        node.CreatedWhen = node.CreatedWhen.replace("T", " ");
+                                        node.url = node.RedirectUrl;
+                                    }
+                                });
+                                self.backstageTasks = response.Records;
+                            }
+                            if (response && response.TotalItemCount) {//待办任务总数
+                                self.taskCount = response.TotalItemCount;
+                            }
+                        });
+                    }
+                },
+                created: function () {
+                    //待办任务
+                    this.getBackstageTasks();
+                }
+            })
+        });
+    </script>
