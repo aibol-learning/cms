@@ -166,15 +166,15 @@
                                 <stl:a class="head_list_title"><stl:content wordNum="13" ellipsis="..."></stl:content></stl:a>
                                 <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                 <div class="head_list_info">
-                                    <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
+                                    <span title="发布时间"><i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;</span>
                                     <stl:if type="source" op="NotEmpty">
                                         <stl:yes>
-                                            <i class="fa fa-group"></i> <stl:content type="source"></stl:content>
+                                            <span title="来源"><i class="fa fa-group"></i> <stl:content type="source"></stl:content></span>
                                         </stl:yes>
                                     </stl:if>
                                     <stl:if type="tags" op="NotEmpty">
                                         <stl:yes>
-                                            <i class="fa fa-tags"></i> <stl:content type="tags"></stl:content>
+                                            <span title="标签"><i class="fa fa-tags"></i> <stl:content type="tags"></stl:content></span>
                                         </stl:yes>
                                     </stl:if>
                                 </div>
@@ -209,15 +209,15 @@
                                             <stl:a class="news_list_title"><stl:content wordNum="17" ellipsis="..."></stl:content></stl:a>
                                             <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                             <div class="news_list_info">
-                                                <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
+                                                <span title="发布时间"><i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;</span>
                                                 <stl:if type="source" op="NotEmpty">
                                                     <stl:yes>
-                                                        <i class="fa fa-group"></i> <stl:content type="source"></stl:content>&emsp;&emsp;
+                                                        <span title="来源"><i class="fa fa-group"></i> <stl:content type="source"></stl:content>&emsp;&emsp;</span>
                                                     </stl:yes>
                                                 </stl:if>
                                                 <stl:if type="tags" op="NotEmpty">
                                                     <stl:yes>
-                                                        <i class="fa fa-tags"></i> <stl:content type="tags"></stl:content>
+                                                        <span title="标签"><i class="fa fa-tags"></i> <stl:content type="tags"></stl:content></span>
                                                     </stl:yes>
                                                 </stl:if>
                                             </div>
@@ -239,15 +239,15 @@
                                             <stl:a class="news_list_title"><stl:content wordNum="17" ellipsis="..."></stl:content></stl:a>
                                             <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                             <div class="news_list_info">
-                                                <i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;
+                                                <span title="发布时间"><i class="fa fa-calendar"></i> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content>&emsp;&emsp;</span>
                                                 <stl:if type="source" op="NotEmpty">
                                                     <stl:yes>
-                                                        <i class="fa fa-group"></i> <stl:content type="source"></stl:content>&emsp;&emsp;
+                                                        <span title="来源"><i class="fa fa-group"></i> <stl:content type="source"></stl:content>&emsp;&emsp;</span>
                                                     </stl:yes>
                                                 </stl:if>
                                                 <stl:if type="tags" op="NotEmpty">
                                                     <stl:yes>
-                                                        <i class="fa fa-tags"></i> <stl:content type="tags"></stl:content>
+                                                        <span title="标签"><i class="fa fa-tags"></i> <stl:content type="tags"></stl:content></span>
                                                     </stl:yes>
                                                 </stl:if>
                                             </div>
@@ -275,9 +275,11 @@
                                             <a :href="c.navigationUrl" class="list_title" :title="c.title">{{c.title}}</a>&nbsp;
                                             <i class="fa fa-fire" v-if="c.isHot"></i>
                                             <div class="list_info">
-                                                <i class="fa fa-calendar"></i> {{c.addDate}}&emsp;&emsp;
-                                                <span v-if="c.source"><i class="fa fa-group"></i> {{c.source}}&emsp;&emsp;</span>
-                                                <span v-if="c.tags"><i class="fa fa-tags"></i> {{c.tags}}</span>
+                                                <span title="发布时间"><i class="fa fa-calendar"></i> {{c.addDate}}&emsp;&emsp;</span>
+                                                <span v-if="c.source">
+                                                    <span title="来源"><i class="fa fa-group"></i> {{c.source}}&emsp;&emsp;</span>
+                                                </span>
+                                                <span v-if="c.tags"><span title="标签"><i class="fa fa-tags"></i> {{c.tags}}</span></span>
                                             </div>
                                         </div>
                                         <a :href="cc.navigationUrl" class="list_more">更多……</a>

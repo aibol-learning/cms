@@ -206,14 +206,13 @@
                                             </span>
                                         </stl:a>
                                         <a class="gallery_download" href="{Content.fileUrl}" download="{Content.fileUrl}"><icon class="fa fa-download"></icon></a>
-                                        <!--<span class="js_addDate" style="display:none;"><stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span>-->
                                         <span class="label_new"></span>
                                         <span class="imageTitle" title="{Content.title}"><stl:content type="title"></span>
                                     </div>
                                     <div class="info">
-                                        <icon class="fa fa-calendar"></icon> <span class="js_addDate"><stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span><br />
-                                        <icon class="fa fa-edit"></icon> <span class="js_author"><stl:content type="author"></stl:content></span><br />
-                                        <icon class="fa fa-hand-o-up"></icon> <stl:content type="hits" isDynamic="true"></stl:content>
+                                        <span title="发布时间"><icon class="fa fa-calendar"></icon> <span class="js_addDate"><stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span></span><br />
+                                        <span title="上传者"><icon class="fa fa-upload"></icon> <span class="js_author"><stl:content type="author"></stl:content></span></span><br />
+                                        <span title="阅读次数"><icon class="fa fa-hand-o-up"></icon> <stl:content type="hits" isDynamic="true"></stl:content></span>
                                     </div>
                                 </li>
                             </stl:pageContents>

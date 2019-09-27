@@ -2138,8 +2138,10 @@ h5 {
 
 .search {
     position: absolute;
-    right: 120px;
-    top: 4px;
+    /*right: 120px;*/
+    right: 0;
+    /*top: 4px;*/
+    top: 26px;
 }
 
 .sb-search {
@@ -2237,8 +2239,10 @@ h5 {
 
 .loginInfo {
     position: absolute;
-    right: 10px;
-    line-height: 65px;
+    /*right: 10px;
+    line-height: 65px;*/
+    right: 15px;
+    line-height: 40px;
     color: #333;
     text-align: right;
     top: 0;
