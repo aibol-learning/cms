@@ -444,6 +444,7 @@
                                         if (self.leftChannels[i][j].id == channelId) {
                                             self.leftChannels[i][j].contents = response.value;
                                             self.leftChannels[i][j].contents.forEach(function (node, index) {
+                                                node.addDate = node.addDate.substring(0, 10);
                                                 node.title = node.title.substring(0, 32);
                                             })
                                         }

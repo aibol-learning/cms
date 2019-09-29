@@ -15,7 +15,7 @@ $(function () {
         pnLoop: ary[7]
     });
 
-    //大屏幕数据表
+    //生产数据
     //var setCharts, charts;
     var charts = new Vue({
         el: "#charts",
@@ -442,6 +442,7 @@ $(function () {
                                 if (self.secondaryNews[i][j].id == channelId) {
                                     self.secondaryNews[i][j].contents = response.value;
                                     self.secondaryNews[i][j].contents.forEach(function (node, index) {
+                                        node.addDate = node.addDate.substring(0, 10);
                                         if (node.title.length > 25) {
                                             node.titleShort = node.title.substring(0, 25) + "…";
                                         }

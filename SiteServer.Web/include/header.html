@@ -2,7 +2,7 @@
     <!--logo+搜索+工作区登录信息-->
     <div class="container">
         <div class="logo"> <a href="{Stl.SiteUrl}/index.html"> {stl:value type=Logo} </a> </div>
-        <div class="search">
+        <!--<div class="search">
             <div id="sb-search" class="sb-search sb-search sb-search-open">
                 <form id="searchform" method="get" action="/newsSite/utils/search.html">
                     <input class="sb-search-input" placeholder="输入关键词查找..." type="text" name="word">
@@ -15,7 +15,7 @@
             <script>
                 new UISearch(document.getElementById('sb-search'));
             </script>
-        </div>
+        </div>-->
         <div class="loginInfo" v-cloak id="loginInfoVM">
             <a v-if="!isLogin" v-bind:href="login">登录我的工作区</a>
             <a v-if="isLogin" v-bind:href="logout">退出</a>

@@ -17,8 +17,6 @@
     <script src="/js/vue2.5.15.min.js"></script>
     <script type="text/javascript" src="/js/swiper.min.js"></script>
     <script src="/js/global.js"></script>
-    <!--<script src="/js/jquery.placeholder.js"></script>-->
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -36,7 +34,7 @@
     <!--logo+搜索+工作区登录信息-->
     <div class="container">
         <div class="logo"> <a href="/index.html"> <img src="/upload/images/2019/8/5aaf4f4ead0167e6.png" type="Logo" /> </a> </div>
-        <div class="search">
+        <!--<div class="search">
             <div id="sb-search" class="sb-search sb-search sb-search-open">
                 <form id="searchform" method="get" action="/newsSite/utils/search.html">
                     <input class="sb-search-input" placeholder="输入关键词查找..." type="text" name="word">
@@ -49,11 +47,11 @@
             <script>
                 new UISearch(document.getElementById('sb-search'));
             </script>
-        </div>
+        </div>-->
         <div class="loginInfo" v-cloak id="loginInfoVM">
-            <a v-if="!isLogin" v-bind:href="login">登录</a>
+            <a v-if="!isLogin" v-bind:href="login">登录我的工作区</a>
             <a v-if="isLogin" v-bind:href="logout">退出</a>
-            <a v-if="isLogin" target="_blank" v-bind:href="backstage">进入工作区</a>
+            <a v-if="isLogin" target="_blank" v-bind:href="backstage" style="margin-left:10px">进入工作区</a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -76,7 +74,7 @@
                                 </li>
                             
                                 <li>
-                                    <a href="/contents/25/270.html">公司领导</a>
+                                    <a href="/contents/25/103.html">公司领导</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
@@ -146,7 +144,7 @@
                                 </li>
                             
                                 <li>
-                                    <a target="_blank" href="/newsSite/channels/62.html">学习资料</a>
+                                    <a target="_blank" href="/newsSite/channels/62.html">月度学习</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
@@ -202,32 +200,11 @@
                                 </li>
                             
                                 <li>
-                                    <a target="_blank" href="/newsSite/channels/70.html">通知公告</a>
+                                    <a target="_blank" href="/newsSite/channels/70.html">新闻公告</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
                                 </li>
-                            
-                                <li>
-                                    <a target="_blank" href="newsSite/channels/147.html">领导讲话</a>
-                                    <ul class="third-nav">
-                                        
-                                    </ul>
-                                </li>
-                            
-                                <li>
-                                    <a target="_blank" href="newsSite/channels/148.html">常用工具</a>
-                                    <ul class="third-nav">
-                                        
-                                    </ul>
-                                </li>
-                            
-                        </ul>
-                    </li>
-                
-                    <li>
-                        <a target="_blank" href="http://10.78.100.120">协同办公</a>
-                        <ul class="second-nav">
                             
                         </ul>
                     </li>
@@ -237,7 +214,7 @@
                         <ul class="second-nav">
                             
                                 <li>
-                                    <a target="" href="javascript:;">电力市场</a>
+                                    <a target="_blank" href="http://10.138.20.12/news.asp?typeid=78">电力市场</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
@@ -251,7 +228,7 @@
                                 </li>
                             
                                 <li>
-                                    <a target="" href="javascript:;">燃料管理</a>
+                                    <a target="_blank" href="http://10.138.20.12/news.asp?typeid=80">燃料管理</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
@@ -275,11 +252,18 @@
                     </li>
                 
                     <li>
+                        <a target="_blank" href="http://10.78.100.120">协同办公</a>
+                        <ul class="second-nav">
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
                         <a href="javascript:;" target="">ERP系统</a>
                         <ul class="second-nav">
                             
                                 <li>
-                                    <a target="" href="javascript:;">Maximo平台</a>
+                                    <a target="_blank" href="http://10.138.20.81:8888/maximo">Maximo平台</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
@@ -300,7 +284,7 @@
                                 </li>
                             
                                 <li>
-                                    <a target="" href="javascript:;">人力资源系统</a>
+                                    <a target="_blank" href="http://10.70.101.96:8000/">人力资源系统</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
@@ -321,7 +305,7 @@
                                 </li>
                             
                                 <li>
-                                    <a target="" href="javascript:;">安健环&生产管理系统</a>
+                                    <a target="_blank" href="http://10.70.101.230:8000/">安健环&生产管理系统</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
@@ -363,7 +347,7 @@
                                 </li>
                             
                                 <li>
-                                    <a target="" href="javascript:;">操作票管理系统</a>
+                                    <a target="_blank" href="http://10.138.20.86:8008/dcmis/power/pub/jsp/Login.jsp">操作票管理系统</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
@@ -377,7 +361,7 @@
                                 </li>
                             
                                 <li>
-                                    <a target="" href="javascript:;">两个细则考核</a>
+                                    <a target="_blank" href="http://10.138.20.124/pwpeas/platform/login/login.jsp">两个细则考核</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
@@ -429,18 +413,26 @@
                                     <a target="_blank" href="http://10.138.20.39:8081/dlbz/system/bzlist.htm">电力技术标准</a>
                                     <ul class="third-nav">
                                         
+                                            <li>
+                                                <a target="_blank" href="https://www.baidu.com">test1</a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" href="https://www.163.com">test2</a>
+                                            </li>
+                                        
                                     </ul>
                                 </li>
                             
                                 <li>
-                                    <a target="" href="javascript:;">期刊查询数据库</a>
+                                    <a target="_blank" href="http://10.138.20.78/kns55/">期刊查询数据库</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
                                 </li>
                             
                                 <li>
-                                    <a target="" href="javascript:;">标准化管理网</a>
+                                    <a target="_blank" href="http://10.138.20.86/">标准化管理网</a>
                                     <ul class="third-nav">
                                         
                                     </ul>
@@ -450,7 +442,7 @@
                     </li>
                 
                     <li>
-                        <a target="" href="javascript:;">检修信息网</a>
+                        <a target="_blank" href="http://10.138.20.37:5555/">检修信息网</a>
                         <ul class="second-nav">
                             
                         </ul>
@@ -540,6 +532,55 @@
                         </ul>
                     </li>
                 
+                    <li>
+                        <a href="/channels/149.html">国际新闻</a>
+                        <ul class="second-nav">
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a href="/channels/150.html">体育新闻</a>
+                        <ul class="second-nav">
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a href="/channels/151.html">娱乐新闻</a>
+                        <ul class="second-nav">
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a href="/channels/152.html">教育新闻</a>
+                        <ul class="second-nav">
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <a href="/channels/153.html">视频图片新闻</a>
+                        <ul class="second-nav">
+                            
+                                <li>
+                                    <a href="/channels/154.html">视频新闻</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                                <li>
+                                    <a href="/channels/155.html">图片新闻</a>
+                                    <ul class="third-nav">
+                                        
+                                    </ul>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
             </ul>
             <a href="javascript:;" class="handleMore" id="navHandleMore"><span>更多</span><i class="fa fa-angle-double-right"></i></a>
         </div>
@@ -603,9 +644,6 @@
                     $("#navHandleMore span").text("更多");
                 }
             })
-
-            //IE9 placeholder支持
-            //$('input, textarea').placeholder();
         });
     </script>
 </div>
@@ -629,14 +667,6 @@
                                     <li class="cat-item" id="cid_142"><a href="/channels/142.html">新华每日电讯</a> </li>
                                 
                                     <li class="cat-item" id="cid_143"><a href="/channels/143.html">每日经济网</a> </li>
-                                
-                                    <li class="cat-item" id="cid_282"><a href="/channels/282.html">能源竞争情报</a> </li>
-                                
-                                    <li class="cat-item" id="cid_283"><a href="/channels/283.html">每周财经信息</a> </li>
-                                
-                                    <li class="cat-item" id="cid_284"><a href="/channels/284.html">电力专项</a> </li>
-                                
-                                    <li class="cat-item" id="cid_285"><a href="/channels/285.html">产业前沿综合简报</a> </li>
                                 
                             </ul>
                         </div>
@@ -729,7 +759,7 @@
                             </div>
                         </div>
                         
-<div id="ajaxElement_1_627">
+<div id="ajaxElement_1_215">
     <div class="stl_loading"><div class="alert alert-info" role="alert">
                                     <strong>提示!</strong> 系统正在搜索中，请稍后...
                                 </div></div>
@@ -760,7 +790,7 @@ jQuery(document).ready(function(){
     pagenum: 0,
     ishighlight: true,
     siteid: '1',
-    ajaxdivid: 'ajaxElement_1_627',
+    ajaxdivid: 'ajaxElement_1_215',
     template: 'kQVCkn3Jj8frv5wmfft6gDKusU3QEOlP51ijtuSNbnaZ0add0OTq0slash01vu9SKKsWL8olmsKcoAZNn0add0s7Wprov9ifnr8APLl9SO7wfM0uzmbqgulMIehZFgUnWGCXQLh2ZluIaRSEq0SXUwZMuTz4QB66jOvxp67mds1tjOwfe0yq9VfywbaDJOPsOl8c7AqJPGy0add0KuUB7X6BgrfCWUc2wimlyWO2C6RGmh0Wy9fobSUhWAmANUCoD2sN8ZjcGAw1n0add0FrUPCZagiuSgTgD0slash0tTsS7H3Cf3ke320F9II7EkNgMlLCG9xw0slash0bhSqu8bZlc9qS0slash09jy5vM40add0P5f9vwcSEU0slash070add0M8zIPtenOEGec3G2fsBkw0add0Y0h6V4KXAbafEOato6AzWfJMAsc0slash0k0add0cAThj6QDrU2DK0add0L9tXO0mmjM4VHgEY3G30slash0TDDpPZa6qRwTarFXZRqDLj0M8phuUnTuznOIZ7f20mZUrSQ6861URyRePIS6AxAk4PwLC9QYGQqSkzx0V0add0eJWODNsGLI96JDiMeAR0rQdyU4B10slash0T0add0qb8d1Yywp1rNvD09Sy9IcS2B0add0aHlM5InF6GUEKA3snlGtd69Z3DwzXqV0add0DiPa7W690slash0sC7MG5fHfa0slash00Omv0add0hUbfv7SCkHlyIfwKPkE4PdV8JF084bdtAFp1y40slash03g40add0ZhuKQVHyDXOuJ0add088FFSopQ19La5CrSunLGe8tEIUltZRrD3rwLkaXtjDosD1fTFctNQNGxneH0slash0rMz1xFCsfE7wYFUmzevUlZT3i0add0ye0add0slzGcXXK6MLvRuQesmSQpQM2682jIxQLnQZOe0slash0zdo0slash096pv5RsPaDli5vU5gA4m6xPhOpNgVCdl5rJg4AqJ8lYt0add0GTVfXt0VMm0slash0jDoYhBlv7HoCqAzPSDGWWtBzrlQV0XYFASGAeRnm7Klb0slash0v2gGvSBF3RxWEp7su02sW50add0FxaqunWA2tnFzEi0slash0ZGzNrZjxHtSi0slash0sTH7WEyK9d5HMefukDYDsY9P0slash0Ec8NOxbeDqeTOndVFdPeuFbYaOZzhbMsJiVjZe0add02xXwySZ4EPfIH2T0add07J7cDgq8KKgeSSK2lqSvkcSGDQsM9KBUr5DZgqwluwUf3zSs4zFaD7LiUlKPv0slash00PH9RMAZDm7eYOAe9g0add0VG5DUnd7yCMiTga0add0XyCdvhQkdXUF52HEupgQ4yHMhuP6yoF3ARNhceT0FpeuEpETPEtOVbSH2ssCXO0slash0kDiR0slash0d6kUR20add0XRdlEDuHfyRUBUnP3XrXYQFkv1oyjZvwbkgIHm20slash0HsAcq0slash02nqObH8mGV0slash0x0add0ELMOR9n93dlTgVqbsmvxodnLJM50nS9kSdpvRMGf6N2gXNA1YnF59CNVAZroEsJ6kPLoDKJt0slash033GyyGY3GYOC0slash0BVPXE1M0add00eMckJCg6J57e4l0slash0RnUttku1NtIvnEqmpHluJCuEMAGnkiMt8WoE771Qzuoz1NIoj0add0n7a0add0RA40slash0z676jEsLqUkR0add0MowDp0add0SrgaV2UucUEfMTPVEJVE13kgdH8zXDWU0add03Z5eCS0add0UABAulaS9R0slash0844Xex8q2vO0slash0BXiVwKdK24PsNZTuC0add0Aqfb2QQS50add04lvG1TLtEcPjlOHEDrii1yri5TZhXb1dh4RTCakjnjfdinmqRYJc2qa18a4GjuwZyfPt1D3M44THHjZchVngM5lbLfuznPBLiXSUDvDf1hD7f5UuV1zOHcFetLS6GVrFtse06NWcBRaZpE6WYHkeoK83RNPikWc6w9EHzV3YUUbxLqDrs4U9YbAlbqtVGc0ID8X0add0NFC8huLUcNOGbJYi6xrVWUh0l0iAFuxjrye7IdD8XKAW8j1UV0sWkuCvNCaWK9PhP0add0Ey8oPkWcobQVyGoaD9m9227VgyWc6zSgEd0rEgVE9cNpMOaXMo0qV9vU34J9wB6fOhfNTSxGOpLwVePYaQKuCSv0slash04JqquZb4mcP0add0J0slash0p0YOvc0DdyeCn90slash0RtScDmLRFlby0slash0iv8C9231RDOPraeTvUzDn0slash0ZU2twNoBXAYAQxQdIXMiqJ5hB8xXgSbnCTjfmXS0add0RY1ZYiw0slash0LLoR1cMgqvCd11eGOlbc0add0KRSNewJ6xM6d32c0aHSvqff0AYdR2aV3v8NyG0GndY0slash0ImOI3jqGsjHzSpjUsR0slash0n0slash0AR2DdAwcIWQXkp6CnBTvbGgi0s33E4QYo0add0freQ2TBSRY7E6XkYOY0add0sAhZntO2L3injrYxpwCOyshUX3qHNuA3FpZ7xwwfCvy0add0avaq10add00G88t5WDtXo5du7h0add0HCH4Y5bBp8ZW407QVAVZuy0slash0cR9ozqOxdG3HdZUOGRhskqjkVuOz1FoiDB0add08rltc402pVfxhdZvDAMHSKBtmzZI0add0Sc9dNdHNke5Wkm0add0ZQL6SrglUqUPsBpMksFiiY8uUR4HDcAjFwQnQZW2pdc8milcYi8dxISsWkzcL410slash0Fypi3tPGj0slash0TxZ88R6KfyBrNw0add00F4zKfcD0slash0wovwADC0kcyPCTVRP5rBXyibEttUHBffy20add0oAdOlA3aZTRANGw5qJw5qZ0slash07SCw0slash0MeaZo0slash0703hMVYeGjgKdMfaqLRWGEu9ePMOjjpsTfzDF30add0S0slash0U6lm3qsDq1RyrbSyxx0slash0Ds91K0add0LvIv4QveS0lbfmzr58cCk0add0WNRkx0slash0AqAoBvXCYVZdsCtc97h2ORSVgIrzsWTBQxhgijACJrEcpNlIKIRFG71E9P0slash0gzG0add0AlU3icFwGqniSh6M40add0iHXOpegGKSzso0add0G4YXhkCvNGElP0slash00slash0cvlrnrlD0slash0yGZBGv7vdc0slash01nPU8DEiHHjZTP3Iqk3kjSrR0slash0Ws0slash0C4rHoNdjq0HE2660add0c87ddQzGXc3yotqIs0ciRLlp7JkYYCYekypLCpcdg0IisBKYGIvScfP0add0OD5EcD7hTCuuBESkgymU6wSNOoxGLUJg0add0tPvXb75C8Wnkbg7p5M3rKLMPJ6H7beJrdN7Tt5RxiY6dUKOjsnWJCMQDIMKzPAGj9rFDakjRJNZ759X0fcKM7gKgT7P5CW0slash0UQB3oudGy6yk1z22ynY8FxJ0slash01MmXPIu1GMjO3v7xw9R7aSfiH6PQYddZdUjPhiL2LdV8Di0MmnHcZZqeKRjynYav0add0thb8CR3lD5KWkm8sWgG71yrPGX3d6KxpnBjGwtS1QV0slash0iS43DiNwI0add0rPxqyIRg1GS3yYkK3h0add0PLLwu4aKedcyn7eqkj7v0QLMG0XEB0slash0QlThSqQJXLIIDBUAyIOVTDJcocY0add0A2HwUAUfU0LF3GXu2LL8tXfUnI1Z2yGF8mPB0dvMyFulmgYvVLrB3yXp4CSlIxCo7cZg43QhEPVxvl1qJn5yJsskFC5Jyl0slash0thpG6oD6Su9M0add0jfYObtTgN5RnXiF0czfdgws0UPRu9IiSiVdnmdGA0add0rGoHdQqZF07Jgv7uW0slash0XICWXPUzp4IXgWe0mfBcpq8590add0d80add0F7QdbHer6xwysn0add0hpimeetDEr7D0add03qVKPx4Fe61IXU10add0xq0slash0s7b0add03RoGxQpnz8AGKzdfkNbfAKO0slash0l0add0PIVRapDJybKxyB120JSfPrODQXp706TYmTreahDUGwU82G0add0KtnGDeA802486dcWBTf4gGsaqnmw72BW4Kfzkcemv3eXBCLd4H8OMpEycxVmyz0IAVdmtNrmQCHsE0slash0TW0add0usHgo2NJqr2Gw3j9JLwnlLlz4VmuiQBPkQudmYMuKlrDlrnu7VA9smTkRUZfiQ77xAeJlPut7WlkKG9xD0slash017gS3rhtosQTXK20Z0yMQrFyyJqVa0add0ijPi88U1KvsJMWVGioZ8Za0add0u2LUeo3TyFZyWGy0add0soGJH5JFcM5bFvfKRuT7M44iCYZ1VSr3VeYBz0slash02Kur9xMelE7SN0add0ak9jmP1mgELD0add0zlB8aGF0slash0HgBZ0slash0WwLoSA0iYWE4ZizLg2p3ZBI7qWduk1KdP7jsrbScoXBUkj26oUFc1vDkN1ewT5GasXS8k6D8RHtOBKPpXB0rcuQTmdjKVvuOEt3Fa8ZKv5PJGLDVKISjN3P26xOezWHIm4MC237EhR9B5w0add0nAIMWPd0slash0u9FkP7AMNq0add03b0add0EoZTBGOv2ocmAsGcw0XVc0slash00add020slash0GWNmdckCIUUpBcg2ZF5xY7s5co7edMeVeefzQksTGAlRcFLsNC8dyK4TPOxRx8pyXmduT9PnNBpXBRKw0equals00equals00secret0',
 };
 
@@ -790,25 +820,25 @@ jQuery(document).ready(function(){
             data: JSON.stringify(parameters),
             dataType: 'json',
             success: function(res) {
-                jQuery("#ajaxElement_1_627 .stl_loading").hide();
-                jQuery("#ajaxElement_1_627 .stl_yes").show();
-                jQuery("#ajaxElement_1_627 .stl_no").hide();
-                jQuery("#ajaxElement_1_627 .stl_yes").html(res);
+                jQuery("#ajaxElement_1_215 .stl_loading").hide();
+                jQuery("#ajaxElement_1_215 .stl_yes").show();
+                jQuery("#ajaxElement_1_215 .stl_no").hide();
+                jQuery("#ajaxElement_1_215 .stl_yes").html(res);
             },
             error: function(e) {
-                jQuery("#ajaxElement_1_627 .stl_loading").hide();
-                jQuery("#ajaxElement_1_627 .stl_yes").hide();
-                jQuery("#ajaxElement_1_627 .stl_no").show();
+                jQuery("#ajaxElement_1_215 .stl_loading").hide();
+                jQuery("#ajaxElement_1_215 .stl_yes").hide();
+                jQuery("#ajaxElement_1_215 .stl_no").show();
             }
         });
     } else {
-        jQuery("#ajaxElement_1_627 .stl_loading").hide();
-        jQuery("#ajaxElement_1_627 .stl_yes").hide();
-        jQuery("#ajaxElement_1_627 .stl_no").hide();
+        jQuery("#ajaxElement_1_215 .stl_loading").hide();
+        jQuery("#ajaxElement_1_215 .stl_yes").hide();
+        jQuery("#ajaxElement_1_215 .stl_no").hide();
     }
 });
 
-function stlRedirectajaxElement_1_627(page)
+function stlRedirectajaxElement_1_215(page)
 {
     var queryString = document.location.search;
     if (queryString && queryString.length > 1) {
@@ -829,9 +859,9 @@ function stlRedirectajaxElement_1_627(page)
     }
 }
 
-function stlJumpajaxElement_1_627(selObj)
+function stlJumpajaxElement_1_215(selObj)
 {
-    stlRedirectajaxElement_1_627(selObj.options[selObj.selectedIndex].value);
+    stlRedirectajaxElement_1_215(selObj.options[selObj.selectedIndex].value);
 }
 </script>
 
@@ -853,7 +883,7 @@ function stlJumpajaxElement_1_627(selObj)
                                     
                                         <li><a href="/contents/3/1.html">公司介绍</a></li>
                                     
-                                        <li><a href="/contents/25/270.html">公司领导</a></li>
+                                        <li><a href="/contents/25/103.html">公司领导</a></li>
                                     
                                         <li><a href="/channels/27.html">企业年鉴</a></li>
                                     
@@ -863,14 +893,14 @@ function stlJumpajaxElement_1_627(selObj)
                             </li>
                         
                             <li>
-                                <a href="/contents/146/250.html">企业文化</a>
+                                <a href="/contents/30/111.html">企业文化</a>
                                 <ul class="sub-menu">
                                     
-                                        <li><a href="/contents/30/248.html">核心价值观</a></li>
+                                        <li><a href="/contents/30/111.html">核心价值观</a></li>
                                     
-                                        <li><a href="/contents/31/256.html">文化体系</a></li>
+                                        <li><a href="/contents/31/112.html">文化体系</a></li>
                                     
-                                        <li><a href="/contents/33/253.html">企业愿景</a></li>
+                                        <li><a href="/contents/33/114.html">高层观点</a></li>
                                     
                                 </ul>
                             </li>
@@ -883,11 +913,11 @@ function stlJumpajaxElement_1_627(selObj)
                 <div class="footer_other_title">资源下载</div>
                 <div class="footer_other_con">
                     
-                        <a target="_blank" href="http://10.138.20.145:81/messenger/">消息助手</a><br>
+                        <a target="_blank" href="https://www.baidu.com">消息助手</a><br>
                     
-                        <a href="/upload/files/2019/8/ae0b523e3ad0080c.exe">谷歌浏览器</a><br>
+                        <a href="/upload/files/2019/8/5024da72853cb2c.txt">谷歌浏览器</a><br>
                     
-                        <a href="/upload/files/2019/8/26bac17940b9f821.exe">IE9浏览器</a><br>
+                        <a href="/upload/files/2019/8/be6ba5ba750cd332.txt">IE9浏览器</a><br>
                     
                 </div>
             </div>
@@ -908,19 +938,19 @@ function stlJumpajaxElement_1_627(selObj)
             <div class="footer_other widest">
                 <div class="footer_other_title">联系方式</div>
                 <div class="footer_other_con">
-                    <span>公司地址：安徽省淮南市平圩镇</span><br />
-                    <span>联系电话：0566-12345678</span><br />
-                    <span>公司传真： 0554-2522627</span>
+                    <span>公司地址：安徽省淮南市平圩镇某某路1322号</span><br />
+                    <span>网站技术支持电话：0566-87654321</span><br />
+                    <span>公司传真：0566-12345678</span>
                 </div>
             </div>
             <div class="clearfix"></div>
         </div>
         <div class="footer-bottom" style="text-align:center;">
-            <div class="copyright">版权所有：安徽淮南平圩发电有限责任公司</div>
+            <div class="copyright">版权所有：中国电力平圩发电有限责任公司</div>
         </div>
     </div>
 </div>
-
+<script src="/js/enplaceholder.js"></script>
 <script src="/js/footer.js"></script>
 
 

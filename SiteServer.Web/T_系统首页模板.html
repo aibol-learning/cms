@@ -300,7 +300,7 @@
         </div>
     </div>
 
-    <!--大屏幕实时数据(生产数据)-->
+    <!--生产数据-->
     <!--<div id="charts1" class="contentpart" style="visibility:hidden" v-cloak>
         <div class="container">
             <div class="parttitle text-center">
@@ -696,44 +696,17 @@
             </div>
         </div>
     </div>-->
-    <style typo="text/css">
-        .carousel-control.prev,
-        .carousel-control.next {
-            position: absolute;
-            left: -60px;
-            top: 50%;
-            margin-top: -25px;
-            display: block;
-            width: 50px;
-            height: 40px;
-            background: #009d8e url(../images/slider-arrow.png) -101px 5px no-repeat;
-            filter: alpha(opacity=50);
-            opacity: 0.5;
-        }
 
-        .carousel-control.next {
-            left: auto;
-            right: -60px;
-            background-position: 17px 5px;
-        }
-
-            .carousel-control.prev:hover,
-            .carousel-control.next:hover {
-                filter: alpha(opacity=100);
-                opacity: 1;
-            }
-    </style>
-   
     <div id="charts" class="contentpart" style="visibility:hidden; padding-top:40px;" v-cloak>
         <div class="container">
             <div class="parttitle text-center">
                 <h2>生产数据</h2>
             </div>
             <div class="indexnews">
-                <div id="myCarousel" class="carousel slide" data-interval="15000" style="width:912px; margin:30px auto 0;">
+                <div id="myCarousel" class="carousel slide" data-interval="15000">
                     <!-- 轮播（Carousel）项目 -->
-                    <div class="carousel-inner" style="width:912px; height:318px; text-align:center">
-                        <div class="item active" style="margin:0 81px;">
+                    <div class="carousel-inner">
+                        <div class="item active">
                             <div class="portlet box red">
                                 <div class="portlet-title">
                                     <div class="caption"><i class="fa fa-cogs"></i>发电机组实时运行功率(MW)</div>
@@ -744,7 +717,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item" style="margin:0 81px;">
+                        <div class="item">
                             <div class="portlet box purple">
                                 <div class="portlet-title">
                                     <div class="caption"><i class="fa fa-cogs"></i>发电机组发电量统计</div>
@@ -786,7 +759,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item" style="margin:0 81px;">
+                        <div class="item">
                             <div class="portlet box yellow">
                                 <div class="portlet-title">
                                     <div class="caption"><i class="fa fa-cogs"></i>发电机组发电量汇总</div>
@@ -826,7 +799,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item" style="margin:0 81px;">
+                        <div class="item">
                             <div class="portlet box blue">
                                 <div class="portlet-title">
                                     <div class="caption"><i class="fa fa-cogs"></i>发电机组环保数据</div>
@@ -864,7 +837,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item" style="margin:0 81px;">
+                        <div class="item">
                             <div class="portlet box green">
                                 <div class="portlet-title">
                                     <div class="caption"><i class="fa fa-cogs"></i>光伏发电生产信息</div>
@@ -926,7 +899,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item" style="margin:0 81px;">
+                        <div class="item">
                             <div class="portlet box red">
                                 <div class="portlet-title">
                                     <div class="caption"><i class="fa fa-cogs"></i>焦岗湖光伏发电生产信息</div>
@@ -988,7 +961,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item" style="margin:0 81px;">
+                        <div class="item">
                             <div class="portlet box purple">
                                 <div class="portlet-title">
                                     <div class="caption"><i class="fa fa-cogs"></i>施家湖光伏发电生产信息</div>
@@ -1050,7 +1023,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item" style="margin:0 81px;">
+                        <div class="item">
                             <div class="portlet box blue">
                                 <div class="portlet-title">
                                     <div class="caption"><i class="fa fa-cogs"></i>发电机组可靠性</div>
@@ -1081,7 +1054,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item" style="margin:0 81px;">
+                        <div class="item">
                             <div class="portlet box green portlet-clear">
                                 <div class="portlet-title">
                                     <div class="caption"><i class="fa fa-cogs"></i>发电机组可靠性</div>
