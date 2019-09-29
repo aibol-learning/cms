@@ -369,6 +369,7 @@ $(function () {
             //获取新闻中心配置为“门户主要新闻”的栏目内容 推荐+前2条
             getPrimaryNewsContents: function (channelId) {
                 var self = this;
+                var summaryLen = screen.width >= 1280 ? 55 : 43;
                 $.ajax({
                     url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelId=' + channelId + "&totalNum=2&isRecommend=true",
                     type: 'get',
@@ -377,14 +378,14 @@ $(function () {
                             if (self.primaryNews[i].id == channelId) {
                                 self.primaryNews[i].contents = response.value;
                                 self.primaryNews[i].contents.forEach(function (node, index) {
-                                    if (node.title.length > 25) {
-                                        node.titleShort = node.title.substring(0, 25) + "…";
+                                    if (node.title.length > 20) {
+                                        node.titleShort = node.title.substring(0, 20) + "…";
                                     }
                                     else {
                                         node.titleShort = node.title;
                                     }
-                                    if (node.summary.length > 55) {
-                                        node.summary = node.summary.substring(0, 55) + "…";
+                                    if (node.summary.length > summaryLen) {
+                                        node.summary = node.summary.substring(0, summaryLen) + "…";
                                     }
                                 })
                             }
