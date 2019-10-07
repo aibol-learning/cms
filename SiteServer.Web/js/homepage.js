@@ -109,7 +109,7 @@ $(function () {
                         label: {
                             show: true,
                             position: 'top',
-                            formatter: '{c}VM',
+                            formatter: '{c}',
                             distance: 0
                         }
                     }
