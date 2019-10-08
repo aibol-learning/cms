@@ -1760,7 +1760,7 @@ a:hover {
     background-color: #fff;
 }
 .tableGrowHigh th {
-    padding: 16px 12px 17px !important;
+    padding: 17px 12px 18px !important;
 }
 .tableGrowHigh td {
     padding: 18px 12px !important;
@@ -1774,6 +1774,17 @@ a:hover {
 .tableShrink .progress {
     margin-bottom: 0 !important;
 }
+.tableDoubleLineTitle th {
+    padding: 5px 12px !important;
+}
+
+    .tableDoubleLineTitle th span {
+        font-size: 14px;
+    }
+.tableDoubleLineTitle td {
+    padding: 11px 12px !important;
+}
+   
 
 .placeholder {
     color: #999;
@@ -2040,6 +2051,8 @@ a:hover {
     .tableShrink td {
         padding: 5px 12px !important;
     }
+    
+    
 
     .sliderbox2 .slider2 {
         width: 803px;
@@ -2186,6 +2199,9 @@ a:hover {
 
     .tableShrink td {
         padding: 5px 12px 4px 12px !important;
+    }
+    .tableDoubleLineTitle th {
+        padding: 5px 5px !important;
     }
     .sliderbox2 .slider2 {
         width: 535px;

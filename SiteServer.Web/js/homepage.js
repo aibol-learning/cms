@@ -1,7 +1,6 @@
 /** 主站首页js **/
 
 $(function () {
-    console.log(222)
     //顶部轮播图
     var ary = location.href.split("&");
     jQuery(".slideBox").slide({
@@ -60,7 +59,6 @@ $(function () {
         },
         methods: {
             setData: function (data) {
-                console.log('setData')
                 this.set1(data);
                 this.set2(data);
                 this.set3(data);
@@ -84,15 +82,12 @@ $(function () {
                 
             },
             set1: function (res) {
-                console.log('set1')
                 var colorList = [
                     '#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed', '#ff69b4', '#ba55d3'
                 ];
 
                 //大屏幕1
-                console.log($("#chart1"));
                 var myChart1 = echarts.init(document.getElementById('chart1'));
-                console.log('myChart1', myChart1);
 
                 var itemStyle = {
                     normal: {
@@ -114,7 +109,6 @@ $(function () {
                         }
                     }
                 };
-                console.log('itemStyle', itemStyle);
 
                 var powerData = function () {
                     var data = [];
@@ -123,7 +117,6 @@ $(function () {
                     }
                     return data;
                 }
-                console.log('powerData', powerData())
 
                 var powerData2 = function () {
                     var total = [630, 630, 700, 700, 1000, 1000, 500];
@@ -133,7 +126,6 @@ $(function () {
                     }
                     return data;
                 }
-                console.log('powerData2', powerData2())
 
                 // 指定图表的配置项和数据
                 var optionChart1 = {
@@ -175,7 +167,6 @@ $(function () {
                     }
                     ]
                 };
-                console.log('optionChart1', optionChart1);
 
                 // 使用刚指定的配置项和数据显示图表。
                 myChart1.setOption(optionChart1);
@@ -281,10 +272,8 @@ $(function () {
             }
         },
         created: function () {
-            console.log('created')
             var self = this;
             $.get('/api/aibol/screenData', {}, function (res) {
-                console.log('ajax');
                 self.setData(res)
             });
         }
