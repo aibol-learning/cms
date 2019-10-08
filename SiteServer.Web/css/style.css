@@ -1727,7 +1727,7 @@ a:hover {
 }
 .carousel-inner {
     width: 912px;
-    height: 318px;
+    height: 324px;
     text-align: center
 }
 
@@ -2029,7 +2029,7 @@ a:hover {
 
     .carousel-inner {
         width: 753px;
-        height: 318px;
+        height: 324px;
         text-align: center
     }
 
@@ -2052,8 +2052,6 @@ a:hover {
         padding: 5px 12px !important;
     }
     
-    
-
     .sliderbox2 .slider2 {
         width: 803px;
         margin: 0 0 0 10px;
