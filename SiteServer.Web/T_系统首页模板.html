@@ -372,15 +372,15 @@
                                             <tbody>
                                                 <tr>
                                                     <td>SO<sub>2</sub>浓度</td>
-                                                    <td v-for="item in chart4.So2">{{item}}</td>
+                                                    <td v-for="item in chart4.So2">{{(Math.round(item*100,2)/100).toFixed(2)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>NO<sub>x</sub>浓度</td>
-                                                    <td v-for="item in chart4.Nox">{{item}}</td>
+                                                    <td v-for="item in chart4.Nox">{{(Math.round(item*100,2)/100).toFixed(2)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>烟尘浓度</td>
-                                                    <td v-for="item in chart4.Dust">{{item}}</td>
+                                                    <td v-for="item in chart4.Dust">{{(Math.round(item*100,2)/100).toFixed(2)}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
