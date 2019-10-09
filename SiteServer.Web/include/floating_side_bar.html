@@ -373,7 +373,7 @@
                                 response.Records.forEach(function (node, index) {
                                     if (node.CreatedWhen) {
                                         node.CreatedWhen = node.CreatedWhen.replace("T", " ");
-                                        node.url = node.RedirectUrl;
+                                        node.url = /^http.*/.test(node.RedirectUrl) ? node.RedirectUrl : (global.urls.backstage + node.RedirectUrl);
                                     }
                                 });
                                 self.backstageTasks = response.Records;

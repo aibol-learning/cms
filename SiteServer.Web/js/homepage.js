@@ -15,7 +15,6 @@ $(function () {
     });
 
     //生产数据
-    //var setCharts, charts;
     var charts = new Vue({
         el: "#charts",
         data: {
@@ -69,13 +68,6 @@ $(function () {
                 this.set8(data);
                 this.set9(data);
                     
-                //jQuery(".slideBox1").slide({
-                //    mainCell: ".bd ul",
-                //    effect: "left",
-                //    autoPlay: true,
-                //    delayTime: 1000,
-                //    interTime: 15000
-                //});
                 setTimeout(function () {
                     $("#charts").css("visibility", "visible");
                 },100)
@@ -130,9 +122,6 @@ $(function () {
                 // 指定图表的配置项和数据
                 var optionChart1 = {
                     color: ['#3398DB'],
-                    //title: {
-                    //text: 'ECharts 入门示例'
-                    //},
                     tooltip: {},
                     //legend: {
                     //    data: ['发电量', '剩余']
@@ -283,56 +272,10 @@ $(function () {
     vm = new Vue({
         el: "#vm",
         data: {
-            headlineNews_focus: [],     //头条聚集
-            headlineNews: [],           //头条新闻
             primaryNews: [],            //重要新闻 
             secondaryNews: [],          //次要新闻 
         },
         methods: {
-            //获取新闻中心网站所有一级栏目
-            getChannels: function () {
-                var def = $.Deferred();
-                $.ajax({
-                    url: '/api/v1/stl/channels?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey,
-                    type: 'get',
-                    success: function (response) {
-                        def.resolve(response.value);
-                    },
-                    error: function (response) {
-                        def.reject(response);
-                    }
-                });
-                return def.promise();
-            },
-
-            //头条新闻数据源请求：新闻中心-头条新闻，前4条
-            getHeadlineNews: function (node) {
-                var self = this;
-                if (node.indexName == '头条新闻') {
-                    $.ajax({
-                        url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&totalNum=4&apiKey=' + global.apikey + '&channelId=' + node.id,
-                        type: 'get',
-                        success: function (response) {
-                            self.headlineNews = response.value;
-                        }
-                    })
-                }
-            },
-
-            //头条聚焦数据源请求： 新闻中心-头条新闻，有“推荐”属性的内容，前8条
-            getHeadlineNewsFocus: function (node) {
-                var self = this;
-                if (node.indexName == '头条新闻') {
-                    $.ajax({
-                        url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&isRecommend=true&totalNum=8&apiKey=' + global.apikey + '&channelId=' + node.id,
-                        type: 'get',
-                        success: function (response) {
-                            self.headlineNews_focus = response.value;
-                        }
-                    })
-                }
-            },
-
             //获取新闻中心配置为“门户主要新闻”的栏目前4个
             getPrimaryNewsChannelsByGroup: function () {
                 var self = this;
@@ -456,18 +399,6 @@ $(function () {
             }
         },
         created: function () {
-            var self = this;
-
-            //头条新闻|头条聚焦数据请求(siteServer接口)
-            this.getChannels().done(function (data) {
-                data.forEach(function (node, index) {
-                    self.getHeadlineNews(node);
-                    self.getHeadlineNewsFocus(node);
-                })
-            }).fail(function (data) {
-                console.log("reject");
-            });
-
             //获取新闻中心配置为“门户主要新闻”的栏目及内容
             this.getPrimaryNewsChannelsByGroup();
             //获取新闻中心配置为“门户次要新闻”的栏目及内容
