@@ -1,7 +1,14 @@
 <div class="themenav">
     <!--logo+搜索+工作区登录信息-->
     <div class="container" style="position:relative">
-        <div class="logo"> <a href="{Stl.SiteUrl}/index.html"> {stl:value type=Logo} </a> </div>
+        <div class="logo">
+            <stl:if type="TemplateType" op="Equals" value="IndexPageTemplate">
+                <a href="/index.html"> {stl:value type=Logo} </a>
+            </stl:if>
+            <stl:if type="TemplateType" op="NotEquals" value="IndexPageTemplate">
+                <a href="{Stl.SiteUrl}/index.html"> {stl:value type=Logo} </a>
+            </stl:if>
+        </div>
         <div class="search">
             <span style="font-size:16px; color:#666; line-height:40px; margin-top:10px; display:inline-block; ">站内搜索&emsp;</span>
             <div id="sb-search" class="sb-search sb-search-open">
