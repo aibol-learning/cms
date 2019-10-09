@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net;
 using System.Text;
@@ -111,14 +112,19 @@ namespace SiteServer.Utils
             return false;
         }
 
-        public static bool Get(string url,out string retval)
+        public static bool Get(string url,out string retval,Dictionary<string,string> headers)
         {
             try
             {
                 var webClient = new WebClient();
+                webClient.Encoding = Encoding.UTF8;
+                foreach (var header in headers)
+                {
+                    webClient.Headers.Add(header.Key, header.Value);
+                }
+
                 var responseData = webClient.DownloadData(url);
                 retval = Encoding.UTF8.GetString(responseData);//解码
-
                 return true;
             }
             catch (Exception ex)
