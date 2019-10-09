@@ -315,18 +315,27 @@ namespace SiteServer.BackgroundPages.Settings
             var re = string.Empty;
             var i = 0;
 
-            var url = ConfigurationManager.AppSettings["UsersApiUrl"];
+            var request = new AuthenticatedRequest();
+            var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
+            if (accessToken == "")
+            {
+                FailMessage(null, $"登录超时。请刷新页面");
+                return;
+            }
 
-            if (WebClientUtils.Get(url + "?LastRetrieveDate=2000-01-01&PageSize=30000", out re))
+            var url = ConfigurationManager.AppSettings["UsersApiUrl"];
+            var header = new Dictionary<string,string>(){ { "Authorization", $"Bearer {accessToken}" } };
+
+            if (WebClientUtils.Get(url + "?LastRetrieveDate=2000-01-01&PageSize=30000", out re, header))
             {
                 JObject result = JObject.Parse(re);
                 var admins = DataProvider.AdministratorDao.ApiGetAdministrators(0, Int32.MaxValue);
 
-                foreach (var record in result["records"].ToObject<JArray>())
+                foreach (var record in result["Records"].ToObject<JArray>())
                 {
-                    var id = record["id"].ToString();
-                    var name = record["name"].ToString();
-                    var code = record["code"].ToString();
+                    var id = record["Id"].ToString();
+                    var name = record["Name"].ToString();
+                    var code = record["Code"].ToString();
 
                     var adminInfo = admins.FirstOrDefault(o => o.SSOId == id);
                     if (adminInfo == null)
