@@ -121,6 +121,11 @@ namespace SiteServer.BackgroundPages.Cms
             }
 
             CheckManager.LoadContentLevelToCheck(DdlCheckType, SiteInfo, isChecked, checkedLevel);
+            //客户要求 初审的时候默认选中终审
+            if (checkedLevel == 1)
+            {
+                DdlCheckType.SelectedIndex = 0;
+            }
 
             var listItem = new ListItem("<保持原栏目不变>", "0");
             DdlTranslateChannelId.Items.Add(listItem);
