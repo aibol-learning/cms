@@ -822,13 +822,18 @@ namespace SiteServer.CMS.Core
             {
                 listItem = new ListItem(Level3.Pass2, LevelInt.Pass2.ToString())
                 {
-                    Enabled = true
+                    Enabled = true,
+                    //客户要求 初审的时候默认选中终审
+                    Selected = true
                 };
                 listControl.Items.Add(listItem);
             }
+            else
+            {
+                ControlUtils.SelectSingleItem(listControl, checkedLevel.ToString());
+            }
 
-	        ControlUtils.SelectSingleItem(listControl, checkedLevel.ToString());
-	    }
+        }
 
 	    public static string GetCheckState(SiteInfo siteInfo, ContentInfo contentInfo)
 	    {
