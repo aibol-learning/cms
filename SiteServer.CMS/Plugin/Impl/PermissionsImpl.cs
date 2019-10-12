@@ -196,7 +196,14 @@ namespace SiteServer.CMS.Plugin.Impl
             }
         }
 
-        public bool IsConsoleAdministrator => EPredefinedRoleUtils.IsConsoleAdministrator(Roles);
+        public bool IsConsoleAdministrator
+        {
+            get
+            {
+                bool isAdmin = Roles.Any(o => o == "后台超级管理员");
+                return EPredefinedRoleUtils.IsConsoleAdministrator(Roles) || isAdmin;
+            }
+        }
 
         public bool IsSystemAdministrator => EPredefinedRoleUtils.IsSystemAdministrator(Roles);
 
