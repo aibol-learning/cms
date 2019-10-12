@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using SiteServer.API.Models;
 using SiteServer.BackgroundPages.Cms;
 using SiteServer.BackgroundPages.Settings;
 using SiteServer.CMS.Api.Preview;
@@ -24,6 +26,8 @@ namespace SiteServer.API.Controllers.Pages
         private const string Route = "";
         private const string RouteActionsCreate = "actions/create";
         private const string RouteActionsDownload = "actions/download";
+
+        private Db db = new Db();
 
         [HttpGet]
         [Route(Route)]
@@ -102,7 +106,24 @@ namespace SiteServer.API.Controllers.Pages
                 if (channelPermissions.Count > 0)
                     permissionList.AddRange(channelPermissions);
 
-                var topMenus = GetTopMenus(siteInfo, isSuperAdmin, siteIdListLatestAccessed, siteIdListWithPermissions);
+                var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
+
+                var at = AuthenticatedRequest.ParseAccessToken(accessToken, false);
+                var isAdmin = false;
+                if (!string.IsNullOrEmpty(at.sub))
+                {
+                    var user = AdminManager.GetAdminInfoByUserSub(at.sub);
+                    if (user!=null)
+                    {
+                        var roles = db.siteserver_AdministratorsInRoles.Where(o => o.UserName == user.UserName).ToList();
+                        if (roles.Any(o => o.RoleName == "后台超级管理员"))
+                        {
+                            isAdmin = true;
+                        }
+                    }
+                }
+
+                var topMenus = GetTopMenus(siteInfo, isSuperAdmin, siteIdListLatestAccessed, siteIdListWithPermissions, isAdmin);
                 var siteMenus =
                     GetLeftMenus(siteInfo, ConfigManager.TopMenu.IdSite, isSuperAdmin, permissionList);
                 var pluginMenus = GetLeftMenus(siteInfo, string.Empty, isSuperAdmin, permissionList);
@@ -138,7 +159,7 @@ namespace SiteServer.API.Controllers.Pages
         }
 
         private static List<Tab> GetTopMenus(SiteInfo siteInfo, bool isSuperAdmin, List<int> siteIdListLatestAccessed,
-            List<int> siteIdListWithPermissions)
+            List<int> siteIdListWithPermissions,bool isAdmin)
         {
             var menus = new List<Tab>();
 
@@ -192,7 +213,10 @@ namespace SiteServer.API.Controllers.Pages
                 menus.Add(new Tab {Text = "站点链接", Children = linkMenus.ToArray()});
             }
 
-            if (isSuperAdmin)
+            
+
+
+            if (isSuperAdmin || isAdmin)
                 foreach (var tab in TabManager.GetTopMenuTabs())
                 {
                     var tabs = TabManager.GetTabList(tab.Id, 0);

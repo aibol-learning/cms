@@ -313,6 +313,7 @@ namespace SiteServer.CMS.DataCache
 
         public static AdministratorInfo GetAdminInfoByUserSub(string sub)
         {
+            sub = Guid.Parse(sub).ToString();
             return AdminManagerCache.GetCacheByUserSub(sub);
         }
 
