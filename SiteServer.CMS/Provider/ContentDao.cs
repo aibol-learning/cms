@@ -318,7 +318,7 @@ namespace SiteServer.CMS.Provider
                 attributes.Set(ContentAttribute.CheckReasons, reasons);
 
                 var checkAdminSql = "";
-                if (checkedLevel >= 0)
+                if (checkedLevel >= 0 && !isChecked)
                 {
                     var adminLv = "";
                     switch (checkedLevel)

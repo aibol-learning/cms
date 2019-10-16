@@ -150,7 +150,7 @@
                                     }
                                     flag = 1;
                                     setTimeout(function () {
-                                        var currentLv = <%=ContentInfo.CheckedLevel %>+2;
+                                        var currentLv = <%=ContentInfo.IsChecked?3:ContentInfo.CheckedLevel %>+2;
                                         var lv1Sub = '<%=ContentInfo.Lv1AdminSub %>';
                                         var lv2Sub = '<%=ContentInfo.Lv2AdminSub %>';
                                         var lv3Sub = '<%=ContentInfo.Lv3AdminSub %>';
