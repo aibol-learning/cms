@@ -360,9 +360,9 @@ namespace SiteServer.BackgroundPages.Settings
                     {
                         if (adminInfo.UserName != code || adminInfo.DisplayName != $"{name}({code})")
                         {
-                            adminInfo.UserName = $"{name}({code})";
+                            adminInfo.UserName = code;
                             adminInfo.DisplayName = $"{name}({code})";
-                            DataProvider.AdministratorDao.Update(adminInfo);
+                            DataProvider.AdministratorDao.UpdateBySSOid(adminInfo);
                         }
                     }
                 }
