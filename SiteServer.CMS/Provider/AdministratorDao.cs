@@ -168,6 +168,8 @@ namespace SiteServer.CMS.Provider
 
         private const string SqlUpdateUser =
             "UPDATE siteserver_Administrator SET LastActivityDate = @LastActivityDate, CountOfLogin = @CountOfLogin, CountOfFailedLogin = @CountOfFailedLogin, IsLockedOut = @IsLockedOut, SiteIdCollection = @SiteIdCollection, SiteId = @SiteId, DepartmentId = @DepartmentId, AreaId = @AreaId, DisplayName = @DisplayName, Mobile = @Mobile, Email = @Email, AvatarUrl = @AvatarUrl WHERE UserName = @UserName";
+        private const string SqlUpdateUserBySSoid =
+            "UPDATE siteserver_Administrator SET LastActivityDate = @LastActivityDate, CountOfLogin = @CountOfLogin, CountOfFailedLogin = @CountOfFailedLogin, IsLockedOut = @IsLockedOut, SiteIdCollection = @SiteIdCollection, SiteId = @SiteId, DepartmentId = @DepartmentId, AreaId = @AreaId, DisplayName = @DisplayName, Mobile = @Mobile, Email = @Email, AvatarUrl = @AvatarUrl ,UserName = @UserName WHERE SSOId = @SSOId ";
 
         private const string ParmId = "@Id";
         private const string ParmSSOId = "@SSOId";
@@ -214,6 +216,38 @@ namespace SiteServer.CMS.Provider
             };
 
             ExecuteNonQuery(SqlUpdateUser, parameters);
+
+            DataProvider.DepartmentDao.UpdateCountOfAdmin();
+            DataProvider.AreaDao.UpdateCountOfAdmin();
+
+            AdminManager.UpdateCache(info);
+        }
+
+        public void UpdateBySSOid(AdministratorInfo info)
+        {
+            info.DisplayName = AttackUtils.FilterXss(info.DisplayName);
+            info.Mobile = AttackUtils.FilterXss(info.Mobile);
+            info.Email = AttackUtils.FilterXss(info.Email);
+
+            IDataParameter[] parameters =
+            {
+                GetParameter(ParmLastActivityDate, DataType.DateTime, info.LastActivityDate),
+                GetParameter(ParmCountOfLogin, DataType.Integer, info.CountOfLogin),
+                GetParameter(ParmCountOfFailedLogin, DataType.Integer, info.CountOfFailedLogin),
+                GetParameter(ParmIsLockedOut, DataType.VarChar, 18, info.IsLockedOut.ToString()),
+                GetParameter(ParmSiteIdCollection, DataType.VarChar, 50, info.SiteIdCollection),
+                GetParameter(ParmSiteId, DataType.Integer, info.SiteId),
+                GetParameter(ParmDepartmentId, DataType.Integer, info.DepartmentId),
+                GetParameter(ParmAreaId, DataType.Integer, info.AreaId),
+                GetParameter(ParmDisplayname, DataType.VarChar, 255, info.DisplayName),
+                GetParameter(ParmMobile, DataType.VarChar, 20, info.Mobile),
+                GetParameter(ParmEmail, DataType.VarChar, 255, info.Email),
+                GetParameter(ParmAvatarUrl, DataType.VarChar, 200, info.AvatarUrl),
+                GetParameter(ParmUsername, DataType.VarChar, 255, info.UserName),
+                GetParameter(ParmSSOId, DataType.VarChar, 255, info.SSOId)
+            };
+
+            ExecuteNonQuery(SqlUpdateUserBySSoid, parameters);
 
             DataProvider.DepartmentDao.UpdateCountOfAdmin();
             DataProvider.AreaDao.UpdateCountOfAdmin();
