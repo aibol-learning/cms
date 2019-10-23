@@ -14,6 +14,8 @@
 
     body {
         font: 12px/180% Arial, Helvetica, sans-serif,"宋体";
+        padding-top:52px;
+        padding-bottom:50px;
     }
     /* zoombox */
     .zoombox {
@@ -104,15 +106,17 @@
                 }
 
     #noData {
-        height:200px;
-        line-height:200px;
-        text-align:center;
-        color:#999;
-        display:none;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        color: #999;
+        display: none;
     }
+
     #previewWrap {
         display: none;
     }
+
     #btn_prev {
         position: fixed;
         left: 10%;
@@ -128,10 +132,12 @@
         display: block;
         border: none;
     }
+
         #btn_prev:hover, #btn_next:hover {
             filter: alpha(opacity=100);
             opacity: 1;
         }
+
     #btn_next {
         position: fixed;
         right: 10%;
@@ -144,13 +150,15 @@
         background: #009d8e url(/images/slider-arrow.png) 17px 24px no-repeat;
         filter: alpha(opacity=50);
         opacity: 0.5;
-        display:block;
-        border:none;
+        display: block;
+        border: none;
     }
+
         #btn_prev:disabled,
         #btn_next:disabled {
             background-color: #aaa;
         }
+
             #btn_prev:disabled:hover,
             #btn_next:disabled:hover {
                 background-color: #aaa;
@@ -159,14 +167,54 @@
             }
 
     .bread {
-        padding: 15px;
+      padding: 15px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #f9f9f9;
+      z-index: 999;
+    }
+    #btn_zoom {
+        display: block;
+        border: none;
+        cursor: pointer;
+        height: 52px;
+        line-height: 52px;
+        position:fixed;
+        top:0;
+        right:30px;
+        z-index:1000;
     }
 
+        #btn_zoom i {
+            font-size: 32px;
+            color: #009d8e;
+            height: 52px;
+            line-height: 52px;
+        }
+
+        #btn_zoom span {
+            display: inline-block;
+            font-size: 20px;
+            margin-left: 10px;
+            height: 52px;
+            line-height: 52px;
+            vertical-align: top;
+            color: #009d8e;
+        }
+
+        #btn_zoom.disabled i,
+        #btn_zoom.disabled span {
+            color: #666;
+        }
+
     @media (max-width: 1024px) {
-        .sliderbox .slider{
+        .sliderbox .slider {
             width: 819px;
             margin: 0px 0 0 25px;
         }
+
         #btn_prev {
             left: 0;
             margin-left: 0;
@@ -177,6 +225,7 @@
             margin-right: 0;
         }
     }
+
     @media (max-width: 800px) {
         .sliderbox .slider {
             width: 585px;
@@ -193,11 +242,11 @@
             margin-right: 0;
         }
     }
-
 </style>
 
 <body style="margin-top:0;">
     <stl:include file="/include/location.html"></stl:include>
+    <div class="disabled" id="btn_zoom"><i class="fa fa-search-plus"></i><span>开启放大镜</span></div>
     <h1 id="noData">暂无内容</h1>
     <div id="previewWrap">
         <div class="container">
@@ -220,8 +269,10 @@
         <input type="button" id="btn_next" />
     </div>
 
+    <script type="text/javascript" src='/js/lightzoom.js'></script>
     <script type="text/javascript">
         $(document).ready(function () {
+
             //数据转换--生成图片清单
             var fileUrl = $("#fileUrl").text();
 
@@ -238,6 +289,29 @@
                 }
                 //生成大图
                 $("#preview").attr("src", imageUrlPrefix + "1.png");
+                
+                //放大镜初始化及开关
+                $("#btn_zoom").click(function () {
+                  //初始化放大镜
+                  if($("#glass").length == 0){
+                    $('#preview').lightzoom({
+                       zoomPower: 1.6,
+                       glassSize: 390
+                    });
+                  }
+                  
+                  //放大镜开关
+                  if ($(this).hasClass("disabled")) {
+                    $(this).removeClass("disabled");
+                    $(this).find("span").text("关闭放大镜");
+                    $('#glassWrap').css("display", "block");
+                  }
+                  else {
+                    $(this).addClass("disabled");
+                    $(this).find("span").text("开启放大镜");
+                    $('#glassWrap').css("display", "none");
+                  }
+                })
 
                 //根据有无图片显示不同内容
                 var currentIndex = 0;

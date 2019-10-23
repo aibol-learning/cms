@@ -261,7 +261,7 @@
         <div class="rf_task_content">
             <ul class="task_list">
                 <li v-for="(task,index) in backstageTasks" v-if="backstageTasks && backstageTasks.length>0 && index < 5">
-                    <div class="task_item_title"><a :href="task.url" target="blank" :title="task.Name">{{task.Name}}</a></div>
+                    <div class="task_item_title"><a :href="task.url" target="blank">{{task.Name}}</a></div>
                     <div class="task_item_time">{{task.CreatedWhen}}</div>
                 </li>
                 <li v-if="islogin && backstageTasks && backstageTasks.length==0">
@@ -372,6 +372,7 @@
                                 self.islogin = true;
                                 response.Records.forEach(function (node, index) {
                                     if (node.CreatedWhen) {
+                                        node.Name = node.Name.length > 36 ? (node.Name.substring(0, 35) + "…") : node.Name.length;
                                         node.CreatedWhen = node.CreatedWhen.replace("T", " ");
                                         node.url = /^http.*/.test(node.RedirectUrl) ? node.RedirectUrl : (global.urls.backstage + node.RedirectUrl);
                                     }
