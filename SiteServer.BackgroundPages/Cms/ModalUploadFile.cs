@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Drawing;
 using System.IO;
 using System.Web.Security;
 using System.Web.UI.HtmlControls;
@@ -11,6 +12,7 @@ using Spire.Pdf;
 using Spire.Doc;
 using Spire.Doc.Documents;
 using FileFormat = Spire.Doc.FileFormat;
+using Image = System.Drawing.Image;
 
 namespace SiteServer.BackgroundPages.Cms
 {
@@ -45,7 +47,7 @@ namespace SiteServer.BackgroundPages.Cms
             }), 550, 250);
         }
 
-		public void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
             if (IsForbidden) return;
 
@@ -66,7 +68,7 @@ namespace SiteServer.BackgroundPages.Cms
 
 
             var filePath = HifUpload.PostedFile.FileName;
-                
+
             try
             {
                 var fileExtName = PathUtils.GetExtension(filePath).ToLower();
@@ -95,7 +97,7 @@ namespace SiteServer.BackgroundPages.Cms
                     FailMessage("此格式不允许上传，请选择有效的文件！");
                     return;
                 }
-                    
+
                 if (!PathUtility.IsFileSizeAllowed(SiteInfo, HifUpload.PostedFile.ContentLength))
                 {
                     FailMessage("上传失败，上传文件超出规定文件大小！");
@@ -109,7 +111,7 @@ namespace SiteServer.BackgroundPages.Cms
                     PdfDocument doc = new PdfDocument();
                     doc.LoadFromStream(HifUpload.PostedFile.InputStream);
 
-                    path = localFilePath.Replace(".pdf", "")+ $"_{ doc.Pages.Count}";
+                    path = localFilePath.Replace(".pdf", "") + $"_{ doc.Pages.Count}";
                     localFilePath = $"{path}.pdf";
                     for (int i = 0; i < doc.Pages.Count; i++)
                     {
@@ -118,7 +120,10 @@ namespace SiteServer.BackgroundPages.Cms
                             Directory.CreateDirectory(path);
                         }
                         var image = doc.SaveAsImage(i);
-                        image.Save(path  + $"/{i + 1}.png");
+
+                        removeTop20px(image);
+
+                        image.Save(path + $"/{i + 1}.png");
                     }
                 }
                 else if (localFileName.EndsWith(".docx"))
@@ -134,7 +139,10 @@ namespace SiteServer.BackgroundPages.Cms
                         {
                             Directory.CreateDirectory(path);
                         }
-                        var image = doc.SaveToImages(i,ImageType.Bitmap);
+                        var image = doc.SaveToImages(i, ImageType.Bitmap);
+
+                        removeTop20px(image);
+
                         image.Save(path + $"/{i + 1}.png");
                     }
                 }
@@ -152,6 +160,9 @@ namespace SiteServer.BackgroundPages.Cms
                             Directory.CreateDirectory(path);
                         }
                         var image = doc.SaveToImages(i, ImageType.Bitmap);
+
+                        removeTop20px(image);
+
                         image.Save(path + $"/{i + 1}.png");
                     }
                 }
@@ -178,11 +189,27 @@ namespace SiteServer.BackgroundPages.Cms
 </script>";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FailMessage(ex, "文件上传失败");
             }
         }
 
-	}
+        private static void removeTop20px(Image image)
+        {
+            //定义截取矩形
+            System.Drawing.Rectangle cropArea = new System.Drawing.Rectangle(0, 20, image.Width, image.Height - 20); //要截取的区域大小
+            var pickedG = System.Drawing.Graphics.FromImage(image);
+
+            //设置质量
+            pickedG.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            pickedG.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+
+            Rectangle fromR = new Rectangle(0, 20, image.Width, image.Height - 20); //原图裁剪定位
+            Rectangle toR = new Rectangle(0, 0, image.Width, image.Height); //目标定位
+
+            //裁剪
+            pickedG.DrawImage(image, toR, fromR, System.Drawing.GraphicsUnit.Pixel);
+        }
+    }
 }
