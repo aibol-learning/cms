@@ -267,7 +267,7 @@ namespace SiteServer.API.Controllers
                 query = query.Where(o => o.AddDate <= end.AddDays(1).AddSeconds(-1));
             }
 
-            var contents = query.Where(o => o.ChannelId > 0 && o.IsChecked).ToList();
+            var contents = query.Where(o => o.ChannelId > 0 && o.IsChecked.ToLower() == "true").ToList();
             return contents;
         }
 
@@ -280,7 +280,7 @@ namespace SiteServer.API.Controllers
 
             public int ChannelId { get; set; }
 
-            public bool IsChecked { get; set; }
+            public string IsChecked { get; set; }
         }
 
         [HttpGet, Route("GetAuthorTop6")]
@@ -514,7 +514,7 @@ namespace SiteServer.API.Controllers
                 query = query.Where(o => o.AddDate <= end);
             }
 
-            list = query.Where(o => o.ChannelId > 0 && o.IsChecked).ToList();
+            list = query.Where(o => o.ChannelId > 0 && o.IsChecked.ToLower() == "true").ToList();
         }
 
         public class ExportContent : Content
