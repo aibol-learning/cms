@@ -372,7 +372,7 @@
                                 self.islogin = true;
                                 response.Records.forEach(function (node, index) {
                                     if (node.CreatedWhen) {
-                                        node.Name = node.Name.length > 36 ? (node.Name.substring(0, 35) + "…") : node.Name.length;
+                                        node.Name = node.Name.length > 36 ? (node.Name.substring(0, 35) + "…") : node.Name;
                                         node.CreatedWhen = node.CreatedWhen.replace("T", " ");
                                         node.url = /^http.*/.test(node.RedirectUrl) ? node.RedirectUrl : (global.urls.backstage + node.RedirectUrl);
                                     }
