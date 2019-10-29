@@ -267,7 +267,7 @@ namespace SiteServer.API.Controllers
                 query = query.Where(o => o.AddDate <= end.AddDays(1).AddSeconds(-1));
             }
 
-            var contents = query.ToList();
+            var contents = query.Where(o => o.ChannelId > 0 && o.IsChecked).ToList();
             return contents;
         }
 
@@ -277,6 +277,10 @@ namespace SiteServer.API.Controllers
             public DateTime AddDate { get; set; }
             public string Author { get; set; }
             public string Source { get; set; }
+
+            public int ChannelId { get; set; }
+
+            public bool IsChecked { get; set; }
         }
 
         [HttpGet, Route("GetAuthorTop6")]
@@ -510,7 +514,7 @@ namespace SiteServer.API.Controllers
                 query = query.Where(o => o.AddDate <= end);
             }
 
-            list = query.ToList();
+            list = query.Where(o => o.ChannelId > 0 && o.IsChecked).ToList();
         }
 
         public class ExportContent : Content
@@ -650,7 +654,7 @@ namespace SiteServer.API.Controllers
 
             // SiteServer退出
             request.AdminLogout();
-        
+
             // IdentityServer退出
             return Redirect(WebConfigUtils.SSOService.LogoutEndPoint(idToken, postLogoutUrl));
         }
@@ -660,9 +664,9 @@ namespace SiteServer.API.Controllers
         {
             var request = new AuthenticatedRequest();
             var accessToken = request.GetCookie(Constants.AuthKeyIdentityServer);
-            if (accessToken =="")
+            if (accessToken == "")
             {
-                return Ok(new {code=401});
+                return Ok(new { code = 401 });
             }
 
             using (var client = new WebClient())
@@ -734,13 +738,13 @@ namespace SiteServer.API.Controllers
         /// <param name="Name">任务标题</param>
         /// <param name="Receivers">接收人ID，多个接收人的ID以半角逗号分隔</param>
         /// <returns>Code: 200，表示保存成功 Data: 新增的待办事项ID Messages: 如果失败，此字段用于存储出错内容</returns>
-        public static ResponseData<string> CreateTasks(string Key,string RedirectUrl,string Name,string Receivers)
+        public static ResponseData<string> CreateTasks(string Key, string RedirectUrl, string Name, string Receivers)
         {
             var CreateTasksApiUrl = ConfigurationManager.AppSettings["CreateTasksApiUrl"];
             var data = $"Key={Key}&RedirectUrl={RedirectUrl}&Name={Name}&Receivers={Receivers}";
 
-            var re = post(CreateTasksApiUrl,data);
-            return (ResponseData<string>) re;
+            var re = post(CreateTasksApiUrl, data);
+            return (ResponseData<string>)re;
         }
 
         /// <summary>
@@ -765,7 +769,7 @@ namespace SiteServer.API.Controllers
         /// <param name="url">请求地址</param>
         /// <param name="data">请求数据 格式 value=xxx</param>
         /// <returns>dynamic json</returns>
-        public static dynamic post(string url,string data)
+        public static dynamic post(string url, string data)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(data);
 

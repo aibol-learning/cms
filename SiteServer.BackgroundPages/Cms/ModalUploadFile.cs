@@ -129,11 +129,15 @@ namespace SiteServer.BackgroundPages.Cms
                 else if (localFileName.EndsWith(".docx"))
                 {
                     Document doc = new Document();
-                    doc.LoadFromStream(HifUpload.PostedFile.InputStream, FileFormat.Docx);
+                    doc.AddSection();
+                    doc.Sections[0].AddParagraph();
+                    doc.InsertTextFromStream(HifUpload.PostedFile.InputStream, FileFormat.Docx);
+                    
+                    doc.Sections[0].Paragraphs[0].AppendBreak(BreakType.PageBreak);
 
-                    path = localFilePath.Replace(".docx", "") + $"_{ doc.PageCount}";
+                    path = localFilePath.Replace(".docx", "") + $"_{ doc.PageCount-1}";
                     localFilePath = $"{path}.docx";
-                    for (int i = 0; i < doc.PageCount; i++)
+                    for (int i = 1; i < doc.PageCount; i++)
                     {
                         if (!Directory.Exists(path))
                         {
@@ -141,19 +145,21 @@ namespace SiteServer.BackgroundPages.Cms
                         }
                         var image = doc.SaveToImages(i, ImageType.Bitmap);
 
-                        removeTop20px(image);
-
-                        image.Save(path + $"/{i + 1}.png");
+                        image.Save(path + $"/{i}.png");
                     }
                 }
                 else if (localFileName.EndsWith(".doc"))
                 {
                     Document doc = new Document();
-                    doc.LoadFromStream(HifUpload.PostedFile.InputStream, FileFormat.Doc);
+                    doc.AddSection();
+                    doc.Sections[0].AddParagraph();
+                    doc.InsertTextFromStream(HifUpload.PostedFile.InputStream, FileFormat.Doc);
 
-                    path = localFilePath.Replace(".doc", "") + $"_{ doc.PageCount}";
+                    doc.Sections[0].Paragraphs[0].AppendBreak(BreakType.PageBreak);
+
+                    path = localFilePath.Replace(".doc", "") + $"_{ doc.PageCount-1}";
                     localFilePath = $"{path}.doc";
-                    for (int i = 0; i < doc.PageCount; i++)
+                    for (int i = 1; i < doc.PageCount; i++)
                     {
                         if (!Directory.Exists(path))
                         {
@@ -161,9 +167,7 @@ namespace SiteServer.BackgroundPages.Cms
                         }
                         var image = doc.SaveToImages(i, ImageType.Bitmap);
 
-                        removeTop20px(image);
-
-                        image.Save(path + $"/{i + 1}.png");
+                        image.Save(path + $"/{i}.png");
                     }
                 }
 
@@ -211,5 +215,7 @@ namespace SiteServer.BackgroundPages.Cms
             //裁剪
             pickedG.DrawImage(image, toR, fromR, System.Drawing.GraphicsUnit.Pixel);
         }
+
+
     }
 }

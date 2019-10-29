@@ -2567,7 +2567,7 @@ group by tmp.source";
             };
 
             //审核隔离
-            if (!string.IsNullOrEmpty(adminSub))
+            if (!string.IsNullOrEmpty(adminSub) && !adminPermissions.IsConsoleAdministrator)
             {
                 var lv3 = isAdminLv3 ? "or CheckedLevel = 2" : "";
 

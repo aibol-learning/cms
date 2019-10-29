@@ -74,10 +74,14 @@ namespace ToPng
                 else if (localFileName.EndsWith(".docx"))
                 {
                     Document doc = new Document();
-                    doc.LoadFromStream(fileInfo.OpenRead(), FileFormat.Docx);
+                    doc.AddSection();
+                    doc.Sections[0].AddParagraph();
+                    doc.InsertTextFromStream(fileInfo.OpenRead(), FileFormat.Docx);
+
+                    doc.Sections[0].Paragraphs[0].AppendBreak(BreakType.PageBreak);
 
                     path = localFilePath.Replace(".docx", "");
-                    for (int i = 0; i < doc.PageCount; i++)
+                    for (int i = 1; i < doc.PageCount; i++)
                     {
                         if (!Directory.Exists(path))
                         {
@@ -87,17 +91,21 @@ namespace ToPng
 
                         removeTop20px(image);
 
-                        image.Save(path + $"/{i + 1}.png");
-                        Console.WriteLine(path + $"/{i + 1}.png" + "已转换");
+                        image.Save(path + $"/{i }.png");
+                        Console.WriteLine(path + $"/{i }.png" + "已转换");
                     }
                 }
                 else if (localFileName.EndsWith(".doc"))
                 {
                     Document doc = new Document();
-                    doc.LoadFromStream(fileInfo.OpenRead(), FileFormat.Doc);
+                    doc.AddSection();
+                    doc.Sections[0].AddParagraph();
+                    doc.InsertTextFromStream(fileInfo.OpenRead(), FileFormat.Doc);
+
+                    doc.Sections[0].Paragraphs[0].AppendBreak(BreakType.PageBreak);
 
                     path = localFilePath.Replace(".doc", "");
-                    for (int i = 0; i < doc.PageCount; i++)
+                    for (int i = 1; i < doc.PageCount; i++)
                     {
                         if (!Directory.Exists(path))
                         {
@@ -107,8 +115,8 @@ namespace ToPng
 
                         removeTop20px(image);
 
-                        image.Save(path + $"/{i + 1}.png");
-                        Console.WriteLine(path + $"/{i + 1}.png" + "已转换");
+                        image.Save(path + $"/{i}.png");
+                        Console.WriteLine(path + $"/{i }.png" + "已转换");
                     }
                 }
             }
