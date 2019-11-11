@@ -123,7 +123,9 @@ namespace SiteServer.BackgroundPages.Cms
                 }
 
                 CblContentAttributes.Items.Add(new ListItem("置顶", ContentAttribute.IsTop));
-                CblContentAttributes.Items.Add(new ListItem("推荐", ContentAttribute.IsRecommend));
+                var listItem = new ListItem("推荐", ContentAttribute.IsRecommend);
+                listItem.Selected = true;
+                CblContentAttributes.Items.Add(listItem);
                 CblContentAttributes.Items.Add(new ListItem("热点", ContentAttribute.IsHot));
                 CblContentAttributes.Items.Add(new ListItem("醒目", ContentAttribute.IsColor));
                 TbAddDate.DateTime = DateTime.Now;

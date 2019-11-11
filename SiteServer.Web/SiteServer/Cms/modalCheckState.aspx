@@ -267,14 +267,14 @@
                                         var step4 = jsPlumb.addEndpoint('step4', { uuid: 'step4', anchor: 'Top' }, makeStyle(4));
                                         jsPlumb.connect({ uuids: ['step3', 'step4'] });
                                         
-                                        //if (currentLv >= 4) {
-                                        //    step4.addOverlay(['Custom', {
-                                        //        create: function (component) {
-                                        //            return $('<p id="lv3" style="color: white; background-color: #00b19d; padding: 2px; border-radius: 5px;margin-left: 49px; margin-top: 40px; font-size: xx-small;">未指派</p>');
-                                        //        },
-                                        //        location: 0.5
-                                        //    }]);
-                                        //}
+                                        if (currentLv >= 4) {
+                                            step4.addOverlay(['Custom', {
+                                                create: function (component) {
+                                                    return $('<p id="lv3" style="color: white; background-color: #00b19d; padding: 2px; border-radius: 5px;margin-left: 49px; margin-top: 40px; font-size: xx-small;">未指派</p>');
+                                                },
+                                                location: 0.5
+                                            }]);
+                                        }
 
                                         jsPlumb.addEndpoint('step4', { uuid: 'step4', anchor: 'Left' }, makeStyle(4));
                                         jsPlumb.addEndpoint('step5', { uuid: 'step5', anchor: 'Right' }, makeStyle(5));

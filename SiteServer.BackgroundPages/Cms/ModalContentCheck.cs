@@ -211,6 +211,7 @@ namespace SiteServer.BackgroundPages.Cms
                                 BackstageManager.SendMessage(MessageType.任务,
                                     new List<string>() { DataProvider.AdministratorDao.GetByUserName(contentInfo.AddUserName).SSOId },
                                     "您有一条政工部审批退稿的新闻任务待处理", redirectUrl, key);
+                                //标记政工部审批人
 
                                 var SSOIds = DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(3);
                                 SSOIds.Remove(AuthRequest.AdminInfo.SSOId);
@@ -249,6 +250,13 @@ namespace SiteServer.BackgroundPages.Cms
             {
                 var tableName = ChannelManager.GetTableName(SiteInfo, channelId);
                 var contentIdList = idsDictionaryToCheck[channelId];
+
+                //todo 审核通过的时候 sub赋值操作人的sub
+                if (isChecked)
+                {
+                    checkSub = AuthRequest.AdminInfo.SSOId;
+                }
+
                 DataProvider.ContentDao.UpdateIsChecked(tableName, SiteId, channelId, contentIdList, translateChannelId, AuthRequest.AdminName, isChecked, checkedLevel, TbCheckReasons.Text, checkSub);
             }
 
