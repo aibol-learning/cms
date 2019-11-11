@@ -338,6 +338,11 @@ namespace SiteServer.CMS.Provider
                     checkAdminSql = $",{adminLv} = '{checkSub}'";
                 }
 
+                if (isChecked)
+                {
+                    checkAdminSql = $",Lv3AdminSub = '{checkSub}'";
+                }
+
 
                 var sqlString =
                     $"UPDATE {tableName} SET {ContentAttribute.IsChecked} = '{isChecked}', {ContentAttribute.CheckedLevel} = {checkedLevel}, {ContentAttribute.SettingsXml} = '{attributes}' {checkAdminSql} WHERE {ContentAttribute.Id} = {contentId}";
@@ -2579,7 +2584,7 @@ group by tmp.source";
                     )");
             }
 
-            if (!isAdminLv3)
+            if (!isAdminLv3 && !adminPermissions.IsConsoleAdministrator)
             {
                 whereList.Add($" CheckedLevel != 2");
             }
