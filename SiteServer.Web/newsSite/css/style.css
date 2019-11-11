@@ -1939,6 +1939,11 @@ a:hover {
     width:1170px;
 }
 
+a.btn-back {
+    color: #009d8e;
+    font-size:14px;
+}
+
 @media (max-width: 1152px) {
     .headImage {
         width: 970px;

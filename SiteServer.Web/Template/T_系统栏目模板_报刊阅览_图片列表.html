@@ -195,8 +195,11 @@
                             })
                         </script>
                     </div>
-                    <div class="listcon">
+                    <div class="listcon" style="position:relative">
                         <stl:include file="/include/location.html"></stl:include>
+                        <div style="position:absolute; top:30px; right:30px; z-index:999">
+                            点击 <span class="gallery_download" style="position:static; display:inline-block;"><icon class="fa fa-download"></icon></span> 图标即可下载对应报刊
+                        </div>
                         <ul class="gallery_list">
                             <stl:pageContents pageNum="24" order="AddDate" where="addDate > dateadd(year, -1, getdate())">
                                 <li fileurl="{Content.fileUrl}">
@@ -205,7 +208,7 @@
                                             <span class="gallery_item">
                                             </span>
                                         </stl:a>
-                                        <a class="gallery_download" href="{Content.fileUrl}" download="{Content.fileUrl}"><icon class="fa fa-download"></icon></a>
+                                        <a class="gallery_download" href="{Content.fileUrl}" download="{Content.fileUrl}" title="下载"><icon class="fa fa-download"></icon></a>
                                         <span class="label_new"></span>
                                         <span class="imageTitle" title="{Content.title}"><stl:content type="title"></span>
                                     </div>

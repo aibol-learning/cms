@@ -6,21 +6,21 @@
     <stl:include file="/include/header.html"></stl:include>
     <div class="clearfix"></div>
 
-    <stl:contents channelIndex="首页轮播图" totalNum="1" isRecommend="true">
+    <stl:contents channelIndex="首页轮播图" totalNum="1" isRecommend="true" order="addDate">
         <stl:if type="imageUrl" op="notEmpty">
             <stl:yes>
                 <!--轮播图-->
                 <div id="slideBox" class="slideBox underslideBox">
                     <div class="hd">
                         <ul>
-                            <stl:contents channelIndex="首页轮播图" totalNum="10" isImage="true" isRecommend="true">
+                            <stl:contents channelIndex="首页轮播图" totalNum="10" isImage="true" isRecommend="true" order="addDate">
                                 <li></li>
                             </stl:contents>
                         </ul>
                     </div>
                     <div class="bd underhd">
                         <ul>
-                            <stl:contents channelIndex="首页轮播图" totalNum="10" isImage="true" isRecommend="true">
+                            <stl:contents channelIndex="首页轮播图" totalNum="10" isImage="true" isRecommend="true" order="addDate">
                                 <li>
                                     <stl:if type="linkUrl" op="Empty">
                                         <stl:yes>
@@ -50,22 +50,22 @@
                     <stl:yes>
                         <!--Flash-->
                         <div class="flash-1280above">
-                            <stl:contents channelIndex="首页轮播图" totalNum="1" isFile="true">
+                            <stl:contents channelIndex="首页轮播图" totalNum="1" isFile="true" order="addDate">
                                 <stl:flash width="1170" height="385" type="fileUrl"></stl:flash>
                             </stl:contents>
                         </div>
                         <div class="flash-1152">
-                            <stl:contents channelIndex="首页轮播图" totalNum="1" isFile="true">
+                            <stl:contents channelIndex="首页轮播图" totalNum="1" isFile="true" order="addDate">
                                 <stl:flash width="1134" height="372" type="fileUrl"></stl:flash>
                             </stl:contents>
                         </div>
                         <div class="flash-1024">
-                            <stl:contents channelIndex="首页轮播图" isFile="true" totalNum="1">
+                            <stl:contents channelIndex="首页轮播图" isFile="true" totalNum="1" order="addDate">
                                 <stl:flash width="1007" height="322" type="fileUrl"></stl:flash>
                             </stl:contents>
                         </div>
                         <div class="flash-800">
-                            <stl:contents channelIndex="首页轮播图" isFile="true" totalNum="1">
+                            <stl:contents channelIndex="首页轮播图" isFile="true" totalNum="1" order="addDate">
                                 <stl:flash width="783" height="256" type="fileUrl"></stl:flash>
                             </stl:contents>
                         </div>
@@ -81,22 +81,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6" v-for="item in primaryNews">
-                        <div class="news_tab">
+                        <div class="news_tab" style="position:relative">
                             <div class="news_tab_item primary" :class="{active: item.active}">{{item.channelName}}</div>
+                            <a :href="item.navigationUrl" class="list_more">更多……</a>
                         </div>
                         <div class="news_contents">
                             <div class="news_content" :class="{active: item.active}">
                                 <div class="news_list primary">
                                     <div class="news_list_item" v-for="news in item.contents">
-                                        <div class="image_wrap"><a :href="news.navigationUrl"><img :src="news.imageUrl" /></a></div>
                                         <div class="content_wrap">
                                             <a :href="news.navigationUrl" class="list_title" :title="news.title">{{news.titleShort}}</a>&nbsp;
-                                            <div class="news_list_summary">
-                                                {{news.summary}}
-                                            </div>
+                                            <span class="addtime">{{news.addDate}}</span>
                                         </div>
                                     </div>
-                                    <a :href="item.navigationUrl" class="list_more">更多……</a>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +109,7 @@
                     <stl:channels channelIndex="企业文化">
                         <stl:if type="channelIndex" op="Equals" value="和文化">
                             <stl:yes>
-                                <stl:contents channelIndex="和文化" totalNum="1">
+                                <stl:contents channelIndex="和文化" totalNum="1" order="addDate">
                                     <h4><stl:channel channelIndex="企业文化"></stl:channel></h4>
                                     <h2><stl:content type="SubTitle"></stl:content></h2>
                                     <p><stl:content type="Summary" wordNum="100"></stl:content></p>
@@ -184,11 +181,14 @@
             <!--公司公告-->
             <div class="contentpart announcement" style="background:#FFF;">
                 <div class="container">
-                    <h3>公司公告</h3>
+                    <h3 style="position:relative">
+                        公司公告
+                        <div class="more"><stl:a channelIndex="公司公告">更多……</stl:a></div>
+                    </h3>
                     <div class="row">
                         <div class="col-md-6 announcement_p_r">
                             <ul>
-                                <stl:contents channelIndex="公司公告" scope="all" totalNum="5">
+                                <stl:contents channelIndex="公司公告" scope="all" totalNum="5" order="addDate">
                                     <li>
                                         <div class="title">
                                             <stl:a title="{Content.title}"><stl:content type="title" wordNum="28" ellipsis="..."></stl:content></stl:a>
@@ -216,7 +216,7 @@
                         </div>
                         <div class="col-md-6 announcement_p_l">
                             <ul>
-                                <stl:contents channelIndex="公司公告" scope="all" startNum="6" totalNum="5">
+                                <stl:contents channelIndex="公司公告" scope="all" startNum="6" totalNum="5" order="addDate">
                                     <li>
                                         <div class="title">
                                             <stl:a title="{Content.title}"><stl:content type="title" wordNum="28" ellipsis="..."></stl:content></stl:a>
@@ -239,7 +239,7 @@
                                     </li>
                                 </stl:contents>
                             </ul>
-                            <div class="more"><stl:a channelIndex="公司公告">更多</stl:a></div>
+                            
                         </div>
                     </div>
                 </div>
@@ -663,7 +663,7 @@
                                     <li style="position:relative">
                                         <stl:a><img src="{Channel.imageUrl}" /></stl:a>
                                         <div class="label_new"></div>
-                                        <stl:contents totalNum="1">
+                                        <stl:contents totalNum="1" order="addDate">
                                             <span class="js_addDate" style="display:none"><stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span>
                                         </stl:contents>
                                     </li>

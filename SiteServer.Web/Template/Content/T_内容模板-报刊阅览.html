@@ -183,7 +183,8 @@
         line-height: 52px;
         position:fixed;
         top:0;
-        right:30px;
+        left:50%;
+        margin-left:-70px;
         z-index:1000;
     }
 
@@ -209,6 +210,20 @@
             color: #666;
         }
 
+    #btn-back {
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+        height: 52px;
+        line-height: 52px;
+        position: fixed;
+        top: 0;
+        right: 30px;
+        margin-left: -15px;
+        z-index: 1000;
+        color: #009d8e;
+        font-size: 14px;
+    }
     @media (max-width: 1024px) {
         .sliderbox .slider {
             width: 819px;
@@ -246,6 +261,7 @@
 
 <body style="margin-top:0;">
     <stl:include file="/include/location.html"></stl:include>
+    <a href="javascript:window.history.back(-1);" id="btn-back">返回</a>
     <div class="disabled" id="btn_zoom"><i class="fa fa-search-plus"></i><span>开启放大镜</span></div>
     <h1 id="noData">暂无内容</h1>
     <div id="previewWrap">

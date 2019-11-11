@@ -1,31 +1,32 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
-  <stl:include file="/include/head.html"></stl:include>
-  <body>
-    <stl:include file="/include/header.html"></stl:include>
-    <div class="clearfix"></div>
-    <div class="maincon">
-      <stl:include file="/include/banner.html"></stl:include>
-      <div class="container neicon">
-        <div class="row">
-          <stl:include file="/include/left.html"></stl:include>
-          <div class="col-md-9">
-            <div class="listcon">
-              <stl:include file="/include/location.html"></stl:include>
-              <div class="pagecon">
-                <h1 class="pagetit text-center">
-                  {Content.Title}
-                </h1>
-                <div class="pagecontent">
-                  <stl:content type="Content"></stl:content>
+    <stl:include file="/include/head.html"></stl:include>
+    <body>
+        <stl:include file="/include/header.html"></stl:include>
+        <div class="clearfix"></div>
+        <div class="maincon">
+            <stl:include file="/include/banner.html"></stl:include>
+            <div class="container neicon">
+                <div class="row">
+                    <stl:include file="/include/left.html"></stl:include>
+                    <div class="col-md-9">
+                        <div class="listcon">
+                            <stl:include file="/include/location.html"></stl:include>
+                            <div class="pagecon">
+                                <h1 class="pagetit text-center">
+                                    {Content.Title}
+                                </h1>
+                                <div class="pagecontent">
+                                    <stl:content type="Content"></stl:content>
+                                    <p class="text-right"><a href="javascript:window.history.back(-1);" class="btn-back">返回</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>  
-    <stl:include file="/include/footer_black.html"></stl:include>
-  </body>
+        <stl:include file="/include/footer_black.html"></stl:include>
+    </body>
 </html>
 

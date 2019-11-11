@@ -75,7 +75,8 @@ $(function () {
             },
             set1: function (res) {
                 var colorList = [
-                    '#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed', '#ff69b4', '#ba55d3'
+                    //'#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed', '#ff69b4', '#ba55d3'
+                    '#ff3300', '#ff3300', '#ff3300', '#ff3300', '#ff3300', '#ff3300', '#ff3300'
                 ];
 
                 //大屏幕1
@@ -97,7 +98,9 @@ $(function () {
                             show: true,
                             position: 'top',
                             formatter: '{c}',
-                            distance: 0
+                            distance: 0,
+                            color: 'red',
+                            fontSize: '16'
                         }
                     }
                 };
@@ -105,16 +108,16 @@ $(function () {
                 var powerData = function () {
                     var data = [];
                     for (var i = 0; i < 7; i++) {
-                        data.push((res.GeneratorSets[i].Powers[res.GeneratorSets[i].Powers.length - 1]).toFixed(2));
+                        data.push(parseInt(res.GeneratorSets[i].Powers[res.GeneratorSets[i].Powers.length - 1]));
                     }
                     return data;
                 }
 
                 var powerData2 = function () {
-                    var total = [630, 630, 700, 700, 1000, 1000, 500];
+                    var total = [630, 630, 700, 700, 1000, 1000, 0];
                     var data = [];
                     for (var i = 0; i < 7; i++) {
-                        data.push((total[i] - res.GeneratorSets[i].Powers[res.GeneratorSets[i].Powers.length - 1]).toFixed(2));
+                        data.push((total[i] - parseInt(res.GeneratorSets[i].Powers[res.GeneratorSets[i].Powers.length - 1])));
                     }
                     return data;
                 }
@@ -149,7 +152,7 @@ $(function () {
                         barCategoryGap: '50%',
                         itemStyle: {
                             normal: {
-                                color: 'rgba(0,0,255, 0.2)'
+                                color: 'rgba(0,0,255, 0.06)'
                             }
                         },
                         data: powerData2()
@@ -268,7 +271,7 @@ $(function () {
         }
     });
 
-    //头条新闻，头条聚集
+    //重要新闻, 次要新闻 
     vm = new Vue({
         el: "#vm",
         data: {
@@ -298,12 +301,12 @@ $(function () {
                 })
             },
 
-            //获取新闻中心配置为“门户主要新闻”的栏目内容 推荐+前2条
+            //获取新闻中心配置为“门户主要新闻”的栏目内容 前8条
             getPrimaryNewsContents: function (channelId) {
                 var self = this;
                 var summaryLen = screen.width >= 1280 ? 55 : 43;
                 $.ajax({
-                    url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelId=' + channelId + "&totalNum=2&isRecommend=true",
+                    url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelId=' + channelId + "&totalNum=8&order=addDate",
                     type: 'get',
                     success: function (response) {
                         for (var i = 0; i < self.primaryNews.length; i++) {
@@ -319,6 +322,7 @@ $(function () {
                                     if (node.summary.length > summaryLen) {
                                         node.summary = node.summary.substring(0, summaryLen) + "…";
                                     }
+                                    node.addDate = node.addDate.substring(0, 10);
                                 })
                             }
                         }
@@ -367,7 +371,7 @@ $(function () {
             getSecondaryNewsContents: function (channelId) {
                 var self = this;
                 $.ajax({
-                    url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelId=' + channelId + "&totalNum=5&isRecommend=true",
+                    url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelId=' + channelId + "&totalNum=5&isRecommend=true&order=addDate",
                     type: 'get',
                     success: function (response) {
                         for (var i = 0; i < self.secondaryNews.length; i++) {

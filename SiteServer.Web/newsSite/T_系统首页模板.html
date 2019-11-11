@@ -58,7 +58,7 @@
         <div class="container">
             <!--宣传大图 -->
             <div class="row" style="padding-top:20px;">
-                <stl:contents channelIndex="首页宣传大图" totalNum="1" isRecommend="true">
+                <stl:contents channelIndex="首页宣传大图" totalNum="1" isRecommend="true" order="addDate">
                     <stl:if type="linkUrl" op="Empty">
                         <stl:yes>
                             <stl:if type="content" op="Empty">
@@ -80,7 +80,7 @@
             <!--头条聚焦-->
             <div class="row" style="padding-top: 20px;margin-bottom: -20px;">
                 <div class="col-sm-12 col-md-6 col-lg-6 pic-left">
-                    <stl:contents channelIndex="头条新闻" isRecommend="true" totalNum="1">
+                    <stl:contents channelIndex="头条新闻" isRecommend="true" totalNum="1" order="addDate">
                         <img src="{Content.ImageUrl}" onClick="window.location.href='{Content.NavigationUrl}'" alt="{Content.Title}" />
                         <div class="pic-left_title"><stl:content type="title" wordNum="24" ellipsis="..."></stl:content></div>
                     </stl:contents>
@@ -88,7 +88,7 @@
 
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-mid">
                     <ul>
-                        <stl:contents channelIndex="头条新闻" totalNum="2" isRecommend="true" startNum="2">
+                        <stl:contents channelIndex="头条新闻" totalNum="2" isRecommend="true" startNum="2" order="addDate">
                             <li>
                                 <stl:a>
                                     <stl:if type="ImageUrl" op="NotEmpty">
@@ -110,7 +110,7 @@
 
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 pic-right">
                     <ul>
-                        <stl:contents channelIndex="头条新闻" totalNum="2" startNum="4" isRecommend="true">
+                        <stl:contents channelIndex="头条新闻" totalNum="2" startNum="4" isRecommend="true" order="addDate">
                             <li>
                                 <stl:a>
                                     <stl:if type="ImageUrl" op="NotEmpty">
@@ -135,7 +135,7 @@
             <div class="marquee_wrap">
                 <div class="marquee_title">通知公告：</div>
                 <marquee onmouseout="this.start()" onmouseover="this.stop()">
-                    <stl:contents channelIndex="通知公告" totalNum="8">
+                    <stl:contents channelIndex="通知公告" totalNum="8" order="addDate">
                         <stl:a><stl:content type="title"></stl:content> <stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content> <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if></stl:a>
                     </stl:contents>
                 </marquee>
@@ -149,12 +149,12 @@
                 </div>
                 <div class="row m-t-20">
                     <div class="col-md-5">
-                        <stl:contents channelIndex="头条新闻" isTop="true" totalNum="1">
+                        <stl:contents channelIndex="头条新闻" isTop="true" totalNum="1" order="addDate">
                             <stl:a><img src="{Content.imageUrl}" class="head_img" /></stl:a>
                         </stl:contents>
                     </div>
                     <div class="col-md-3">
-                        <stl:contents channelIndex="头条新闻" isTop="true" totalNum="1">
+                        <stl:contents channelIndex="头条新闻" isTop="true" totalNum="1" order="addDate">
                             <stl:a class="head_title"><stl:content wordNum="17" ellipsis="..."></stl:content></stl:a>
                             <div class="head_summary"><stl:content type="summary" wordNum="130" ellipsis="..."></stl:content></div>
                         </stl:contents>
@@ -162,7 +162,7 @@
 
                     <div class="col-md-4">
                         <div class="head_list">
-                            <stl:contents channelIndex="头条新闻" totalNum="5">
+                            <stl:contents channelIndex="头条新闻" totalNum="5" order="addDate">
                                 <stl:a class="head_list_title"><stl:content wordNum="13" ellipsis="..."></stl:content></stl:a>
                                 <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
                                 <div class="head_list_info">
@@ -296,7 +296,7 @@
                         <div class="sidebar">
                             <div class="sidebar_title"><stl:channel></stl:channel></div>
                             <div class="sidebar_list">
-                                <stl:contents channelIndex="{Channel.title}" isRecommend="true">
+                                <stl:contents channelIndex="{Channel.title}" isRecommend="true" order="addDate">
                                     <div class="sidebar_list_title">
                                         <stl:a title="{Content.title}"><stl:content type="title" wordNum="15" ellipsis="..."></stl:content></stl:a>
                                         <stl:if type="IsHot" op="Equals" value="true"> <i class="fa fa-fire"></i></stl:if>
@@ -323,7 +323,7 @@
                         <div id="btn-left2" class="arrow-btn2 dasabled"></div>
                         <div class="slider2" id="thumbnail2">
                             <ul>
-                                <stl:contents channelIndex="职工风采" isRecommend="true" totalNum="20">
+                                <stl:contents channelIndex="职工风采" isRecommend="true" totalNum="20" order="addDate">
                                     <li style="position:relative">
                                         <a class="light_box_images" href="{Content.imageUrl}" data-lightbox="image-1" data-title="{Content.title}">
                                             <span style="background-image:url('{Content.imageUrl}')" class="light_box_item">
@@ -436,7 +436,7 @@
                     getLeftChannelContents: function (channelId) {
                         var self = this;
                         $.ajax({
-                            url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelId=' + channelId + "&totalNum=5",
+                            url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelId=' + channelId + "&totalNum=5&order=addDate",
                             type: 'get',
                             success: function (response) {
                                 for (var i = 0; i < self.leftChannels.length; i++) {
