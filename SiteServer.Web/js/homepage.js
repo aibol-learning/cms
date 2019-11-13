@@ -276,6 +276,12 @@ $(function () {
         el: "#vm",
         data: {
             primaryNews: [],            //重要新闻 
+            imageNews: {                //图片新闻
+                active: true,
+                channelName: '图片新闻',
+                navigationUrl: '',
+                contents: []
+            },    
             secondaryNews: [],          //次要新闻 
         },
         methods: {
@@ -317,6 +323,7 @@ $(function () {
                                         node.titleShort = node.title.substring(0, 20) + "…";
                                     }
                                     else {
+
                                         node.titleShort = node.title;
                                     }
                                     if (node.summary.length > summaryLen) {
@@ -326,6 +333,48 @@ $(function () {
                                 })
                             }
                         }
+                    }
+                })
+            },
+
+            //获取新闻中心"头条新闻"栏目的内容 推荐+前6条
+            getHeadlineContents: function (channelId) {
+                var self = this;
+                $.ajax({
+                    url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelIndex=头条新闻&totalNum=6&isRecommend=true&order=addDate',
+                    type: 'get',
+                    success: function (response) {
+                        var data = response.value.slice(0, 6);
+                        data.forEach(function (node, index) {
+                            if (node.title.length > 19) {
+                                node.titleShort = node.title.substring(0, 19) + "…";
+                            }
+                            else {
+                                node.titleShort = node.title;
+                            }
+                        });
+
+                        self.imageNews.contents = data;
+                        window.setTimeout(function () {
+                            $("#slider_news").slick({
+                                infinite: true,
+                                dots: true,
+                                autoplay: true,
+                                autoplaySpeed: 5000
+                            });
+                        }, 100)
+                    }
+                })
+            },
+
+            //获取新闻中心"头条新闻"栏目详情
+            getHeadlineChannelInfo: function (channelId) {
+                var self = this;
+                $.ajax({
+                    url: '/api/v1/stl/channel?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelIndex=头条新闻',
+                    type: 'get',
+                    success: function (response) {
+                        self.imageNews.navigationUrl = response.value.navigationUrl;
                     }
                 })
             },
@@ -407,6 +456,10 @@ $(function () {
             this.getPrimaryNewsChannelsByGroup();
             //获取新闻中心配置为“门户次要新闻”的栏目及内容
             this.getSecondaryNewsChannelsByGroup();
+            //获取新闻中心"头条新闻"栏目详情
+            this.getHeadlineChannelInfo();
+            //获取新闻中心“头条新闻”的栏目内容
+            this.getHeadlineContents();
         }
     })
 
