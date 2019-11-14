@@ -285,11 +285,11 @@ $(function () {
             secondaryNews: [],          //次要新闻 
         },
         methods: {
-            //获取新闻中心配置为“门户主要新闻”的栏目前4个
+            //获取新闻中心配置为“门户主要新闻”的栏目
             getPrimaryNewsChannelsByGroup: function () {
                 var self = this;
                 $.ajax({
-                    url: encodeURI('/api/v1/stl/channels?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&groupChannel=门户主要新闻&totalNum=4'),
+                    url: encodeURI('/api/v1/stl/channels?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&groupChannel=门户主要新闻'),
                     type: 'get',
                     success: function (response) {
                         for (var i = 0; i < response.value.length; i++) {

@@ -89,7 +89,7 @@
                         </div>
                         <section id="slider_news" class="slider" data-sizes="100vw">
                             <div v-for="news in imageNews.contents">
-                                <a :href="news.navigationUrl">
+                                <a :href="news.navigationUrl" style="width:100%; height:300px;">
                                     <img :src="news.imageUrl" :imgtitle="news.titleShort">
                                 </a>
                             </div>
