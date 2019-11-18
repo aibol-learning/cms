@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Datory;
 using SiteServer.CMS.Data;
 using SiteServer.CMS.Model;
 using SiteServer.Utils;
+using SiteServer.Utils.db;
 
 namespace SiteServer.CMS.Provider
 {
@@ -169,6 +171,7 @@ namespace SiteServer.CMS.Provider
 		public List<ContentCheckInfo> GetCheckInfoList(string tableName, int contentId)
 		{
 			var list = new List<ContentCheckInfo>();
+            var db = new Model1();
 
             var parms = new IDataParameter[]
 			{
@@ -185,6 +188,11 @@ namespace SiteServer.CMS.Provider
 				}
 				rdr.Close();
 			}
+
+            foreach (var item in list)
+            {
+                item.UserName = db.siteserver_Administrator.FirstOrDefault(o => o.UserName == item.UserName)?.DisplayName;
+            }
 
 			return list;
 		}

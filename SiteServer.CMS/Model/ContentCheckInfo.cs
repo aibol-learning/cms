@@ -28,7 +28,7 @@ namespace SiteServer.CMS.Model
 
         public int ContentId { get; }
 
-        public string UserName { get; }
+        public string UserName { get; set; }
 
         public bool IsChecked { get; }
 
