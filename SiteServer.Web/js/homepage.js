@@ -362,7 +362,7 @@ $(function () {
                                 autoplay: true,
                                 autoplaySpeed: 5000
                             });
-                        }, 100)
+                        }, 300)
                     }
                 })
             },
