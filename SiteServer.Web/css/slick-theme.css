@@ -150,6 +150,8 @@
 
 .slick-slide {
     position: relative;
+    height:300px;
+    overflow:hidden;
 }
 
     .slick-slide img {

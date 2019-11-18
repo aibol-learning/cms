@@ -341,7 +341,7 @@ $(function () {
             getHeadlineContents: function (channelId) {
                 var self = this;
                 $.ajax({
-                    url: '/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelIndex=头条新闻&totalNum=6&isRecommend=true&order=addDate',
+                    url: encodeURI('/api/v1/stl/contents?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelIndex=头条新闻&totalNum=6&isRecommend=true&order=addDate'),
                     type: 'get',
                     success: function (response) {
                         var data = response.value.slice(0, 6);
@@ -371,7 +371,7 @@ $(function () {
             getHeadlineChannelInfo: function (channelId) {
                 var self = this;
                 $.ajax({
-                    url: '/api/v1/stl/channel?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelIndex=头条新闻',
+                    url: encodeURI('/api/v1/stl/channel?siteId=' + global.newsSiteId + '&apiKey=' + global.apikey + '&channelIndex=头条新闻'),
                     type: 'get',
                     success: function (response) {
                         self.imageNews.navigationUrl = response.value.navigationUrl;
