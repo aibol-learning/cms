@@ -89,6 +89,12 @@ namespace SiteServer.API.Controllers.Home
                 var channelInfo = ChannelManager.GetChannelInfo(siteId, channelId);
                 if (channelInfo == null) return BadRequest("无法确定内容对应的栏目");
 
+                //删除代办
+                foreach (var contentId in contentIdList)
+                {
+                    BackstageManager.CloseMessage(MessageType.任务, $"SiteserverCheck_{siteId}_{channelId}_{contentId}");
+                }
+
                 if (!isRetainFiles)
                 {
                     DeleteManager.DeleteContents(siteInfo, channelId, contentIdList);

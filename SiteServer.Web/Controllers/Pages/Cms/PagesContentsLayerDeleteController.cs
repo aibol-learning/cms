@@ -95,6 +95,12 @@ namespace SiteServer.API.Controllers.Pages.Cms
                 {
                     DeleteManager.DeleteContents(siteInfo, channelId, contentIdList);
                 }
+                
+                //删除代办
+                foreach (var contentId in contentIdList)
+                {
+                    BackstageManager.CloseMessage(MessageType.任务, $"SiteserverCheck_{siteId}_{channelId}_{contentId}");
+                }
 
                 var tableName = ChannelManager.GetTableName(siteInfo, channelInfo);
 
