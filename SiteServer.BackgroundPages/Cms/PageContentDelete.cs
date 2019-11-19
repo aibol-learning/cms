@@ -132,6 +132,12 @@ namespace SiteServer.BackgroundPages.Cms
                     var tableName = ChannelManager.GetTableName(SiteInfo, channelId);
                     var contentIdList = _idsDictionary[channelId];
 
+                    //删除代办
+                    foreach (var contentId in contentIdList)
+                    {
+                        BackstageManager.CloseMessage(MessageType.任务, $"SiteserverCheck_{SiteInfo.Id}_{channelId}_{contentId}");
+                    }
+
                     if (!_isDeleteFromTrash)
                     {
                         if (bool.Parse(RblRetainFiles.SelectedValue) == false)
