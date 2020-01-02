@@ -71,12 +71,12 @@ namespace SiteServer.CMS.Core
 	    private static class Level3
 	    {
 	        public const string Pass1 = "公司领导审批";
-	        public const string Pass2 = "政工部审批";
+	        public const string Pass2 = "政工部";
 	        public const string Pass3 = "审批完成";
 
 	        public const string Fail1 = "支部书记审批退稿";
 	        public const string Fail2 = "公司领导审批退稿";
-	        public const string Fail3 = "政工部审批退稿";
+	        public const string Fail3 = "政工部退稿";
 	    }
 
 	    private static class Level2

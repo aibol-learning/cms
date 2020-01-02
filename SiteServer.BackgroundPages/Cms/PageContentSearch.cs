@@ -221,8 +221,8 @@ namespace SiteServer.BackgroundPages.Cms
             DdlState.Items.Add(new ListItem("支部书记审批退稿", "-1"));
             DdlState.Items.Add(new ListItem("公司领导审批", "1"));
             DdlState.Items.Add(new ListItem("公司领导审批退稿", "-2"));
-            DdlState.Items.Add(new ListItem("政工部审批", "2"));
-            DdlState.Items.Add(new ListItem("政工部审批退稿", "-3"));
+            DdlState.Items.Add(new ListItem("政工部", "2"));
+            DdlState.Items.Add(new ListItem("政工部退稿", "-3"));
 
             DdlState.SelectedValue = state.ToString();
 

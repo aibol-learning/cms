@@ -202,16 +202,16 @@ namespace SiteServer.BackgroundPages.Cms
                                     "您有一条公司领导审批退稿的新闻任务待处理", redirectUrl, key);
                                 break;
 
-                            case "政工部审批":
+                            case "政工部":
                                 BackstageManager.SendMessage(MessageType.任务,
                                     DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(3),
                                     "您有一条新闻审核任务待处理", redirectUrl, key);
                                 break;
-                            case "政工部审批退稿":
+                            case "政工部退稿":
                                 BackstageManager.SendMessage(MessageType.任务,
                                     new List<string>() { DataProvider.AdministratorDao.GetByUserName(contentInfo.AddUserName).SSOId },
-                                    "您有一条政工部审批退稿的新闻任务待处理", redirectUrl, key);
-                                //标记政工部审批人
+                                    "您有一条政工部退稿的新闻任务待处理", redirectUrl, key);
+                                //标记政工部人
 
                                 var SSOIds = DataProvider.PermissionsInRolesDao.GetCheckerSSOIds(3);
                                 SSOIds.Remove(AuthRequest.AdminInfo.SSOId);

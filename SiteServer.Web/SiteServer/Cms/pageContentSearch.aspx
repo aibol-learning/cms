@@ -20,8 +20,8 @@
             //$("#DdlState").append('<option value="-1">支部书记审批退稿</option>');
             //$("#DdlState").append('<option value="1">公司领导审批</option>');
             //$("#DdlState").append('<option value="-2">公司领导审批退稿</option>');
-            //$("#DdlState").append('<option value="2">政工部审批</option>');
-            //$("#DdlState").append('<option value="-3">政工部审批退稿</option>');
+            //$("#DdlState").append('<option value="2">政工部</option>');
+            //$("#DdlState").append('<option value="-3">政工部退稿</option>');
         });
     </script>
 </head>
