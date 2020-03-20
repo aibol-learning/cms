@@ -2576,9 +2576,11 @@ group by tmp.source";
             {
                 var lv3 = isAdminLv3 ? "or CheckedLevel = 2" : "";
 
+                var lv2Sub = new Guid(adminSub).ToString("N");
+
                 whereList.Add($@"(
                 (Lv1AdminSub = '{adminSub}' and (CheckedLevel = 0 or CheckedLevel = -1))
-                or(Lv2AdminSub = '{adminSub}' and (CheckedLevel = 1 or CheckedLevel = -2))
+                or(Lv2AdminSub = '{lv2Sub}' and (CheckedLevel = 1 or CheckedLevel = -2))
                 {lv3}
                     or (CheckedLevel<0 and AddUserName = '{addUserName}')
                     )");
