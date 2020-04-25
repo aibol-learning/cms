@@ -320,7 +320,7 @@ namespace SiteServer.API.Controllers
                         where r.RoleName == roleName && admin.DisplayName.Contains(search)
                         select admin;
 
-            var list = query.OrderBy(o => o.Id).Skip((page - 1) * 10).Take(10).ToList().Select(o => new { id = $"{o.SSOId}", text = $"{o.DisplayName}" });
+            var list = query.OrderBy(o => o.Id).ToList().Select(o => new { id = $"{o.SSOId}", text = $"{o.DisplayName}" });
             var count = query.Count();
 
             var pagination = Math.Ceiling((double)count / 10) > page;
@@ -356,9 +356,18 @@ namespace SiteServer.API.Controllers
                 case "2": adminSub = content?.Lv3AdminSub; break;
             }
 
-            var admin = db.siteserver_Administrator.FirstOrDefault(o => o.SSOId == adminSub);
+            // workaround
+            if (Guid.TryParse(adminSub, out var adminId))
+            {
+                var admin = db.siteserver_Administrator
+                    .FirstOrDefault(o => o.SSOId == adminId.ToString() || o.SSOId == adminId.ToString("N"));
 
-            return Json(new { code = 200, data = new { id = admin?.SSOId, text = admin?.DisplayName } });
+                return Json(new { code = 200, data = new { id = admin?.SSOId, text = admin?.DisplayName } });
+            }
+            else
+            {
+                return Json(new { code = 200, data = new { id = string.Empty, text = "not found" } });
+            }
         }
 
         public class CheckContent : Content
