@@ -38,7 +38,7 @@ namespace SiteServer.CMS.Core
             }
             catch (Exception e)
             {
-                LogUtils.AddAdminLog("aibol系统日志-错误-发送消息任务",e.Message+e.StackTrace);
+                LogUtils.AddAdminLog("aibol系统日志-错误-发送消息任务",e.Message, e.StackTrace);
                 return new ResponseData<string>() { Code = "-1",Messages = "发送失败" };
             }
         }
@@ -61,12 +61,10 @@ namespace SiteServer.CMS.Core
             }
             catch (Exception e)
             {
-                LogUtils.AddAdminLog("aibol系统日志-错误-关闭消息任务"+ key, e.Message + e.StackTrace);
+                LogUtils.AddAdminLog("aibol系统日志-错误-关闭消息任务"+ key, e.Message, e.StackTrace);
                 return new ResponseData<string>() { Code = "-1", Messages = "关闭失败" };
             }
         }
-
-
 
         public class ResponseData<T>
         {
@@ -116,8 +114,6 @@ namespace SiteServer.CMS.Core
             return re;
         }
 
-
-
         /// <summary>
         /// 发送post请求
         /// </summary>
@@ -136,12 +132,17 @@ namespace SiteServer.CMS.Core
 
             var re = HttpHelper.HttpPost(url, data, new List<string>() {$"Authorization:Bearer {accessToken}"});
 
-            var json = JsonConvert.DeserializeObject<T>(re);
+            try
+            {
+                var json = JsonConvert.DeserializeObject<T>(re);
 
-            return json;
-
+                return json;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("返回值错误：" + re);
+            }
         }
-
     }
 
 
