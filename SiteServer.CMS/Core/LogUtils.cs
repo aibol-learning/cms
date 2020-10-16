@@ -136,14 +136,14 @@ stl: {stlContent}
             {
                 DataProvider.LogDao.DeleteIfThreshold();
 
-                if (!string.IsNullOrEmpty(action))
-                {
-                    action = StringUtils.MaxLengthText(action, 250);
-                }
-                if (!string.IsNullOrEmpty(summary))
-                {
-                    summary = StringUtils.MaxLengthText(summary, 250);
-                }
+                //if (!string.IsNullOrEmpty(action))
+                //{
+                //    action = StringUtils.MaxLengthText(action, 250);
+                //}
+                //if (!string.IsNullOrEmpty(summary))
+                //{
+                //    summary = StringUtils.MaxLengthText(summary, 250);
+                //}
                 var logInfo = new LogInfo(0, adminName, PageUtils.GetIpAddress(), DateTime.Now, action, summary);
 
                 DataProvider.LogDao.Insert(logInfo);
